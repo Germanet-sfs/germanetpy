@@ -1,6 +1,4 @@
 import os
-import time
-import logging
 from collections import defaultdict
 import progressbar
 from utils import parse_xml
@@ -13,38 +11,50 @@ from relationLoader import load_relations
 class Germanet:
 
     def __init__(self, datadir, addiliRecords=True, addWictionary=True):
-        # the data directory where all germanet XML files are stored in
+        """
+        The Germanet object is initialized with the directory where the Germanet data is stored. The data is loaded
+        when Germanet is initialized.
+        :param datadir: [String] The path to the directory where the Germanet data is stored
+        :param addiliRecords: a boolean, denotes whether the iliRecords should also be loaded into the Germanet
+        object, default: True
+        :param addWictionary: a boolean, denotes whether the wictionary files should also be loaded into the Germanet
+        object, default: True
+        """
         self.datadir = datadir
         self.addiliRecords = addiliRecords
         self.addWictionary = addWictionary
 
-        # lexid 2 lexunit
+        # Dictionary: lexunit id - lexunit object
         self._lexunits = {}
 
-        # synid2synset
+        # Dictionary: synset id - synset object
         self._synsets = {}
 
-        # orthform2lexids (all variants)
+        # Dictionary: any orthform (all variants) - lexunit id
         self._ortform2lexid = defaultdict(set)
 
-        # orthform2lexids (only main form)
+        # Dictionary: main orthform - lexunit id
         self._mainOrtform2lexid = defaultdict(set)
 
-        # lower cased orthform 2 lexids (all variants)
+        # Dictionary: lower cased orht form (all variants) - lexunit id
         self._lowercasedform2lexid = defaultdict(set)
 
-        # wordcategory2synset
+        # Dictionary: Wordcategory - set of lexunit ids
         self._wordcat2lexid = defaultdict(set)
 
-        # wordclass2synset
+        # Dictionary: Wordclass - set of lexunit ids
         self._wordclass2lexid = defaultdict(set)
 
+        # Set if synsets (that are compounds)
         self._compounds = set()
 
-        # frame2id
+        # Dictionary: Frame - synset id
         self._frames2id = defaultdict(set)
 
+        # List: wictionary entries
         self._wiktionary_entries = []
+
+        # List: ili Records
         self._ili_records = []
 
         self.load_data()
@@ -138,7 +148,7 @@ class Germanet:
     def lowercasedform2lexid(self):
         return self._lowercasedform2lexid
 
-    def wordcate2lexid(self):
+    def wordcat2lexid(self):
         return self._wordcat2lexid
 
     def wordclass2lexid(self):
@@ -155,43 +165,3 @@ class Germanet:
 
     def ili_records(self):
         return self._ili_records
-
-
-if __name__ == '__main__':
-    germanet = Germanet('data')
-    start_time = time.time()
-    print("--- %s seconds ---" % (time.time() - start_time))
-    # print(germanet.get_synsets())
-    # print(germanet.get_lexunits())
-    # print(germanet.get_compounds())
-    # jetzt sind die daten geladen.
-    # hier ein beispiel für funktionen. sagen wir du hast dein adjektiv 'tief'
-
-    # extrahiere alle synsets zu 'tief'
-
-
-    Stimme = germanet.get_synset_by_id("s29596")
-    Stimmel = germanet._lexunits['l40408']
-    print(Stimmel)
-
-    print(Stimme)
-
-    print(Stimme.relations())
-    print(Stimme.incoming_relations())
-    print(Stimme.direct_hypernyms())
-    print(Stimme.direct_hyponyms())
-    print(Stimme.all_hypernyms())
-
-    Geräusch = germanet.get_synset_by_id("s40951")
-    dackel = germanet.get_synset_by_id('s50944')
-    dimension = germanet.get_synset_by_id("s15678")
-    steigerung = germanet.get_synset_by_id("s22278")
-    lokalisation = germanet.get_synset_by_id("s96965")
-    knapp = germanet.get_synset_by_id("s5400")
-    Stunde = germanet.get_synset_by_id("s51491")
-    zeit = germanet.get_synset_by_id("s51002")
-    kommunikation = germanet.get_synset_by_id("s29596")
-    kommmittel = germanet.get_synset_by_id("s29473")
-
-    # for p in hypernympaths:
-    # print(p)

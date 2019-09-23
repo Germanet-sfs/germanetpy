@@ -98,7 +98,6 @@ def test_compoundInfo(id, modifier, head, modifier1Property, modifier1Category, 
     np.testing.assert_equal(compoundinfo.headProperty == headProperty, True)
 
 
-# id, ewnRelation, pwnWord, pwn20Id, pwn30Id, pwn20paraphrase, source
 @pytest.mark.parametrize('id, relation, english_equivalent, pwn20Id, pwn30Id, pwn20synonyms, pwn20paraphrase, source',
                          iliRecords)
 def test_iliRecords(id, relation, english_equivalent, pwn20Id, pwn30Id, pwn20synonyms, pwn20paraphrase, source):
@@ -116,8 +115,8 @@ def test_iliRecords(id, relation, english_equivalent, pwn20Id, pwn30Id, pwn20syn
 @pytest.mark.parametrize('id, wictionaryId, wictionarySenseId, wictionarySense, edited', wictionary)
 def test_wictionary(id, wictionaryId, wictionarySenseId, wictionarySense, edited):
     lexunit = germanet_data.lexunits()[id]
-    wictionary = lexunit.wiktionaryParaphrases()[0]
-    np.testing.assert_equal(wictionary.wiktionaryId(), wictionaryId)
-    np.testing.assert_equal(wictionary.wiktionarySenseId(), wictionarySenseId)
-    np.testing.assert_equal(wictionary.wiktionarySense(), wictionarySense)
+    wictionary = lexunit.wiktionary_paraphrases()[0]
+    np.testing.assert_equal(wictionary.wiktionary_id(), wictionaryId)
+    np.testing.assert_equal(wictionary.wiktionary_sense_id(), wictionarySenseId)
+    np.testing.assert_equal(wictionary.wiktionary_sense(), wictionarySense)
     np.testing.assert_equal(wictionary.edited(), edited)

@@ -77,7 +77,6 @@ class Lexunit:
     def __init__(self, id, synset, sense, source, named_entity, style_marking, artificial,
                  compound_info=None, orthform=None, old_orthform=None, orthvar=None, old_orthvar=None):
         """
-
         :param id: A unique String identifier
         :param synset: The lexical unit belongs to one (and only one) synset object.
         :param sense: The sense number of the lexical unit
@@ -117,7 +116,6 @@ class Lexunit:
         self._incoming_relations = defaultdict(set)
 
     def get_orthform_variant(self, orthform_variant):
-        assert orthform_variant == type(OrthFormVariant), 'no valid orthform'
         if orthform_variant == OrthFormVariant.orthForm:
             return self._orthform
         elif orthform_variant == OrthFormVariant.oldOrthForm:
