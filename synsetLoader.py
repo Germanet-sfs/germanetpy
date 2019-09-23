@@ -120,7 +120,7 @@ def create_lexunit(germanet, attributes, lex_root, synset):
         elif tag == FRAME:
             lexunit._frames.append(child_value)
             for f in lexunit._frames:
-                germanet._frames2id[f].add(lexunit)
+                germanet._frames2lexunits[f].add(lexunit)
         elif tag == EXAMPLE:
             example = child[0].text
             lexunit._examples.append(example)

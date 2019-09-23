@@ -13,7 +13,7 @@ class Frames:
     CAUSE = 'BC'
     ROLE = 'BR'
     COM = 'BO'
-    reflexives = ['Dr', 'Ar']
+    reflexives = ['DR', 'AR']
 
     def __init__(self, frames2lexunits):
 
@@ -34,23 +34,26 @@ class Frames:
     def extract_prepositional_complement(self):
         return self.extract_specific_complements(self.PREPOBJ)
 
+    def extract_reflexives(self):
+        return self.extract_specific_complements(self.reflexives[0]).union(
+            self.extract_specific_complements(self.reflexives[1]))
+
     def extract_adverbials(self):
         return self.extract_specific_complements(self.LOC) \
-            .add(self.extract_specific_complements(self.DIR)
-                 .add(self.extract_specific_complements(self.TEMP)
-                      .add(self.extract_specific_complements(self.MAN)
-                           .add(self.extract_specific_complements(self.INST)
-                                .add(self.extract_specific_complements(self.CAUSE)
-                                     .add(self.extract_specific_complements(self.ROLE)
-                                          .add(self.extract_specific_complements(self.COM))))))))
-
-
+            .union(self.extract_specific_complements(self.DIR)
+                 .union(self.extract_specific_complements(self.TEMP)
+                      .union(self.extract_specific_complements(self.MAN)
+                           .union(self.extract_specific_complements(self.INST)
+                                .union(self.extract_specific_complements(self.CAUSE)
+                                     .union(self.extract_specific_complements(self.ROLE)
+                                          .union(self.extract_specific_complements(self.COM))))))))
 
     def extract_specific_complements(self, complement):
         complements = set()
         for (key, val) in self._frames2verbs.items():
             if complement in key:
-                complements.add(val)
+                for unit in val:
+                    complements.add(unit)
         return complements
 
     def frames2verbs(self):

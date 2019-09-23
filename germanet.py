@@ -6,7 +6,7 @@ from synsetLoader import load_lexunits
 from iliLoader import load_ili
 from wictionaryLoader import load_wiktionary
 from relationLoader import load_relations
-
+from frames import Frames
 
 class Germanet:
 
@@ -48,8 +48,8 @@ class Germanet:
         # Set if synsets (that are compounds)
         self._compounds = set()
 
-        # Dictionary: Frame - synset id
-        self._frames2id = defaultdict(set)
+        # Dictionary: Frame - Lexunit objects
+        self._frames2lexunits = defaultdict(set)
 
         # List: wictionary entries
         self._wiktionary_entries = []
@@ -58,6 +58,8 @@ class Germanet:
         self._ili_records = []
 
         self.load_data()
+
+        self._frames = Frames(self._frames2lexunits)
 
     def get_synsets_by_orthform(self, form, ignorecase=False):
         if ignorecase:
@@ -98,7 +100,7 @@ class Germanet:
         return [self._lexunits[id] for id in lexunit_ids]
 
     def get_synsets_by_frame(self, frame):
-        synset_ids = self._frames2id[frame]
+        synset_ids = self._frames2lexunits[frame]
         return [self._synsets[id] for id in synset_ids]
 
     def get_number_of_senses(self, lexunits):
@@ -158,10 +160,13 @@ class Germanet:
         return self._compounds
 
     def frames2id(self):
-        return self._frames2id
+        return self._frames2lexunits
 
     def wiktionary_entries(self):
         return self._wiktionary_entries
 
     def ili_records(self):
         return self._ili_records
+
+    def frames(self):
+        return self._frames
