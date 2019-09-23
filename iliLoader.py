@@ -10,6 +10,12 @@ PWN20PARAPHRASE = 'pwn20paraphrase'
 
 
 def create_ili_record(attributes, synonyms):
+    """
+    Creates the ili record given the XML attributes.
+    :param attributes: The XML attributes that contain the required information about the ili record.
+    :param synonyms: A list of Strings, containing the synonyms of the ili record.
+    :return: The ili record object
+    """
     lex_id = attributes[LEXID]
     ewnrelation = attributes[EWNREL]
     pwnword = attributes[PWNWORD]
@@ -24,6 +30,12 @@ def create_ili_record(attributes, synonyms):
 
 
 def load_ili(germanet, tree):
+    """
+    This method creates the ili record objects given a datafile and adds them to the Germanet object and the
+    corresponding lexical unit.
+    :param germanet: The germanet object
+    :param tree: The XML tree containing the data about the ili records
+    """
     root = tree.getroot()
     for child in root:
         attributes = child.attrib

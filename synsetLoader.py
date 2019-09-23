@@ -17,6 +17,7 @@ OLDORTHVAR = 'oldOrthVar'
 COMPOUND = 'compound'
 FRAME = 'frame'
 EXAMPLE = 'example'
+LEXUNIT = "lexUnit"
 
 # Synset xml attribute values
 SYNID = 'id'
@@ -38,6 +39,12 @@ def get_attribute_element(attributes, element, enum):
 
 
 def create_compound_info(child):
+    """
+    Creates a compound info object. This has a modifier (String) and a head (String). Each modifier and the head can
+    have a property (CompoundProperty) and a category (CompoundCategory).
+    :param child:
+    :return: A CompoundInfo object
+    """
     modifier1 = child[0]
     modifier1prop = get_attribute_element(modifier1.attrib, CompoundInfo.PROPERTY, CompoundProperty)
     modifier1cat = get_attribute_element(modifier1.attrib, CompoundInfo.CATEGORY, CompoundCategory)
@@ -57,6 +64,11 @@ def create_compound_info(child):
 
 
 def load_lexunits(germanet, tree):
+    """
+    Takes the XML tree and walks trough it to create the Lexunit objects.
+    :param germanet: the germanet object
+    :param tree: XML tree
+    """
     root = tree.getroot()
     for child in root:
         attribute = child.attrib
@@ -67,7 +79,7 @@ def load_lexunits(germanet, tree):
         germanet._synsets[synset._id] = synset
 
         for sub_child in child:
-            if sub_child.tag == "lexUnit":
+            if sub_child.tag == LEXUNIT:
                 lexunit = create_lexunit(germanet, sub_child.attrib, sub_child, synset)
                 germanet._lexunits[lexunit._id] = lexunit
                 germanet._wordcat2lexid[category.name].add(lexunit._id)
@@ -79,14 +91,22 @@ def load_lexunits(germanet, tree):
                     unit._relations[LexRel.has_synonym].add(lexunit)
 
 
-def create_lexunit(germanet, attributes, lex_root, s):
+def create_lexunit(germanet, attributes, lex_root, synset):
+    """
+    Given the XML data, creates a Lexunit object.
+    :param germanet: The germanet object.
+    :param attributes: [lxml.etree._Attrib] The XML attributes.
+    :param lex_root: [lxml.etree._Element] The XML root
+    :param synset: the corresponding synset object
+    :return: a lexical unit object
+    """
     lex_id = attributes[LEXID]
     lex_sense = int(attributes[SENSE])
     lex_source = attributes[SOURCE]
     lex_named_entity = convert_to_boolean(attributes[NAMEDENTITY])
     lex_artificial = convert_to_boolean(attributes[ARTIFICIAL])
     lex_style = convert_to_boolean(attributes[STYLE])
-    lexunit = Lexunit(id=lex_id, sense=lex_sense, source=lex_source, named_entity=lex_named_entity, synset=s,
+    lexunit = Lexunit(id=lex_id, sense=lex_sense, source=lex_source, named_entity=lex_named_entity, synset=synset,
                       artificial=lex_artificial, style_marking=lex_style)
     for child in lex_root:
         tag = child.tag
@@ -107,12 +127,18 @@ def create_lexunit(germanet, attributes, lex_root, s):
             if len(child) == 2:
                 exframe = child[1].text
                 lexunit._frames2examples[exframe].add(example)
-        else:
-            print("undefined tag")
     return lexunit
 
 
 def add_orth_forms(germanet, lexunit, child_value, tag):
+    """
+    Checks which orthform the tag contains, and adds it to the lexunit object. Adds the lexunit id to the
+    corresponding dictionary.
+    :param germanet: The germanet object containing the Orthform variant dictionaries.
+    :param lexunit: the Lexunit object the Orthform variant needs to be added to
+    :param child_value:  [String] the value of the XML element that contains this Orthform variant
+    :param tag: the value of the XML tag specifying the type of Orthform variant
+    """
     germanet._ortform2lexid[child_value].add(lexunit._id)
     germanet._lowercasedform2lexid[child_value.lower()].add(lexunit._id)
 
