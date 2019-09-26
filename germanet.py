@@ -171,3 +171,7 @@ class Germanet:
 
     def frames(self):
         return self._frames
+
+    def root(self):
+        root = self.get_synset_by_id('s51001')
+        return root

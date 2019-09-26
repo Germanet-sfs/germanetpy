@@ -244,17 +244,16 @@ class Synset:
         Extract the lowes common subsumer(s) / lowest common ancestor(s) of the current synset and a given one.
         :param other: Another synset object the LCS should be computed to.
         :return: a set, containing one or several synset objects, being the LCS between the current synset and the
-        given
-        one.
+        given one.
         """
         lcs = set()
         if other == self:
             lcs.add(self)
             return lcs
-        if other in self._direct_hypernyms:
+        if other in self._direct_hypernyms or other.is_root():
             lcs.add(other)
             return lcs
-        if self in other._direct_hypernyms:
+        if self in other._direct_hypernyms or self.is_root():
             lcs.add(self)
             return lcs
         common_hypernyms = self.common_hypernyms(other)
