@@ -8,6 +8,7 @@ from wictionaryLoader import load_wiktionary
 from relationLoader import load_relations
 from frames import Frames
 
+
 class Germanet:
 
     def __init__(self, datadir, addiliRecords=True, addWictionary=True):
@@ -66,15 +67,15 @@ class Germanet:
             lexunit_ids = self._lowercasedform2lexid[form.lower()]
         else:
             lexunit_ids = self._ortform2lexid[form]
-        return [self._lexunits[id].synset for id in lexunit_ids]
+        return [self._lexunits[id].synset() for id in lexunit_ids]
 
     def get_synsets_by_wordcategory(self, category):
         lexunit_ids = self._wordcat2lexid[category.name]
-        return [self._lexunits[id].synset for id in lexunit_ids]
+        return [self._lexunits[id].synset() for id in lexunit_ids]
 
     def get_synsets_by_wordclass(self, wordclass):
         lexunit_ids = self._wordclass2lexid[wordclass.name]
-        return [self._lexunits[id].synset for id in lexunit_ids]
+        return [self._lexunits[id].synset() for id in lexunit_ids]
 
     def get_synset_by_id(self, id):
         assert id in self._synsets, "the given synset id is not in GermaNet"

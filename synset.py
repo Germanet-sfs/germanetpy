@@ -104,7 +104,6 @@ class Synset:
         self._direct_hypernyms = self._relations[ConRel.has_hypernym]
         self._direct_hyponyms = self._relations[ConRel.has_hyponym]
 
-
     def __repr__(self):
         lexunit_list = [f'{unit.orthform()}' for unit in self._lexunits]
         lexunit_str = ', '.join(lexunit_list)
@@ -191,7 +190,6 @@ class Synset:
         :return: The number of edges in the shortest path connecting the two
             nodes, or None if no path exists.
         """
-
         if self == other:
             return 0
 
@@ -224,6 +222,8 @@ class Synset:
         :param hypernym: a synset, denoting the hypernym the shortest path should be computed to
         :return: a list with the shortest sequence of synset nodes traversed from self to given  hypernym
         """
+        if self == hypernym:
+            return [self]
         assert hypernym in self.all_hypernyms(), "given hypernym is not a hypernym of this synset"
         shortest_path = []
         shortest = math.inf
@@ -248,6 +248,9 @@ class Synset:
         one.
         """
         lcs = set()
+        if other == self:
+            lcs.add(self)
+            return lcs
         if other in self._direct_hypernyms:
             lcs.add(other)
             return lcs
