@@ -163,6 +163,28 @@ class Synset:
                     hypernyms.append(synset)
         return set(hypernyms)
 
+    def hyponym_paths(self):
+        paths = []
+        hyponyms = self._direct_hyponyms
+        if self.is_leaf():
+            paths = [[self]]
+        for hyponym in hyponyms:
+            for ancestor_list in hyponym.hyponym_paths():
+                ancestor_list.append(self)
+                paths.append(ancestor_list)
+        return paths
+
+    def all_hyponyms(self):
+        hyponyms = []
+        for path in self.hyponym_paths():
+            for synset in path:
+                if synset is not self:
+                    hyponyms.append(synset)
+        return set(hyponyms)
+
+    # add method get path to root (shortest)
+
+
     def common_hypernyms(self, other):
         return set(self.all_hypernyms()).intersection(set(other.all_hypernyms()))
 
