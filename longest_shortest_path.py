@@ -55,6 +55,9 @@ def get_longest_possible_shortest_distance(wordcategory, germanet):
     return longest_possible_shortest_distance
 
 g = Germanet("data")
+print(get_overall_longest_shortest_distance(g, WordCategory.nomen)[1])
+print(get_overall_longest_shortest_distance(g, WordCategory.verben)[1])
+print(get_overall_longest_shortest_distance(g, WordCategory.adj)[1])
 print(get_longest_possible_shortest_distance(g, WordCategory.nomen))
 print(get_longest_possible_shortest_distance(g, WordCategory.verben))
 print(get_longest_possible_shortest_distance(g, WordCategory.adj))

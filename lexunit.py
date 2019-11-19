@@ -149,6 +149,12 @@ class Lexunit:
     def old_orthvar(self):
         return self._old_orthvar
 
+    def get_all_orthforms(self):
+        forms = set()
+        for orthformvariant in OrthFormVariant:
+            forms.add(self.get_orthform_variant(orthformvariant))
+        return forms
+
     def frames(self):
         return self._frames
 
