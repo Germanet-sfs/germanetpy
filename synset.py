@@ -105,13 +105,13 @@ class Synset:
         self._direct_hyponyms = self._relations[ConRel.has_hyponym]
 
     def __repr__(self):
-        lexunit_list = [f'{unit.orthform()}' for unit in self._lexunits]
+        lexunit_list = [f'{unit.orthform}' for unit in self._lexunits]
         lexunit_str = ', '.join(lexunit_list)
         return f'Synset(id={self._id}, lexunits={lexunit_str})'
 
     def add_lexunit(self, unit):
         """
-        Adds a lexical unit that is contained in this synset to the list of lexical units
+        Adds a lexical unit that part of this synset to the list of lexical units
         :param unit: The lexUnit object to be added
         """
         self._lexunits.append(unit)
@@ -164,6 +164,12 @@ class Synset:
         return set(hypernyms)
 
     def hyponym_paths(self):
+        """
+        This method iterates recursively through the hyponyms of this synset to get all paths that connect
+        this synset with a leaf node. A path is complete if it ends with a leaf node. All possible paths are
+        returned. Each path is a list of nodes.
+        :return: A list of lists, each lists contains a node sequence connecting this synset with a leaf node
+                """
         paths = []
         hyponyms = self._direct_hyponyms
         if self.is_leaf():
@@ -175,6 +181,10 @@ class Synset:
         return paths
 
     def all_hyponyms(self):
+        """
+        This method returns all possible hyponyms of this synset.
+        :return: [set(Synset)] A set of synset nodes, each constitutes a hyponym of the current synset.
+        """
         hyponyms = []
         for path in self.hyponym_paths():
             for synset in path:
@@ -182,15 +192,26 @@ class Synset:
                     hyponyms.append(synset)
         return set(hyponyms)
 
-    # add method get path to root (shortest)
-
+    def shortest_path_to_root(self):
+        """
+        This method returns the shortest path to the root node.
+        :return: [list(Synset)] shortest path to the root node.
+        """
+        paths = self.hypernym_paths()
+        shortest = paths.index(min([len(path) for path in paths]))
+        return paths[shortest]
 
     def common_hypernyms(self, other):
+        """
+        Given another synset, this method computes shared hypernyms
+        :param other: another synset object
+        :return: [set(Synset)] a set of synset nodes, that denotes the shared hypernyms between this synset and the given one.
+        """
         return set(self.all_hypernyms()).intersection(set(other.all_hypernyms()))
 
     def min_depth(self):
         """
-        :return: The length of the shortest hypernym path from this
+        :return: [int] The length of the shortest hypernym path from this
         synset to the root.
         """
 
@@ -209,7 +230,7 @@ class Synset:
 
         :type other: Synset
         :param other: The Synset to which the shortest path will be found.
-        :return: The number of edges in the shortest path connecting the two
+        :return: [int] The number of edges in the shortest path connecting the two
             nodes, or None if no path exists.
         """
         if self == other:
@@ -223,7 +244,7 @@ class Synset:
         Returns the shortest possible sequence of synset nodes that are traversed from this synset to a given other
         synset.
         :param other: A synset the path should be computed to
-        :return: A list, containing the sequence of nodes traversed from this synset to the given other synset.
+        :return: [list(Synset)] A list, containing the sequence of nodes traversed from this synset to the given other synset.
         """
         shortest_paths = []
         lcs = self.lowest_common_subsumer(other)
@@ -242,7 +263,7 @@ class Synset:
         The shortest path between this synset and the given hypernym. Asserts that the given other synset is a real
         hypernym of the current synset
         :param hypernym: a synset, denoting the hypernym the shortest path should be computed to
-        :return: a list with the shortest sequence of synset nodes traversed from self to given  hypernym
+        :return: [list(Synset)] a list with the shortest sequence of synset nodes traversed from self to given  hypernym
         """
         if self == hypernym:
             return [self]
@@ -265,7 +286,7 @@ class Synset:
         """
         Extract the lowes common subsumer(s) / lowest common ancestor(s) of the current synset and a given one.
         :param other: Another synset object the LCS should be computed to.
-        :return: a set, containing one or several synset objects, being the LCS between the current synset and the
+        :return: [set(Synset)] a set, containing one or several synset objects, being the LCS between the current synset and the
         given one.
         """
         lcs = set()
@@ -296,7 +317,7 @@ class Synset:
     def get_distances_hypernym_dic(self):
         """
         For each hypernym, store the shortest distance between the current synset and its hypernym.
-        :return: A dictionary containing all hypernyms of this synset as keys and the corresponding distances as values.
+        :return: [dic(Synset, int)] A dictionary containing all hypernyms of this synset as keys and the corresponding distances as values.
         """
         hypernym_paths = self.hypernym_paths()
         distances_dic = {}
@@ -312,29 +333,38 @@ class Synset:
                     distances_dic[hypernym] = dist
         return distances_dic
 
+    @property
     def id(self):
         return self._id
 
+    @property
     def word_category(self):
         return self._word_category
 
+    @property
     def word_class(self):
         return self._word_class
 
+    @property
     def paraphrase(self):
         return self._paraphrase
 
+    @property
     def lexunits(self):
         return self._lexunits
 
+    @property
     def relations(self):
         return self._relations
 
+    @property
     def incoming_relations(self):
         return self._incoming_relations
 
+    @property
     def direct_hypernyms(self):
         return self._direct_hypernyms
 
+    @property
     def direct_hyponyms(self):
         return self._direct_hyponyms

@@ -22,26 +22,34 @@ class IliRecord:
         self._pwn20paraphrase = pwn20paraphrase
         self._source = source
 
+    @property
     def lexunit_id(self):
         return self._lexunit_id
 
+    @property
     def relation(self):
         return self._relation
 
+    @property
     def english_equivalent(self):
         return self._english_equivalent
 
+    @property
     def pwn20id(self):
         return self._pwn20id
 
+    @property
     def pwn30id(self):
         return self._pwn30id
 
+    @property
     def pwn20synonyms(self):
         return self._pwn20synonyms
 
+    @property
     def pwn20paraphrase(self):
         return self._pwn20paraphrase
 
+    @property
     def source(self):
         return self._source

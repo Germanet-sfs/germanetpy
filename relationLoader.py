@@ -36,18 +36,18 @@ def load_relations(germanet, tree):
         tag = child.tag
         if tag == LEX_REL:
             relation, from_node, to_node, direction, inverse_relation = get_relation_attributes(child.attrib)
-            lexunit1 = germanet._lexunits[from_node]
-            lexunit2 = germanet._lexunits[to_node]
-            lexunit1._relations[LexRel[relation]].add(lexunit2)
-            lexunit2._incoming_relations[LexRel[relation]].add(lexunit1)
+            lexunit1 = germanet.lexunits[from_node]
+            lexunit2 = germanet.lexunits[to_node]
+            lexunit1.relations[LexRel[relation]].add(lexunit2)
+            lexunit2.incoming_relations[LexRel[relation]].add(lexunit1)
             if inverse_relation is not None:
-                lexunit2._relations[LexRel[inverse_relation]].add(lexunit1)
+                lexunit2.relations[LexRel[inverse_relation]].add(lexunit1)
 
         elif tag == CON_REL:
             relation, from_node, to_node, dir, inverse_relation = get_relation_attributes(child.attrib)
-            synset1 = germanet._synsets[from_node]
-            synset2 = germanet._synsets[to_node]
-            synset1._relations[ConRel[relation]].add(synset2)
-            synset2._incoming_relations[ConRel[relation]].add(synset1)
+            synset1 = germanet.synsets[from_node]
+            synset2 = germanet.synsets[to_node]
+            synset1.relations[ConRel[relation]].add(synset2)
+            synset2.incoming_relations[ConRel[relation]].add(synset1)
             if inverse_relation is not None:
-                synset2._relations[ConRel[inverse_relation]].add(synset1)
+                synset2.relations[ConRel[inverse_relation]].add(synset1)

@@ -23,6 +23,7 @@ def get_overall_longest_shortest_distance(germanet, category):
     sorted_dist_dic = sorted(dist_dic.items(), key=lambda kv: kv[1], reverse=True)
     return sorted_dist_dic, overall_maxlen
 
+
 def get_longest_possible_shortest_distance(wordcategory, germanet):
     """
     set a maxdistcounter = 0
@@ -54,10 +55,10 @@ def get_longest_possible_shortest_distance(wordcategory, germanet):
                 longest_possible_shortest_distance = pathdist
     return longest_possible_shortest_distance
 
-g = Germanet("data")
-print(get_overall_longest_shortest_distance(g, WordCategory.nomen)[1])
-print(get_overall_longest_shortest_distance(g, WordCategory.verben)[1])
-print(get_overall_longest_shortest_distance(g, WordCategory.adj)[1])
-print(get_longest_possible_shortest_distance(g, WordCategory.nomen))
-print(get_longest_possible_shortest_distance(g, WordCategory.verben))
-print(get_longest_possible_shortest_distance(g, WordCategory.adj))
+
+def print_all_longest_shortest_distances():
+    """Computes and prints the longest shortest distances for every word category."""
+    g = Germanet("data")
+    print("longest shortest distance for nouns : %2d" % get_longest_possible_shortest_distance(g, WordCategory.nomen))
+    print("longest shortest distance for verbs : %2d" % get_longest_possible_shortest_distance(g, WordCategory.verben))
+    print("longest shortest distance for adjectives : %2d" % get_longest_possible_shortest_distance(g, WordCategory.adj))

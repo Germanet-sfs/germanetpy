@@ -67,16 +67,18 @@ wictionary = [("l76274", "w74102", 0,
 
 @pytest.mark.parametrize('id,lexrel,expected_ids', lexical_relations)
 def test_lexical_relations(id, lexrel, expected_ids):
-    lexunit = germanet_data.lexunits()[id]
-    related = lexunit.relations()[lexrel]
-    np.testing.assert_equal(sorted([lex.id() for lex in related]), sorted(expected_ids))
+    """Test whether the given lexunit contains the correct lexical relations"""
+    lexunit = germanet_data.lexunits[id]
+    related = lexunit.relations[lexrel]
+    np.testing.assert_equal(sorted([lex.id for lex in related]), sorted(expected_ids))
 
 
 @pytest.mark.parametrize('id,lexrel,expected_ids', lexical_incoming_relations)
 def test_incoming_lexical_relations(id, lexrel, expected_ids):
-    lexunit = germanet_data.lexunits()[id]
+    """Test whether the given lexunit contains the correct inocming lexical relations."""
+    lexunit = germanet_data.lexunits[id]
     related = lexunit.incoming_relations[lexrel]
-    np.testing.assert_equal(sorted([lex.id() for lex in related]), sorted(expected_ids))
+    np.testing.assert_equal(sorted([lex.id for lex in related]), sorted(expected_ids))
 
 
 @pytest.mark.parametrize(
@@ -86,37 +88,40 @@ def test_incoming_lexical_relations(id, lexrel, expected_ids):
 def test_compoundInfo(id, modifier, head, modifier1Property, modifier1Category, modifier2, modifier2Property,
                       modifier2Category,
                       headProperty):
-    lexunit = germanet_data.lexunits()[id]
-    compoundinfo = lexunit.compoundInfo()
+    """Test if a compound info is stored correctly."""
+    lexunit = germanet_data.lexunits[id]
+    compoundinfo = lexunit.compound_info
     np.testing.assert_equal(compoundinfo.modifier1, modifier)
     np.testing.assert_equal(compoundinfo.head, head)
-    np.testing.assert_equal(compoundinfo.modifier1Property == modifier1Property, True)
-    np.testing.assert_equal(compoundinfo.modifier1Category == modifier1Category, True)
+    np.testing.assert_equal(compoundinfo.modifier1_property == modifier1Property, True)
+    np.testing.assert_equal(compoundinfo.modifier1_category == modifier1Category, True)
     np.testing.assert_equal(compoundinfo.modifier2 == modifier2, True)
-    np.testing.assert_equal(compoundinfo.modifier2Property == modifier2Property, True)
-    np.testing.assert_equal(compoundinfo.modifier2Category == modifier2Category, True)
-    np.testing.assert_equal(compoundinfo.headProperty == headProperty, True)
+    np.testing.assert_equal(compoundinfo.modifier2_property == modifier2Property, True)
+    np.testing.assert_equal(compoundinfo.modifier2_category == modifier2Category, True)
+    np.testing.assert_equal(compoundinfo.head_property == headProperty, True)
 
 
 @pytest.mark.parametrize('id, relation, english_equivalent, pwn20Id, pwn30Id, pwn20synonyms, pwn20paraphrase, source',
                          iliRecords)
 def test_iliRecords(id, relation, english_equivalent, pwn20Id, pwn30Id, pwn20synonyms, pwn20paraphrase, source):
-    lexunit = germanet_data.lexunits()[id]
-    ilirecord = lexunit.ili_records()[0]
-    np.testing.assert_equal(ilirecord.relation(), relation)
-    np.testing.assert_equal(ilirecord.english_equivalent(), english_equivalent)
-    np.testing.assert_equal(ilirecord.pwn20id(), pwn20Id)
-    np.testing.assert_equal(ilirecord.pwn30id(), pwn30Id)
-    np.testing.assert_equal(ilirecord.pwn20synonyms(), pwn20synonyms)
-    np.testing.assert_equal(ilirecord.pwn20paraphrase(), pwn20paraphrase)
-    np.testing.assert_equal(ilirecord.source(), source)
+    """Test if an ili record is stored correctly."""
+    lexunit = germanet_data.lexunits[id]
+    ilirecord = lexunit.ili_records[0]
+    np.testing.assert_equal(ilirecord.relation, relation)
+    np.testing.assert_equal(ilirecord.english_equivalent, english_equivalent)
+    np.testing.assert_equal(ilirecord.pwn20id, pwn20Id)
+    np.testing.assert_equal(ilirecord.pwn30id, pwn30Id)
+    np.testing.assert_equal(ilirecord.pwn20synonyms, pwn20synonyms)
+    np.testing.assert_equal(ilirecord.pwn20paraphrase, pwn20paraphrase)
+    np.testing.assert_equal(ilirecord.source, source)
 
 
 @pytest.mark.parametrize('id, wictionaryId, wictionarySenseId, wictionarySense, edited', wictionary)
 def test_wictionary(id, wictionaryId, wictionarySenseId, wictionarySense, edited):
-    lexunit = germanet_data.lexunits()[id]
-    wictionary = lexunit.wiktionary_paraphrases()[0]
-    np.testing.assert_equal(wictionary.wiktionary_id(), wictionaryId)
-    np.testing.assert_equal(wictionary.wiktionary_sense_id(), wictionarySenseId)
-    np.testing.assert_equal(wictionary.wiktionary_sense(), wictionarySense)
-    np.testing.assert_equal(wictionary.edited(), edited)
+    """Test if a wictionary paraphrase is stored correctly."""
+    lexunit = germanet_data.lexunits[id]
+    wictionary = lexunit.wiktionary_paraphrases[0]
+    np.testing.assert_equal(wictionary.wiktionary_id, wictionaryId)
+    np.testing.assert_equal(wictionary.wiktionary_sense_id, wictionarySenseId)
+    np.testing.assert_equal(wictionary.wiktionary_sense, wictionarySense)
+    np.testing.assert_equal(wictionary.edited, edited)

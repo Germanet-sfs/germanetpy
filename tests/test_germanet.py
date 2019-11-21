@@ -3,7 +3,6 @@ import sys
 from germanet import Germanet
 from lxml import etree as ET
 import numpy as np
-import pytest
 from pathlib import Path
 
 logger = logging.getLogger('logging_test_germanet')
@@ -21,11 +20,11 @@ except IOError:
     sys.exit(0)
 
 def test_number_of_instances():
-    number_synsets = len(germanet_data.synsets())
-    number_lexunits = len(germanet_data.lexunits())
-    number_compounds = len(germanet_data.compounds())
-    number_ili_records = len(germanet_data.ili_records())
-    number_wiktionary = len(germanet_data.wiktionary_entries())
+    number_synsets = len(germanet_data.synsets)
+    number_lexunits = len(germanet_data.lexunits)
+    number_compounds = len(germanet_data.compounds)
+    number_ili_records = len(germanet_data.ili_records)
+    number_wiktionary = len(germanet_data.wiktionary_entries)
     np.testing.assert_equal(number_synsets, 136263)
     np.testing.assert_equal(number_lexunits, 175000)
     #np.testing.assert_equal(number_compounds, 91106)
