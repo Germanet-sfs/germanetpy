@@ -125,6 +125,22 @@ class Lexunit:
         else:
             return self._old_orthvar
 
+    def get_lexical_field(self):
+        field = set()
+        related_synsets = self.synset().relations()
+        related_lexunits = self.relations()
+        for rel, units in related_lexunits.items():
+            [field.add(unit.orthform()) for unit in units]
+        related_lexunits = self.incoming_relations()
+        for rel, units in related_lexunits.items():
+            [field.add(unit.orthform()) for unit in units]
+        for rel, items in related_synsets.items():
+            for s in items:
+                lexunits = s.lexunits()
+                [field.add(l.orthform()) for l in lexunits]
+        field.add(self.synset().word_class().name)
+        return field
+
     def __repr__(self):
         return f'Lexunit(id={self._id}, orthform={self._orthform}, synset_id={self._synset.id()})'
 
@@ -148,6 +164,12 @@ class Lexunit:
 
     def old_orthvar(self):
         return self._old_orthvar
+
+    def get_all_orthforms(self):
+        forms = set()
+        for orthformvariant in OrthFormVariant:
+            forms.add(self.get_orthform_variant(orthformvariant))
+        return forms
 
     def frames(self):
         return self._frames

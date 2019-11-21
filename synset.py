@@ -104,7 +104,6 @@ class Synset:
         self._direct_hypernyms = self._relations[ConRel.has_hypernym]
         self._direct_hyponyms = self._relations[ConRel.has_hyponym]
 
-
     def __repr__(self):
         lexunit_list = [f'{unit.orthform()}' for unit in self._lexunits]
         lexunit_str = ', '.join(lexunit_list)
@@ -164,6 +163,28 @@ class Synset:
                     hypernyms.append(synset)
         return set(hypernyms)
 
+    def hyponym_paths(self):
+        paths = []
+        hyponyms = self._direct_hyponyms
+        if self.is_leaf():
+            paths = [[self]]
+        for hyponym in hyponyms:
+            for ancestor_list in hyponym.hyponym_paths():
+                ancestor_list.append(self)
+                paths.append(ancestor_list)
+        return paths
+
+    def all_hyponyms(self):
+        hyponyms = []
+        for path in self.hyponym_paths():
+            for synset in path:
+                if synset is not self:
+                    hyponyms.append(synset)
+        return set(hyponyms)
+
+    # add method get path to root (shortest)
+
+
     def common_hypernyms(self, other):
         return set(self.all_hypernyms()).intersection(set(other.all_hypernyms()))
 
@@ -191,7 +212,6 @@ class Synset:
         :return: The number of edges in the shortest path connecting the two
             nodes, or None if no path exists.
         """
-
         if self == other:
             return 0
 
@@ -224,6 +244,8 @@ class Synset:
         :param hypernym: a synset, denoting the hypernym the shortest path should be computed to
         :return: a list with the shortest sequence of synset nodes traversed from self to given  hypernym
         """
+        if self == hypernym:
+            return [self]
         assert hypernym in self.all_hypernyms(), "given hypernym is not a hypernym of this synset"
         shortest_path = []
         shortest = math.inf
@@ -244,14 +266,16 @@ class Synset:
         Extract the lowes common subsumer(s) / lowest common ancestor(s) of the current synset and a given one.
         :param other: Another synset object the LCS should be computed to.
         :return: a set, containing one or several synset objects, being the LCS between the current synset and the
-        given
-        one.
+        given one.
         """
         lcs = set()
-        if other in self._direct_hypernyms:
+        if other == self:
+            lcs.add(self)
+            return lcs
+        if other in self._direct_hypernyms or other.is_root():
             lcs.add(other)
             return lcs
-        if self in other._direct_hypernyms:
+        if self in other._direct_hypernyms or self.is_root():
             lcs.add(self)
             return lcs
         common_hypernyms = self.common_hypernyms(other)

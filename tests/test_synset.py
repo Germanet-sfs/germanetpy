@@ -44,6 +44,18 @@ all_hypernyms = [
     ('s57835', ['s57779', 's57714', 's57713', 's57324', 's57318', 's57309', 's60939', 's51001'])
 ]
 
+all_hyponyms = [
+    ('s131', []),
+    ('s50944', ['s132135', 's132134', 's132133']),
+    ('s53071', ['s53072', 's53073']),
+    ('s11302',
+     ['s140525', 's136666', 's11193', 's11194', 's134108', 's122100', 's129336', 's123104', 's122867', 's29492', 's82838',
+      's101538', 's10919', 's10937', 's104197', 's106059', 's110131', 's90623', 's10920', 's88973', 's68093', 's64311',
+      's29494', 's100276', 's97802', 's88563', 's88561', 's81894', 's71826', 's71198', 's63234', 's11306', 's11305',
+      's11304', 's11303', 's107850'])
+
+]
+
 paths_between_synsets_nouns = [
     ('s50708', 's48836', ['s50708', 's50915', 's50696', 's48836']),
     ('s50708', 's34063', ['s50708', 's50915', 's48805', 's50997', 's34063']),
@@ -105,7 +117,10 @@ LCS_between_nouns = [
     ('s39494', 's46042', ['s50981']),
     ('s50869', 's11106', ['s50981']),
     ('s46665', 's7922', ['s7917']),
-    ('s46657', 's46659', ['s46657'])
+    ('s46657', 's46659', ['s46657']),
+    ('s50944', 's50708', ['s50708']),
+    ('s50708', 's50944', ['s50708']),
+    ('s50708', 's50708', ['s50708'])
 ]
 
 LCS_between_adj = [
@@ -120,12 +135,43 @@ LCS_between_verbs = [
     ('s107484', 's61151', ['s52270'])
 ]
 
+distances_hypernyms = [
+    ('s50944', 's50708', 1),
+    ('s50944', 's50706', 2),
+    ('s50944', 's50688', 3),
+    ('s50944', 's50687', 4),
+    ('s50944', 's50519', 5),
+    ('s50944', 's50498', 6),
+    ('s50944', 's49812', 7),
+    ('s50944', 's49800', 8),
+    ('s50944', 's48873', 9),
+    ('s50944', 's48805', 3),
+    ('s50944', 's50997', 4)
+
+]
+
+
+@pytest.mark.parametrize('id,hypernym_id, distance', distances_hypernyms)
+def test_hypernym_distance_dic(id, hypernym_id, distance):
+    synset = germanet_data.get_synset_by_id(id)
+    hypernym = germanet_data.get_synset_by_id(hypernym_id)
+    distances = synset.get_distances_hypernym_dic()
+    hypernym_dist = distances[hypernym]
+    np.testing.assert_equal(hypernym_dist, distance)
+
 
 @pytest.mark.parametrize('id,hypernym_ids', all_hypernyms)
 def test_all_hypernyms(id, hypernym_ids):
     synset = germanet_data.get_synset_by_id(id)
     hypernyms = synset.all_hypernyms()
     np.testing.assert_equal(sorted([synset.id() for synset in hypernyms]), sorted(hypernym_ids))
+
+
+@pytest.mark.parametrize('id,hyponym_ids', all_hyponyms)
+def test_all_hyponyms(id, hyponym_ids):
+    synset = germanet_data.get_synset_by_id(id)
+    hyponyms = synset.all_hyponyms()
+    np.testing.assert_equal(sorted([synset.id() for synset in hyponyms]), sorted(hyponym_ids))
 
 
 def test_root():
@@ -195,7 +241,7 @@ def test_pathlength_verbs(id1, id2, pathlength):
 @pytest.mark.parametrize('id1,id2,expected_ids', LCS_between_nouns)
 def test_lcs_nouns(id1, id2, expected_ids):
     syn1 = germanet_data.get_synset_by_id(id1)
-    syn2 = germanet_data.get_synset_by_id(id1)
+    syn2 = germanet_data.get_synset_by_id(id2)
     lcs = syn1.lowest_common_subsumer(syn2)
     np.testing.assert_equal(sorted([l.id() for l in lcs]), sorted(expected_ids))
 
@@ -203,7 +249,7 @@ def test_lcs_nouns(id1, id2, expected_ids):
 @pytest.mark.parametrize('id1,id2,expected_ids', LCS_between_verbs)
 def test_lcs_verbs(id1, id2, expected_ids):
     syn1 = germanet_data.get_synset_by_id(id1)
-    syn2 = germanet_data.get_synset_by_id(id1)
+    syn2 = germanet_data.get_synset_by_id(id2)
     lcs = syn1.lowest_common_subsumer(syn2)
     np.testing.assert_equal(sorted([l.id() for l in lcs]), sorted(expected_ids))
 
@@ -211,19 +257,20 @@ def test_lcs_verbs(id1, id2, expected_ids):
 @pytest.mark.parametrize('id1,id2,expected_ids', LCS_between_adj)
 def test_lcs_adjectives(id1, id2, expected_ids):
     syn1 = germanet_data.get_synset_by_id(id1)
-    syn2 = germanet_data.get_synset_by_id(id1)
+    syn2 = germanet_data.get_synset_by_id(id2)
     lcs = syn1.lowest_common_subsumer(syn2)
     np.testing.assert_equal(sorted([l.id() for l in lcs]), sorted(expected_ids))
 
 
 @pytest.mark.parametrize('id,conrel,expected_ids', conceptual_relations)
-def test_conceptional_relations(id,conrel,expected_ids):
+def test_conceptional_relations(id, conrel, expected_ids):
     synset = germanet_data.get_synset_by_id(id)
     related = synset.relations()[conrel]
     np.testing.assert_equal(sorted([syn.id() for syn in related]), sorted(expected_ids))
 
+
 @pytest.mark.parametrize('id,conrel,expected_ids', conceptual_incoming_relations)
-def test_incoming_conceptional_relations(id,conrel,expected_ids):
+def test_incoming_conceptional_relations(id, conrel, expected_ids):
     synset = germanet_data.get_synset_by_id(id)
     related = synset.incoming_relations()[conrel]
     np.testing.assert_equal(sorted([syn.id() for syn in related]), sorted(expected_ids))
