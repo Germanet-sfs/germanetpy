@@ -16,6 +16,9 @@ class WiktionaryParaphrase:
         self._wiktionary_sense = wiktionary_sense
         self._edited = edited
 
+    def __repr__(self):
+        return f'Wictionary(LexUnit ID={self.lexunit_id()}, definition={self.wiktionary_sense()})'
+
     def lexunit_id(self):
         return self._lexunit_id
 
