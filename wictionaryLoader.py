@@ -35,6 +35,6 @@ def load_wiktionary(germanet, tree):
     for child in root:
         attributes = child.attrib
         wiktionary = create_wictionary(attributes)
-        lexunit = germanet._lexunits[wiktionary._lexunit_id]
-        lexunit._wiktionary_paraphrases.append(wiktionary)
-        germanet._wiktionary_entries.append(wiktionary)
+        lexunit = germanet.get_lexunit_by_id(wiktionary.lexunit_id)
+        lexunit.wiktionary_paraphrases.append(wiktionary)
+        germanet.wiktionary_entries.append(wiktionary)

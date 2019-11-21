@@ -44,6 +44,6 @@ def load_ili(germanet, tree):
             for subsubchild in subchild:
                 synonyms.append(subsubchild.text)
         ili = create_ili_record(attributes, synonyms)
-        lexunit = germanet._lexunits[ili._lexunit_id]
-        lexunit._ili_records.append(ili)
-        germanet._ili_records.append(ili)
+        lexunit = germanet.lexunits[ili.lexunit_id]
+        lexunit.ili_records.append(ili)
+        germanet.ili_records.append(ili)

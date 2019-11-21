@@ -45,6 +45,7 @@ def create_compound_info(child):
     :param child:
     :return: A CompoundInfo object
     """
+    assert len(child) > 0, "wrong data format"
     modifier1 = child[0]
     modifier1prop = get_attribute_element(modifier1.attrib, CompoundInfo.PROPERTY, CompoundProperty)
     modifier1cat = get_attribute_element(modifier1.attrib, CompoundInfo.CATEGORY, CompoundCategory)
@@ -72,23 +73,23 @@ def load_lexunits(germanet, tree):
     root = tree.getroot()
     for child in root:
         attribute = child.attrib
-        id = attribute[SYNID]
+        syn_id = attribute[SYNID]
         category = get_attribute_element(attribute, WORDCATEGORY, WordCategory)
         word_class = get_attribute_element(attribute, WORDCLASS, WordClass)
-        synset = Synset(id, category, word_class)
-        germanet._synsets[synset._id] = synset
+        synset = Synset(syn_id, category, word_class)
+        germanet.synsets[synset.id] = synset
 
         for sub_child in child:
             if sub_child.tag == LEXUNIT:
                 lexunit = create_lexunit(germanet, sub_child.attrib, sub_child, synset)
-                germanet._lexunits[lexunit._id] = lexunit
-                germanet._wordcat2lexid[category.name].add(lexunit._id)
-                germanet._wordclass2lexid[word_class.name].add(lexunit._id)
+                germanet.lexunits[lexunit.id] = lexunit
+                germanet.wordcat2lexid[category.name].add(lexunit.id)
+                germanet.wordclass2lexid[word_class.name].add(lexunit.id)
                 synset.add_lexunit(lexunit)
-        for unit in synset._lexunits:
-            for lexunit in synset._lexunits:
+        for unit in synset.lexunits:
+            for lexunit in synset.lexunits:
                 if lexunit is not unit:
-                    unit._relations[LexRel.has_synonym].add(lexunit)
+                    unit.relations[LexRel.has_synonym].add(lexunit)
 
 
 def create_lexunit(germanet, attributes, lex_root, synset):
@@ -114,19 +115,19 @@ def create_lexunit(germanet, attributes, lex_root, synset):
         if tag == COMPOUND:
             compound = create_compound_info(child)
             lexunit._compound_info = compound
-            germanet._compounds.add(lexunit)
+            germanet.compounds.add(lexunit)
         elif "rth" in tag:
             add_orth_forms(germanet, lexunit, child_value, tag)
         elif tag == FRAME:
-            lexunit._frames.append(child_value)
-            for f in lexunit._frames:
-                germanet._frames2lexunits[f].add(lexunit)
+            lexunit.frames.append(child_value)
+            for f in lexunit.frames:
+                germanet.frames2lexunits[f].add(lexunit)
         elif tag == EXAMPLE:
             example = child[0].text
-            lexunit._examples.append(example)
+            lexunit.examples.append(example)
             if len(child) == 2:
                 exframe = child[1].text
-                lexunit._frames2examples[exframe].add(example)
+                lexunit.frames2examples[exframe].add(example)
     return lexunit
 
 
@@ -139,12 +140,12 @@ def add_orth_forms(germanet, lexunit, child_value, tag):
     :param child_value:  [String] the value of the XML element that contains this Orthform variant
     :param tag: the value of the XML tag specifying the type of Orthform variant
     """
-    germanet._ortform2lexid[child_value].add(lexunit._id)
-    germanet._lowercasedform2lexid[child_value.lower()].add(lexunit._id)
+    germanet.orthform2lexid[child_value].add(lexunit.id)
+    germanet.lowercasedform2lexid[child_value.lower()].add(lexunit.id)
 
     if tag == ORTHFORM:
         lexunit._orthform = child_value
-        germanet._mainOrtform2lexid[child_value].add(lexunit._id)
+        germanet.mainOrtform2lexid[child_value].add(lexunit.id)
     elif tag == ORTHVAR:
         lexunit._orthvar = child_value
     elif tag == OLDORTHFORM:

@@ -4,14 +4,14 @@ import logging
 from lxml import etree as ET
 import pytest
 from germanet import Germanet
-from pathbased_similarity import Similarity
+from pathbased_similarity import PathBasedSimilarity
 import numpy as np
 
 logger = logging.getLogger('logging_test_similarity')
 d = str(Path(__file__).parent.parent) + "/data"
 try:
     germanet_data = Germanet(d)
-    sim = Similarity(germanet_data)
+    sim = PathBasedSimilarity(germanet_data)
 except ET.ParseError:
     message = ("Unable to load GermaNet data at {0} . Aborting...").format(d)
     logger.error(message,

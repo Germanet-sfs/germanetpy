@@ -116,6 +116,7 @@ class Lexunit:
         self._incoming_relations = defaultdict(set)
 
     def get_orthform_variant(self, orthform_variant):
+        """Returns the string of the requested orthform variant"""
         if orthform_variant == OrthFormVariant.orthForm:
             return self._orthform
         elif orthform_variant == OrthFormVariant.oldOrthForm:
@@ -126,12 +127,18 @@ class Lexunit:
             return self._old_orthvar
 
     def get_lexical_field(self):
+        """
+        This method computes the lexical field of a lexical unit. To a lexical field belong all wordforms that are part
+        of this lexical unit and all words that can be gathered by taking all related (lexically and conceptually) words
+        into account.
+        :return: [set(String)] a set of words defining a lexical field.
+        """
         field = set()
         related_synsets = self.synset().relations()
-        related_lexunits = self.relations()
+        related_lexunits = self.relations
         for rel, units in related_lexunits.items():
             [field.add(unit.orthform()) for unit in units]
-        related_lexunits = self.incoming_relations()
+        related_lexunits = self.incoming_relations
         for rel, units in related_lexunits.items():
             [field.add(unit.orthform()) for unit in units]
         for rel, items in related_synsets.items():
@@ -142,28 +149,7 @@ class Lexunit:
         return field
 
     def __repr__(self):
-        return f'Lexunit(id={self._id}, orthform={self._orthform}, synset_id={self._synset.id()})'
-
-    def id(self):
-        return self._id
-
-    def synset(self):
-        return self._synset
-
-    def sense(self):
-        return self._sense
-
-    def orthform(self):
-        return self._orthform
-
-    def orthvar(self):
-        return self._orthvar
-
-    def old_orthform(self):
-        return self._old_orthform
-
-    def old_orthvar(self):
-        return self._old_orthvar
+        return f'Lexunit(id={self._id}, orthform={self._orthform}, synset_id={self._synset.id})'
 
     def get_all_orthforms(self):
         forms = set()
@@ -171,26 +157,62 @@ class Lexunit:
             forms.add(self.get_orthform_variant(orthformvariant))
         return forms
 
+    @property
+    def id(self):
+        return self._id
+
+    @property
+    def synset(self):
+        return self._synset
+
+    @property
+    def sense(self):
+        return self._sense
+
+    @property
+    def orthform(self):
+        return self._orthform
+
+    @property
+    def orthvar(self):
+        return self._orthvar
+
+    @property
+    def old_orthform(self):
+        return self._old_orthform
+
+    @property
+    def old_orthvar(self):
+        return self._old_orthvar
+
+    @property
     def frames(self):
         return self._frames
 
+    @property
     def examples(self):
         return self._examples
 
+    @property
     def ili_records(self):
         return self._ili_records
 
+    @property
     def frames2examples(self):
         return self._frames2examples
 
+    @property
     def wiktionary_paraphrases(self):
         return self._wiktionary_paraphrases
 
+    @property
     def compound_info(self):
         return self._compound_info
 
+    @property
     def relations(self):
         return self._relations
 
+    @property
     def incoming_relations(self):
         return self._incoming_relations

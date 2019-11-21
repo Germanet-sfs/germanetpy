@@ -55,15 +55,15 @@ class PathBasedSimilarity:
             return PathBasedSimilarity.MAXDEPTH_ADJ
 
     def path(self, synset1, synset2):
-        assert synset1.word_category() == synset2.word_category(), "only synsets of the same Wordcategory can be " \
+        assert synset1.word_category == synset2.word_category, "only synsets of the same Wordcategory can be " \
                                                                    "compared"
-        maxlen = self.get_maxlen_by_category(synset1.word_category())
+        maxlen = self.get_maxlen_by_category(synset1.word_category)
         pathlen = synset1.shortest_path_distance(synset2)
         path = (maxlen - pathlen) / maxlen
         return np.round(path, decimals=3)
 
     def wup(self, synset1, synset2):
-        assert synset1.word_category() == synset2.word_category(), "only synsets of the same Wordcategory can be " \
+        assert synset1.word_category == synset2.word_category, "only synsets of the same Wordcategory can be " \
                                                                    "compared"
         root_node = self._germanet.root()
         lcs_nodes = synset1.lowest_common_subsumer(synset2)
@@ -77,17 +77,17 @@ class PathBasedSimilarity:
         return np.round(wup, decimals=3)
 
     def lch(self, synset1, synset2):
-        assert synset1.word_category() == synset2.word_category(), "only synsets of the same Wordcategory can be " \
+        assert synset1.word_category == synset2.word_category, "only synsets of the same Wordcategory can be " \
                                                                    "compared"
         pathlen = synset1.shortest_path_distance(synset2)
-        maxdepth = self.get_maxdepth_by_category(synset1.word_category())
+        maxdepth = self.get_maxdepth_by_category(synset1.word_category)
         lch_sim = -np.log(pathlen / (2 * maxdepth))
         return np.round(lch_sim, decimals=3)
 
     def hirst_onge(self, synset1, synset2):
-        lexunits_1 = synset1.lexunits()
-        lexunits_2 = synset2.lexunits()
-        lemmas_2 = set([lexunit.orthform().lower() for lexunit in lexunits_2])
+        lexunits_1 = synset1.lexunits
+        lexunits_2 = synset2.lexunits
+        lemmas_2 = set([lexunit.orthform.lower() for lexunit in lexunits_2])
 
         # conditions for a strong relationship
         strong = False
@@ -96,8 +96,8 @@ class PathBasedSimilarity:
             return True
         # condition2 : if there is a horizontal link between the two synsets, relation is strong
         for lexunit in lexunits_1:
-            related_lexunits = lexunit.relations()
-            form = lexunit.orthform().lower()
+            related_lexunits = lexunit.relations
+            form = lexunit.orthform.lower()
             # condition 3: one word lemma is in the lemmas of the other synset
             for wordform in lemmas_2:
                 if form in wordform or wordform in form:
@@ -113,7 +113,7 @@ class PathBasedSimilarity:
         return strong
 
     def walk(self, synset, end_synset, relations, visited):
-        for relation, units in synset.relations().items():
+        for relation, units in synset.relations.items():
             if relation in relations:
                 for unit in units:
                     visited.add(unit)
@@ -124,7 +124,7 @@ class PathBasedSimilarity:
     def walk_lexrel(self, synset, end_synset, visited):
         lexunits = synset.lexunits()
         for lex in lexunits:
-            for relation, units in lex.relations().items():
+            for relation, units in lex.relations.items():
                 if relation in self.HORIZONTAL_RELATIONS:
                     for unit in units:
                         visited.add(unit.synset())
@@ -133,7 +133,7 @@ class PathBasedSimilarity:
         return (False, visited)
 
     def get_neighbours(self, synset, relations):
-        related = synset.relations()
+        related = synset.relations
         neighbours = set()
         for rel in relations:
             if rel in related.keys():
@@ -145,7 +145,7 @@ class PathBasedSimilarity:
         lexunits = synset.lexunits()
         neighbours = set()
         for lex in lexunits:
-            for relation, units in lex.relations().items():
+            for relation, units in lex.relations.items():
                 if relation in self.HORIZONTAL_RELATIONS:
                     synsets = [lexunit.synset() for lexunit in units]
                     neighbours = neighbours.union(synsets)

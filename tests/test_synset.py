@@ -49,7 +49,8 @@ all_hyponyms = [
     ('s50944', ['s132135', 's132134', 's132133']),
     ('s53071', ['s53072', 's53073']),
     ('s11302',
-     ['s140525', 's136666', 's11193', 's11194', 's134108', 's122100', 's129336', 's123104', 's122867', 's29492', 's82838',
+     ['s140525', 's136666', 's11193', 's11194', 's134108', 's122100', 's129336', 's123104', 's122867', 's29492',
+      's82838',
       's101538', 's10919', 's10937', 's104197', 's106059', 's110131', 's90623', 's10920', 's88973', 's68093', 's64311',
       's29494', 's100276', 's97802', 's88563', 's88561', 's81894', 's71826', 's71198', 's63234', 's11306', 's11305',
       's11304', 's11303', 's107850'])
@@ -153,6 +154,8 @@ distances_hypernyms = [
 
 @pytest.mark.parametrize('id,hypernym_id, distance', distances_hypernyms)
 def test_hypernym_distance_dic(id, hypernym_id, distance):
+    """This test checks whether the synsets distance dictionary contains the correct distances to a number of
+    hypernyms."""
     synset = germanet_data.get_synset_by_id(id)
     hypernym = germanet_data.get_synset_by_id(hypernym_id)
     distances = synset.get_distances_hypernym_dic()
@@ -162,19 +165,22 @@ def test_hypernym_distance_dic(id, hypernym_id, distance):
 
 @pytest.mark.parametrize('id,hypernym_ids', all_hypernyms)
 def test_all_hypernyms(id, hypernym_ids):
+    """This test checks whether for a given synset, all possible hypernyms are returned"""
     synset = germanet_data.get_synset_by_id(id)
     hypernyms = synset.all_hypernyms()
-    np.testing.assert_equal(sorted([synset.id() for synset in hypernyms]), sorted(hypernym_ids))
+    np.testing.assert_equal(sorted([synset.id for synset in hypernyms]), sorted(hypernym_ids))
 
 
 @pytest.mark.parametrize('id,hyponym_ids', all_hyponyms)
 def test_all_hyponyms(id, hyponym_ids):
+    """This test checks whether for a given synset, all possible hyponyms are returned"""
     synset = germanet_data.get_synset_by_id(id)
     hyponyms = synset.all_hyponyms()
-    np.testing.assert_equal(sorted([synset.id() for synset in hyponyms]), sorted(hyponym_ids))
+    np.testing.assert_equal(sorted([synset.id for synset in hyponyms]), sorted(hyponym_ids))
 
 
 def test_root():
+    """This test checks some properties for the root node of the GermaNet."""
     gnroot = 's51001'
     root = germanet_data.get_synset_by_id(gnroot)
     np.testing.assert_equal(root.is_root(), True)
@@ -182,6 +188,7 @@ def test_root():
 
 
 def test_leafs():
+    """This tests whether leaf nodes are have the property 'leaf'"""
     leafs = ['s6675', 's136315', 's10765', 's106594', 's131']
     for leaf in leafs:
         synset = germanet_data.get_synset_by_id(leaf)
@@ -190,6 +197,7 @@ def test_leafs():
 
 
 def get_shortest_paths(id1, id2):
+    """Auxiliary method to return the shortest path between two synsets."""
     syn1 = germanet_data.get_synset_by_id(id1)
     syn2 = germanet_data.get_synset_by_id(id2)
     assert len(syn1.shortest_path(syn2)) == 1, "do not test for synsets with several shortest paths"
@@ -198,24 +206,28 @@ def get_shortest_paths(id1, id2):
 
 @pytest.mark.parametrize('id1,id2,expected_path_ids', paths_between_synsets_nouns)
 def test_paths_nouns(id1, id2, expected_path_ids):
+    """Tests whether the correct shortest paths between two given synsets nouns are returned."""
     path = get_shortest_paths(id1, id2)
-    np.testing.assert_equal([synset.id() for synset in path], expected_path_ids)
+    np.testing.assert_equal([synset.id for synset in path], expected_path_ids)
 
 
 @pytest.mark.parametrize('id1,id2,expected_path_ids', paths_between_synsets_adj)
 def test_paths_adj(id1, id2, expected_path_ids):
+    """Tests whether the correct shortest paths between two given synsets adjectives are returned."""
     path = get_shortest_paths(id1, id2)
-    np.testing.assert_equal([synset.id() for synset in path], expected_path_ids)
+    np.testing.assert_equal([synset.id for synset in path], expected_path_ids)
 
 
 @pytest.mark.parametrize('id1,id2,expected_path_ids', paths_between_synsets_verbs)
 def test_paths_adj(id1, id2, expected_path_ids):
+    """Tests whether the correct shortest paths between two given synsets verbs are returned."""
     path = get_shortest_paths(id1, id2)
-    np.testing.assert_equal([synset.id() for synset in path], expected_path_ids)
+    np.testing.assert_equal([synset.id for synset in path], expected_path_ids)
 
 
 @pytest.mark.parametrize('id1,id2,pathlength', path_len_nouns)
 def test_pathlength_nouns(id1, id2, pathlength):
+    """Tests whether the length of the shortest path between two given nouns is correct."""
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = synset1.shortest_path_distance(synset2)
@@ -224,6 +236,7 @@ def test_pathlength_nouns(id1, id2, pathlength):
 
 @pytest.mark.parametrize('id1,id2,pathlength', path_len_adj)
 def test_pathlength_adj(id1, id2, pathlength):
+    """Tests whether the length of the shortest path between two given adjectives is correct."""
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = synset1.shortest_path_distance(synset2)
@@ -232,6 +245,7 @@ def test_pathlength_adj(id1, id2, pathlength):
 
 @pytest.mark.parametrize('id1,id2,pathlength', path_len_verbs)
 def test_pathlength_verbs(id1, id2, pathlength):
+    """Tests whether the length of the shortest path between two given verbs is correct."""
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = synset1.shortest_path_distance(synset2)
@@ -240,37 +254,42 @@ def test_pathlength_verbs(id1, id2, pathlength):
 
 @pytest.mark.parametrize('id1,id2,expected_ids', LCS_between_nouns)
 def test_lcs_nouns(id1, id2, expected_ids):
+    """Tests whether the lowest common subsumers between two given nouns are correct."""
     syn1 = germanet_data.get_synset_by_id(id1)
     syn2 = germanet_data.get_synset_by_id(id2)
     lcs = syn1.lowest_common_subsumer(syn2)
-    np.testing.assert_equal(sorted([l.id() for l in lcs]), sorted(expected_ids))
+    np.testing.assert_equal(sorted([l.id for l in lcs]), sorted(expected_ids))
 
 
 @pytest.mark.parametrize('id1,id2,expected_ids', LCS_between_verbs)
 def test_lcs_verbs(id1, id2, expected_ids):
+    """Tests whether the lowest common subsumers between two given verbs are correct."""
     syn1 = germanet_data.get_synset_by_id(id1)
     syn2 = germanet_data.get_synset_by_id(id2)
     lcs = syn1.lowest_common_subsumer(syn2)
-    np.testing.assert_equal(sorted([l.id() for l in lcs]), sorted(expected_ids))
+    np.testing.assert_equal(sorted([l.id for l in lcs]), sorted(expected_ids))
 
 
 @pytest.mark.parametrize('id1,id2,expected_ids', LCS_between_adj)
 def test_lcs_adjectives(id1, id2, expected_ids):
+    """Tests whether the lowest common subsumers between two given adjectives are correct."""
     syn1 = germanet_data.get_synset_by_id(id1)
     syn2 = germanet_data.get_synset_by_id(id2)
     lcs = syn1.lowest_common_subsumer(syn2)
-    np.testing.assert_equal(sorted([l.id() for l in lcs]), sorted(expected_ids))
+    np.testing.assert_equal(sorted([l.id for l in lcs]), sorted(expected_ids))
 
 
 @pytest.mark.parametrize('id,conrel,expected_ids', conceptual_relations)
 def test_conceptional_relations(id, conrel, expected_ids):
+    """Checks if a synset contains the correct conceptual relations."""
     synset = germanet_data.get_synset_by_id(id)
-    related = synset.relations()[conrel]
-    np.testing.assert_equal(sorted([syn.id() for syn in related]), sorted(expected_ids))
+    related = synset.relations[conrel]
+    np.testing.assert_equal(sorted([syn.id for syn in related]), sorted(expected_ids))
 
 
 @pytest.mark.parametrize('id,conrel,expected_ids', conceptual_incoming_relations)
 def test_incoming_conceptional_relations(id, conrel, expected_ids):
+    """Checks if a synset contains the correct incoming conceptual relations."""
     synset = germanet_data.get_synset_by_id(id)
-    related = synset.incoming_relations()[conrel]
-    np.testing.assert_equal(sorted([syn.id() for syn in related]), sorted(expected_ids))
+    related = synset.incoming_relations[conrel]
+    np.testing.assert_equal(sorted([syn.id for syn in related]), sorted(expected_ids))
