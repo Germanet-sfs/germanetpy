@@ -1,4 +1,3 @@
-
 from germanet import Germanet
 from synset import WordCategory
 
@@ -6,7 +5,8 @@ from synset import WordCategory
 def get_overall_longest_shortest_distance(germanet, category):
     """
     Iterate trough the synsets of a given wordcategory. For each synset, extract all possible hypernyms and compute the
-    shortest possible distance to each hypernym. From these distances, also store the longest possible shortest distance.
+    shortest possible distance to each hypernym. From these distances, also store the longest possible shortest
+    distance.
     :param germanet: the germanet graph
     :param category: the wordcategory
     :return: a dictionary with each synset and its longest shortest distance, the overall longest shortest distance
@@ -53,12 +53,25 @@ def get_longest_possible_shortest_distance(wordcategory, germanet):
             pathdist = current_synset.shortest_path_distance(synset)
             if pathdist > longest_possible_shortest_distance:
                 longest_possible_shortest_distance = pathdist
-    return longest_possible_shortest_distance
+    return longest_possible_shortest_distance, overall_maxlen
 
 
 def print_all_longest_shortest_distances():
     """Computes and prints the longest shortest distances for every word category."""
     g = Germanet("data")
-    print("longest shortest distance for nouns : %2d" % get_longest_possible_shortest_distance(g, WordCategory.nomen))
-    print("longest shortest distance for verbs : %2d" % get_longest_possible_shortest_distance(g, WordCategory.verben))
-    print("longest shortest distance for adjectives : %2d" % get_longest_possible_shortest_distance(g, WordCategory.adj))
+    print(
+        "longest shortest distance for nouns : %2d, maximum depth for nouns : %2d" %
+        get_longest_possible_shortest_distance(
+            g, WordCategory.nomen))
+    print(
+        "longest shortest distance for verbs : %2d, maximum depth for verbs : %2d" %
+        get_longest_possible_shortest_distance(
+            g, WordCategory.verben))
+    print(
+        "longest shortest distance for adjectives : %2d, maximum depth for adjectives : %2d" %
+        get_longest_possible_shortest_distance(
+            g, WordCategory.adj))
+
+
+if __name__ == '__main__':
+    print_all_longest_shortest_distances()
