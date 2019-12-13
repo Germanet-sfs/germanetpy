@@ -2,6 +2,7 @@ from germanet import Germanet
 from synset import WordCategory
 
 
+# get the depth (maybe extra method?)
 def get_overall_longest_shortest_distance(germanet, category):
     """
     Iterate trough the synsets of a given wordcategory. For each synset, extract all possible hypernyms and compute the
@@ -22,6 +23,25 @@ def get_overall_longest_shortest_distance(germanet, category):
     dist_dic = dict(zip(synsets, longest_shortest_distances))
     sorted_dist_dic = sorted(dist_dic.items(), key=lambda kv: kv[1], reverse=True)
     return sorted_dist_dic, overall_maxlen
+
+
+def get_greatest_depth(germanet, category):
+    """
+    Iterate trough the synsets of a given word category. For each synset check the depth and return the greatest depth
+    that has been seen.
+    :param germanet: the germanet graph
+    :param category: the wordcategory
+    :return: [int] the greatest depth for a given word category. The depth of a synset is defined by the shortest
+    path length
+    between the synset and the root node
+    """
+    synsets = germanet.get_synsets_by_wordcategory(category)
+    max_depth = 0
+    for synset in synsets:
+        depth = synset.min_depth()
+        if depth >= max_depth:
+            max_depth = depth
+    return max_depth
 
 
 def get_longest_possible_shortest_distance(wordcategory, germanet):
@@ -60,18 +80,37 @@ def print_all_longest_shortest_distances():
     """Computes and prints the longest shortest distances for every word category."""
     g = Germanet("data")
     print(
-        "longest shortest distance for nouns : %2d, maximum depth for nouns : %2d" %
+        "longest shortest distance for nouns : %2d, maximum length for nouns : %2d" %
         get_longest_possible_shortest_distance(
             g, WordCategory.nomen))
     print(
-        "longest shortest distance for verbs : %2d, maximum depth for verbs : %2d" %
+        "longest shortest distance for verbs : %2d, maximum length for verbs : %2d" %
         get_longest_possible_shortest_distance(
             g, WordCategory.verben))
     print(
-        "longest shortest distance for adjectives : %2d, maximum depth for adjectives : %2d" %
+        "longest shortest distance for adjectives : %2d, maximum length for adjectives : %2d" %
         get_longest_possible_shortest_distance(
+            g, WordCategory.adj))
+
+
+def print_all_maximum_depths():
+    """Computes and prints the maximum depth for every word category."""
+    g = Germanet("data")
+    print(
+        "maximum depth for nouns : %2d" %
+        get_greatest_depth(
+            g, WordCategory.nomen))
+    print(
+        "maximum depth for verbs : %2d" %
+        get_greatest_depth(
+            g, WordCategory.verben))
+    print(
+        "maximum depth for adjectives : %2d" %
+        get_greatest_depth(
             g, WordCategory.adj))
 
 
 if __name__ == '__main__':
     print_all_longest_shortest_distances()
+    print_all_maximum_depths()
+

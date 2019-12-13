@@ -63,7 +63,15 @@ paths_between_synsets_nouns = [
     ('s34063', 's8813',
      ['s34063', 's50997', 's50990', 's50986', 's50982', 's50981', 's50999', 's5550', 's5675', 's8702', 's8714', 's8716',
       's8813']),
-    ('s42337', 's73124', ['s42337', 's9938', 's9918', 's47083', 's73124'])
+    ('s42337', 's73124', ['s42337', 's9938', 's9918', 's47083', 's73124']),
+    ('s46665', 's100607', ['s46665', 's46042', 's100607']),
+    ('s46665', 's46683', ['s46665', 's46042', 's46682', 's46683'])
+]
+
+several_paths = [
+    ('s46683', 's46650', [['s46683', 's46682', 's46042', 's46041', 's44960', 's46650'],
+                          ['s46683', 's46682', 's46311', 's44965', '44965' 's44960', 's46650'],
+                          ])
 ]
 
 paths_between_synsets_adj = [
@@ -202,6 +210,18 @@ def get_shortest_paths(id1, id2):
     syn2 = germanet_data.get_synset_by_id(id2)
     assert len(syn1.shortest_path(syn2)) == 1, "do not test for synsets with several shortest paths"
     return syn1.shortest_path(syn2)[0]
+
+
+@pytest.mark.parametrize('id1,id2,expected_path_ids', several_paths)
+def test_several_paths(id1, id2, expected_path_ids):
+    """Tests whether several shortest paths between two synsets are correct"""
+    syn1 = germanet_data.get_synset_by_id(id1)
+    syn2 = germanet_data.get_synset_by_id(id2)
+    paths = syn1.shortest_path(syn2)
+    for i in range(len(paths)):
+        path = paths[i]
+        current_expected_ids = expected_path_ids[i]
+        np.testing.assert_equal([synset.id for synset in path], current_expected_ids)
 
 
 @pytest.mark.parametrize('id1,id2,expected_path_ids', paths_between_synsets_nouns)
