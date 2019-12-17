@@ -131,37 +131,37 @@ def apply_synFilters(orthForm, ignoreCase, word_categories, orthvariants):
 @pytest.mark.parametrize('orthForm,ignoreCase,expected_ids,word_categories,orthvariants', allOrthForms_lex)
 def test_allOrthForms(orthForm, ignoreCase, expected_ids, word_categories, orthvariants):
     result = apply_lexFilters(orthForm, ignoreCase, word_categories, orthvariants)
-    np.testing.assert_equal(sorted([unit.id() for unit in result]), sorted(expected_ids))
+    np.testing.assert_equal(sorted([unit.id for unit in result]), sorted(expected_ids))
 
 
 @pytest.mark.parametrize('orthForm,ignoreCase,expected_ids,word_categories,orthvariants', differentWordCategories_lex)
 def test_differentWordCategories(orthForm, ignoreCase, expected_ids, word_categories, orthvariants):
     result = apply_lexFilters(orthForm, ignoreCase, word_categories, orthvariants)
-    np.testing.assert_equal(sorted([unit.id() for unit in result]), sorted(expected_ids))
+    np.testing.assert_equal(sorted([unit.id for unit in result]), sorted(expected_ids))
 
 
 @pytest.mark.parametrize('orthForm,ignoreCase,expected_ids,word_categories,orthvariants', differentOrthCat_lex)
 def test_differentOrthVariants(orthForm, ignoreCase, expected_ids, word_categories, orthvariants):
     result = apply_lexFilters(orthForm, ignoreCase, word_categories, orthvariants)
-    np.testing.assert_equal(sorted([unit.id() for unit in result]), sorted(expected_ids))
+    np.testing.assert_equal(sorted([unit.id for unit in result]), sorted(expected_ids))
 
 
 @pytest.mark.parametrize('orthForm,ignoreCase,expected_ids,word_categories,orthvariants', allOrthForms_syn)
 def test_allOrthForms_synsets(orthForm, ignoreCase, expected_ids, word_categories, orthvariants):
     result = apply_synFilters(orthForm, ignoreCase, word_categories, orthvariants)
-    np.testing.assert_equal(sorted([unit.id() for unit in result]), sorted(expected_ids))
+    np.testing.assert_equal(sorted([unit.id for unit in result]), sorted(expected_ids))
 
 
 @pytest.mark.parametrize('orthForm,ignoreCase,expected_ids,word_categories,orthvariants', differentWordCategories_syn)
 def test_differentWordCategories_synsets(orthForm, ignoreCase, expected_ids, word_categories, orthvariants):
     result = apply_synFilters(orthForm, ignoreCase, word_categories, orthvariants)
-    np.testing.assert_equal(sorted([unit.id() for unit in result]), sorted(expected_ids))
+    np.testing.assert_equal(sorted([unit.id for unit in result]), sorted(expected_ids))
 
 
 @pytest.mark.parametrize('orthForm,ignoreCase,expected_ids,word_categories,orthvariants', differentOrthCat_syn)
 def test_differentOrthVariants_synsets(orthForm, ignoreCase, expected_ids, word_categories, orthvariants):
     result = apply_synFilters(orthForm, ignoreCase, word_categories, orthvariants)
-    np.testing.assert_equal(sorted([unit.id() for unit in result]), sorted(expected_ids))
+    np.testing.assert_equal(sorted([unit.id for unit in result]), sorted(expected_ids))
 
 
 @pytest.mark.parametrize('regex,ignoreCase,expected_ids,word_categories,wordclasses', differentRegex_syn)
@@ -171,4 +171,4 @@ def test_regex_synsets(regex, ignoreCase, expected_ids, word_categories, wordcla
     if wordclasses != []:
         config.word_classes = wordclasses
     result = config.filter_synsets(germanet_data)
-    np.testing.assert_equal(sorted([unit.id() for unit in result]), sorted(expected_ids))
+    np.testing.assert_equal(sorted([unit.id for unit in result]), sorted(expected_ids))

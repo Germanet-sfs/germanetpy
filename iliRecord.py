@@ -22,6 +22,9 @@ class IliRecord:
         self._pwn20paraphrase = pwn20paraphrase
         self._source = source
 
+    def __repr__(self):
+        return f'IliRecord(LexUnit ID={self.lexunit_id}, relation={self.relation}, english_equivalent={self.english_equivalent})'
+
     @property
     def lexunit_id(self):
         return self._lexunit_id

@@ -118,13 +118,13 @@ class Lexunit:
     def get_orthform_variant(self, orthform_variant):
         """Returns the string of the requested orthform variant"""
         if orthform_variant == OrthFormVariant.orthForm:
-            return self._orthform
-        elif orthform_variant == OrthFormVariant.oldOrthForm:
-            return self._old_orthform
-        elif orthform_variant == OrthFormVariant.orthVar:
-            return self._orthvar
+            return self.orthform
+        elif orthform_variant == OrthFormVariant.oldOrthForm and self.old_orthform:
+            return self.old_orthform
+        elif orthform_variant == OrthFormVariant.orthVar and self.orthvar:
+            return self.orthvar
         else:
-            return self._old_orthvar
+            return self.old_orthvar
 
     def __repr__(self):
         return f'Lexunit(id={self._id}, orthform={self._orthform}, synset_id={self._synset.id})'
@@ -132,7 +132,9 @@ class Lexunit:
     def get_all_orthforms(self):
         forms = set()
         for orthformvariant in OrthFormVariant:
-            forms.add(self.get_orthform_variant(orthformvariant))
+            form = self.get_orthform_variant(orthformvariant)
+            if form:
+                forms.add(form)
         return forms
 
     @property

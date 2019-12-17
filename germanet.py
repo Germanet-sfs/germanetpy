@@ -1,6 +1,7 @@
 import os
 from collections import defaultdict
 import progressbar
+from progressbar import Percentage, Bar
 from utils import parse_xml
 from synsetLoader import load_lexunits
 from iliLoader import load_ili
@@ -113,28 +114,25 @@ class Germanet:
         wikifiles = [f for f in files if "wiktionary" in f and "xml" in f]
         lexentries = [f for f in files if f.startswith("nomen") or f.startswith("verben") or f.startswith("adj")]
         ilifiles = [f for f in files if "interLingua" in f]
-
-        with progressbar.ProgressBar(max_value=len(files)) as bar:
-            counter = 0
-            for f in lexentries:
-                counter += 1
-                tree = parse_xml(self.datadir, f)
-                load_lexunits(germanet=self, tree=tree)
-                bar.update(counter)
-            tree = parse_xml(self.datadir, "gn_relations.xml")
-            load_relations(germanet=self, tree=tree)
-            if self.addWictionary:
-                for f in wikifiles:
-                    counter += 1
-                    tree = parse_xml(self.datadir, f)
-                    load_wiktionary(germanet=self, tree=tree)
-                    bar.update(counter)
-            if self.addiliRecords:
-                for f in ilifiles:
-                    counter += 1
-                    tree = parse_xml(self.datadir, f)
-                    load_ili(germanet=self, tree=tree)
-                    bar.update(counter)
+        pbar = progressbar.ProgressBar(widgets=[Percentage(), Bar()], maxval=len(files)).start()
+        for i in range(len(lexentries)):
+            f = lexentries[i]
+            tree = parse_xml(self.datadir, f)
+            load_lexunits(germanet=self, tree=tree)
+            pbar.update(i + 1)
+        tree = parse_xml(self.datadir, "gn_relations.xml")
+        load_relations(germanet=self, tree=tree)
+        if self.addWictionary:
+            for i in range(len(wikifiles)):
+                tree = parse_xml(self.datadir, wikifiles[i])
+                load_wiktionary(germanet=self, tree=tree)
+                pbar.update(i + 1)
+        if self.addiliRecords:
+            for i in range(len(ilifiles)):
+                tree = parse_xml(self.datadir, ilifiles[i])
+                load_ili(germanet=self, tree=tree)
+                pbar.update(i + 1)
+        pbar.finish()
 
     @property
     def lexunits(self):
