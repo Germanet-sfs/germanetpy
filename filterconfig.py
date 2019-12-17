@@ -35,14 +35,14 @@ class Filterconfig:
         """
         result = set()
         if self.regex:
-            lexunits = germanet.get_lexunits_by_regex(self.search_string, self.ignore_case)
+            lexunits = self._get_lexunits_by_regex(germanet)
         else:
             lexunits = germanet.get_lexunits_by_orthform(self.search_string, self.ignore_case)
             lexunits = self._filter_lexunits_orthform(lexunits, self.orth_variants, self.search_string,
                                                       self.ignore_case)
 
         for unit in lexunits:
-            if (unit.synset().word_class() in self.word_classes) and (unit.synset().word_category() in
+            if (unit.synset.word_class in self.word_classes) and (unit.synset.word_category in
                                                                       self.word_categories) and \
                     self.search_string:
                 result.add(unit)
@@ -59,11 +59,8 @@ class Filterconfig:
         """
         filtered_units = set()
         for unit in lexunits:
-            print(unit)
             for orthvar in orthvariants:
                 form = unit.get_orthform_variant(orthvar)
-                print("form")
-                print(form)
                 if form == searchstring:
                     filtered_units.add(unit)
                 if ignore_case and form is not None:
@@ -84,9 +81,9 @@ class Filterconfig:
             lexunits = germanet.get_lexunits_by_orthform(self.search_string, self.ignore_case)
             lexunits = self._filter_lexunits_orthform(lexunits, self.orth_variants, self.search_string,
                                                       self.ignore_case)
-        synsets = [lexunit.synset() for lexunit in lexunits]
+        synsets = [lexunit.synset for lexunit in lexunits]
         for synset in synsets:
-            if (synset.word_class() in self.word_classes) and (synset.word_category() in
+            if (synset.word_class in self.word_classes) and (synset.word_category in
                                                                self.word_categories):
                 result.add(synset)
         return result
@@ -101,12 +98,12 @@ class Filterconfig:
         result = set()
         if self.ignore_case:
             pattern = re.compile(self.search_string.lower())
-            l_ids = [germanet._lowercasedform2lexid[orthform] for orthform in germanet.lowercasedform2lexid().keys() if
+            l_ids = [germanet.lowercasedform2lexid[orthform] for orthform in germanet.lowercasedform2lexid.keys() if
                      pattern.search(orthform)]
         else:
             pattern = re.compile(self.search_string)
-            l_ids = [germanet._ortform2lexid[orthform] for orthform in germanet._ortform2lexid.keys() if
+            l_ids = [germanet.orthform2lexid[orthform] for orthform in germanet.orthform2lexid.keys() if
                      pattern.search(orthform)]
         for id in list(itertools.chain.from_iterable(l_ids)):
-            result.add(germanet._lexunits[id])
+            result.add(germanet.lexunits[id])
         return result

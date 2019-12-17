@@ -205,7 +205,8 @@ class Synset:
         """
         Given another synset, this method computes shared hypernyms
         :param other: another synset object
-        :return: [set(Synset)] a set of synset nodes, that denotes the shared hypernyms between this synset and the given one.
+        :return: [set(Synset)] a set of synset nodes, that denotes the shared hypernyms between this synset and the
+        given one.
         """
         return set(self.all_hypernyms()).intersection(set(other.all_hypernyms()))
 
@@ -244,7 +245,8 @@ class Synset:
         Returns the shortest possible sequence of synset nodes that are traversed from this synset to a given other
         synset.
         :param other: A synset the path should be computed to
-        :return: [list(Synset)] A list, containing the sequence of nodes traversed from this synset to the given other synset.
+        :return: [list(Synset)] A list, containing the sequence of nodes traversed from this synset to the given
+        other synset.
         """
         shortest_paths = []
         lcs = self.lowest_common_subsumer(other)
@@ -273,6 +275,7 @@ class Synset:
         for path in self.hypernym_paths():
             current_path = []
             path_len = math.inf
+            # maybe optimize?
             if hypernym in path:
                 index = path.index(hypernym)
                 current_path = path[index:]
@@ -286,7 +289,8 @@ class Synset:
         """
         Extract the lowes common subsumer(s) / lowest common ancestor(s) of the current synset and a given one.
         :param other: Another synset object the LCS should be computed to.
-        :return: [set(Synset)] a set, containing one or several synset objects, being the LCS between the current synset and the
+        :return: [set(Synset)] a set, containing one or several synset objects, being the LCS between the current
+        synset and the
         given one.
         """
         lcs = set()
@@ -317,7 +321,8 @@ class Synset:
     def get_distances_hypernym_dic(self):
         """
         For each hypernym, store the shortest distance between the current synset and its hypernym.
-        :return: [dic(Synset, int)] A dictionary containing all hypernyms of this synset as keys and the corresponding distances as values.
+        :return: [dic(Synset, int)] A dictionary containing all hypernyms of this synset as keys and the
+        corresponding distances as values.
         """
         hypernym_paths = self.hypernym_paths()
         distances_dic = {}
