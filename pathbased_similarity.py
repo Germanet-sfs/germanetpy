@@ -79,9 +79,9 @@ class PathBasedSimilarity:
     def lch(self, synset1, synset2):
         assert synset1.word_category == synset2.word_category, "only synsets of the same Wordcategory can be " \
                                                                    "compared"
-        pathlen = synset1.shortest_path_distance(synset2)
-        maxdepth = self.get_maxdepth_by_category(synset1.word_category)
-        lch_sim = -np.log(pathlen / (2 * maxdepth))
+        pathlen = synset1.shortest_path_distance(synset2)+1
+        maxdepth = self.get_maxdepth_by_category(synset1.word_category)+1
+        lch_sim = -np.log10(pathlen / (2 * maxdepth))
         return np.round(lch_sim, decimals=3)
 
     def hirst_onge(self, synset1, synset2):
