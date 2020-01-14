@@ -5,7 +5,7 @@ More information about GermaNet can be found on the following page:
 
 https://uni-tuebingen.de/en/faculties/faculty-of-humanities/departments/modern-languages/department-of-linguistics/chairs/general-and-computational-linguistics/ressources/lexica/germanet/
 
-##Installation
+## Installation
 
 You can install germanetpy from [PyPI] (https://pypi.org/project/germanetpy/):
 
@@ -13,7 +13,7 @@ You can install germanetpy from [PyPI] (https://pypi.org/project/germanetpy/):
 
 Get the GermaNet data as XML files and put all files in the data directory. The API is supported on Python 3.
 
-##How to use
+## How to use
 
 The API provides functionality that can be used to load the data from GermaNet and query it. The data has to be retrieved
 via a license agreement from the University of Tübingen, Seminar für Sprachwissenschaften:
