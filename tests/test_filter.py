@@ -4,10 +4,10 @@ import logging
 import numpy as np
 from lxml import etree as ET
 import pytest
-from scripts.germanet import Germanet
-from scripts.filterconfig import Filterconfig
-from scripts.lexunit import OrthFormVariant
-from scripts.synset import WordCategory, WordClass
+from germanetpy.germanet import Germanet
+from germanetpy.filterconfig import Filterconfig
+from germanetpy.lexunit import OrthFormVariant
+from germanetpy.synset import WordCategory, WordClass
 
 logger = logging.getLogger('logging_test_filter')
 d = str(Path(__file__).parent.parent) + "/data"

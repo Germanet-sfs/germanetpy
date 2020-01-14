@@ -2,10 +2,10 @@ from pathlib import Path
 import sys
 import logging
 import pytest
-from scripts.germanet import Germanet
+from germanetpy.germanet import Germanet
 import numpy as np
 from lxml import etree as ET
-from scripts.synset import ConRel
+from germanetpy.synset import ConRel
 
 logger = logging.getLogger('logging_test_synset')
 d = str(Path(__file__).parent.parent) + "/data"

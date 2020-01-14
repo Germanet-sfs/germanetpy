@@ -3,7 +3,7 @@ import sys
 import logging
 from lxml import etree as ET
 import numpy as np
-from scripts.germanet import Germanet
+from germanetpy.germanet import Germanet
 
 logger = logging.getLogger('logging_test_frames')
 d = str(Path(__file__).parent.parent) + "/data"

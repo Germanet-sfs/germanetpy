@@ -1,4 +1,4 @@
-from scripts.synset import WordCategory
+from germanetpy.synset import WordCategory
 
 
 # get the depth (maybe extra method?)

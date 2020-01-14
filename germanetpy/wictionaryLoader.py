@@ -1,5 +1,5 @@
-from scripts.wictionaryparaphrase import WiktionaryParaphrase
-from scripts.utils import convert_to_boolean
+from germanetpy.wictionaryparaphrase import WiktionaryParaphrase
+from germanetpy.utils import convert_to_boolean
 
 LEXID = 'lexUnitId'
 ID = 'wiktionaryId'

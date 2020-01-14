@@ -17,7 +17,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/Blubberli/germanetpy.git",
     install_requires=requirements,
-    packages=["scripts"],
+    packages=["germanetpy"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",

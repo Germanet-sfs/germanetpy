@@ -2,11 +2,11 @@ from pathlib import Path
 import sys
 import logging
 import pytest
-from scripts.germanet import Germanet
+from germanetpy.germanet import Germanet
 import numpy as np
 from lxml import etree as ET
-from scripts.lexunit import LexRel
-from scripts.compoundInfo import CompoundProperty, CompoundCategory
+from germanetpy.lexunit import LexRel
+from germanetpy.compoundInfo import CompoundProperty, CompoundCategory
 
 logger = logging.getLogger('logging_test_lexunit')
 d = str(Path(__file__).parent.parent) + "/data"

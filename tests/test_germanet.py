@@ -1,6 +1,6 @@
 import logging
 import sys
-from scripts.germanet import Germanet
+from germanetpy.germanet import Germanet
 from lxml import etree as ET
 import numpy as np
 from pathlib import Path

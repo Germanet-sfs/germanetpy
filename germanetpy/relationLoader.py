@@ -1,5 +1,5 @@
-from scripts.lexunit import LexRel
-from scripts.synset import ConRel
+from germanetpy.lexunit import LexRel
+from germanetpy.synset import ConRel
 
 NAME = 'name'
 FROM_NODE = 'from'

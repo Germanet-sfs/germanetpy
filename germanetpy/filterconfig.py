@@ -1,7 +1,7 @@
 import re
 import itertools
-from scripts.synset import WordCategory, WordClass
-from scripts.lexunit import OrthFormVariant
+from germanetpy.synset import WordCategory, WordClass
+from germanetpy.lexunit import OrthFormVariant
 
 
 class Filterconfig:

@@ -1,4 +1,4 @@
-from scripts.iliRecord import IliRecord
+from germanetpy.iliRecord import IliRecord
 
 LEXID = "lexUnitId"
 EWNREL = 'ewnRelation'

@@ -1,7 +1,7 @@
-from scripts.compoundInfo import CompoundInfo, CompoundCategory, CompoundProperty
-from scripts.lexunit import Lexunit, LexRel
-from scripts.synset import Synset, WordCategory, WordClass
-from scripts.utils import convert_to_boolean
+from germanetpy.compoundInfo import CompoundInfo, CompoundCategory, CompoundProperty
+from germanetpy.lexunit import Lexunit, LexRel
+from germanetpy.synset import Synset, WordCategory, WordClass
+from germanetpy.utils import convert_to_boolean
 
 # Lexunit xml attribute values
 LEXID = 'id'

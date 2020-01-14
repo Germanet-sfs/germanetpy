@@ -2,12 +2,12 @@ import os
 from collections import defaultdict
 import progressbar
 from progressbar import Percentage, Bar
-from scripts.utils import parse_xml
-from scripts.synsetLoader import load_lexunits
-from scripts.iliLoader import load_ili
-from scripts.wictionaryLoader import load_wiktionary
-from scripts.relationLoader import load_relations
-from scripts.frames import Frames
+from germanetpy.utils import parse_xml
+from germanetpy.synsetLoader import load_lexunits
+from germanetpy.iliLoader import load_ili
+from germanetpy.wictionaryLoader import load_wiktionary
+from germanetpy.relationLoader import load_relations
+from germanetpy.frames import Frames
 
 
 class Germanet:
