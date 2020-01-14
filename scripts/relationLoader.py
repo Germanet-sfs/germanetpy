@@ -1,5 +1,5 @@
-from .lexunit import LexRel
-from .synset import ConRel
+from scripts.lexunit import LexRel
+from scripts.synset import ConRel
 
 NAME = 'name'
 FROM_NODE = 'from'

@@ -31,6 +31,28 @@ class CompoundInfo:
 
     def __init__(self, modifier1, head, modifier1property=None, modifier1category=None, modifier2=None,
                  modifier2property=None, modifier2category=None, headproperty=None):
+        """
+        This class stores information about a special linguistic entity in German - a compound. A compound
+        consists
+        of two constituents, a modifier and a head. The head will always be noun, the modifier can stem from
+        a noun,
+        a verb or an adjective. Sometimes the modifier can be derived from different words, for example:
+        Laufband - modifier: laufen or Lauf. This class stores both possibilities as modifier1 and modifier2.
+        :param modifier1: A String that represents the modifier (or one possibility). Example: 'Laufband' -
+        modifier1:
+        'laufen'
+        :param head: A String that represents the head. Example: 'Laufband' - head: 'Band'
+        :param modifier1property: A String that represents the property of the first modifier variant,
+        e.g. if it is
+        an Affixoid
+        :param modifier1category: The category of the modifier, example: 'laufen' = Verb
+        :param modifier2: A String that represents the modifier (or second possibility). Example: 'Laufband' -
+        modifier2:
+        'Lauf'
+        :param modifier2property: A String that represents the property of the second modifier variant
+        :param modifier2category: The category of the second modifier variant, example: 'Lauf' = Nomen
+        :param headproperty: A String that represents the property of the head
+        """
         self._modifier1 = modifier1
         self._modifier1_property = modifier1property
         self._modifier1_category = modifier1category

@@ -116,20 +116,27 @@ class Lexunit:
         self._incoming_relations = defaultdict(set)
 
     def get_orthform_variant(self, orthform_variant):
-        """Returns the string of the requested orthform variant"""
-        if orthform_variant == OrthFormVariant.orthForm:
-            return self.orthform
+        """
+        :param orthform_variant: one of the four orthform_variants
+        :return: the string of the requested orthform variant or the main orthform, if the requested orthform doesn't
+        exist.
+        """
+        if orthform_variant == OrthFormVariant.oldOrthVar:
+            return self.old_orthvar
         elif orthform_variant == OrthFormVariant.oldOrthForm and self.old_orthform:
             return self.old_orthform
         elif orthform_variant == OrthFormVariant.orthVar and self.orthvar:
             return self.orthvar
         else:
-            return self.old_orthvar
+            return self.orthform
 
     def __repr__(self):
         return f'Lexunit(id={self._id}, orthform={self._orthform}, synset_id={self._synset.id})'
 
     def get_all_orthforms(self):
+        """
+        :return: A list<String> of all existing orthform variants of the current lexunit.
+        """
         forms = set()
         for orthformvariant in OrthFormVariant:
             form = self.get_orthform_variant(orthformvariant)

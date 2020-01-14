@@ -1,3 +1,6 @@
+from functools import reduce
+
+
 class Frames:
     EXPLETIVE = 'NE'
     SUBJECT = 'NN'
@@ -16,39 +19,97 @@ class Frames:
     reflexives = ['DR', 'AR']
 
     def __init__(self, frames2lexunits):
+        """
+        This class holds functionality to extract verbs with specific frame types. These subcategorisation patterns
+        can help to disambiguate verbs in specific contexts and how many arguments a verb can take.
+        :param frames2lexunits: A dictionary that stores the frames as keys and the corresponding lexunits as values.
+        """
 
         self._frames2verbs = frames2lexunits
 
     def extract_expletives(self):
+        """
+        This method extracts all verbs that can take expletives as an argument. Example: "[Es] regnet."
+        :return: A set<Lexunit> that stores all verbs as Lexunits that have the specified frame.
+        """
         return self.extract_specific_complements(self.EXPLETIVE)
 
     def extract_accusative_complemtent(self):
+        """
+        This method returns all verbs that can take an accusative complement. Example: "Sie sieht [ihn]"
+        :return: A set<Lexunit> that stores all verbs as Lexunits that have the specified frame.
+        """
         return self.extract_specific_complements(self.ACCOBJ)
 
     def extract_dative_complement(self):
+        """
+        This method returns all verbs that can take an dative complement. Example: "Sie schenkt [ihm] einen Hund."
+        :return: A set<Lexunit> that stores all verbs as Lexunits that have the specified frame.
+        """
         return self.extract_specific_complements(self.DATOBJ)
 
     def extract_gentive_complement(self):
+        """
+        This method returns all verbs that can take an genetive complement. Example: "Ihre Eltern berauben sie [ihrer
+        Freiheit]."
+        :return: A set<Lexunit> that stores all verbs as Lexunits that have the specified frame.
+        """
         return self.extract_specific_complements(self.GENOBJ)
 
     def extract_prepositional_complement(self):
+        """
+        This method returns all verbs that can take an prepositional complement. Example: "Die Kugel klackte [an die
+        Fensterscheibe]."
+        :return: A set<Lexunit> that stores all verbs as Lexunits that have the specified frame.
+        """
         return self.extract_specific_complements(self.PREPOBJ)
 
     def extract_reflexives(self):
+        """
+        This method returns all verbs that can take an reflexive complement. Example: "Sie wird [sich] rächen."
+        :return: A set<Lexunit> that stores all verbs as Lexunits that have the specified frame.
+        """
         return self.extract_specific_complements(self.reflexives[0]).union(
             self.extract_specific_complements(self.reflexives[1]))
 
     def extract_adverbials(self):
+        """
+        This method returns all verbs that can take an adverbial complement. Example: "Sie wohnt [in einem Haus]."
+        :return: A set<Lexunit> that stores all verbs as Lexunits that have the specified frame.
+        """
         return self.extract_specific_complements(self.LOC) \
             .union(self.extract_specific_complements(self.DIR)
-                 .union(self.extract_specific_complements(self.TEMP)
-                      .union(self.extract_specific_complements(self.MAN)
-                           .union(self.extract_specific_complements(self.INST)
-                                .union(self.extract_specific_complements(self.CAUSE)
-                                     .union(self.extract_specific_complements(self.ROLE)
-                                          .union(self.extract_specific_complements(self.COM))))))))
+                   .union(self.extract_specific_complements(self.TEMP)
+                          .union(self.extract_specific_complements(self.MAN)
+                                 .union(self.extract_specific_complements(self.INST)
+                                        .union(self.extract_specific_complements(self.CAUSE)
+                                               .union(self.extract_specific_complements(self.ROLE)
+                                                      .union(self.extract_specific_complements(self.COM))))))))
+
+    def extract_transitives(self):
+        """
+        This method returns all transitive verbs. A transitive verb is any verb that can have objects.
+        :return: A set<Lexunit> that stores all transitive verbs as Lexunits.
+        """
+        return self.extract_specific_complements(self.ACCOBJ) \
+            .union(self.extract_specific_complements(self.DATOBJ)
+                   .union(self.extract_specific_complements(self.GENOBJ)
+                          .union(self.extract_specific_complements(self.PREPOBJ))))
+
+    def extract_intransitives(self):
+        """
+        This method returns all intransitive verbs. An intransitive verb is any verb that does not have objects.
+        :return: A set<Lexunit> that stores all intransitive verbs as Lexunits.
+        """
+        transitives = self.extract_transitives()
+        all_verbs = reduce(set.union, self.frames2verbs().values())
+        return all_verbs.difference(transitives)
 
     def extract_specific_complements(self, complement):
+        """
+        This method returns all verbs that can take a given complement. This is specified in the frames of a verb.
+        :return: A set<Lexunit> that stores all verbs as Lexunits that can take the specified complement.
+        """
         complements = set()
         for (key, val) in self._frames2verbs.items():
             if complement in key:

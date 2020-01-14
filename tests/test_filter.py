@@ -1,9 +1,9 @@
 from pathlib import Path
 import sys
 import logging
+import numpy as np
 from lxml import etree as ET
 import pytest
-import numpy as np
 from scripts.germanet import Germanet
 from scripts.filterconfig import Filterconfig
 from scripts.lexunit import OrthFormVariant

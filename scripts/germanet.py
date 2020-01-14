@@ -14,12 +14,12 @@ class Germanet:
 
     def __init__(self, datadir, addiliRecords=True, addWictionary=True):
         """
-        The Germanet object is initialized with the directory where the Germanet data is stored. The data is loaded
-        when Germanet is initialized.
-        :param datadir: [String] The path to the directory where the Germanet data is stored
-        :param addiliRecords: a boolean, denotes whether the iliRecords should also be loaded into the Germanet
+        The GermaNet object is initialized with the directory where the GermaNet data is stored. The data is loaded
+        when GermaNet is initialized.
+        :param datadir: [String] The path to the directory where the GermaNet data is stored
+        :param addiliRecords: a boolean, denotes whether the iliRecords should also be loaded into the GermaNet
         object, default: True
-        :param addWictionary: a boolean, denotes whether the wictionary files should also be loaded into the Germanet
+        :param addWictionary: a boolean, denotes whether the wictionary files should also be loaded into the GermaNet
         object, default: True
         """
         self._datadir = datadir
