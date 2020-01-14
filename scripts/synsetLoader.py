@@ -1,7 +1,7 @@
-from compoundInfo import CompoundInfo, CompoundCategory, CompoundProperty
-from lexunit import Lexunit, LexRel
-from synset import Synset, WordCategory, WordClass
-from utils import convert_to_boolean
+from scripts.compoundInfo import CompoundInfo, CompoundCategory, CompoundProperty
+from scripts.lexunit import Lexunit, LexRel
+from scripts.synset import Synset, WordCategory, WordClass
+from scripts.utils import convert_to_boolean
 
 # Lexunit xml attribute values
 LEXID = 'id'

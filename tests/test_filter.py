@@ -4,22 +4,22 @@ import logging
 from lxml import etree as ET
 import pytest
 import numpy as np
-from germanet import Germanet
-from filterconfig import Filterconfig
-from lexunit import OrthFormVariant
-from synset import WordCategory, WordClass
+from scripts.germanet import Germanet
+from scripts.filterconfig import Filterconfig
+from scripts.lexunit import OrthFormVariant
+from scripts.synset import WordCategory, WordClass
 
 logger = logging.getLogger('logging_test_filter')
 d = str(Path(__file__).parent.parent) + "/data"
 try:
     germanet_data = Germanet(d)
 except ET.ParseError:
-    message = ("Unable to load GermaNet data at {0} . Aborting...").format(d)
+    message = "Unable to load GermaNet data at {0} . Aborting...".format(d)
     logger.error(message,
                  ET.ParseError)
     sys.exit(0)
 except IOError:
-    message = ("GermaNet data not found at {0} . Aborting...").format(d)
+    message = "GermaNet data not found at {0} . Aborting...".format(d)
     logger.error(message, IOError)
     sys.exit(0)
 

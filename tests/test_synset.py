@@ -2,10 +2,10 @@ from pathlib import Path
 import sys
 import logging
 import pytest
-from germanet import Germanet
+from scripts.germanet import Germanet
 import numpy as np
 from lxml import etree as ET
-from synset import ConRel
+from scripts.synset import ConRel
 
 logger = logging.getLogger('logging_test_synset')
 d = str(Path(__file__).parent.parent) + "/data"
@@ -70,13 +70,13 @@ paths_between_synsets_nouns = [
 
 several_paths = [
     ('s46683', 's46650', [['s46683', 's46682', 's46042', 's46041', 's44960', 's46650'],
-                          ['s46683', 's46682', 's46311', 's44965', '44965' 's44960', 's46650'],
+                          ['s46683', 's46682', 's46311', 's44965', 's44960', 's46650'],
                           ])
 ]
 
 paths_between_synsets_adj = [
     ('s3', 's158', ['s3', 's79860', 's2246', 's2245', 's51001', 's4452', 's154', 's155', 's158']),
-    ('s96631', 's805', ['s96631', 's21', 's2', 's1', 's0', 's10', 's214', 's242', 's805'])
+    ('s96631', 's805', ['s96631', 's21', 's2', 's1', 's0', 's90', 's214', 's242', 's805'])
 ]
 
 paths_between_synsets_verbs = [
@@ -218,10 +218,11 @@ def test_several_paths(id1, id2, expected_path_ids):
     syn1 = germanet_data.get_synset_by_id(id1)
     syn2 = germanet_data.get_synset_by_id(id2)
     paths = syn1.shortest_path(syn2)
-    for i in range(len(paths)):
-        path = paths[i]
-        current_expected_ids = expected_path_ids[i]
-        np.testing.assert_equal([synset.id for synset in path], current_expected_ids)
+    assert len(paths) == len(expected_path_ids), "the number of found paths doesn't macht the true number of paths"
+    for path in paths:
+        path = [synset.id for synset in path]
+        np.testing.assert_equal(path in expected_path_ids, True)
+
 
 
 @pytest.mark.parametrize('id1,id2,expected_path_ids', paths_between_synsets_nouns)
@@ -239,7 +240,7 @@ def test_paths_adj(id1, id2, expected_path_ids):
 
 
 @pytest.mark.parametrize('id1,id2,expected_path_ids', paths_between_synsets_verbs)
-def test_paths_adj(id1, id2, expected_path_ids):
+def test_paths_verbs(id1, id2, expected_path_ids):
     """Tests whether the correct shortest paths between two given synsets verbs are returned."""
     path = get_shortest_paths(id1, id2)
     np.testing.assert_equal([synset.id for synset in path], expected_path_ids)

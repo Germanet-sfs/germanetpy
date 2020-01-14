@@ -2,12 +2,12 @@ import os
 from collections import defaultdict
 import progressbar
 from progressbar import Percentage, Bar
-from utils import parse_xml
-from synsetLoader import load_lexunits
-from iliLoader import load_ili
-from wictionaryLoader import load_wiktionary
-from relationLoader import load_relations
-from frames import Frames
+from scripts.utils import parse_xml
+from scripts.synsetLoader import load_lexunits
+from scripts.iliLoader import load_ili
+from scripts.wictionaryLoader import load_wiktionary
+from scripts.relationLoader import load_relations
+from scripts.frames import Frames
 
 
 class Germanet:
@@ -22,9 +22,9 @@ class Germanet:
         :param addWictionary: a boolean, denotes whether the wictionary files should also be loaded into the Germanet
         object, default: True
         """
-        self.datadir = datadir
-        self.addiliRecords = addiliRecords
-        self.addWictionary = addWictionary
+        self._datadir = datadir
+        self._addiliRecords = addiliRecords
+        self._addWictionary = addWictionary
 
         # Dictionary: lexunit id - lexunit object
         self._lexunits = {}
@@ -38,7 +38,7 @@ class Germanet:
         # Dictionary: main orthform - lexunit id
         self._mainOrtform2lexid = defaultdict(set)
 
-        # Dictionary: lower cased orht form (all variants) - lexunit id
+        # Dictionary: lower cased orthographic form (all variants) - lexunit id
         self._lowercasedform2lexid = defaultdict(set)
 
         # Dictionary: Wordcategory - set of lexunit ids
@@ -47,7 +47,7 @@ class Germanet:
         # Dictionary: Wordclass - set of lexunit ids
         self._wordclass2lexid = defaultdict(set)
 
-        # Set if synsets (that are compounds)
+        # Set of synsets (that are compounds)
         self._compounds = set()
 
         # Dictionary: Frame - Lexunit objects
@@ -59,11 +59,19 @@ class Germanet:
         # List: ili Records
         self._ili_records = []
 
-        self.load_data()
-
+        # the Frames object, storing all frame information from GermaNet
         self._frames = Frames(self._frames2lexunits)
 
+        # load data when GermaNet is initialized
+        self.load_data()
+
     def get_synsets_by_orthform(self, form, ignorecase=False):
+        """
+        This method returns a list of synsets that match the given input search string
+        :param form: [String] a word that can be looked up in the GermaNet
+        :param ignorecase: whether the case of the word should be ignored (default = False)
+        :return: [list(Synset] a list of synsets
+        """
         if ignorecase:
             lexunit_ids = self.lowercasedform2lexid[form.lower()]
         else:
@@ -186,3 +194,15 @@ class Germanet:
     def root(self):
         root = self.get_synset_by_id('s51001')
         return root
+
+    @property
+    def datadir(self):
+        return self._datadir
+
+    @property
+    def addiliRecords(self):
+        return self._addiliRecords
+
+    @property
+    def addWictionary(self):
+        return self._addWictionary

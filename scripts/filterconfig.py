@@ -1,7 +1,7 @@
 import re
 import itertools
-from synset import WordCategory, WordClass
-from lexunit import OrthFormVariant
+from scripts.synset import WordCategory, WordClass
+from scripts.lexunit import OrthFormVariant
 
 
 class Filterconfig:

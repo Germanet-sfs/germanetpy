@@ -3,7 +3,7 @@ import sys
 import logging
 from lxml import etree as ET
 import numpy as np
-from germanet import Germanet
+from scripts.germanet import Germanet
 
 logger = logging.getLogger('logging_test_frames')
 d = str(Path(__file__).parent.parent) + "/data"
@@ -21,38 +21,38 @@ except IOError:
 
 
 def test_accusative_complements():
-    acc_complements = germanet_data.frames().extract_accusative_complemtent()
+    acc_complements = germanet_data.frames.extract_accusative_complemtent()
     sehen = germanet_data.get_lexunit_by_id('l82290')
     np.testing.assert_equal(sehen in acc_complements, True)
 
 def test_dative_complements():
-    dative_complements = germanet_data.frames().extract_dative_complement()
+    dative_complements = germanet_data.frames.extract_dative_complement()
     schenken = germanet_data.get_lexunit_by_id('l73802')
     np.testing.assert_equal(schenken in dative_complements, True)
 
 def test_genitive_complements():
-    genitive_complements = germanet_data.frames().extract_gentive_complement()
+    genitive_complements = germanet_data.frames.extract_gentive_complement()
     berauben = germanet_data.get_lexunit_by_id('l74138')
     np.testing.assert_equal(berauben in genitive_complements, True)
 
 def test_praepositional_complements():
-    praep_complements = germanet_data.frames().extract_prepositional_complement()
+    praep_complements = germanet_data.frames.extract_prepositional_complement()
     umfahren = germanet_data.get_lexunit_by_id('l82560')
     np.testing.assert_equal(umfahren in praep_complements, True)
 
 def test_adverbial_complements():
-    adverbials = germanet_data.frames().extract_adverbials()
+    adverbials = germanet_data.frames.extract_adverbials()
     wohnen  = germanet_data.get_lexunit_by_id('l73312')
     kommen = germanet_data.get_lexunit_by_id('l73778')
     np.testing.assert_equal(wohnen in adverbials, True)
     np.testing.assert_equal(kommen in adverbials, True)
 
 def test_expletives():
-    expletives = germanet_data.frames().extract_expletives()
+    expletives = germanet_data.frames.extract_expletives()
     regnen = germanet_data.get_lexunit_by_id('l82091')
     np.testing.assert_equal(regnen in expletives, True)
 
 def test_reflexives():
-    reflexives = germanet_data.frames().extract_reflexives()
+    reflexives = germanet_data.frames.extract_reflexives()
     raechen = germanet_data.get_lexunit_by_id('l76169')
     np.testing.assert_equal(raechen in reflexives, True)

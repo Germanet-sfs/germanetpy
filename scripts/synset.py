@@ -83,7 +83,7 @@ class WordClass(fastenum.Enum):
 
 class Synset:
     """
-    This class holds a Synset object. A synset in Germanet contains several lexical units and holds specific relations
+    This class holds a Synset object. A synset in GermaNet contains several lexical units and holds specific relations
     to other synsets, for example a synset can have hypernyms or hyponyms.
     """
 
@@ -243,46 +243,50 @@ class Synset:
     def shortest_path(self, other):
         """
         Returns the shortest possible sequence of synset nodes that are traversed from this synset to a given other
-        synset.
+        synset. If there are several shortest sequences, all of then are returned.
         :param other: A synset the path should be computed to
-        :return: [list(Synset)] A list, containing the sequence of nodes traversed from this synset to the given
+        :return: [list(list(Synset))] A list of lists, each list containing the sequence of nodes traversed from this
+        synset to the given
         other synset.
         """
         shortest_paths = []
         lcs = self.lowest_common_subsumer(other)
         for subsumer in lcs:
-            path_to_lcs1 = self.shortest_path_to_hypernym(subsumer)
-            path_to_lcs2 = other.shortest_path_to_hypernym(subsumer)
-            path_to_lcs1.reverse()
-            for el in path_to_lcs2:
-                if el not in path_to_lcs1:
-                    path_to_lcs1.append(el)
-            shortest_paths.append(path_to_lcs1)
+            paths_to_lcs1 = self.shortest_path_to_hypernym(subsumer)
+            paths_to_lcs2 = other.shortest_path_to_hypernym(subsumer)
+            for path_to_lcs1 in paths_to_lcs1:
+                for path_to_lcs2 in paths_to_lcs2:
+                    current_path = path_to_lcs1
+                    path_to_lcs2 = path_to_lcs2[::-1]
+                    for el in path_to_lcs2[1:]:
+                        current_path.append(el)
+                    shortest_paths.append(current_path)
         return shortest_paths
 
     def shortest_path_to_hypernym(self, hypernym):
         """
         The shortest path between this synset and the given hypernym. Asserts that the given other synset is a real
-        hypernym of the current synset
+        hypernym of the current synset.
         :param hypernym: a synset, denoting the hypernym the shortest path should be computed to
-        :return: [list(Synset)] a list with the shortest sequence of synset nodes traversed from self to given  hypernym
+        :return: [list(Synset)] a list of lists, each list storing the shortest sequence of synset nodes traversed
+        from self to the given hypernym
         """
         if self == hypernym:
-            return [self]
+            return [[self]]
         assert hypernym in self.all_hypernyms(), "given hypernym is not a hypernym of this synset"
         shortest_path = []
         shortest = math.inf
         for path in self.hypernym_paths():
-            current_path = []
-            path_len = math.inf
-            # maybe optimize?
             if hypernym in path:
                 index = path.index(hypernym)
                 current_path = path[index:]
                 path_len = len(current_path)
-            if path_len <= shortest:
-                shortest = path_len
-                shortest_path = current_path
+                if path_len <= shortest:
+                    shortest = path_len
+                    current_path.reverse()
+                    shortest_path.append(current_path)
+        shortest_dist = min([len(p) for p in shortest_path])
+        shortest_path = [p for p in shortest_path if len(p) == shortest_dist]
         return shortest_path
 
     def lowest_common_subsumer(self, other):

@@ -1,5 +1,5 @@
-from wictionaryparaphrase import WiktionaryParaphrase
-from utils import convert_to_boolean
+from scripts.wictionaryparaphrase import WiktionaryParaphrase
+from scripts.utils import convert_to_boolean
 
 LEXID = 'lexUnitId'
 ID = 'wiktionaryId'

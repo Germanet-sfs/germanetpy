@@ -1,5 +1,5 @@
-from germanet import Germanet
-from synset import WordCategory
+from scripts.germanet import Germanet
+from scripts.synset import WordCategory
 
 
 # get the depth (maybe extra method?)
@@ -78,7 +78,7 @@ def get_longest_possible_shortest_distance(wordcategory, germanet):
 
 def print_all_longest_shortest_distances():
     """Computes and prints the longest shortest distances for every word category."""
-    g = Germanet("data")
+    g = Germanet("../data")
     print(
         "longest shortest distance for nouns : %2d, maximum length for nouns : %2d" %
         get_longest_possible_shortest_distance(
@@ -95,7 +95,7 @@ def print_all_longest_shortest_distances():
 
 def print_all_maximum_depths():
     """Computes and prints the maximum depth for every word category."""
-    g = Germanet("data")
+    g = Germanet("../data")
     print(
         "maximum depth for nouns : %2d" %
         get_greatest_depth(
@@ -108,9 +108,3 @@ def print_all_maximum_depths():
         "maximum depth for adjectives : %2d" %
         get_greatest_depth(
             g, WordCategory.adj))
-
-
-if __name__ == '__main__':
-    print_all_longest_shortest_distances()
-    print_all_maximum_depths()
-
