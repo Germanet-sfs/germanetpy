@@ -11,7 +11,7 @@ You can install germanetpy from [PyPI] (https://pypi.org/project/germanetpy/):
 
     pip install germanetpy
 
-Get the GermaNet data as XML files and put all files in the data directory. The API is supported on Python 3.
+Get the GermaNet data as XML files and put all files in a data directory. When you use the API to load the data, the path pointing to the directory containing the XML files needs to be specified. The API is supported with Python 3.
 
 ## How to use
 
@@ -20,4 +20,10 @@ via a license agreement from the University of Tübingen, Seminar für Sprachwis
 
 https://uni-tuebingen.de/en/faculties/faculty-of-humanities/departments/modern-languages/department-of-linguistics/chairs/general-and-computational-linguistics/ressources/lexica/germanet/license/
 
+To use the data for queries you first have to create a Germanet object, which loads the data specified as an argument once. This takes a few seconds:
+
+    from germanetpy import germanet
+    
+    germanet_object = germanet.Germanet(path_to_the_GermaNet_XML_files)
+    
 This repository also provides a Tutorial [germanetpy_tutorial.ipynb] that shows how to use the API to query GermaNet.
