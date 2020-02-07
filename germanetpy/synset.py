@@ -252,14 +252,14 @@ class Synset:
         shortest_paths = []
         lcs = self.lowest_common_subsumer(other)
         for subsumer in lcs:
-            paths_to_lcs1 = self.shortest_path_to_hypernym(subsumer)
-            paths_to_lcs2 = other.shortest_path_to_hypernym(subsumer)
-            for path_to_lcs1 in paths_to_lcs1:
-                for path_to_lcs2 in paths_to_lcs2:
-                    current_path = path_to_lcs1
-                    path_to_lcs2 = path_to_lcs2[::-1]
-                    for el in path_to_lcs2[1:]:
-                        current_path.append(el)
+            start_to_lcs_paths = self.shortest_path_to_hypernym(subsumer)
+            end_to_lcs_paths = other.shortest_path_to_hypernym(subsumer)
+            for start_path in start_to_lcs_paths:
+                for end_path in end_to_lcs_paths:
+                    current_path = start_path.copy()
+                    for synset in end_path[::-1]:
+                        if synset != subsumer:
+                            current_path.append(synset)
                     shortest_paths.append(current_path)
         return shortest_paths
 
