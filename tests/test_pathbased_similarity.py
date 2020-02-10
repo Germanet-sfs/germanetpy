@@ -5,7 +5,7 @@ import pytest
 from germanetpy.germanet import Germanet
 import numpy as np
 from lxml import etree as ET
-from germanetpy.graphbased_relatedness_measures import GraphRelatedness
+from germanetpy.path_based_relatedness_measures import GraphRelatedness
 from germanetpy.synset import WordCategory
 
 logger = logging.getLogger('logging_test_semrel')
