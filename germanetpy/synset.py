@@ -24,6 +24,13 @@ class ConRel(fastenum.Enum):
     is_related_to = 13
     causes = 14
 
+    @staticmethod
+    def transitive(conrel):
+        transitive_rels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        if conrel.value in transitive_rels:
+            return True
+        return False
+
 
 class WordCategory(fastenum.Enum):
     """
@@ -33,6 +40,25 @@ class WordCategory(fastenum.Enum):
     adj = 1
     nomen = 2
     verben = 3
+
+    @staticmethod
+    def get_possible_word_classes(word_category):
+        if word_category.value == 2:
+            return {WordClass.Tops, WordClass.Artefakt, WordClass.Attribut, WordClass.Besitz, WordClass.Relation,
+                    WordClass.Geschehen, WordClass.Form, WordClass.Gefuehl, WordClass.Gruppe, WordClass.Koerper,
+                    WordClass.Kognition, WordClass.Kommunikation, WordClass.Menge, WordClass.Mensch, WordClass.Motiv,
+                    WordClass.Nahrung, WordClass.natGegenstand, WordClass.Ort, WordClass.Pflanze, WordClass.Substanz,
+                    WordClass.Tier, WordClass.Zeit}
+        if word_category == 1:
+            return {WordClass.Allgemein, WordClass.Bewegung, WordClass.Relation, WordClass.Gefuehl,
+                    WordClass.Gesellschaft, WordClass.Koerper, WordClass.Geist, WordClass.Menge,
+                    WordClass.natGegenstand, WordClass.Ort, WordClass.Pertonym, WordClass.Substanz, WordClass.Verhalten,
+                    WordClass.Perzeption, WordClass.Zeit, WordClass.privativ}
+        else:
+            return {WordClass.Allgemein, WordClass.Besitz, WordClass.Gefuehl, WordClass.Gesellschaft,
+                    WordClass.Koerperfunktion, WordClass.Kognition, WordClass.Kommunikation, WordClass.Konkurrenz,
+                    WordClass.Kontakt, WordClass.natPhaenomen, WordClass.Lokation, WordClass.Schoepfung,
+                    WordClass.Veraenderung, WordClass.Verbrauch, WordClass.Perzeption}
 
 
 class WordClass(fastenum.Enum):
@@ -79,6 +105,20 @@ class WordClass(fastenum.Enum):
     Schoepfung = 36
     Veraenderung = 37
     Verbrauch = 38
+
+    @staticmethod
+    def get_possible_word_categories(word_class):
+        categories = set()
+        verb_classes = {37, 5, 1, 32, 3, 35, 11, 33, 38, 36, 19, 34, 8, 24, 23}
+        noun_classes = {26, 31, 14, 29, 7, 22, 24, 6, 9, 16, 23, 28, 3, 17, 20, 30, 27, 25, 19, 13, 18, 21}
+        adj_classes = {23, 32, 24, 19, 8, 11, 35, 33, 3, 34, 1, 37, 38, 5, 36}
+        if word_class.value in verb_classes:
+            categories.add(WordCategory.verben)
+        if word_class.value in noun_classes:
+            categories.add(WordCategory.nomen)
+        if word_class.value in adj_classes:
+            categories.add(WordCategory.adj)
+        return categories
 
 
 class Synset:
