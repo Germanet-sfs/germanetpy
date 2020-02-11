@@ -123,9 +123,9 @@ class Lexunit:
         """
         if orthform_variant == OrthFormVariant.oldOrthVar:
             return self.old_orthvar
-        elif orthform_variant == OrthFormVariant.oldOrthForm and self.old_orthform:
+        elif orthform_variant == OrthFormVariant.oldOrthForm:
             return self.old_orthform
-        elif orthform_variant == OrthFormVariant.orthVar and self.orthvar:
+        elif orthform_variant == OrthFormVariant.orthVar:
             return self.orthvar
         else:
             return self.orthform

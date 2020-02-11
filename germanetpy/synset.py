@@ -43,6 +43,11 @@ class WordCategory(fastenum.Enum):
 
     @staticmethod
     def get_possible_word_classes(word_category):
+        """
+        Each wor category can only occur with a specific set of word classes.
+        :param word_category: [WordCategory] The word category
+        :return: The set of word classes that occur with the given word category
+        """
         if word_category.value == 2:
             return {WordClass.Tops, WordClass.Artefakt, WordClass.Attribut, WordClass.Besitz, WordClass.Relation,
                     WordClass.Geschehen, WordClass.Form, WordClass.Gefuehl, WordClass.Gruppe, WordClass.Koerper,
@@ -108,6 +113,11 @@ class WordClass(fastenum.Enum):
 
     @staticmethod
     def get_possible_word_categories(word_class):
+        """
+        Each word class can occur with one or several word categories.
+        :param word_class: [WordClass]
+        :return: the set of word categories the given word class can occur with
+        """
         categories = set()
         verb_classes = {37, 5, 1, 32, 3, 35, 11, 33, 38, 36, 19, 34, 8, 24, 23}
         noun_classes = {26, 31, 14, 29, 7, 22, 24, 6, 9, 16, 23, 28, 3, 17, 20, 30, 27, 25, 19, 13, 18, 21}

@@ -100,11 +100,33 @@ differentRegex_syn = [
     ("Musik.*f{2,}.*", True, ['s7064', 's115983', 's126175', 's137462'], [WordCategory.nomen], []),
     ("Musi.*k{2,}.*n{2,}.*", True, ['s135050'], [WordCategory.nomen], []),
     ("musi.*k{2,}.*n{2,}.*", False, [], [WordCategory.nomen], []),
-    ("Musik.*(rr|st)", True, ['s29972', 's29990', 's30067'], [WordCategory.nomen], [WordClass.Kommunikation]),
+    ("Musik.*(rr|st).*", True, ['s29972', 's29990', 's30067'], [WordCategory.nomen], [WordClass.Kommunikation]),
     ("unver.*bar", True,
      ['s218', 's488', 's1004', 's1013', 's1226', 's3605', 's3721', 's3748', 's3752', 's4008', 's4798', 's94410',
       's128930'], [WordCategory.adj], []),
     (".*un$", True, ['s57352', 's57394'], [WordCategory.verben], [WordClass.Lokation])
+]
+
+levenshtein_distance_syn = [
+    ("Unver.*barkeit", True, True,
+     [OrthFormVariant.orthForm, OrthFormVariant.oldOrthForm, OrthFormVariant.oldOrthVar, OrthFormVariant.orthVar], 3,
+     ['s13953', 's13966', 's13969', 's14004', 's101032', 's108169', 's122501', 's125332']),
+    ("Unver.*barkeit", False, True,
+     [OrthFormVariant.orthForm, OrthFormVariant.oldOrthForm, OrthFormVariant.oldOrthVar, OrthFormVariant.orthVar],
+     3, ['s13953', 's13966', 's13969', 's14004', 's101032', 's108169', 's122501', 's125332']),
+    ("unver.*barkeit", True, True,
+     [OrthFormVariant.orthForm, OrthFormVariant.oldOrthForm, OrthFormVariant.oldOrthVar, OrthFormVariant.orthVar], 5,
+     ['s13953', 's13966', 's13969', 's14004', 's101032', 's108169', 's122501', 's125332']),
+    ("Unvertretbarkeit", True, False,
+     [OrthFormVariant.orthForm, OrthFormVariant.oldOrthForm, OrthFormVariant.oldOrthVar, OrthFormVariant.orthVar], 4,
+     ['s13943', 's13952', 's13953', 's13966', 's13969', 's14004', 's108169', 's122501']),
+    ("Unvertretbarkeit", False, False,
+     [OrthFormVariant.orthForm, OrthFormVariant.oldOrthForm, OrthFormVariant.oldOrthVar, OrthFormVariant.orthVar], 4,
+     ['s13943', 's13952', 's13953', 's13966', 's13969', 's14004', 's108169', 's122501']),
+    ("Schloß", True, False, [OrthFormVariant.oldOrthForm], 2, ['s28692', 's6011', 's42555', 's51189']),
+    ("Schloß", False, False, [OrthFormVariant.oldOrthForm], 2, ['s28692', 's6011', 's42555', 's51189']),
+    ("schloß", True, False, [OrthFormVariant.oldOrthForm], 2, ['s28692', 's6011', 's42555', 's51189']),
+    ("schloß", False, False, [OrthFormVariant.oldOrthForm], 2, ['s28692', 's6011', 's42555', 's51189']),
 ]
 
 
@@ -170,5 +192,13 @@ def test_regex_synsets(regex, ignoreCase, expected_ids, word_categories, wordcla
     config.word_categories = word_categories
     if wordclasses != []:
         config.word_classes = wordclasses
+    result = config.filter_synsets(germanet_data)
+    np.testing.assert_equal(sorted([unit.id for unit in result]), sorted(expected_ids))
+
+
+@pytest.mark.parametrize('query,ignoreCase,regex,orthvariants,distance,expected_ids', levenshtein_distance_syn)
+def test_levenshtein_synsets(query, ignoreCase, regex, orthvariants, distance, expected_ids):
+    config = Filterconfig(query, ignore_case=ignoreCase, regex=regex, levenshtein_distance=distance)
+    config.orth_variants = orthvariants
     result = config.filter_synsets(germanet_data)
     np.testing.assert_equal(sorted([unit.id for unit in result]), sorted(expected_ids))
