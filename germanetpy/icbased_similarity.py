@@ -1,10 +1,10 @@
 import os
 import sys
 from pathlib import Path
-import numpy as np
+import math
 from germanetpy.synset import WordCategory
 from germanetpy.filterconfig import Filterconfig
-
+import numpy as np
 
 class ICBasedSimilarity:
     """
@@ -13,7 +13,7 @@ class ICBasedSimilarity:
     with different word categories
     """
 
-    def __init__(self, germanet):
+    def __init__(self, germanet, wordcategory):
         """
         The constructor of the ICBasedSimilarity class. The frequency dictionary for each word category are initialized.
         The *jcnmaxdist* is twice the IC of two leaf nodes with the highest IC (MAX _IC ), whose LCS is GNROOT and is
@@ -22,23 +22,30 @@ class ICBasedSimilarity:
         :param germanet: The Germanet Graph
         """
         self._germanet = germanet
-        self._freqdic_verbs, verb_freq = self.read_freq_dic(WordCategory.verben)
-        self._freqdic_nouns, noun_freq = self.read_freq_dic(WordCategory.nomen)
-        self._freqdic_adj, adj_freq = self.read_freq_dic(WordCategory.adj)
-        self._total_freq = verb_freq + noun_freq + adj_freq
-        self._jcnmaxdist = 2 * -np.log(1 / self.total_freq)
+        self._freqdic = self.read_freq_dic(wordcategory)
+        self._total_freq = sum(self.freqdic.values())
+        total = 0
+        for k , v in self.freqdic.items():
+            r = self.get_synset_freq(self.germanet.get_synset_by_id(k))
+            total+=r
+        print(total)
+
+        # log 10
+        self._jcnmaxdist = 2 * -math.log10(1 / self.total_freq)
+        #self._normalization_dic = self.init_min_max_normalization_values(synset_pair)
 
     def read_freq_dic(self, word_category):
         """
         Reads in the frequency list files and stores the frequency information for each synset in a dictionary. The keys
         are the synset IDs. This method also adds all available synset frequencies for the given category.
-        :param word_category: [WordCategory] The word category
+        :param word_category: [WordCategory] The word category
         :return: [dict], [int]:  A dictionary with (synset id : frequency) and the overall frequency
         """
-        cumfreq = 0
         fname = str(Path(__file__).parent.parent) + "/data/freq_" + str(word_category).replace("WordCategory.",
                                                                                                "") + ".txt"
         synset2freq = {}
+        dublicates = {"s100884", "s103294", "s63247", "s65510", "s72107", "s92539", "s53033", "s3109", "s310"}
+        seen_freqs = set()
         if os.path.exists(fname):
             with open(fname, "r") as f:
                 try:
@@ -52,18 +59,22 @@ class ICBasedSimilarity:
                         if lexunits:
                             for unit in lexunits:
                                 synset_id = unit.synset.id
-                                if synset_id in synset2freq.keys():
+
+                                if synset_id in synset2freq.keys() and synset_id:
+                                    if synset_id in dublicates:
+                                        if freq in seen_freqs:
+                                            continue
+                                        seen_freqs.add(freq)
                                     synset2freq[synset_id] += freq
-                                else:
+                                if synset_id not in synset2freq.keys():
                                     synset2freq[synset_id] = freq
-                                cumfreq += freq
                     f.close()
                 except OSError:
                     print("Could not open/read file:", fname)
                     sys.exit()
         else:
             print("file %s does not exist" % fname)
-        return synset2freq, cumfreq
+        return synset2freq
 
     def _lookup_synset_freq(self, synset):
         """
@@ -72,12 +83,7 @@ class ICBasedSimilarity:
         :param synset: [Synset] The source synset
         :return: [int] The cumulated frequency for a synset.
         """
-        if synset.word_category == WordCategory.nomen:
-            return self.freqdic_nouns.get(synset.id, 0)
-        if synset.word_category == WordCategory.verben:
-            return self.freqdic_verbs.get(synset.id, 0)
-        else:
-            return self.freqdic_adj.get(synset.id, 0)
+        return self.freqdic.get(synset.id, 0)
 
     def get_synset_freq(self, synset):
         """
@@ -101,7 +107,7 @@ class ICBasedSimilarity:
         """
         synset_freq = self.get_synset_freq(synset)
         assert synset_freq > 0, "no frequency information for this synset available"
-        return -np.log(synset_freq / self.total_freq)
+        return -math.log10(synset_freq / self.total_freq)
 
     def resnik(self, synset1, synset2):
         """
@@ -143,6 +149,11 @@ class ICBasedSimilarity:
         ic_lcs = self.resnik(synset1, synset2)
         return (2 * ic_lcs) / (self.get_information_content(synset1) + self.get_information_content(synset2))
 
+    def normalize(self, raw_value, normalized_max, semrel_measure):
+        lower_bound, upper_bound = self.normalization_dic[semrel_measure]
+        print(lower_bound, upper_bound)
+        return np.round(((raw_value - lower_bound) / (upper_bound - lower_bound)) * normalized_max, decimals=5)
+
     @property
     def germanet(self):
         return self._germanet
@@ -152,17 +163,17 @@ class ICBasedSimilarity:
         return self._total_freq
 
     @property
-    def freqdic_nouns(self):
-        return self._freqdic_nouns
-
-    @property
-    def freqdic_verbs(self):
-        return self._freqdic_verbs
-
-    @property
-    def freqdic_adj(self):
-        return self._freqdic_adj
+    def freqdic(self):
+        return self._freqdic
 
     @property
     def jcnmaxdist(self):
         return self._jcnmaxdist
+
+
+if __name__ == '__main__':
+    from germanetpy.germanet import Germanet
+
+    germanet_data = Germanet("/Users/nwitte/PycharmProjects/germanetpy/data")
+
+    ic = ICBasedSimilarity(germanet_data, WordCategory.nomen)

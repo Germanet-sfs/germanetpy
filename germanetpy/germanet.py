@@ -206,3 +206,18 @@ class Germanet:
     @property
     def addWictionary(self):
         return self._addWictionary
+
+if __name__ == '__main__':
+    from germanetpy.filterconfig import Filterconfig
+    from Levenshtein import distance
+    print(distance("Schloss", "Schlot"))
+    from germanetpy.synset import WordCategory, ConRel
+    from germanetpy.lexunit import LexRel
+    g = Germanet("/Users/nwitte/PycharmProjects/germanetpy/data")
+    #f = open("/Users/nwitte/Documents/noun1_lexicalized_noun2.txt", "w")
+
+    for c in g.get_synsets_by_wordcategory(WordCategory.adj):
+
+        relations = c.relations
+        print(relations)
+

@@ -120,7 +120,8 @@ class PathBasedRelatedness:
 
     def normalize(self, raw_value, normalized_max, semrel_measure):
         lower_bound, upper_bound = self.normalization_dic[semrel_measure]
-        return np.round((raw_value / upper_bound) * normalized_max, decimals=5)
+        print(lower_bound, upper_bound)
+        return np.round(((raw_value - lower_bound) / (upper_bound - lower_bound)) * normalized_max, decimals=5)
 
     @property
     def germanet(self):

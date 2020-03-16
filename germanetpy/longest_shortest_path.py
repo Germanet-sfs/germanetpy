@@ -84,7 +84,7 @@ def print_longest_shortest_distances(germanet, word_category):
     print(
         "retrieved the following information {}: \n"
         "longest shortest distance : {:5d} \n"
-        " maximum depth : {:5d} \n, "
+        "maximum depth : {:5d} \n, "
         "between the following synsets {}".format(
             str(word_category), longest_possible_shortest_distance,
             overall_maxlen, synset_pair_longest_distance))
