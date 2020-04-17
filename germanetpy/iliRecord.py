@@ -1,16 +1,17 @@
 class IliRecord:
 
-    def __init__(self, lexunit_id, ewnRelation, pwnWord, pwn20Id, pwn30Id, source, pwn20synonyms, pwn20paraphrase=None):
+    def __init__(self, lexunit_id: str, ewnRelation: str, pwnWord: str, pwn20Id: str, pwn30Id: str, source: str,
+                 pwn20synonyms: list, pwn20paraphrase: str = None):
         """
         This class holds an ili record object. These store a mapping between a lexical unit and the correponding
         English lexical unit (from WordNet)
-        :param lexunit_id: [String] The lexical unit id this ili record belongs to
-        :param ewnRelation: [String] WordNet relation
-        :param pwnWord: [String] word (orth form) in WordNet
-        :param pwn20Id: [String] WordNet ID (WordNet 2.0)
-        :param pwn30Id: [String] WordNet ID (WordNet 3.0)
-        :param source: [String]
-        :param pwn20synonyms: [List<String>] English synonyms
+        :param lexunit_id: The lexical unit id this ili record belongs to
+        :param ewnRelation: WordNet relation
+        :param pwnWord: word (orth form) in WordNet
+        :param pwn20Id: WordNet ID (WordNet 2.0)
+        :param pwn30Id: WordNet ID (WordNet 3.0)
+        :param source: source of this ili record
+        :param pwn20synonyms: English synonyms
         :param pwn20paraphrase: English sense definition
         """
         self._lexunit_id = lexunit_id

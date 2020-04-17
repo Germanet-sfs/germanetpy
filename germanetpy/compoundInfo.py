@@ -3,6 +3,7 @@ import fastenum
 
 
 class CompoundCategory(fastenum.Enum):
+    """This Enum represents the syntactic wordcategory a modifier of a compound can belong to."""
     Adjektiv = 'Adjektiv'
     Nomen = 'Nomen'
     Verb = 'Verb'
@@ -13,6 +14,7 @@ class CompoundCategory(fastenum.Enum):
 
 
 class CompoundProperty(fastenum.Enum):
+    """This Enum represents the properties a compound constituent can have."""
     Abkürzung = 'Abkürzung'
     Affixoid = 'Affixoid'
     Fremdwort = 'Fremdwort'
@@ -34,10 +36,18 @@ class CompoundInfo:
         """
         This class stores information about a special linguistic entity in German - a compound. A compound
         consists
-        of two constituents, a modifier and a head. The head will always be noun, the modifier can stem from
+        of two constituents, a modifier and a head. The head will always be a noun, the modifier can stem from
         a noun,
         a verb or an adjective. Sometimes the modifier can be derived from different words, for example:
         Laufband - modifier: laufen or Lauf. This class stores both possibilities as modifier1 and modifier2.
+        :type headproperty: String
+        :type modifier2category: WordCategory
+        :type modifier2property: String
+        :type modifier2: String
+        :type modifier1category: WordCategory
+        :type modifier1property: String
+        :type head: String
+        :type modifier1: String
         :param modifier1: A String that represents the modifier (or one possibility). Example: 'Laufband' -
         modifier1:
         'laufen'
@@ -46,7 +56,7 @@ class CompoundInfo:
         e.g. if it is
         an Affixoid
         :param modifier1category: The category of the modifier, example: 'laufen' = Verb
-        :param modifier2: A String that represents the modifier (or second possibility). Example: 'Laufband' -
+        :param modifier2:  A String that represents the modifier (or second possibility). Example: 'Laufband' -
         modifier2:
         'Lauf'
         :param modifier2property: A String that represents the property of the second modifier variant

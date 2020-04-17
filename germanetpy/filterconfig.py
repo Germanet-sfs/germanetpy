@@ -7,19 +7,23 @@ from germanetpy.lexunit import OrthFormVariant
 
 class Filterconfig:
     """
-    This class is a configuration object, that helps to filter germanets lexical units and synsets to extract the
+    This class is a configuration object, that helps to filter GermaNets lexical units and Synsets to extract the
     ones with certain interesting properties.
     """
 
-    def __init__(self, search_string, ignore_case=False, regex=False, levenshtein_distance=0):
+    def __init__(self, search_string: str, ignore_case: bool = False, regex: bool = False,
+                 levenshtein_distance: int = 0):
         """
         The Filterconfiguration consists of a list of word categories (as a default all existing word categories are
         selected),
         a list of word classes (as a default all existing word classes are selected), a list of orthform variants (as
         a default all existing orthform variants are selected)
-        :param search_string: a String, either a word the user is looking for or a regular expression
+        :param search_string: a String, either a query word the user is looking for or a regular expression
         :param ignore_case: a boolean, specifying whether the case of the query should be ignored or not
-        :param regex: a boolean, specifying whether a regular expression is used
+        :param regex: a boolean, specifying whether a regular expression is used. If a regular expression is
+        specified, a given levenshtein distance will not be taken into consideration.
+        :param levenshtein_distance : specify a levenshtein distance to retrieve all words that have a certain
+        levenshtein distance to a given query words. Cannot be used together with a regular expression.
         """
         self._search_string = search_string
         self._word_categories = [c for c in WordCategory]
@@ -29,11 +33,13 @@ class Filterconfig:
         self._regex = regex
         self._levenshtein_distance = levenshtein_distance
 
-    def filter_lexunits(self, germanet):
+    def filter_lexunits(self, germanet) -> set:
         """
-        Applys the filter to the germanet data
-        :param germanet: the germanet object, loaded from the data
-        :return: a set of lexical units that are left after retrieval is filtered with the given constraints
+        Applys the filter to the GermaNet data
+        :type germanet: Germanet
+        :param germanet: the GermaNet object, loaded from the data
+        :return: a set of lexical units that are left after retrieval is filtered with the given
+        constraints
         """
         result = set()
         if self.regex:
@@ -52,9 +58,11 @@ class Filterconfig:
                 result.add(unit)
         return result
 
-    def _filter_lexunits_orthform(self, lexunits, orthvariants, searchstring, ignore_case):
+    def _filter_lexunits_orthform(self, lexunits, orthvariants, searchstring: str, ignore_case: bool) -> set:
         """
         The method filters the retrieved lexical units to match the user-specified orth variants
+        :type orthvariants: list(OrthVariant)
+        :type lexunits: set(Lexunit)
         :param lexunits: the set if lexical units to be filtered by orth variant
         :param orthvariants: a list of oth variants that should be considered during filtering
         :param searchstring: the search query
@@ -72,10 +80,11 @@ class Filterconfig:
                         filtered_units.add(unit)
         return filtered_units
 
-    def filter_synsets(self, germanet):
+    def filter_synsets(self, germanet) -> set:
         """
-        Applys the filter to the germanet data
-        :param germanet: the germanet object, loaded from the data
+        Applys the filter to the GermaNet data
+        :type germanet: Germanet
+        :param germanet: the GermaNet object, loaded from the data
         :return: a set of synsets that are left after retrieval is filtered with the given constraints
         """
         result = set()
@@ -94,12 +103,13 @@ class Filterconfig:
                 result.add(synset)
         return result
 
-    def _get_lexunits_by_regex(self, germanet):
+    def _get_lexunits_by_regex(self, germanet) -> set:
         """
         Filters lexical units with a regular expression. All lexical units that match the regular expression are
         returned.
-        :param germanet: the germanet object, loaded from the data
-        :return: The set of lexical units that match the given regular expression
+        :type germanet: Germanet
+        :param germanet: the GermaNet object, loaded from the data
+        :return:  The set of lexical units that match the given regular expression
         """
         result = set()
         if self.ignore_case:
@@ -114,7 +124,14 @@ class Filterconfig:
             result.add(germanet.lexunits[id])
         return result
 
-    def _filter_lexunits_levenshtein(self, germanet):
+    def _filter_lexunits_levenshtein(self, germanet) -> set:
+        """
+        Filters lexical units with levenshtein distance. All lexical units that have a maximum of the given
+        levenshtein distance or lower are returned.
+        :type germanet: Germanet
+        :param germanet: the GermaNet object, loaded from the data
+        :return: The set of lexical units that match the given levenshtein distance
+        """
         filtered_lexunits = set()
         for cat in self.word_categories:
             units = germanet.get_lexunits_by_wordcategory(category=cat)
@@ -122,18 +139,11 @@ class Filterconfig:
                 if unit.synset.word_class in self.word_classes:
                     for orthvar in self.orth_variants:
                         form = unit.get_orthform_variant(orthvar)
-                        if form == "Unvertretbarkeit":
-                            print("here")
                         if form:
-                            if form == "Unvertretbarkeit":
-                                print("here1")
                             if self.ignore_case:
                                 form = form.lower()
                                 self._search_string = self.search_string.lower()
                             d = distance(form, self.search_string)
-                            if form == "unvertretbarkeit":
-                                print("here3")
-                                print(d)
                             if d <= self.levenshtein_distance:
                                 filtered_lexunits.add(unit)
         return filtered_lexunits

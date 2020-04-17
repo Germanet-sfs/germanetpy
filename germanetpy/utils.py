@@ -2,7 +2,7 @@ import sys
 from lxml import etree as ET
 
 
-def convert_to_boolean(attribute):
+def convert_to_boolean(attribute: str) -> bool:
     """
     Converts the given String into a boolean.
     :param attribute: The attribute that needs to be converted into a boolean
@@ -15,7 +15,7 @@ def convert_to_boolean(attribute):
         return True
 
 
-def parse_xml(datadir, f):
+def parse_xml(datadir: str, f: str) -> ET:
     """
     Parses an XML file and returns the XML tree
     :param datadir: The directory where the file is located

@@ -75,7 +75,7 @@ def test_lexical_relations(id, lexrel, expected_ids):
 
 @pytest.mark.parametrize('id,lexrel,expected_ids', lexical_incoming_relations)
 def test_incoming_lexical_relations(id, lexrel, expected_ids):
-    """Test whether the given lexunit contains the correct inocming lexical relations."""
+    """Test whether the given lexunit contains the correct incoming lexical relations."""
     lexunit = germanet_data.lexunits[id]
     related = lexunit.incoming_relations[lexrel]
     np.testing.assert_equal(sorted([lex.id for lex in related]), sorted(expected_ids))

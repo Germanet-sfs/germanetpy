@@ -8,7 +8,7 @@ SENSE = 'wiktionarySense'
 EDITED = 'edited'
 
 
-def create_wictionary(attributes):
+def create_wictionary(attributes) -> WiktionaryParaphrase:
     """
     Creates a wiktionary object given the XML attributes that contain the required information
     :param attributes: XML attributes that contain information about the wiktionary paraphrase
@@ -28,6 +28,8 @@ def load_wiktionary(germanet, tree):
     """
     Given a XML tree this method initialized the wiktionary objects and adds them to the germanet object and the
     corresponding lexunits
+    :type tree: etree
+    :type germanet: Germanet
     :param germanet: The germane object
     :param tree: The XML tree of the wiktionary file
     """

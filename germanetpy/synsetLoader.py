@@ -25,24 +25,27 @@ WORDCLASS = 'class'
 WORDCATEGORY = 'category'
 
 
-def get_attribute_element(attributes, element, enum):
+def get_attribute_element(attributes, element: str, enum):
     """
     Constructs an Emum object of a given attribute
+    :rtype: FastEnum
+    :type enum: FastEnum
+    :type attributes: XML attributes
     :param attributes: XML attributes of a certain XML node
     :param elment: A String
     :param enum: The Enum object that should be initialized
-    :return:
+    :return: The corresponding Enum object or None
     """
     if element in attributes:
         return enum[attributes[element]]
     return None
 
 
-def create_compound_info(child):
+def create_compound_info(child) -> CompoundInfo:
     """
     Creates a compound info object. This has a modifier (String) and a head (String). Each modifier and the head can
     have a property (CompoundProperty) and a category (CompoundCategory).
-    :param child:
+    :param child: the XML element
     :return: A CompoundInfo object
     """
     assert len(child) > 0, "wrong data format"
@@ -67,6 +70,8 @@ def create_compound_info(child):
 def load_lexunits(germanet, tree):
     """
     Takes the XML tree and walks trough it to create the Lexunit objects.
+    :type tree: Element Tree
+    :type germanet: Germanet
     :param germanet: the germanet object
     :param tree: XML tree
     """
@@ -92,12 +97,14 @@ def load_lexunits(germanet, tree):
                     unit.relations[LexRel.has_synonym].add(lexunit)
 
 
-def create_lexunit(germanet, attributes, lex_root, synset):
+def create_lexunit(germanet, attributes, lex_root, synset) -> Lexunit:
     """
     Given the XML data, creates a Lexunit object.
+    :type attributes: XML attributes
+    :type germanet: Germanet
     :param germanet: The germanet object.
-    :param attributes: [lxml.etree._Attrib] The XML attributes.
-    :param lex_root: [lxml.etree._Element] The XML root
+    :param attributes: The XML attributes.
+    :param lex_root: The XML root
     :param synset: the corresponding synset object
     :return: a lexical unit object
     """
@@ -131,13 +138,14 @@ def create_lexunit(germanet, attributes, lex_root, synset):
     return lexunit
 
 
-def add_orth_forms(germanet, lexunit, child_value, tag):
+def add_orth_forms(germanet, lexunit: Lexunit, child_value: str, tag: str):
     """
     Checks which orthform the tag contains, and adds it to the lexunit object. Adds the lexunit id to the
     corresponding dictionary.
+    :type germanet: Germanet
     :param germanet: The germanet object containing the Orthform variant dictionaries.
     :param lexunit: the Lexunit object the Orthform variant needs to be added to
-    :param child_value:  [String] the value of the XML element that contains this Orthform variant
+    :param child_value:  the value of the XML element that contains this Orthform variant
     :param tag: the value of the XML tag specifying the type of Orthform variant
     """
     germanet.orthform2lexid[child_value].add(lexunit.id)

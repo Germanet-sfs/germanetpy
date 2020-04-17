@@ -1,14 +1,15 @@
 class WiktionaryParaphrase:
 
-    def __init__(self, lexunit_id, wiktionary_id, wiktionary_sense_id, wiktionary_sense, edited):
+    def __init__(self, lexunit_id: str, wiktionary_id: str, wiktionary_sense_id: int, wiktionary_sense: str,
+                 edited: bool):
         """
         This class holds the Wictionary paraphrase object. A wictionary paraphrase can be part of lexical units. The
         contain a definition of the lexical unit which helps to differentiate between different sense of a word.
-        :param lexunit_id: [String] The lexical unit id, this wictionary entry belongs to
-        :param wiktionary_id: [String] The corresponding wictionary identifier
-        :param wiktionary_sense_id: [int] The sense identifier
-        :param wiktionary_sense: [String] The sense definition
-        :param edited: [boolean] If this paraphrase was edited.
+        :param lexunit_id: The lexical unit id, this wictionary entry belongs to
+        :param wiktionary_id: The corresponding wictionary identifier
+        :param wiktionary_sense_id: The sense identifier
+        :param wiktionary_sense: The sense definition
+        :param edited: If this paraphrase was edited.
         """
         self._lexunit_id = lexunit_id
         self._wiktionary_id = wiktionary_id
