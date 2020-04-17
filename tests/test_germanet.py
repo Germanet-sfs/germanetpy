@@ -19,14 +19,17 @@ except IOError:
     logger.error(message, IOError)
     sys.exit(0)
 
+
 def test_number_of_instances():
+    """Test whether the total numbers of synsets, lexunits, compounds, ili records, wictionary entries corresponds to
+    the numbers for the current release"""
     number_synsets = len(germanet_data.synsets)
     number_lexunits = len(germanet_data.lexunits)
     number_compounds = len(germanet_data.compounds)
     number_ili_records = len(germanet_data.ili_records)
     number_wiktionary = len(germanet_data.wiktionary_entries)
-    np.testing.assert_equal(number_synsets, 136263)
-    np.testing.assert_equal(number_lexunits, 175000)
-    #np.testing.assert_equal(number_compounds, 91106)
-    np.testing.assert_equal(number_ili_records, 28565)
-    np.testing.assert_equal(number_wiktionary, 29549)
+    np.testing.assert_equal(number_synsets, 144113)
+    np.testing.assert_equal(number_lexunits, 185000)
+    np.testing.assert_equal(number_compounds, 101526)
+    np.testing.assert_equal(number_ili_records, 28564)
+    np.testing.assert_equal(number_wiktionary, 29548)

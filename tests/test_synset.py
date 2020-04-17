@@ -49,8 +49,8 @@ all_hyponyms = [
     ('s50944', ['s132135', 's132134', 's132133']),
     ('s53071', ['s53072', 's53073']),
     ('s11302',
-     ['s140525', 's136666', 's11193', 's11194', 's134108', 's122100', 's129336', 's123104', 's122867', 's29492',
-      's82838',
+     ['s136666', 's11193', 's11194', 's134108', 's122100', 's129336', 's123104', 's122867', 's29492',
+      's82838','s147555', 's147995','s147814','s149441',
       's101538', 's10919', 's10937', 's104197', 's106059', 's110131', 's90623', 's10920', 's88973', 's68093', 's64311',
       's29494', 's100276', 's97802', 's88563', 's88561', 's81894', 's71826', 's71198', 's63234', 's11306', 's11305',
       's11304', 's11303', 's107850'])
@@ -83,38 +83,6 @@ paths_between_synsets_verbs = [
     ('s52219', 's52747', ['s52219', 's52202', 's59388', 's51948', 's51946', 's51892', 's52746', 's52747']),
     ('s57835', 's52201',
      ['s57835', 's57779', 's57714', 's57713', 's57324', 's57318', 's57309', 's57310', 's57316', 's57476', 's52201'])
-]
-
-path_len_nouns = [
-    ('s49774', 's83979', 35),
-    ('s49774', 's20560', 35),
-    ('s49774', 's20561', 35),
-    ('s49774', 's138670', 35),
-    ('s9439', 's48837', 12),
-    ('s39183', 's39496', 5)
-]
-
-path_len_adj = [
-    ('s91', 's102579', 7),
-    ('s5399', 's5427', 4),
-    ('s95326', 's95987', 20),
-    ('s95326', 's94396', 20),
-    ('s94411', 's95987', 20),
-    ('s94411', 's94396', 20)
-
-]
-
-path_len_verbs = [
-    ('s58565', 's58578', 2),
-    ('s57835', 's57328', 5),
-    ('s106731', 's123246', 28),
-    ('s106731', 's120154', 28),
-    ('s106731', 's57534', 28),
-    ('s106731', 's123240', 28),
-    ('s119463', 's120154', 28),
-    ('s119463', 's57534', 28),
-    ('s119463', 's123240', 28),
-    ('s119463', 's123246', 28)
 ]
 
 LCS_between_nouns = [
@@ -224,7 +192,6 @@ def test_several_paths(id1, id2, expected_path_ids):
         np.testing.assert_equal(path in expected_path_ids, True)
 
 
-
 @pytest.mark.parametrize('id1,id2,expected_path_ids', paths_between_synsets_nouns)
 def test_paths_nouns(id1, id2, expected_path_ids):
     """Tests whether the correct shortest paths between two given synsets nouns are returned."""
@@ -244,33 +211,6 @@ def test_paths_verbs(id1, id2, expected_path_ids):
     """Tests whether the correct shortest paths between two given synsets verbs are returned."""
     path = get_shortest_paths(id1, id2)
     np.testing.assert_equal([synset.id for synset in path], expected_path_ids)
-
-
-@pytest.mark.parametrize('id1,id2,pathlength', path_len_nouns)
-def test_pathlength_nouns(id1, id2, pathlength):
-    """Tests whether the length of the shortest path between two given nouns is correct."""
-    synset1 = germanet_data.get_synset_by_id(id1)
-    synset2 = germanet_data.get_synset_by_id(id2)
-    dist = synset1.shortest_path_distance(synset2)
-    np.testing.assert_equal(dist, pathlength)
-
-
-@pytest.mark.parametrize('id1,id2,pathlength', path_len_adj)
-def test_pathlength_adj(id1, id2, pathlength):
-    """Tests whether the length of the shortest path between two given adjectives is correct."""
-    synset1 = germanet_data.get_synset_by_id(id1)
-    synset2 = germanet_data.get_synset_by_id(id2)
-    dist = synset1.shortest_path_distance(synset2)
-    np.testing.assert_equal(dist, pathlength)
-
-
-@pytest.mark.parametrize('id1,id2,pathlength', path_len_verbs)
-def test_pathlength_verbs(id1, id2, pathlength):
-    """Tests whether the length of the shortest path between two given verbs is correct."""
-    synset1 = germanet_data.get_synset_by_id(id1)
-    synset2 = germanet_data.get_synset_by_id(id2)
-    dist = synset1.shortest_path_distance(synset2)
-    np.testing.assert_equal(dist, pathlength)
 
 
 @pytest.mark.parametrize('id1,id2,expected_ids', LCS_between_nouns)

@@ -3,6 +3,11 @@ from collections import defaultdict
 
 
 class LexRel(fastenum.Enum):
+    """
+    This enum represents the lexical relation (short: LexRel) that a Lexunit can have in GermaNet.
+    You can find a description of each relation at:
+    https://uni-tuebingen.de/en/142846
+    """
     has_synonym = 'has_synonym'
     has_antonym = 'has_antonym'
     has_pertainym = 'has_pertainym'
@@ -63,6 +68,7 @@ class LexRel(fastenum.Enum):
 
 
 class OrthFormVariant(fastenum.Enum):
+    """This enum represents the four possible orthographical variations"""
     orthForm = 'orthForm'
     orthVar = 'orthVar'
     oldOrthForm = 'oldOrthForm'
@@ -74,17 +80,21 @@ class Lexunit:
     This class holds the lexical unit object of GermaNet. A lexical unit is a concrete word that is part of a synset.
     """
 
-    def __init__(self, id, synset, sense, source, named_entity, style_marking, artificial,
-                 compound_info=None, orthform=None, old_orthform=None, orthvar=None, old_orthvar=None):
+    def __init__(self, id: str, synset, sense: int, source: str, named_entity: bool, style_marking: bool,
+                 artificial: bool,
+                 compound_info=None, orthform: str = None, old_orthform: str = None, orthvar: str = None,
+                 old_orthvar: str = None):
         """
+        :type synset: Synset
+        :type compound_info: CompoundInfo
         :param id: A unique String identifier
         :param synset: The lexical unit belongs to one (and only one) synset object.
         :param sense: The sense number of the lexical unit
-        :param source:
+        :param source: source of this lexical unit (e.g. core)
         :param named_entity: True if this unit is a named entity, otherwise False
         :param style_marking: True if the term is colloquial
-        :param artificial: true if this term was introduced into GermaNet as an artificial node (e.g to construct the
-        adjective hierachy, the term "zeitspezifisch" was introduced
+        :param artificial: true if this term was introduced into GermaNet as an artificial node (e.g to
+        construct the adjective hierachy, the term "zeitspezifisch" was introduced
         :param compound_info: a compound info object if the lexical unit is a compound
         :param orthform: the main orthform (that is mainly used in today's written German)
         :param old_orthform: The orthform that was used in written German in former times
@@ -115,17 +125,18 @@ class Lexunit:
         self._relations = defaultdict(set)
         self._incoming_relations = defaultdict(set)
 
-    def get_orthform_variant(self, orthform_variant):
+    def get_orthform_variant(self, orthform_variant) -> str:
         """
+        :type orthform_variant: OrthFormVariant
         :param orthform_variant: one of the four orthform_variants
         :return: the string of the requested orthform variant or the main orthform, if the requested orthform doesn't
         exist.
         """
         if orthform_variant == OrthFormVariant.oldOrthVar:
             return self.old_orthvar
-        elif orthform_variant == OrthFormVariant.oldOrthForm and self.old_orthform:
+        elif orthform_variant == OrthFormVariant.oldOrthForm:
             return self.old_orthform
-        elif orthform_variant == OrthFormVariant.orthVar and self.orthvar:
+        elif orthform_variant == OrthFormVariant.orthVar:
             return self.orthvar
         else:
             return self.orthform
@@ -133,9 +144,9 @@ class Lexunit:
     def __repr__(self):
         return f'Lexunit(id={self._id}, orthform={self._orthform}, synset_id={self._synset.id})'
 
-    def get_all_orthforms(self):
+    def get_all_orthforms(self) -> set:
         """
-        :return: A list<String> of all existing orthform variants of the current lexunit.
+        :return: A set of all existing orthform variants of the current lexunit.
         """
         forms = set()
         for orthformvariant in OrthFormVariant:
@@ -203,3 +214,7 @@ class Lexunit:
     @property
     def incoming_relations(self):
         return self._incoming_relations
+
+    @property
+    def artificial(self):
+        return self._artificial
