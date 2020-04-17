@@ -3,11 +3,11 @@ Welcome. This is the Python API for the German wordnet GermaNet. GermaNet is a l
 This API can be used to extract structured information from the GermaNet with python.
 More information about GermaNet can be found on the following page:
 
-https://uni-tuebingen.de/en/faculties/faculty-of-humanities/departments/modern-languages/department-of-linguistics/chairs/general-and-computational-linguistics/ressources/lexica/germanet/
+https://uni-tuebingen.de/en/142806
 
 ## Installation
 
-You can install germanetpy from [PyPI] (https://pypi.org/project/germanetpy/):
+You can install germanetpy from PyPI (https://pypi.org/project/germanetpy/):
 
     pip install germanetpy
 
@@ -26,4 +26,4 @@ To use the data for queries you first have to create a Germanet object, which lo
     
     germanet_object = germanet.Germanet(path_to_the_GermaNet_XML_files)
     
-This repository also provides a Tutorial [germanetpy_tutorial.ipynb] that shows how to use the API to query GermaNet.
+This repository also provides a Tutorial germanetpy_tutorial.ipynb that shows how to use the API to query GermaNet.
