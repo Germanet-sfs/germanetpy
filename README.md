@@ -26,4 +26,4 @@ To use the data for queries you first have to create a Germanet object, which lo
     
     germanet_object = germanet.Germanet(path_to_the_GermaNet_XML_files)
     
-This repository also provides a Tutorial germanetpy_tutorial.ipynb that shows how to use the API to query GermaNet.
+This repository also provides a Tutorial [https://github.com/Blubberli/germanetpy/blob/master/germanetpy_tutorial.ipynb] that shows how to use the API to query GermaNet.
