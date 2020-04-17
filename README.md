@@ -18,7 +18,7 @@ Get the GermaNet data as XML files and put all files in a data directory. When y
 The API provides functionality that can be used to load the data from GermaNet and query it. The data has to be retrieved
 via a license agreement from the University of Tübingen, Seminar für Sprachwissenschaften:
 
-https://uni-tuebingen.de/en/faculties/faculty-of-humanities/departments/modern-languages/department-of-linguistics/chairs/general-and-computational-linguistics/ressources/lexica/germanet/license/
+https://uni-tuebingen.de/en/142828
 
 To use the data for queries you first have to create a Germanet object, which loads the data specified as an argument once. This takes a few seconds:
 
