@@ -10,13 +10,13 @@ requirements = ["numpy>=1.18.1", "lxml>=4.4.2", "pytest>=5.3.2", "fastenum>=0.0.
 long_description = (HERE / "README.md").read_text()
 setuptools.setup(
     name="germanetpy",
-    version="0.1.2",
+    version="0.2.0",
     author="Neele Falk",
     author_email="neele.witte@uni-tuebingen.de",
     description="Python API for GermaNet",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Blubberli/germanetpy.git",
+    url="https://github.com/Germanet-sfs/germanetpy.git",
     install_requires=requirements,
     packages=["germanetpy"],
     classifiers=[
