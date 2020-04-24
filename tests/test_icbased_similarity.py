@@ -10,9 +10,9 @@ from germanetpy.synset import WordCategory
 
 logger = logging.getLogger('logging_test_semrel')
 d = str(Path(__file__).parent.parent) + "/data"
-frequency_list_nouns = str(Path(__file__).parent.parent) + "/data/freq_nomen.txt"
-frequency_list_verbs = str(Path(__file__).parent.parent) + "/data/freq_verben.txt"
-frequency_list_adj = str(Path(__file__).parent.parent) + "/data/freq_adj.txt"
+frequency_list_nouns = str(Path(__file__).parent.parent) + "/data/noun_freqs_decow14_16.txt"
+frequency_list_verbs = str(Path(__file__).parent.parent) + "/data/verb_freqs_decow14_16.txt"
+frequency_list_adj = str(Path(__file__).parent.parent) + "/data/adj_freqs_decow14_16.txt"
 
 try:
     germanet_data = Germanet(d)
@@ -235,7 +235,6 @@ def test_normalized_lin_verbs(id1, id2, max, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_verbs.lin(synset1, synset2, normalized_max=max, normalize=True)
-    print(dist)
     np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
 
 

@@ -170,8 +170,9 @@ class Germanet:
         """
         files = os.listdir(self.datadir)
         wikifiles = [f for f in files if "wiktionary" in f and "xml" in f]
-        lexentries = [f for f in files if f.startswith("nomen") or f.startswith("verben") or f.startswith("adj")]
-        ilifiles = [f for f in files if "interLingua" in f]
+        lexentries = [f for f in files if
+                      f.startswith("nomen") or f.startswith("verben") or f.startswith("adj") and "xml" in f]
+        ilifiles = [f for f in files if "interLingua" in f and "xml" in f]
         pbar = trange(100, desc='Load GermaNet data...', leave=True)
         for i in range(len(lexentries)):
             f = lexentries[i]
