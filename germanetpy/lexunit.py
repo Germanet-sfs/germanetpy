@@ -85,6 +85,7 @@ class Lexunit:
                  compound_info=None, orthform: str = None, old_orthform: str = None, orthvar: str = None,
                  old_orthvar: str = None):
         """
+
         :type synset: Synset
         :type compound_info: CompoundInfo
         :param id: A unique String identifier
@@ -127,10 +128,10 @@ class Lexunit:
 
     def get_orthform_variant(self, orthform_variant) -> str:
         """
+
         :type orthform_variant: OrthFormVariant
         :param orthform_variant: one of the four orthform_variants
-        :return: the string of the requested orthform variant or the main orthform, if the requested orthform doesn't
-        exist.
+        :return: the string of the requested orthform variant or the main orthform, if the requested orthform doesn't exist.
         """
         if orthform_variant == OrthFormVariant.oldOrthVar:
             return self.old_orthvar
@@ -146,6 +147,7 @@ class Lexunit:
 
     def get_all_orthforms(self) -> set:
         """
+
         :return: A set of all existing orthform variants of the current lexunit.
         """
         forms = set()

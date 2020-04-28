@@ -21,6 +21,7 @@ class ICBasedSimilarity:
         content (MAX_IC), whose LCS is GNROOT and is needed for the jiang and conraths measure. The total_freq is the
         frequency of ROOT, so the sum of all Synset
         frequencies of the GermaNet Graph. It is needed to compute the information content.
+
         :type wordcategory: WordCategory
         :type germanet: Germanet
         :param germanet: The GermaNet Graph
@@ -46,6 +47,7 @@ class ICBasedSimilarity:
         """
         Reads in the frequency list files and stores the frequency information for each Synset in a dictionary. The keys
         are the Synset IDs. This method also adds all available Synset frequencies for the given category.
+
         :type word_category: WordCategory
         :param word_category: The word category
         :param path: The path to a frequency list containing words and their frequencies in a corpus
@@ -77,6 +79,7 @@ class ICBasedSimilarity:
         creates a dictionary of synsets of a specific word category. each synset has a default frequency of 1 (as a
         smoothing technique to avoid division by 0 when computing the information content). the root is added as a
         Synset as well
+
         :type word_category: WordCategory
         :param word_category: the word category
         :return: the initialized dictionary with a default frequency of 1
@@ -97,6 +100,7 @@ class ICBasedSimilarity:
     def _cumulate(self, synset, freq):
         """
         recursive method to add a simple frequency to all hypernyms of a synset
+
         :type freq: int
         :type synset: Synset
         :param synset: the synset to whose direct hypernyms the frequency will be added
@@ -115,10 +119,10 @@ class ICBasedSimilarity:
         """
         This methods computes the minimal values (two Synsets are equal) and the maximum values (two Synsets are
         maximally apart in the graph) for normalization
+
         :type synset_pair: tuple(Synset, Synset)
         :param synset_pair: The Tuple of synsets that have the maximum distance in the graph
-        :return: a dictionary containing the (minimum value, maximum value) for each
-        semantic similarity measure.
+        :return: a dictionary containing the (minimum value, maximum value) for each semantic similarity measure.
         """
         min_res = self.resnik(synset_pair[0], synset_pair[1])
         max_res = self.resnik(synset_pair[0], synset_pair[0])
@@ -135,6 +139,7 @@ class ICBasedSimilarity:
     def init_ic_map(self):
         """
         Computes the information content for each synset in GermaNet (of a given word category).
+
         :rtype: dict, Synset
         :return: A dictionary with a Synset and the corresponding IC, a Synset with the highest IC
         """
@@ -155,6 +160,7 @@ class ICBasedSimilarity:
         The information content graduates semantic concepts from general to specific. The more specific a concept, the
         smaller the probability and thus the higher its informativeness. The information content of a semantic con-
         cept is estimated by the relative frequency of the concept in a large corpus (cumulated synset frequency)
+
         :type synset: Synset
         :param synset: the information content should be computed for
         :return: the information content for the given synset
@@ -168,12 +174,12 @@ class ICBasedSimilarity:
         Two concepts are more related the more information they share. The shared information of two
         concepts can be quantified by the information content of two concepts' lowest common subsumer.
         When several LCS are available the highest IC is returned.
+
         :type synset2: Synset
         :type synset1: Synset
         :param synset1: The source synset
         :param synset2: The target synset
-        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that
-        measure and a given upper bound.
+        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that measure and a given upper bound.
         :param normalized_max: The upper bound of the range the measure is normalized to.
         :return: The information content of the LCS of the two given synsets.
         """
@@ -196,12 +202,12 @@ class ICBasedSimilarity:
         """
         The Jiang and Conraths measure includes knowledge about the individual information contents of each synset.
         The smaller the difference of the information content of the two synsets, the more related they are.
+
         :type synset1: Synset
         :type synset2: Synset
         :param synset1: The source synset
         :param synset2: The target synset
-        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that
-        measure and a given upper bound.
+        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that measure and a given upper bound.
         :param normalized_max: The upper bound of the range the measure is normalized to.
         :return: The jiang and conrath relatedness measure
         """
@@ -217,12 +223,12 @@ class ICBasedSimilarity:
         """
         The lin measure takes the individual information contents of each synset and the information content of the
         LCS into account. The LCS with the highest information content is used for the computation.
+
         :type synset2: Synset
         :type synset1: Synset
         :param synset1: The source synset
         :param synset2: The target synset
-        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that
-        measure and a given upper bound.
+        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that measure and a given upper bound.
         :param normalized_max: The upper bound of the range the measure is normalized to.
         :return: The Lin relatedness measure
         """
@@ -235,10 +241,11 @@ class ICBasedSimilarity:
     def normalize(self, raw_value: float, normalized_max: float, semrel_measure: SemRelMeasure) -> float:
         """
         Normalizes a raw value of semantic relatedness to a value between a lower bound and the given upper bound.
+
         :param raw_value: The raw value
         :param normalized_max: The upper bound
         :param semrel_measure: The semantic relatedness measure, the value corresponds to.
-        :return:The normalized semantic relatedness value
+        :return: The normalized semantic relatedness value
         """
         lower_bound, upper_bound = self.normalization_dic[semrel_measure]
         return np.round(((raw_value - lower_bound) / (upper_bound - lower_bound)) * normalized_max, decimals=5)

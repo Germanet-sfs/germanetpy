@@ -28,6 +28,7 @@ class ConRel(fastenum.Enum):
     def transitive(conrel) -> bool:
         """
         Returns true if the conceptual relation is transitive, false otherwise
+
         :type conrel: ConRel
         :param conrel: a conceptual relation
         :return: true if the conceptual relation is transitive, false otherwise
@@ -51,6 +52,7 @@ class WordCategory(fastenum.Enum):
     def get_possible_word_classes(word_category) -> set:
         """
         Each wor category can only occur with a specific set of word classes.
+
         :type word_category: WordCategory
         :param word_category: The word category
         :return: The set of word classes that occur with the given word category
@@ -122,6 +124,7 @@ class WordClass(fastenum.Enum):
     def get_possible_word_categories(word_class):
         """
         Each word class can occur with one or several word categories.
+
         :rtype: set(WordCategory)
         :type word_class: WordClass
         :param word_class: the word class to get the possible word categories for
@@ -148,6 +151,7 @@ class Synset:
 
     def __init__(self, id: str, word_category: WordCategory, word_class: WordClass):
         """
+
         :param id: Every synset has a unique identifier.
         :param word_category: Every Synset has exactly one part-of-speech
         :param word_class: Every Synset has exactly one semantic class
@@ -170,6 +174,7 @@ class Synset:
     def add_lexunit(self, unit):
         """
         Adds a lexical unit that part of this synset to the list of lexical units
+
         :type unit: Lexunit
         :param unit: The lexUnit object to be added
         """
@@ -177,18 +182,21 @@ class Synset:
 
     def is_root(self) -> bool:
         """
+
         :return: True if this Synset is the root of the Graph (= has no hypernyms), otherwise false
         """
         return True if len(self._direct_hypernyms) == 0 else False
 
     def is_leaf(self) -> bool:
         """
+
         :return: True if this Synset is a leaf of the Graph (= has no hyponyms), otherwise false
         """
         return True if len(self._direct_hyponyms) == 0 else False
 
     def num_lexunits(self) -> int:
         """
+
         :return: The number of lexical units, contained in that synset
         """
         return len(self._lexunits)
@@ -198,6 +206,7 @@ class Synset:
         This method iterates recursively through the hypernyms of this synset to get all paths that connect this synset
         with the root node. a path is complete if it ends with the root node. all possible paths are returned. each
         path is a list of nodes.
+
         :return: A list of lists, each lists contains a node sequence connecting this synset with the root node
         """
         paths = []
@@ -213,6 +222,7 @@ class Synset:
     def all_hypernyms(self) -> set:
         """
         This method extracts all hypernyms for this synset (the transitive closure for this synset)
+
         :return: a set, containing all possible hypernym nodes. it is empty if the current synset is the root node
         """
         hypernyms = []
@@ -227,6 +237,7 @@ class Synset:
         This method iterates recursively through the hyponyms of this synset to get all paths that connect
         this synset with a leaf node. A path is complete if it ends with a leaf node. All possible paths are
         returned. Each path is a list of nodes.
+
         :return: A list of lists, each lists contains a node sequence connecting this synset with a leaf node
                 """
         paths = []
@@ -242,6 +253,7 @@ class Synset:
     def all_hyponyms(self) -> set:
         """
         This method returns all possible hyponyms of this synset.
+
         :return: [set(Synset)] A set of synset nodes, each constitutes a hyponym of the current synset.
         """
         hyponyms = []
@@ -254,6 +266,7 @@ class Synset:
     def shortest_path_to_root(self) -> list:
         """
         This method returns the shortest path to the root node.
+
         :return: [list(Synset)] shortest path to the root node.
         """
         paths = self.hypernym_paths()
@@ -263,17 +276,17 @@ class Synset:
     def common_hypernyms(self, other) -> set:
         """
         Given another synset, this method computes shared hypernyms
+
         :type other: Synset
         :param other: another synset object
-        :return: a set of synset nodes, that denotes the shared hypernyms between this synset and the
-        given one.
+        :return: a set of synset nodes, that denotes the shared hypernyms between this synset and the given one.
         """
         return set(self.all_hypernyms()).intersection(set(other.all_hypernyms()))
 
     def min_depth(self) -> int:
         """
-        :return: The length of the shortest hypernym path from this
-        synset to the root.
+
+        :return: The length of the shortest hypernym path from this synset to the root.
         """
 
         hypernyms = self._relations[ConRel.has_hypernym]
@@ -291,8 +304,7 @@ class Synset:
 
         :type other: Synset
         :param other: The Synset to which the shortest path will be found.
-        :return: The number of edges in the shortest path connecting the two
-            nodes, or None if no path exists.
+        :return: The number of edges in the shortest path connecting the two nodes, or None if no path exists.
         """
         if self == other:
             return 0
@@ -304,11 +316,10 @@ class Synset:
         """
         Returns the shortest possible sequence of synset nodes that are traversed from this synset to a given other
         synset. If there are several shortest sequences, all of then are returned.
+
         :type other: Synset
         :param other: A synset the path should be computed to
-        :return: A list of lists, each list containing the sequence of nodes traversed from this
-        synset to the given
-        other synset.
+        :return: A list of lists, each list containing the sequence of nodes traversed from this synset to the given other synset.
         """
         shortest_paths = []
         lcs = self.lowest_common_subsumer(other)
@@ -329,10 +340,10 @@ class Synset:
         """
         The shortest path between this synset and the given hypernym. Asserts that the given other synset is a real
         hypernym of the current synset.
+
         :type hypernym: Synset
         :param hypernym: a synset, denoting the hypernym the shortest path should be computed to
-        :return: a list of lists, each list storing the shortest sequence of synset nodes traversed
-        from self to the given hypernym
+        :return: a list of lists, each list storing the shortest sequence of synset nodes traversed from self to the given hypernym
         """
         if self == hypernym:
             return [[self]]
@@ -355,11 +366,10 @@ class Synset:
     def lowest_common_subsumer(self, other) -> set:
         """
         Extract the lowes common subsumer(s) / lowest common ancestor(s) of the current synset and a given one.
+
         :type other: Synset
         :param other: Another synset object the LCS should be computed to.
-        :return: a set, containing one or several synset objects, being the LCS between the current
-        synset and the
-        given one.
+        :return: a set, containing one or several synset objects, being the LCS between the current synset and the given one.
         """
         lcs = set()
         if other == self:
@@ -389,8 +399,8 @@ class Synset:
     def get_distances_hypernym_dic(self) -> dict:
         """
         For each hypernym, store the shortest distance between the current synset and its hypernym.
-        :return: A dictionary containing all hypernyms of this synset as keys and the
-        corresponding distances as values.
+
+        :return: A dictionary containing all hypernyms of this synset as keys and the corresponding distances as values.
         """
         hypernym_paths = self.hypernym_paths()
         distances_dic = {}

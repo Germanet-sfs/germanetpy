@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>germanetpy.frames &#8212; germanetpy 0.2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for germanetpy.frames</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+
+
+<div class="viewcode-block" id="Frames"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.frames.Frames">[docs]</a><span class="k">class</span> <span class="nc">Frames</span><span class="p">:</span>
+    <span class="n">EXPLETIVE</span> <span class="o">=</span> <span class="s1">&#39;NE&#39;</span>
+    <span class="n">SUBJECT</span> <span class="o">=</span> <span class="s1">&#39;NN&#39;</span>
+    <span class="n">ACCOBJ</span> <span class="o">=</span> <span class="s1">&#39;AN&#39;</span>
+    <span class="n">DATOBJ</span> <span class="o">=</span> <span class="s1">&#39;DN&#39;</span>
+    <span class="n">GENOBJ</span> <span class="o">=</span> <span class="s1">&#39;GN&#39;</span>
+    <span class="n">PREPOBJ</span> <span class="o">=</span> <span class="s1">&#39;PP&#39;</span>
+    <span class="n">LOC</span> <span class="o">=</span> <span class="s1">&#39;BL&#39;</span>
+    <span class="n">DIR</span> <span class="o">=</span> <span class="s1">&#39;BD&#39;</span>
+    <span class="n">TEMP</span> <span class="o">=</span> <span class="s1">&#39;BT&#39;</span>
+    <span class="n">MAN</span> <span class="o">=</span> <span class="s1">&#39;BM&#39;</span>
+    <span class="n">INST</span> <span class="o">=</span> <span class="s1">&#39;BS&#39;</span>
+    <span class="n">CAUSE</span> <span class="o">=</span> <span class="s1">&#39;BC&#39;</span>
+    <span class="n">ROLE</span> <span class="o">=</span> <span class="s1">&#39;BR&#39;</span>
+    <span class="n">COM</span> <span class="o">=</span> <span class="s1">&#39;BO&#39;</span>
+    <span class="n">reflexives</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;DR&#39;</span><span class="p">,</span> <span class="s1">&#39;AR&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames2lexunits</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This class holds functionality to extract verbs with specific frame types. These subcategorisation patterns</span>
+<span class="sd">        can help to disambiguate verbs in specific contexts and how many arguments a verb can take.</span>
+
+<span class="sd">        :param frames2lexunits: A dictionary that stores the frames as keys and the corresponding lexunits as values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frames2verbs</span> <span class="o">=</span> <span class="n">frames2lexunits</span>
+
+<div class="viewcode-block" id="Frames.extract_expletives"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.frames.Frames.extract_expletives">[docs]</a>    <span class="k">def</span> <span class="nf">extract_expletives</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method extracts all verbs that can take expletives as an argument. Example: &quot;[Es] regnet.&quot;</span>
+
+<span class="sd">        :return: A set of lexical units that stores all verbs as Lexunits that have the specified frame.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EXPLETIVE</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Frames.extract_accusative_complemtent"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.frames.Frames.extract_accusative_complemtent">[docs]</a>    <span class="k">def</span> <span class="nf">extract_accusative_complemtent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns all verbs that can take an accusative complement. Example: &quot;Sie sieht [ihn]&quot;</span>
+
+<span class="sd">        :return: A set of lexical units that stores all verbs as Lexunits that have the specified frame.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ACCOBJ</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Frames.extract_dative_complement"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.frames.Frames.extract_dative_complement">[docs]</a>    <span class="k">def</span> <span class="nf">extract_dative_complement</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns all verbs that can take an dative complement. Example: &quot;Sie schenkt [ihm] einen Hund.&quot;</span>
+
+<span class="sd">        :return: A set of lexical units that stores all verbs as Lexunits that have the specified frame.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">DATOBJ</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Frames.extract_gentive_complement"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.frames.Frames.extract_gentive_complement">[docs]</a>    <span class="k">def</span> <span class="nf">extract_gentive_complement</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns all verbs that can take an genetive complement. Example: &quot;Ihre Eltern berauben sie [ihrer</span>
+<span class="sd">        Freiheit].&quot;</span>
+
+<span class="sd">        :return: A set of lexical units that stores all verbs as Lexunits that have the specified frame.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">GENOBJ</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Frames.extract_prepositional_complement"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.frames.Frames.extract_prepositional_complement">[docs]</a>    <span class="k">def</span> <span class="nf">extract_prepositional_complement</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns all verbs that can take an prepositional complement. Example: &quot;Die Kugel klackte [an die</span>
+<span class="sd">        Fensterscheibe].&quot;</span>
+
+<span class="sd">        :return: A set of lexical units that stores all verbs as Lexunits that have the specified frame.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PREPOBJ</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Frames.extract_reflexives"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.frames.Frames.extract_reflexives">[docs]</a>    <span class="k">def</span> <span class="nf">extract_reflexives</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns all verbs that can take an reflexive complement. Example: &quot;Sie wird [sich] rächen.&quot;</span>
+
+<span class="sd">        :return: A set of lexical units that stores all verbs as Lexunits that have the specified frame.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reflexives</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">union</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reflexives</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span></div>
+
+<div class="viewcode-block" id="Frames.extract_adverbials"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.frames.Frames.extract_adverbials">[docs]</a>    <span class="k">def</span> <span class="nf">extract_adverbials</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns all verbs that can take an adverbial complement. Example: &quot;Sie wohnt [in einem Haus].&quot;</span>
+
+<span class="sd">        :return: A set of lexical units that stores all verbs as Lexunits that have the specified frame.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LOC</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">DIR</span><span class="p">)</span>
+                   <span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">TEMP</span><span class="p">)</span>
+                          <span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MAN</span><span class="p">)</span>
+                                 <span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">INST</span><span class="p">)</span>
+                                        <span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CAUSE</span><span class="p">)</span>
+                                               <span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ROLE</span><span class="p">)</span>
+                                                      <span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">COM</span><span class="p">))))))))</span></div>
+
+<div class="viewcode-block" id="Frames.extract_transitives"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.frames.Frames.extract_transitives">[docs]</a>    <span class="k">def</span> <span class="nf">extract_transitives</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns all transitive verbs. A transitive verb is any verb that can have objects.</span>
+
+<span class="sd">        :return: A set of lexical units that stores all transitive verbs as Lexunits.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ACCOBJ</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">DATOBJ</span><span class="p">)</span>
+                   <span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">GENOBJ</span><span class="p">)</span>
+                          <span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PREPOBJ</span><span class="p">))))</span></div>
+
+<div class="viewcode-block" id="Frames.extract_intransitives"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.frames.Frames.extract_intransitives">[docs]</a>    <span class="k">def</span> <span class="nf">extract_intransitives</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns all intransitive verbs. An intransitive verb is any verb that does not have objects.</span>
+
+<span class="sd">        :return: A set of lexical units that stores all intransitive verbs as Lexunits.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">transitives</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_transitives</span><span class="p">()</span>
+        <span class="n">all_verbs</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="nb">set</span><span class="o">.</span><span class="n">union</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames2verbs</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">all_verbs</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">transitives</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Frames.extract_specific_complements"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.frames.Frames.extract_specific_complements">[docs]</a>    <span class="k">def</span> <span class="nf">extract_specific_complements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">complement</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns all verbs that can take a given complement. This is specified in the frames of a verb.</span>
+
+<span class="sd">        :param: complement : a syntactic complement (e.g NN for subject), the complements are specified as class variables of this class</span>
+<span class="sd">        :return: A set of lexical units that stores all verbs as Lexunits that can take the specified complement.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">complements</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_frames2verbs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">complement</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">unit</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+                    <span class="n">complements</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">complements</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">frames2verbs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_frames2verbs</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">germanetpy</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../germanetpy.html">germanetpy package</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Neele Falk.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/Blubberli/germanetpy" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

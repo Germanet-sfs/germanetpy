@@ -5,6 +5,7 @@ class IliRecord:
         """
         This class holds an ili record object. These store a mapping between a lexical unit and the correponding
         English lexical unit (from WordNet)
+
         :param lexunit_id: The lexical unit id this ili record belongs to
         :param ewnRelation: WordNet relation
         :param pwnWord: word (orth form) in WordNet

@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>germanetpy.lexunit &#8212; germanetpy 0.2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for germanetpy.lexunit</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">fastenum</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+
+<div class="viewcode-block" id="LexRel"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.LexRel">[docs]</a><span class="k">class</span> <span class="nc">LexRel</span><span class="p">(</span><span class="n">fastenum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This enum represents the lexical relation (short: LexRel) that a Lexunit can have in GermaNet.</span>
+<span class="sd">    You can find a description of each relation at:</span>
+<span class="sd">    https://uni-tuebingen.de/en/142846</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">has_synonym</span> <span class="o">=</span> <span class="s1">&#39;has_synonym&#39;</span>
+    <span class="n">has_antonym</span> <span class="o">=</span> <span class="s1">&#39;has_antonym&#39;</span>
+    <span class="n">has_pertainym</span> <span class="o">=</span> <span class="s1">&#39;has_pertainym&#39;</span>
+    <span class="n">has_participle</span> <span class="o">=</span> <span class="s1">&#39;has_participle&#39;</span>
+    <span class="n">has_active_usage</span> <span class="o">=</span> <span class="s1">&#39;has_active_usage&#39;</span>
+    <span class="n">has_occasion</span> <span class="o">=</span> <span class="s1">&#39;has_occasion&#39;</span>
+    <span class="n">has_attribute</span> <span class="o">=</span> <span class="s1">&#39;has_attribute&#39;</span>
+    <span class="n">has_appearance</span> <span class="o">=</span> <span class="s1">&#39;has_appearance&#39;</span>
+    <span class="n">has_construction_method</span> <span class="o">=</span> <span class="s1">&#39;has_construction_method&#39;</span>
+    <span class="n">has_container</span> <span class="o">=</span> <span class="s1">&#39;has_container&#39;</span>
+    <span class="n">is_container_for</span> <span class="o">=</span> <span class="s1">&#39;is_container_for&#39;</span>
+    <span class="n">has_consistency_of</span> <span class="o">=</span> <span class="s1">&#39;has_consistency_of&#39;</span>
+    <span class="n">has_component</span> <span class="o">=</span> <span class="s1">&#39;has_component&#39;</span>
+    <span class="n">has_owner</span> <span class="o">=</span> <span class="s1">&#39;has_owner&#39;</span>
+    <span class="n">is_owner_of</span> <span class="o">=</span> <span class="s1">&#39;is_owner_of&#39;</span>
+    <span class="n">has_function</span> <span class="o">=</span> <span class="s1">&#39;has_function&#39;</span>
+    <span class="n">has_manner_of_functioning</span> <span class="o">=</span> <span class="s1">&#39;has_manner_of_functioning&#39;</span>
+    <span class="n">has_origin</span> <span class="o">=</span> <span class="s1">&#39;has_origin&#39;</span>
+    <span class="n">has_production_method</span> <span class="o">=</span> <span class="s1">&#39;has_production_method&#39;</span>
+    <span class="n">has_content</span> <span class="o">=</span> <span class="s1">&#39;has_content&#39;</span>
+    <span class="n">has_no_property</span> <span class="o">=</span> <span class="s1">&#39;has_no_property&#39;</span>
+    <span class="n">has_habitat</span> <span class="o">=</span> <span class="s1">&#39;has_habitat&#39;</span>
+    <span class="n">has_location</span> <span class="o">=</span> <span class="s1">&#39;has_location&#39;</span>
+    <span class="n">is_location_of</span> <span class="o">=</span> <span class="s1">&#39;is_location_of&#39;</span>
+    <span class="n">has_measure</span> <span class="o">=</span> <span class="s1">&#39;has_measure&#39;</span>
+    <span class="n">is_measure_of</span> <span class="o">=</span> <span class="s1">&#39;is_measure_of&#39;</span>
+    <span class="n">has_material</span> <span class="o">=</span> <span class="s1">&#39;has_material&#39;</span>
+    <span class="n">has_member</span> <span class="o">=</span> <span class="s1">&#39;has_member&#39;</span>
+    <span class="n">is_member_of</span> <span class="o">=</span> <span class="s1">&#39;is_member_of&#39;</span>
+    <span class="n">has_diet</span> <span class="o">=</span> <span class="s1">&#39;has_diet&#39;</span>
+    <span class="n">is_diet_of</span> <span class="o">=</span> <span class="s1">&#39;is_diet_of&#39;</span>
+    <span class="n">has_eponym</span> <span class="o">=</span> <span class="s1">&#39;has_eponym&#39;</span>
+    <span class="n">has_user</span> <span class="o">=</span> <span class="s1">&#39;has_user&#39;</span>
+    <span class="n">has_product</span> <span class="o">=</span> <span class="s1">&#39;has_product&#39;</span>
+    <span class="n">is_product_of</span> <span class="o">=</span> <span class="s1">&#39;is_product_of&#39;</span>
+    <span class="n">has_prototypical_holder</span> <span class="o">=</span> <span class="s1">&#39;has_prototypical_holder&#39;</span>
+    <span class="n">is_prototypical_holder_for</span> <span class="o">=</span> <span class="s1">&#39;is_prototypical_holder_for&#39;</span>
+    <span class="n">has_prototypical_place_of_usage</span> <span class="o">=</span> <span class="s1">&#39;has_prototypical_place_of_usage&#39;</span>
+    <span class="n">has_relation</span> <span class="o">=</span> <span class="s1">&#39;has_relation&#39;</span>
+    <span class="n">has_raw_product</span> <span class="o">=</span> <span class="s1">&#39;has_raw_product&#39;</span>
+    <span class="n">has_other_property</span> <span class="o">=</span> <span class="s1">&#39;has_other_property&#39;</span>
+    <span class="n">is_storage_for</span> <span class="o">=</span> <span class="s1">&#39;is_storage_for&#39;</span>
+    <span class="n">has_specialization</span> <span class="o">=</span> <span class="s1">&#39;has_specialization&#39;</span>
+    <span class="n">has_part</span> <span class="o">=</span> <span class="s1">&#39;has_part&#39;</span>
+    <span class="n">is_part_of</span> <span class="o">=</span> <span class="s1">&#39;is_part_of&#39;</span>
+    <span class="n">has_topic</span> <span class="o">=</span> <span class="s1">&#39;has_topic&#39;</span>
+    <span class="n">is_caused_by</span> <span class="o">=</span> <span class="s1">&#39;is_caused_by&#39;</span>
+    <span class="n">is_cause_for</span> <span class="o">=</span> <span class="s1">&#39;is_cause_for&#39;</span>
+    <span class="n">is_comparable_to</span> <span class="o">=</span> <span class="s1">&#39;is_comparable_to&#39;</span>
+    <span class="n">has_usage</span> <span class="o">=</span> <span class="s1">&#39;has_usage&#39;</span>
+    <span class="n">has_result_of_usage</span> <span class="o">=</span> <span class="s1">&#39;has_result_of_usage&#39;</span>
+    <span class="n">has_purpose_of_usage</span> <span class="o">=</span> <span class="s1">&#39;has_purpose_of_usage&#39;</span>
+    <span class="n">has_goods</span> <span class="o">=</span> <span class="s1">&#39;has_goods&#39;</span>
+    <span class="n">has_time</span> <span class="o">=</span> <span class="s1">&#39;has_time&#39;</span>
+    <span class="n">is_access_to</span> <span class="o">=</span> <span class="s1">&#39;is_access_to&#39;</span>
+    <span class="n">has_ingredient</span> <span class="o">=</span> <span class="s1">&#39;has_ingredient&#39;</span>
+    <span class="n">is_ingredient_of</span> <span class="o">=</span> <span class="s1">&#39;is_ingredient_of&#39;</span></div>
+
+
+<div class="viewcode-block" id="OrthFormVariant"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.OrthFormVariant">[docs]</a><span class="k">class</span> <span class="nc">OrthFormVariant</span><span class="p">(</span><span class="n">fastenum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This enum represents the four possible orthographical variations&quot;&quot;&quot;</span>
+    <span class="n">orthForm</span> <span class="o">=</span> <span class="s1">&#39;orthForm&#39;</span>
+    <span class="n">orthVar</span> <span class="o">=</span> <span class="s1">&#39;orthVar&#39;</span>
+    <span class="n">oldOrthForm</span> <span class="o">=</span> <span class="s1">&#39;oldOrthForm&#39;</span>
+    <span class="n">oldOrthVar</span> <span class="o">=</span> <span class="s1">&#39;oldOrthVar&#39;</span></div>
+
+
+<div class="viewcode-block" id="Lexunit"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.Lexunit">[docs]</a><span class="k">class</span> <span class="nc">Lexunit</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class holds the lexical unit object of GermaNet. A lexical unit is a concrete word that is part of a synset.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">synset</span><span class="p">,</span> <span class="n">sense</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">named_entity</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">style_marking</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+                 <span class="n">artificial</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+                 <span class="n">compound_info</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">orthform</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">old_orthform</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">orthvar</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">old_orthvar</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :type synset: Synset</span>
+<span class="sd">        :type compound_info: CompoundInfo</span>
+<span class="sd">        :param id: A unique String identifier</span>
+<span class="sd">        :param synset: The lexical unit belongs to one (and only one) synset object.</span>
+<span class="sd">        :param sense: The sense number of the lexical unit</span>
+<span class="sd">        :param source: source of this lexical unit (e.g. core)</span>
+<span class="sd">        :param named_entity: True if this unit is a named entity, otherwise False</span>
+<span class="sd">        :param style_marking: True if the term is colloquial</span>
+<span class="sd">        :param artificial: true if this term was introduced into GermaNet as an artificial node (e.g to</span>
+<span class="sd">        construct the adjective hierachy, the term &quot;zeitspezifisch&quot; was introduced</span>
+<span class="sd">        :param compound_info: a compound info object if the lexical unit is a compound</span>
+<span class="sd">        :param orthform: the main orthform (that is mainly used in today&#39;s written German)</span>
+<span class="sd">        :param old_orthform: The orthform that was used in written German in former times</span>
+<span class="sd">        :param orthvar: The orth variant (e.g Delfin / Delphin are both legal orth variants)</span>
+<span class="sd">        :param old_orthvar: The orth variant that was used in written German in former times</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_synset</span> <span class="o">=</span> <span class="n">synset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sense</span> <span class="o">=</span> <span class="n">sense</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_orthform</span> <span class="o">=</span> <span class="n">orthform</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_orthvar</span> <span class="o">=</span> <span class="n">orthvar</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_old_orthform</span> <span class="o">=</span> <span class="n">old_orthform</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_old_orthvar</span> <span class="o">=</span> <span class="n">old_orthvar</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_source</span> <span class="o">=</span> <span class="n">source</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_named_entity</span> <span class="o">=</span> <span class="n">named_entity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_styleMarking</span> <span class="o">=</span> <span class="n">style_marking</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_artificial</span> <span class="o">=</span> <span class="n">artificial</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frames</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frames2examples</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_examples</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ili_records</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_wiktionary_paraphrases</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compound_info</span> <span class="o">=</span> <span class="n">compound_info</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_relations</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_incoming_relations</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Lexunit.get_orthform_variant"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.Lexunit.get_orthform_variant">[docs]</a>    <span class="k">def</span> <span class="nf">get_orthform_variant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orthform_variant</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :type orthform_variant: OrthFormVariant</span>
+<span class="sd">        :param orthform_variant: one of the four orthform_variants</span>
+<span class="sd">        :return: the string of the requested orthform variant or the main orthform, if the requested orthform doesn&#39;t exist.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">orthform_variant</span> <span class="o">==</span> <span class="n">OrthFormVariant</span><span class="o">.</span><span class="n">oldOrthVar</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">old_orthvar</span>
+        <span class="k">elif</span> <span class="n">orthform_variant</span> <span class="o">==</span> <span class="n">OrthFormVariant</span><span class="o">.</span><span class="n">oldOrthForm</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">old_orthform</span>
+        <span class="k">elif</span> <span class="n">orthform_variant</span> <span class="o">==</span> <span class="n">OrthFormVariant</span><span class="o">.</span><span class="n">orthVar</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">orthvar</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">orthform</span></div>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Lexunit(id=</span><span class="si">{self._id}</span><span class="s1">, orthform=</span><span class="si">{self._orthform}</span><span class="s1">, synset_id=</span><span class="si">{self._synset.id}</span><span class="s1">)&#39;</span>
+
+<div class="viewcode-block" id="Lexunit.get_all_orthforms"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.Lexunit.get_all_orthforms">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_orthforms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return: A set of all existing orthform variants of the current lexunit.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">forms</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">orthformvariant</span> <span class="ow">in</span> <span class="n">OrthFormVariant</span><span class="p">:</span>
+            <span class="n">form</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_orthform_variant</span><span class="p">(</span><span class="n">orthformvariant</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">form</span><span class="p">:</span>
+                <span class="n">forms</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">forms</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_id</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">synset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synset</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sense</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sense</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">orthform</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orthform</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">orthvar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orthvar</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">old_orthform</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_old_orthform</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">old_orthvar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_old_orthvar</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">frames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_frames</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">examples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_examples</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ili_records</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ili_records</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">frames2examples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_frames2examples</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">wiktionary_paraphrases</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wiktionary_paraphrases</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">compound_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compound_info</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">relations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_relations</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">incoming_relations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_incoming_relations</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">artificial</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_artificial</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">germanetpy</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../germanetpy.html">germanetpy package</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Neele Falk.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/Blubberli/germanetpy" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

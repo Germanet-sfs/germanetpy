@@ -18,6 +18,7 @@ class Filterconfig:
         selected),
         a list of word classes (as a default all existing word classes are selected), a list of orthform variants (as
         a default all existing orthform variants are selected)
+
         :param search_string: a String, either a query word the user is looking for or a regular expression
         :param ignore_case: a boolean, specifying whether the case of the query should be ignored or not
         :param regex: a boolean, specifying whether a regular expression is used. If a regular expression is
@@ -36,10 +37,10 @@ class Filterconfig:
     def filter_lexunits(self, germanet) -> set:
         """
         Applys the filter to the GermaNet data
+
         :type germanet: Germanet
         :param germanet: the GermaNet object, loaded from the data
-        :return: a set of lexical units that are left after retrieval is filtered with the given
-        constraints
+        :return: a set of lexical units that are left after retrieval is filtered with the given constraints
         """
         result = set()
         if self.regex:
@@ -61,6 +62,7 @@ class Filterconfig:
     def _filter_lexunits_orthform(self, lexunits, orthvariants, searchstring: str, ignore_case: bool) -> set:
         """
         The method filters the retrieved lexical units to match the user-specified orth variants
+
         :type orthvariants: list(OrthVariant)
         :type lexunits: set(Lexunit)
         :param lexunits: the set if lexical units to be filtered by orth variant
@@ -83,6 +85,7 @@ class Filterconfig:
     def filter_synsets(self, germanet) -> set:
         """
         Applys the filter to the GermaNet data
+
         :type germanet: Germanet
         :param germanet: the GermaNet object, loaded from the data
         :return: a set of synsets that are left after retrieval is filtered with the given constraints

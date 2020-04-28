@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>germanetpy.longest_shortest_path &#8212; germanetpy 0.2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for germanetpy.longest_shortest_path</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="get_overall_longest_shortest_distance"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.longest_shortest_path.get_overall_longest_shortest_distance">[docs]</a><span></span><span class="k">def</span> <span class="nf">get_overall_longest_shortest_distance</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Iterate trough the synsets of a given wordcategory. For each synset, extract all possible hypernyms and compute the</span>
+<span class="sd">    shortest possible distance to each hypernym. From these distances, also store the longest possible shortest</span>
+<span class="sd">    distance.</span>
+
+<span class="sd">    :type category: WordCategory</span>
+<span class="sd">    :type germanet: Germanet</span>
+<span class="sd">    :param germanet: the germanet graph</span>
+<span class="sd">    :param category: the wordcategory</span>
+<span class="sd">    :return: a dictionary with each synset and its longest shortest distance, the overall longest shortest distance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">synsets</span> <span class="o">=</span> <span class="n">germanet</span><span class="o">.</span><span class="n">get_synsets_by_wordcategory</span><span class="p">(</span><span class="n">category</span><span class="p">)</span>
+    <span class="n">longest_shortest_distances</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">synset</span> <span class="ow">in</span> <span class="n">synsets</span><span class="p">:</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="n">synset</span><span class="o">.</span><span class="n">get_distances_hypernym_dic</span><span class="p">()</span>
+        <span class="n">longest_shortest_dist</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">distances</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">longest_shortest_distances</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">longest_shortest_dist</span><span class="p">)</span>
+
+    <span class="n">overall_maxlen</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">longest_shortest_distances</span><span class="p">)</span>
+    <span class="n">dist_dic</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">synsets</span><span class="p">,</span> <span class="n">longest_shortest_distances</span><span class="p">))</span>
+    <span class="n">sorted_dist_dic</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">dist_dic</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">kv</span><span class="p">:</span> <span class="n">kv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sorted_dist_dic</span><span class="p">,</span> <span class="n">overall_maxlen</span></div>
+
+
+<div class="viewcode-block" id="get_greatest_depth"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.longest_shortest_path.get_greatest_depth">[docs]</a><span class="k">def</span> <span class="nf">get_greatest_depth</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Iterate trough the synsets of a given word category. For each synset check the depth and return the greatest depth</span>
+<span class="sd">    that has been seen.</span>
+
+<span class="sd">    :type category: WordCategory</span>
+<span class="sd">    :type germanet: Germanet</span>
+<span class="sd">    :param germanet: the germanet graph</span>
+<span class="sd">    :param category: the wordcategory</span>
+<span class="sd">    :return: the greatest depth for a given word category. The depth of a synset is defined by the shortest path length between the synset and the root node</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">synsets</span> <span class="o">=</span> <span class="n">germanet</span><span class="o">.</span><span class="n">get_synsets_by_wordcategory</span><span class="p">(</span><span class="n">category</span><span class="p">)</span>
+    <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">synset</span> <span class="ow">in</span> <span class="n">synsets</span><span class="p">:</span>
+        <span class="n">depth</span> <span class="o">=</span> <span class="n">synset</span><span class="o">.</span><span class="n">min_depth</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">depth</span> <span class="o">&gt;=</span> <span class="n">max_depth</span><span class="p">:</span>
+            <span class="n">max_depth</span> <span class="o">=</span> <span class="n">depth</span>
+    <span class="k">return</span> <span class="n">max_depth</span></div>
+
+
+<div class="viewcode-block" id="get_longest_possible_shortest_distance"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.longest_shortest_path.get_longest_possible_shortest_distance">[docs]</a><span class="k">def</span> <span class="nf">get_longest_possible_shortest_distance</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">wordcategory</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    set a maxdistcounter = 0</span>
+<span class="sd">    for each synset:</span>
+<span class="sd">    get the corresponding longest shortest distance.</span>
+<span class="sd">    if this plus the overall longest shortest distance is smaller than maxdistance:</span>
+<span class="sd">        continue with the next synset</span>
+<span class="sd">    if it is larger:</span>
+<span class="sd">        go trough each synset and get the corresponding longest shortest distance.</span>
+<span class="sd">        if this plus the longest shortest distance of the synset of interest is smaller than maxdistance:</span>
+<span class="sd">            continue</span>
+<span class="sd">        else:</span>
+<span class="sd">            compute the actual path distance and update the maxdistance if it is larger</span>
+
+<span class="sd">    :rtype: (int, int, tuple(Synset, Synset)</span>
+<span class="sd">    :type wordcategory: WordCategory</span>
+<span class="sd">    :type germanet: Germanet</span>
+<span class="sd">    :param wordcategory: the wordcategory for which this maxlen should be computed</span>
+<span class="sd">    :param germanet: the germanet graph</span>
+<span class="sd">    :return: the longest possible shortest distance between two synsets of a specified wordcategory, the maximum depth</span>
+<span class="sd">    of any synset (lenght to the root) and a Tuple with two synsets that have the longest shortest distance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sorted_dist_dic</span><span class="p">,</span> <span class="n">overall_maxlen</span> <span class="o">=</span> <span class="n">get_overall_longest_shortest_distance</span><span class="p">(</span><span class="n">germanet</span><span class="o">=</span><span class="n">germanet</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">wordcategory</span><span class="p">)</span>
+    <span class="n">longest_possible_shortest_distance</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">synset_pair_longest_distance</span> <span class="o">=</span> <span class="p">(</span><span class="n">germanet</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">germanet</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">synset</span><span class="p">,</span> <span class="n">longest_shortest_dist</span> <span class="ow">in</span> <span class="n">sorted_dist_dic</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">longest_shortest_dist</span> <span class="o">+</span> <span class="n">overall_maxlen</span> <span class="o">&lt;=</span> <span class="n">longest_possible_shortest_distance</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">current_synset</span><span class="p">,</span> <span class="n">current_shortest_dist</span> <span class="ow">in</span> <span class="n">sorted_dist_dic</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current_shortest_dist</span> <span class="o">+</span> <span class="n">longest_shortest_dist</span> <span class="o">&lt;=</span> <span class="n">longest_possible_shortest_distance</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">pathdist</span> <span class="o">=</span> <span class="n">current_synset</span><span class="o">.</span><span class="n">shortest_path_distance</span><span class="p">(</span><span class="n">synset</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">pathdist</span> <span class="o">&gt;</span> <span class="n">longest_possible_shortest_distance</span><span class="p">:</span>
+                <span class="n">longest_possible_shortest_distance</span> <span class="o">=</span> <span class="n">pathdist</span>
+                <span class="n">synset_pair_longest_distance</span> <span class="o">=</span> <span class="p">(</span><span class="n">synset</span><span class="p">,</span> <span class="n">current_synset</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">longest_possible_shortest_distance</span><span class="p">,</span> <span class="n">overall_maxlen</span><span class="p">,</span> <span class="n">synset_pair_longest_distance</span></div>
+
+
+<div class="viewcode-block" id="print_longest_shortest_distances"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.longest_shortest_path.print_longest_shortest_distances">[docs]</a><span class="k">def</span> <span class="nf">print_longest_shortest_distances</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">word_category</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes and prints the longest shortest distances for the given word category.</span>
+
+<span class="sd">    :type word_category: WordCategory</span>
+<span class="sd">    :type germanet: Germanet</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">longest_possible_shortest_distance</span><span class="p">,</span> <span class="n">overall_maxlen</span><span class="p">,</span> <span class="n">synset_pair_longest_distance</span> <span class="o">=</span> \
+        <span class="n">get_longest_possible_shortest_distance</span><span class="p">(</span>
+            <span class="n">germanet</span><span class="o">=</span><span class="n">germanet</span><span class="p">,</span> <span class="n">wordcategory</span><span class="o">=</span><span class="n">word_category</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;retrieved the following information </span><span class="si">{}</span><span class="s2">: </span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;longest shortest distance : </span><span class="si">{:5d}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;maximum depth : </span><span class="si">{:5d}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">, &quot;</span>
+        <span class="s2">&quot;between the following synsets </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">word_category</span><span class="p">),</span> <span class="n">longest_possible_shortest_distance</span><span class="p">,</span>
+            <span class="n">overall_maxlen</span><span class="p">,</span> <span class="n">synset_pair_longest_distance</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="print_maximum_depths"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.longest_shortest_path.print_maximum_depths">[docs]</a><span class="k">def</span> <span class="nf">print_maximum_depths</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">word_category</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes and prints the maximum depth for the given word_category.</span>
+
+<span class="sd">    :type word_category: WordCategory</span>
+<span class="sd">    :type germanet: Germanet</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;retrieved the following information </span><span class="si">{}</span><span class="s2">: </span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;longest shortest distance : </span><span class="si">{:5d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">word_category</span><span class="p">),</span> <span class="n">get_greatest_depth</span><span class="p">(</span><span class="n">germanet</span><span class="o">=</span><span class="n">germanet</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">word_category</span><span class="p">)))</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">germanetpy</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../germanetpy.html">germanetpy package</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Neele Falk.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/Blubberli/germanetpy" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

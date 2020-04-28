@@ -1,0 +1,26 @@
+germanetpy.synsetLoader
+=======================
+
+.. automodule:: germanetpy.synsetLoader
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      add_orth_forms
+      create_compound_info
+      create_lexunit
+      get_attribute_element
+      load_lexunits
+   
+   
+
+   
+   
+   
+
+   
+   
+   

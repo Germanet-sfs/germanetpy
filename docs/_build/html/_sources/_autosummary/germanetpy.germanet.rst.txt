@@ -1,0 +1,22 @@
+germanetpy.germanet
+===================
+
+.. automodule:: germanetpy.germanet
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Germanet
+   
+   
+
+   
+   
+   

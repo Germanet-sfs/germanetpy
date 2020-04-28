@@ -15,6 +15,7 @@ class Germanet:
         """
         The GermaNet object is initialized with the directory where the GermaNet data is stored. The data is loaded
         when GermaNet is initialized.
+
         :param datadir: The path to the directory where the GermaNet data is stored
         :param addiliRecords: a boolean, denotes whether the iliRecords should also be loaded into the GermaNet
         object, default: True
@@ -67,6 +68,7 @@ class Germanet:
     def get_synsets_by_orthform(self, form: str, ignorecase: bool = False) -> list:
         """
         This method returns a list of synsets that match the given input search string
+
         :param form: a word that can be looked up in the GermaNet
         :param ignorecase: whether the case of the word should be ignored (default = False)
         :return: a list of synsets
@@ -81,6 +83,7 @@ class Germanet:
     def get_synsets_by_wordcategory(self, category) -> list:
         """
         Returns a list of synsets that belong to the specified word category
+
         :type category: WordCategory
         :param category: The word category of interest
         :return: A list of Synsets that belong to the specified word category
@@ -91,6 +94,7 @@ class Germanet:
     def get_synsets_by_wordclass(self, wordclass) -> list:
         """
         Returns a list of synsets that belong to the specified word class
+
         :type wordclass: WordClass
         :param wordclass: The word category of interest
         :return: A list of Synsets that belong to the specified word class
@@ -101,6 +105,7 @@ class Germanet:
     def get_synset_by_id(self, id: str):
         """
         Returns a Synset by a specified identifier (if that exists, otherwise raises an Error)
+
         :rtype: Synset
         :param id: a Synset identifier
         :return: The matching Synset object
@@ -111,6 +116,7 @@ class Germanet:
     def get_lexunit_by_id(self, id: str):
         """
         Returns a lexical unit by a specified identifier (if that exists, otherwise raises an Error)
+
         :rtype: Lexunit
         :param id: a Lexunit identifier
         :return: The matching Lexunit object
@@ -121,6 +127,7 @@ class Germanet:
     def get_lexunits_by_orthform(self, form: str, ignorecase: bool = False) -> list:
         """
         This method returns a list of lexical units that match the given input search string
+
         :param form: a word that can be looked up in the GermaNet
         :param ignorecase: whether the case of the word should be ignored (default = False)
         :return: a list of lexical units that match the given input query
@@ -135,6 +142,7 @@ class Germanet:
     def get_lexunits_by_wordclass(self, wordclass) -> list:
         """
         Returns a list of lexical units that belong to the specified word class
+
         :type wordclass: WordClass
         :param wordclass: The word category of interest
         :return: A list of lexical units that belong to the specified word class
@@ -145,6 +153,7 @@ class Germanet:
     def get_lexunits_by_wordcategory(self, category) -> list:
         """
         Returns a list of lexical units that belong to the specified word category
+
         :type category: WordCategory
         :param category: The word category of interest
         :return: A list of lexical units that belong to the specified word category
@@ -155,10 +164,9 @@ class Germanet:
     def get_synsets_by_frame(self, frame: str) -> list:
         """
         Returns a list of Synsets that match a specified frame
-        :param frame: a frame that describes the argument structure of a verb (e.g. 'NN.AN' specifies that a
-        verb can take a subject and accusative object as arguments.)
-        :return: a list of Synsets that match the given frame. If the frame is not valid an Assertion
-        Error will be raised
+
+        :param frame: a frame that describes the argument structure of a verb (e.g. 'NN.AN' specifies that a verb can take a subject and accusative object as arguments.)
+        :return: a list of Synsets that match the given frame. If the frame is not valid an Assertion Error will be raised
         """
         assert frame in self.frames2lexunits, "the specified frame is not in GermaNet"
         synset_ids = self.frames2lexunits[frame]
@@ -261,3 +269,4 @@ class Germanet:
     @property
     def add_wictionary(self):
         return self._add_wictionary
+

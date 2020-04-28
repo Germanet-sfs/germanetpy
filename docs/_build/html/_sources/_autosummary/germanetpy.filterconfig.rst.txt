@@ -1,0 +1,22 @@
+germanetpy.filterconfig
+=======================
+
+.. automodule:: germanetpy.filterconfig
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Filterconfig
+   
+   
+
+   
+   
+   

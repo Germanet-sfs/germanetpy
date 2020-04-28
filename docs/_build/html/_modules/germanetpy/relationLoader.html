@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>germanetpy.relationLoader &#8212; germanetpy 0.2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for germanetpy.relationLoader</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">germanetpy.lexunit</span> <span class="kn">import</span> <span class="n">LexRel</span>
+<span class="kn">from</span> <span class="nn">germanetpy.synset</span> <span class="kn">import</span> <span class="n">ConRel</span>
+
+<span class="n">NAME</span> <span class="o">=</span> <span class="s1">&#39;name&#39;</span>
+<span class="n">FROM_NODE</span> <span class="o">=</span> <span class="s1">&#39;from&#39;</span>
+<span class="n">TO_NODE</span> <span class="o">=</span> <span class="s1">&#39;to&#39;</span>
+<span class="n">DIRECTION</span> <span class="o">=</span> <span class="s1">&#39;dir&#39;</span>
+<span class="n">INVERSE</span> <span class="o">=</span> <span class="s1">&#39;inv&#39;</span>
+<span class="n">LEX_REL</span> <span class="o">=</span> <span class="s1">&#39;lex_rel&#39;</span>
+<span class="n">CON_REL</span> <span class="o">=</span> <span class="s1">&#39;con_rel&#39;</span>
+
+
+<div class="viewcode-block" id="get_relation_attributes"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.relationLoader.get_relation_attributes">[docs]</a><span class="k">def</span> <span class="nf">get_relation_attributes</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :type attributes: XML attribute</span>
+<span class="sd">    :param attributes: The XML attributes the information can be extracted from</span>
+<span class="sd">    :return: The information as Strings or None if the information is not present. The name of the relation,the id of the start node, the id of the end node, the type of direction and if the relation is inverse</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">relation</span> <span class="o">=</span> <span class="n">attributes</span><span class="p">[</span><span class="n">NAME</span><span class="p">]</span>
+    <span class="n">from_node</span> <span class="o">=</span> <span class="n">attributes</span><span class="p">[</span><span class="n">FROM_NODE</span><span class="p">]</span>
+    <span class="n">to_node</span> <span class="o">=</span> <span class="n">attributes</span><span class="p">[</span><span class="n">TO_NODE</span><span class="p">]</span>
+    <span class="n">direction</span> <span class="o">=</span> <span class="n">attributes</span><span class="p">[</span><span class="n">DIRECTION</span><span class="p">]</span>
+    <span class="n">inverse_relation</span> <span class="o">=</span> <span class="n">attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">INVERSE</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">relation</span><span class="p">,</span> <span class="n">from_node</span><span class="p">,</span> <span class="n">to_node</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">inverse_relation</span></div>
+
+
+<div class="viewcode-block" id="load_relations"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.relationLoader.load_relations">[docs]</a><span class="k">def</span> <span class="nf">load_relations</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads the information about the related synsets ans lexunits from the data and adds the edges between the objects.</span>
+
+<span class="sd">    :type tree: Element Tree</span>
+<span class="sd">    :type germanet: Germanet</span>
+<span class="sd">    :param germanet: The Germanet object that is populated with Synsets and Lexunits</span>
+<span class="sd">    :param tree: The XML tree of the relation data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">root</span><span class="p">:</span>
+        <span class="n">tag</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">tag</span>
+        <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">LEX_REL</span><span class="p">:</span>
+            <span class="n">relation</span><span class="p">,</span> <span class="n">from_node</span><span class="p">,</span> <span class="n">to_node</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">inverse_relation</span> <span class="o">=</span> <span class="n">get_relation_attributes</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">)</span>
+            <span class="n">lexunit1</span> <span class="o">=</span> <span class="n">germanet</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="n">from_node</span><span class="p">]</span>
+            <span class="n">lexunit2</span> <span class="o">=</span> <span class="n">germanet</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="n">to_node</span><span class="p">]</span>
+            <span class="n">lexunit1</span><span class="o">.</span><span class="n">relations</span><span class="p">[</span><span class="n">LexRel</span><span class="p">[</span><span class="n">relation</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lexunit2</span><span class="p">)</span>
+            <span class="n">lexunit2</span><span class="o">.</span><span class="n">incoming_relations</span><span class="p">[</span><span class="n">LexRel</span><span class="p">[</span><span class="n">relation</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lexunit1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">inverse_relation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">lexunit2</span><span class="o">.</span><span class="n">relations</span><span class="p">[</span><span class="n">LexRel</span><span class="p">[</span><span class="n">inverse_relation</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lexunit1</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">CON_REL</span><span class="p">:</span>
+            <span class="n">relation</span><span class="p">,</span> <span class="n">from_node</span><span class="p">,</span> <span class="n">to_node</span><span class="p">,</span> <span class="nb">dir</span><span class="p">,</span> <span class="n">inverse_relation</span> <span class="o">=</span> <span class="n">get_relation_attributes</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">)</span>
+            <span class="n">synset1</span> <span class="o">=</span> <span class="n">germanet</span><span class="o">.</span><span class="n">synsets</span><span class="p">[</span><span class="n">from_node</span><span class="p">]</span>
+            <span class="n">synset2</span> <span class="o">=</span> <span class="n">germanet</span><span class="o">.</span><span class="n">synsets</span><span class="p">[</span><span class="n">to_node</span><span class="p">]</span>
+            <span class="n">synset1</span><span class="o">.</span><span class="n">relations</span><span class="p">[</span><span class="n">ConRel</span><span class="p">[</span><span class="n">relation</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">synset2</span><span class="p">)</span>
+            <span class="n">synset2</span><span class="o">.</span><span class="n">incoming_relations</span><span class="p">[</span><span class="n">ConRel</span><span class="p">[</span><span class="n">relation</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">synset1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">inverse_relation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">synset2</span><span class="o">.</span><span class="n">relations</span><span class="p">[</span><span class="n">ConRel</span><span class="p">[</span><span class="n">inverse_relation</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">synset1</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">germanetpy</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../germanetpy.html">germanetpy package</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Neele Falk.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/Blubberli/germanetpy" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

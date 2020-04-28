@@ -1,0 +1,23 @@
+germanetpy.wictionaryLoader
+===========================
+
+.. automodule:: germanetpy.wictionaryLoader
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      create_wictionary
+      load_wiktionary
+   
+   
+
+   
+   
+   
+
+   
+   
+   

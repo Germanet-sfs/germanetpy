@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>germanetpy.filterconfig &#8212; germanetpy 0.2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for germanetpy.filterconfig</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">from</span> <span class="nn">Levenshtein</span> <span class="kn">import</span> <span class="n">distance</span>
+<span class="kn">from</span> <span class="nn">germanetpy.synset</span> <span class="kn">import</span> <span class="n">WordCategory</span><span class="p">,</span> <span class="n">WordClass</span>
+<span class="kn">from</span> <span class="nn">germanetpy.lexunit</span> <span class="kn">import</span> <span class="n">OrthFormVariant</span>
+
+
+<div class="viewcode-block" id="Filterconfig"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.filterconfig.Filterconfig">[docs]</a><span class="k">class</span> <span class="nc">Filterconfig</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class is a configuration object, that helps to filter GermaNets lexical units and Synsets to extract the</span>
+<span class="sd">    ones with certain interesting properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ignore_case</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">regex</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">levenshtein_distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The Filterconfiguration consists of a list of word categories (as a default all existing word categories are</span>
+<span class="sd">        selected),</span>
+<span class="sd">        a list of word classes (as a default all existing word classes are selected), a list of orthform variants (as</span>
+<span class="sd">        a default all existing orthform variants are selected)</span>
+
+<span class="sd">        :param search_string: a String, either a query word the user is looking for or a regular expression</span>
+<span class="sd">        :param ignore_case: a boolean, specifying whether the case of the query should be ignored or not</span>
+<span class="sd">        :param regex: a boolean, specifying whether a regular expression is used. If a regular expression is</span>
+<span class="sd">        specified, a given levenshtein distance will not be taken into consideration.</span>
+<span class="sd">        :param levenshtein_distance : specify a levenshtein distance to retrieve all words that have a certain</span>
+<span class="sd">        levenshtein distance to a given query words. Cannot be used together with a regular expression.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_search_string</span> <span class="o">=</span> <span class="n">search_string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_word_categories</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">WordCategory</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_word_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">WordClass</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_orth_variants</span> <span class="o">=</span> <span class="p">[</span><span class="n">o</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">OrthFormVariant</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ignore_case</span> <span class="o">=</span> <span class="n">ignore_case</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_regex</span> <span class="o">=</span> <span class="n">regex</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_levenshtein_distance</span> <span class="o">=</span> <span class="n">levenshtein_distance</span>
+
+<div class="viewcode-block" id="Filterconfig.filter_lexunits"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.filterconfig.Filterconfig.filter_lexunits">[docs]</a>    <span class="k">def</span> <span class="nf">filter_lexunits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">germanet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Applys the filter to the GermaNet data</span>
+
+<span class="sd">        :type germanet: Germanet</span>
+<span class="sd">        :param germanet: the GermaNet object, loaded from the data</span>
+<span class="sd">        :return: a set of lexical units that are left after retrieval is filtered with the given constraints</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">regex</span><span class="p">:</span>
+            <span class="n">lexunits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_lexunits_by_regex</span><span class="p">(</span><span class="n">germanet</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">regex</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">levenshtein_distance</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">lexunits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_lexunits_levenshtein</span><span class="p">(</span><span class="n">germanet</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lexunits</span> <span class="o">=</span> <span class="n">germanet</span><span class="o">.</span><span class="n">get_lexunits_by_orthform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">search_string</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_case</span><span class="p">)</span>
+            <span class="n">lexunits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_lexunits_orthform</span><span class="p">(</span><span class="n">lexunits</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">orth_variants</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_string</span><span class="p">,</span>
+                                                      <span class="bp">self</span><span class="o">.</span><span class="n">ignore_case</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">unit</span> <span class="ow">in</span> <span class="n">lexunits</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">synset</span><span class="o">.</span><span class="n">word_class</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_classes</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">synset</span><span class="o">.</span><span class="n">word_category</span> <span class="ow">in</span>
+                                                                  <span class="bp">self</span><span class="o">.</span><span class="n">word_categories</span><span class="p">)</span> <span class="ow">and</span> \
+                    <span class="bp">self</span><span class="o">.</span><span class="n">search_string</span><span class="p">:</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+    <span class="k">def</span> <span class="nf">_filter_lexunits_orthform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lexunits</span><span class="p">,</span> <span class="n">orthvariants</span><span class="p">,</span> <span class="n">searchstring</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ignore_case</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The method filters the retrieved lexical units to match the user-specified orth variants</span>
+
+<span class="sd">        :type orthvariants: list(OrthVariant)</span>
+<span class="sd">        :type lexunits: set(Lexunit)</span>
+<span class="sd">        :param lexunits: the set if lexical units to be filtered by orth variant</span>
+<span class="sd">        :param orthvariants: a list of oth variants that should be considered during filtering</span>
+<span class="sd">        :param searchstring: the search query</span>
+<span class="sd">        :param ignore_case: boolean, if case should be ignored or not</span>
+<span class="sd">        :return: a set if lexical units, all lexical units match the given orth variants</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">filtered_units</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">unit</span> <span class="ow">in</span> <span class="n">lexunits</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">orthvar</span> <span class="ow">in</span> <span class="n">orthvariants</span><span class="p">:</span>
+                <span class="n">form</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">get_orthform_variant</span><span class="p">(</span><span class="n">orthvar</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">form</span> <span class="o">==</span> <span class="n">searchstring</span><span class="p">:</span>
+                    <span class="n">filtered_units</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">ignore_case</span> <span class="ow">and</span> <span class="n">form</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">searchstring</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                        <span class="n">filtered_units</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">filtered_units</span>
+
+<div class="viewcode-block" id="Filterconfig.filter_synsets"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.filterconfig.Filterconfig.filter_synsets">[docs]</a>    <span class="k">def</span> <span class="nf">filter_synsets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">germanet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Applys the filter to the GermaNet data</span>
+
+<span class="sd">        :type germanet: Germanet</span>
+<span class="sd">        :param germanet: the GermaNet object, loaded from the data</span>
+<span class="sd">        :return: a set of synsets that are left after retrieval is filtered with the given constraints</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">regex</span><span class="p">:</span>
+            <span class="n">lexunits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_lexunits_by_regex</span><span class="p">(</span><span class="n">germanet</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">levenshtein_distance</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">regex</span><span class="p">:</span>
+            <span class="n">lexunits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_lexunits_levenshtein</span><span class="p">(</span><span class="n">germanet</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lexunits</span> <span class="o">=</span> <span class="n">germanet</span><span class="o">.</span><span class="n">get_lexunits_by_orthform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">search_string</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_case</span><span class="p">)</span>
+            <span class="n">lexunits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_lexunits_orthform</span><span class="p">(</span><span class="n">lexunits</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">orth_variants</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_string</span><span class="p">,</span>
+                                                      <span class="bp">self</span><span class="o">.</span><span class="n">ignore_case</span><span class="p">)</span>
+        <span class="n">synsets</span> <span class="o">=</span> <span class="p">[</span><span class="n">lexunit</span><span class="o">.</span><span class="n">synset</span> <span class="k">for</span> <span class="n">lexunit</span> <span class="ow">in</span> <span class="n">lexunits</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">synset</span> <span class="ow">in</span> <span class="n">synsets</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">synset</span><span class="o">.</span><span class="n">word_class</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_classes</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">synset</span><span class="o">.</span><span class="n">word_category</span> <span class="ow">in</span>
+                                                             <span class="bp">self</span><span class="o">.</span><span class="n">word_categories</span><span class="p">):</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">synset</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_lexunits_by_regex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">germanet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Filters lexical units with a regular expression. All lexical units that match the regular expression are</span>
+<span class="sd">        returned.</span>
+<span class="sd">        :type germanet: Germanet</span>
+<span class="sd">        :param germanet: the GermaNet object, loaded from the data</span>
+<span class="sd">        :return:  The set of lexical units that match the given regular expression</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_case</span><span class="p">:</span>
+            <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">search_string</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+            <span class="n">l_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">germanet</span><span class="o">.</span><span class="n">lowercasedform2lexid</span><span class="p">[</span><span class="n">orthform</span><span class="p">]</span> <span class="k">for</span> <span class="n">orthform</span> <span class="ow">in</span> <span class="n">germanet</span><span class="o">.</span><span class="n">lowercasedform2lexid</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span>
+                     <span class="n">pattern</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">orthform</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">search_string</span><span class="p">)</span>
+            <span class="n">l_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">germanet</span><span class="o">.</span><span class="n">orthform2lexid</span><span class="p">[</span><span class="n">orthform</span><span class="p">]</span> <span class="k">for</span> <span class="n">orthform</span> <span class="ow">in</span> <span class="n">germanet</span><span class="o">.</span><span class="n">orthform2lexid</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span>
+                     <span class="n">pattern</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">orthform</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">l_ids</span><span class="p">)):</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">germanet</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="nb">id</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">_filter_lexunits_levenshtein</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">germanet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Filters lexical units with levenshtein distance. All lexical units that have a maximum of the given</span>
+<span class="sd">        levenshtein distance or lower are returned.</span>
+<span class="sd">        :type germanet: Germanet</span>
+<span class="sd">        :param germanet: the GermaNet object, loaded from the data</span>
+<span class="sd">        :return: The set of lexical units that match the given levenshtein distance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">filtered_lexunits</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_categories</span><span class="p">:</span>
+            <span class="n">units</span> <span class="o">=</span> <span class="n">germanet</span><span class="o">.</span><span class="n">get_lexunits_by_wordcategory</span><span class="p">(</span><span class="n">category</span><span class="o">=</span><span class="n">cat</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">unit</span> <span class="ow">in</span> <span class="n">units</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">unit</span><span class="o">.</span><span class="n">synset</span><span class="o">.</span><span class="n">word_class</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_classes</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">orthvar</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">orth_variants</span><span class="p">:</span>
+                        <span class="n">form</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">get_orthform_variant</span><span class="p">(</span><span class="n">orthvar</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">form</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_case</span><span class="p">:</span>
+                                <span class="n">form</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_search_string</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_string</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                            <span class="n">d</span> <span class="o">=</span> <span class="n">distance</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_string</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">d</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">levenshtein_distance</span><span class="p">:</span>
+                                <span class="n">filtered_lexunits</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">filtered_lexunits</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">search_string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_search_string</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">word_categories</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_word_categories</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">word_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_word_classes</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">orth_variants</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orth_variants</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ignore_case</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ignore_case</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">regex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_regex</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">levenshtein_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_levenshtein_distance</span>
+
+    <span class="nd">@word_classes</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">word_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word_classes</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_word_classes</span> <span class="o">=</span> <span class="n">word_classes</span>
+
+    <span class="nd">@word_categories</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">word_categories</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word_categories</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_word_categories</span> <span class="o">=</span> <span class="n">word_categories</span>
+
+    <span class="nd">@orth_variants</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">orth_variants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orth_variants</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_orth_variants</span> <span class="o">=</span> <span class="n">orth_variants</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">germanetpy</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../germanetpy.html">germanetpy package</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Neele Falk.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/Blubberli/germanetpy" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

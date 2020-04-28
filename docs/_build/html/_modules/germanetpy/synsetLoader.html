@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>germanetpy.synsetLoader &#8212; germanetpy 0.2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for germanetpy.synsetLoader</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">germanetpy.compoundInfo</span> <span class="kn">import</span> <span class="n">CompoundInfo</span><span class="p">,</span> <span class="n">CompoundCategory</span><span class="p">,</span> <span class="n">CompoundProperty</span>
+<span class="kn">from</span> <span class="nn">germanetpy.lexunit</span> <span class="kn">import</span> <span class="n">Lexunit</span><span class="p">,</span> <span class="n">LexRel</span>
+<span class="kn">from</span> <span class="nn">germanetpy.synset</span> <span class="kn">import</span> <span class="n">Synset</span><span class="p">,</span> <span class="n">WordCategory</span><span class="p">,</span> <span class="n">WordClass</span>
+<span class="kn">from</span> <span class="nn">germanetpy.utils</span> <span class="kn">import</span> <span class="n">convert_to_boolean</span>
+
+<span class="c1"># Lexunit xml attribute values</span>
+<span class="n">LEXID</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span>
+<span class="n">SENSE</span> <span class="o">=</span> <span class="s1">&#39;sense&#39;</span>
+<span class="n">SOURCE</span> <span class="o">=</span> <span class="s1">&#39;source&#39;</span>
+<span class="n">NAMEDENTITY</span> <span class="o">=</span> <span class="s1">&#39;namedEntity&#39;</span>
+<span class="n">STYLE</span> <span class="o">=</span> <span class="s1">&#39;styleMarking&#39;</span>
+<span class="n">ARTIFICIAL</span> <span class="o">=</span> <span class="s1">&#39;artificial&#39;</span>
+<span class="n">ORTHFORM</span> <span class="o">=</span> <span class="s1">&#39;orthForm&#39;</span>
+<span class="n">ORTHVAR</span> <span class="o">=</span> <span class="s1">&#39;orthVar&#39;</span>
+<span class="n">OLDORTHFORM</span> <span class="o">=</span> <span class="s1">&#39;oldOrthForm&#39;</span>
+<span class="n">OLDORTHVAR</span> <span class="o">=</span> <span class="s1">&#39;oldOrthVar&#39;</span>
+<span class="n">COMPOUND</span> <span class="o">=</span> <span class="s1">&#39;compound&#39;</span>
+<span class="n">FRAME</span> <span class="o">=</span> <span class="s1">&#39;frame&#39;</span>
+<span class="n">EXAMPLE</span> <span class="o">=</span> <span class="s1">&#39;example&#39;</span>
+<span class="n">LEXUNIT</span> <span class="o">=</span> <span class="s2">&quot;lexUnit&quot;</span>
+
+<span class="c1"># Synset xml attribute values</span>
+<span class="n">SYNID</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span>
+<span class="n">WORDCLASS</span> <span class="o">=</span> <span class="s1">&#39;class&#39;</span>
+<span class="n">WORDCATEGORY</span> <span class="o">=</span> <span class="s1">&#39;category&#39;</span>
+
+
+<div class="viewcode-block" id="get_attribute_element"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.get_attribute_element">[docs]</a><span class="k">def</span> <span class="nf">get_attribute_element</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constructs an Emum object of a given attribute</span>
+<span class="sd">    :rtype: FastEnum</span>
+<span class="sd">    :type enum: FastEnum</span>
+<span class="sd">    :type attributes: XML attributes</span>
+<span class="sd">    :param attributes: XML attributes of a certain XML node</span>
+<span class="sd">    :param elment: A String</span>
+<span class="sd">    :param enum: The Enum object that should be initialized</span>
+<span class="sd">    :return: The corresponding Enum object or None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">enum</span><span class="p">[</span><span class="n">attributes</span><span class="p">[</span><span class="n">element</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="create_compound_info"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.create_compound_info">[docs]</a><span class="k">def</span> <span class="nf">create_compound_info</span><span class="p">(</span><span class="n">child</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CompoundInfo</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a compound info object. This has a modifier (String) and a head (String). Each modifier and the head can</span>
+<span class="sd">    have a property (CompoundProperty) and a category (CompoundCategory).</span>
+<span class="sd">    :param child: the XML element</span>
+<span class="sd">    :return: A CompoundInfo object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">child</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;wrong data format&quot;</span>
+    <span class="n">modifier1</span> <span class="o">=</span> <span class="n">child</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">modifier1prop</span> <span class="o">=</span> <span class="n">get_attribute_element</span><span class="p">(</span><span class="n">modifier1</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">PROPERTY</span><span class="p">,</span> <span class="n">CompoundProperty</span><span class="p">)</span>
+    <span class="n">modifier1cat</span> <span class="o">=</span> <span class="n">get_attribute_element</span><span class="p">(</span><span class="n">modifier1</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">CATEGORY</span><span class="p">,</span> <span class="n">CompoundCategory</span><span class="p">)</span>
+    <span class="n">modifier2</span> <span class="o">=</span> <span class="n">modifier2prop</span> <span class="o">=</span> <span class="n">modifier2cat</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">child</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">modifier2</span> <span class="o">=</span> <span class="n">child</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="n">child</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="n">modifier2cat</span> <span class="o">=</span> <span class="n">get_attribute_element</span><span class="p">(</span><span class="n">modifier2</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">CATEGORY</span><span class="p">,</span> <span class="n">CompoundCategory</span><span class="p">)</span>
+        <span class="n">modifier2prop</span> <span class="o">=</span> <span class="n">get_attribute_element</span><span class="p">(</span><span class="n">modifier2</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">PROPERTY</span><span class="p">,</span> <span class="n">CompoundProperty</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="n">child</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">headprop</span> <span class="o">=</span> <span class="n">get_attribute_element</span><span class="p">(</span><span class="n">head</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">PROPERTY</span><span class="p">,</span> <span class="n">CompoundProperty</span><span class="p">)</span>
+    <span class="n">compound</span> <span class="o">=</span> <span class="n">CompoundInfo</span><span class="p">(</span><span class="n">modifier1</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">head</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">modifier1prop</span><span class="p">,</span> <span class="n">modifier1cat</span><span class="p">,</span> <span class="n">modifier2</span><span class="p">,</span> <span class="n">modifier2prop</span><span class="p">,</span>
+                            <span class="n">modifier2cat</span><span class="p">,</span> <span class="n">headprop</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">compound</span></div>
+
+
+<div class="viewcode-block" id="load_lexunits"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.load_lexunits">[docs]</a><span class="k">def</span> <span class="nf">load_lexunits</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes the XML tree and walks trough it to create the Lexunit objects.</span>
+<span class="sd">    :type tree: Element Tree</span>
+<span class="sd">    :type germanet: Germanet</span>
+<span class="sd">    :param germanet: the germanet object</span>
+<span class="sd">    :param tree: XML tree</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">root</span><span class="p">:</span>
+        <span class="n">attribute</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">attrib</span>
+        <span class="n">syn_id</span> <span class="o">=</span> <span class="n">attribute</span><span class="p">[</span><span class="n">SYNID</span><span class="p">]</span>
+        <span class="n">category</span> <span class="o">=</span> <span class="n">get_attribute_element</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="n">WORDCATEGORY</span><span class="p">,</span> <span class="n">WordCategory</span><span class="p">)</span>
+        <span class="n">word_class</span> <span class="o">=</span> <span class="n">get_attribute_element</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="n">WORDCLASS</span><span class="p">,</span> <span class="n">WordClass</span><span class="p">)</span>
+        <span class="n">synset</span> <span class="o">=</span> <span class="n">Synset</span><span class="p">(</span><span class="n">syn_id</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">word_class</span><span class="p">)</span>
+        <span class="n">germanet</span><span class="o">.</span><span class="n">synsets</span><span class="p">[</span><span class="n">synset</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">synset</span>
+
+        <span class="k">for</span> <span class="n">sub_child</span> <span class="ow">in</span> <span class="n">child</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sub_child</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">LEXUNIT</span><span class="p">:</span>
+                <span class="n">lexunit</span> <span class="o">=</span> <span class="n">create_lexunit</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">sub_child</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">sub_child</span><span class="p">,</span> <span class="n">synset</span><span class="p">)</span>
+                <span class="n">germanet</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="n">lexunit</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">lexunit</span>
+                <span class="n">germanet</span><span class="o">.</span><span class="n">wordcat2lexid</span><span class="p">[</span><span class="n">category</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lexunit</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                <span class="n">germanet</span><span class="o">.</span><span class="n">wordclass2lexid</span><span class="p">[</span><span class="n">word_class</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lexunit</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                <span class="n">synset</span><span class="o">.</span><span class="n">add_lexunit</span><span class="p">(</span><span class="n">lexunit</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">unit</span> <span class="ow">in</span> <span class="n">synset</span><span class="o">.</span><span class="n">lexunits</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">lexunit</span> <span class="ow">in</span> <span class="n">synset</span><span class="o">.</span><span class="n">lexunits</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">lexunit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">unit</span><span class="p">:</span>
+                    <span class="n">unit</span><span class="o">.</span><span class="n">relations</span><span class="p">[</span><span class="n">LexRel</span><span class="o">.</span><span class="n">has_synonym</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lexunit</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="create_lexunit"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.create_lexunit">[docs]</a><span class="k">def</span> <span class="nf">create_lexunit</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">attributes</span><span class="p">,</span> <span class="n">lex_root</span><span class="p">,</span> <span class="n">synset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Lexunit</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given the XML data, creates a Lexunit object.</span>
+<span class="sd">    :type attributes: XML attributes</span>
+<span class="sd">    :type germanet: Germanet</span>
+<span class="sd">    :param germanet: The germanet object.</span>
+<span class="sd">    :param attributes: The XML attributes.</span>
+<span class="sd">    :param lex_root: The XML root</span>
+<span class="sd">    :param synset: the corresponding synset object</span>
+<span class="sd">    :return: a lexical unit object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lex_id</span> <span class="o">=</span> <span class="n">attributes</span><span class="p">[</span><span class="n">LEXID</span><span class="p">]</span>
+    <span class="n">lex_sense</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">attributes</span><span class="p">[</span><span class="n">SENSE</span><span class="p">])</span>
+    <span class="n">lex_source</span> <span class="o">=</span> <span class="n">attributes</span><span class="p">[</span><span class="n">SOURCE</span><span class="p">]</span>
+    <span class="n">lex_named_entity</span> <span class="o">=</span> <span class="n">convert_to_boolean</span><span class="p">(</span><span class="n">attributes</span><span class="p">[</span><span class="n">NAMEDENTITY</span><span class="p">])</span>
+    <span class="n">lex_artificial</span> <span class="o">=</span> <span class="n">convert_to_boolean</span><span class="p">(</span><span class="n">attributes</span><span class="p">[</span><span class="n">ARTIFICIAL</span><span class="p">])</span>
+    <span class="n">lex_style</span> <span class="o">=</span> <span class="n">convert_to_boolean</span><span class="p">(</span><span class="n">attributes</span><span class="p">[</span><span class="n">STYLE</span><span class="p">])</span>
+    <span class="n">lexunit</span> <span class="o">=</span> <span class="n">Lexunit</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">lex_id</span><span class="p">,</span> <span class="n">sense</span><span class="o">=</span><span class="n">lex_sense</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">lex_source</span><span class="p">,</span> <span class="n">named_entity</span><span class="o">=</span><span class="n">lex_named_entity</span><span class="p">,</span> <span class="n">synset</span><span class="o">=</span><span class="n">synset</span><span class="p">,</span>
+                      <span class="n">artificial</span><span class="o">=</span><span class="n">lex_artificial</span><span class="p">,</span> <span class="n">style_marking</span><span class="o">=</span><span class="n">lex_style</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">lex_root</span><span class="p">:</span>
+        <span class="n">tag</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">tag</span>
+        <span class="n">child_value</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">COMPOUND</span><span class="p">:</span>
+            <span class="n">compound</span> <span class="o">=</span> <span class="n">create_compound_info</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+            <span class="n">lexunit</span><span class="o">.</span><span class="n">_compound_info</span> <span class="o">=</span> <span class="n">compound</span>
+            <span class="n">germanet</span><span class="o">.</span><span class="n">compounds</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lexunit</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s2">&quot;rth&quot;</span> <span class="ow">in</span> <span class="n">tag</span><span class="p">:</span>
+            <span class="n">add_orth_forms</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">lexunit</span><span class="p">,</span> <span class="n">child_value</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">FRAME</span><span class="p">:</span>
+            <span class="n">lexunit</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child_value</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">lexunit</span><span class="o">.</span><span class="n">frames</span><span class="p">:</span>
+                <span class="n">germanet</span><span class="o">.</span><span class="n">frames2lexunits</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lexunit</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">EXAMPLE</span><span class="p">:</span>
+            <span class="n">example</span> <span class="o">=</span> <span class="n">child</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">lexunit</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">child</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">exframe</span> <span class="o">=</span> <span class="n">child</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+                <span class="n">lexunit</span><span class="o">.</span><span class="n">frames2examples</span><span class="p">[</span><span class="n">exframe</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lexunit</span></div>
+
+
+<div class="viewcode-block" id="add_orth_forms"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.add_orth_forms">[docs]</a><span class="k">def</span> <span class="nf">add_orth_forms</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">lexunit</span><span class="p">:</span> <span class="n">Lexunit</span><span class="p">,</span> <span class="n">child_value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Checks which orthform the tag contains, and adds it to the lexunit object. Adds the lexunit id to the</span>
+<span class="sd">    corresponding dictionary.</span>
+
+<span class="sd">    :type germanet: Germanet</span>
+<span class="sd">    :param germanet: The germanet object containing the Orthform variant dictionaries.</span>
+<span class="sd">    :param lexunit: the Lexunit object the Orthform variant needs to be added to</span>
+<span class="sd">    :param child_value:  the value of the XML element that contains this Orthform variant</span>
+<span class="sd">    :param tag: the value of the XML tag specifying the type of Orthform variant</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">germanet</span><span class="o">.</span><span class="n">orthform2lexid</span><span class="p">[</span><span class="n">child_value</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lexunit</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="n">germanet</span><span class="o">.</span><span class="n">lowercasedform2lexid</span><span class="p">[</span><span class="n">child_value</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lexunit</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">ORTHFORM</span><span class="p">:</span>
+        <span class="n">lexunit</span><span class="o">.</span><span class="n">_orthform</span> <span class="o">=</span> <span class="n">child_value</span>
+        <span class="n">germanet</span><span class="o">.</span><span class="n">mainOrtform2lexid</span><span class="p">[</span><span class="n">child_value</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lexunit</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">ORTHVAR</span><span class="p">:</span>
+        <span class="n">lexunit</span><span class="o">.</span><span class="n">_orthvar</span> <span class="o">=</span> <span class="n">child_value</span>
+    <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">OLDORTHFORM</span><span class="p">:</span>
+        <span class="n">lexunit</span><span class="o">.</span><span class="n">_old_orthform</span> <span class="o">=</span> <span class="n">child_value</span>
+    <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">OLDORTHVAR</span><span class="p">:</span>
+        <span class="n">lexunit</span><span class="o">.</span><span class="n">_old_orthvar</span> <span class="o">=</span> <span class="n">child_value</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">germanetpy</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../germanetpy.html">germanetpy package</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Neele Falk.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/Blubberli/germanetpy" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

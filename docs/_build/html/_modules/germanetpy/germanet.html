@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>germanetpy.germanet &#8212; germanetpy 0.2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for germanetpy.germanet</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">trange</span>
+<span class="kn">from</span> <span class="nn">germanetpy.utils</span> <span class="kn">import</span> <span class="n">parse_xml</span>
+<span class="kn">from</span> <span class="nn">germanetpy.synsetLoader</span> <span class="kn">import</span> <span class="n">load_lexunits</span>
+<span class="kn">from</span> <span class="nn">germanetpy.iliLoader</span> <span class="kn">import</span> <span class="n">load_ili</span>
+<span class="kn">from</span> <span class="nn">germanetpy.wictionaryLoader</span> <span class="kn">import</span> <span class="n">load_wiktionary</span>
+<span class="kn">from</span> <span class="nn">germanetpy.relationLoader</span> <span class="kn">import</span> <span class="n">load_relations</span>
+<span class="kn">from</span> <span class="nn">germanetpy.frames</span> <span class="kn">import</span> <span class="n">Frames</span>
+
+
+<div class="viewcode-block" id="Germanet"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet">[docs]</a><span class="k">class</span> <span class="nc">Germanet</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datadir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">add_ilirecords</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">add_wictionary</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The GermaNet object is initialized with the directory where the GermaNet data is stored. The data is loaded</span>
+<span class="sd">        when GermaNet is initialized.</span>
+
+<span class="sd">        :param datadir: The path to the directory where the GermaNet data is stored</span>
+<span class="sd">        :param addiliRecords: a boolean, denotes whether the iliRecords should also be loaded into the GermaNet</span>
+<span class="sd">        object, default: True</span>
+<span class="sd">        :param addWictionary: a boolean, denotes whether the wictionary files should also be loaded into the GermaNet</span>
+<span class="sd">        object, default: True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_datadir</span> <span class="o">=</span> <span class="n">datadir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_ilirecords</span> <span class="o">=</span> <span class="n">add_ilirecords</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_wictionary</span> <span class="o">=</span> <span class="n">add_wictionary</span>
+
+        <span class="c1"># Dictionary: lexunit id - lexunit object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lexunits</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Dictionary: synset id - synset object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_synsets</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Dictionary: any orthform (all variants) - lexunit id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_orthform2lexid</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+
+        <span class="c1"># Dictionary: main orthform - lexunit id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mainOrtform2lexid</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+
+        <span class="c1"># Dictionary: lower cased orthographic form (all variants) - lexunit id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lowercasedform2lexid</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+
+        <span class="c1"># Dictionary: Wordcategory - set of lexunit ids</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_wordcat2lexid</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+
+        <span class="c1"># Dictionary: Wordclass - set of lexunit ids</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_wordclass2lexid</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+
+        <span class="c1"># Set of synsets (that are compounds)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compounds</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="c1"># Dictionary: Frame - Lexunit objects</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frames2lexunits</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+
+        <span class="c1"># List: wictionary entries</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_wiktionary_entries</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># List: ili Records</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ili_records</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># the Frames object, storing all frame information from GermaNet</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frames</span> <span class="o">=</span> <span class="n">Frames</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_frames2lexunits</span><span class="p">)</span>
+
+        <span class="c1"># load data when GermaNet is initialized</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load_data</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Germanet.get_synsets_by_orthform"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_synsets_by_orthform">[docs]</a>    <span class="k">def</span> <span class="nf">get_synsets_by_orthform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ignorecase</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns a list of synsets that match the given input search string</span>
+
+<span class="sd">        :param form: a word that can be looked up in the GermaNet</span>
+<span class="sd">        :param ignorecase: whether the case of the word should be ignored (default = False)</span>
+<span class="sd">        :return: a list of synsets</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">ignorecase</span><span class="p">:</span>
+            <span class="n">form</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">lexunit_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lowercasedform2lexid</span><span class="p">[</span><span class="n">form</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lexunit_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orthform2lexid</span><span class="p">[</span><span class="n">form</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">synset</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">lexunit_ids</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Germanet.get_synsets_by_wordcategory"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_synsets_by_wordcategory">[docs]</a>    <span class="k">def</span> <span class="nf">get_synsets_by_wordcategory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a list of synsets that belong to the specified word category</span>
+
+<span class="sd">        :type category: WordCategory</span>
+<span class="sd">        :param category: The word category of interest</span>
+<span class="sd">        :return: A list of Synsets that belong to the specified word category</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lexunit_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wordcat2lexid</span><span class="p">[</span><span class="n">category</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">synset</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">lexunit_ids</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Germanet.get_synsets_by_wordclass"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_synsets_by_wordclass">[docs]</a>    <span class="k">def</span> <span class="nf">get_synsets_by_wordclass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wordclass</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a list of synsets that belong to the specified word class</span>
+
+<span class="sd">        :type wordclass: WordClass</span>
+<span class="sd">        :param wordclass: The word category of interest</span>
+<span class="sd">        :return: A list of Synsets that belong to the specified word class</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lexunit_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wordclass2lexid</span><span class="p">[</span><span class="n">wordclass</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">synset</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">lexunit_ids</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Germanet.get_synset_by_id"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_synset_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_synset_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a Synset by a specified identifier (if that exists, otherwise raises an Error)</span>
+
+<span class="sd">        :rtype: Synset</span>
+<span class="sd">        :param id: a Synset identifier</span>
+<span class="sd">        :return: The matching Synset object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">synsets</span><span class="p">,</span> <span class="s2">&quot;the given Synset id is not in GermaNet&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">synsets</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Germanet.get_lexunit_by_id"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_lexunit_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_lexunit_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a lexical unit by a specified identifier (if that exists, otherwise raises an Error)</span>
+
+<span class="sd">        :rtype: Lexunit</span>
+<span class="sd">        :param id: a Lexunit identifier</span>
+<span class="sd">        :return: The matching Lexunit object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">,</span> <span class="s2">&quot;the given lexical unit id is not in GermaNet&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Germanet.get_lexunits_by_orthform"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_lexunits_by_orthform">[docs]</a>    <span class="k">def</span> <span class="nf">get_lexunits_by_orthform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ignorecase</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns a list of lexical units that match the given input search string</span>
+
+<span class="sd">        :param form: a word that can be looked up in the GermaNet</span>
+<span class="sd">        :param ignorecase: whether the case of the word should be ignored (default = False)</span>
+<span class="sd">        :return: a list of lexical units that match the given input query</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">ignorecase</span><span class="p">:</span>
+            <span class="n">form</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">lexunit_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lowercasedform2lexid</span><span class="p">[</span><span class="n">form</span><span class="p">]</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">lexunit_ids</span><span class="p">]</span>
+        <span class="n">lexunit_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orthform2lexid</span><span class="p">[</span><span class="n">form</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">lexunit_ids</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Germanet.get_lexunits_by_wordclass"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_lexunits_by_wordclass">[docs]</a>    <span class="k">def</span> <span class="nf">get_lexunits_by_wordclass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wordclass</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a list of lexical units that belong to the specified word class</span>
+
+<span class="sd">        :type wordclass: WordClass</span>
+<span class="sd">        :param wordclass: The word category of interest</span>
+<span class="sd">        :return: A list of lexical units that belong to the specified word class</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lexunit_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wordclass2lexid</span><span class="p">[</span><span class="n">wordclass</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">lexunit_ids</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Germanet.get_lexunits_by_wordcategory"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_lexunits_by_wordcategory">[docs]</a>    <span class="k">def</span> <span class="nf">get_lexunits_by_wordcategory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a list of lexical units that belong to the specified word category</span>
+
+<span class="sd">        :type category: WordCategory</span>
+<span class="sd">        :param category: The word category of interest</span>
+<span class="sd">        :return: A list of lexical units that belong to the specified word category</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lexunit_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wordcat2lexid</span><span class="p">[</span><span class="n">category</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">lexunit_ids</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Germanet.get_synsets_by_frame"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_synsets_by_frame">[docs]</a>    <span class="k">def</span> <span class="nf">get_synsets_by_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a list of Synsets that match a specified frame</span>
+
+<span class="sd">        :param frame: a frame that describes the argument structure of a verb (e.g. &#39;NN.AN&#39; specifies that a verb can take a subject and accusative object as arguments.)</span>
+<span class="sd">        :return: a list of Synsets that match the given frame. If the frame is not valid an Assertion Error will be raised</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">frame</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames2lexunits</span><span class="p">,</span> <span class="s2">&quot;the specified frame is not in GermaNet&quot;</span>
+        <span class="n">synset_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames2lexunits</span><span class="p">[</span><span class="n">frame</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">synsets</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">synset_ids</span><span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="nf">_load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Protected method to load the GermaNet data. The Data has to be stored in self.datadir.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datadir</span><span class="p">)</span>
+        <span class="n">wikifiles</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span> <span class="k">if</span> <span class="s2">&quot;wiktionary&quot;</span> <span class="ow">in</span> <span class="n">f</span> <span class="ow">and</span> <span class="s2">&quot;xml&quot;</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
+        <span class="n">lexentries</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span> <span class="k">if</span>
+                      <span class="n">f</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;nomen&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">f</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;verben&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">f</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;adj&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;xml&quot;</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
+        <span class="n">ilifiles</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span> <span class="k">if</span> <span class="s2">&quot;interLingua&quot;</span> <span class="ow">in</span> <span class="n">f</span> <span class="ow">and</span> <span class="s2">&quot;xml&quot;</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
+        <span class="n">pbar</span> <span class="o">=</span> <span class="n">trange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Load GermaNet data...&#39;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lexentries</span><span class="p">)):</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">lexentries</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">tree</span> <span class="o">=</span> <span class="n">parse_xml</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datadir</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+            <span class="n">load_lexunits</span><span class="p">(</span><span class="n">germanet</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="o">=</span><span class="n">tree</span><span class="p">)</span>
+            <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">100</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">lexentries</span><span class="p">))</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">parse_xml</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datadir</span><span class="p">,</span> <span class="s2">&quot;gn_relations.xml&quot;</span><span class="p">)</span>
+        <span class="n">load_relations</span><span class="p">(</span><span class="n">germanet</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="o">=</span><span class="n">tree</span><span class="p">)</span>
+        <span class="n">pbar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">pbar</span> <span class="o">=</span> <span class="n">trange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Load Wictionary data...&#39;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_wictionary</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wikifiles</span><span class="p">)):</span>
+                <span class="n">tree</span> <span class="o">=</span> <span class="n">parse_xml</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datadir</span><span class="p">,</span> <span class="n">wikifiles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">load_wiktionary</span><span class="p">(</span><span class="n">germanet</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="o">=</span><span class="n">tree</span><span class="p">)</span>
+                <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">100</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">wikifiles</span><span class="p">))</span>
+        <span class="n">pbar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">pbar</span> <span class="o">=</span> <span class="n">trange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Load Ili records...&#39;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_ilirecords</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ilifiles</span><span class="p">)):</span>
+                <span class="n">tree</span> <span class="o">=</span> <span class="n">parse_xml</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datadir</span><span class="p">,</span> <span class="n">ilifiles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">load_ili</span><span class="p">(</span><span class="n">germanet</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="o">=</span><span class="n">tree</span><span class="p">)</span>
+                <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">100</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">ilifiles</span><span class="p">))</span>
+        <span class="n">pbar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lexunits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lexunits</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">synsets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synsets</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">orthform2lexid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orthform2lexid</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mainOrtform2lexid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mainOrtform2lexid</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lowercasedform2lexid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lowercasedform2lexid</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">wordcat2lexid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wordcat2lexid</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">wordclass2lexid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wordclass2lexid</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">compounds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compounds</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">frames2lexunits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_frames2lexunits</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">wiktionary_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wiktionary_entries</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ili_records</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ili_records</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">frames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_frames</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">root</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_synset_by_id</span><span class="p">(</span><span class="s1">&#39;s51001&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">root</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">datadir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_datadir</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">add_ilirecords</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_ilirecords</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">add_wictionary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_wictionary</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">germanetpy</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../germanetpy.html">germanetpy package</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Neele Falk.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/Blubberli/germanetpy" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

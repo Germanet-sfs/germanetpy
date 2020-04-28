@@ -5,6 +5,7 @@ class WiktionaryParaphrase:
         """
         This class holds the Wictionary paraphrase object. A wictionary paraphrase can be part of lexical units. The
         contain a definition of the lexical unit which helps to differentiate between different sense of a word.
+
         :param lexunit_id: The lexical unit id, this wictionary entry belongs to
         :param wiktionary_id: The corresponding wictionary identifier
         :param wiktionary_sense_id: The sense identifier

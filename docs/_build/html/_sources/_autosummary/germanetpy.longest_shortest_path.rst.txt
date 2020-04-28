@@ -1,0 +1,26 @@
+germanetpy.longest\_shortest\_path
+==================================
+
+.. automodule:: germanetpy.longest_shortest_path
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      get_greatest_depth
+      get_longest_possible_shortest_distance
+      get_overall_longest_shortest_distance
+      print_longest_shortest_distances
+      print_maximum_depths
+   
+   
+
+   
+   
+   
+
+   
+   
+   

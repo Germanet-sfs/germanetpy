@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>germanetpy.icbased_similarity &#8212; germanetpy 0.2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for germanetpy.icbased_similarity</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">germanetpy.filterconfig</span> <span class="kn">import</span> <span class="n">Filterconfig</span>
+<span class="kn">from</span> <span class="nn">germanetpy.semrel_measures</span> <span class="kn">import</span> <span class="n">SemRelMeasure</span>
+
+
+<div class="viewcode-block" id="ICBasedSimilarity"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity">[docs]</a><span class="k">class</span> <span class="nc">ICBasedSimilarity</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The IC-based measures are computed based on relative frequencies of words in a large corpus. Synset frequencies</span>
+<span class="sd">    are computed</span>
+<span class="sd">    by adding up the frequencies of all words that belong to a Synset. These measures can not be computed between</span>
+<span class="sd">    synsets with different word categories</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">germanet</span><span class="p">,</span> <span class="n">wordcategory</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">separator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The constructor of the ICBasedSimilarity class. The frequency dictionary is initialized for a given word</span>
+<span class="sd">        category. The *jcnmaxdist* is twice the information content of two leaf nodes with the highest information</span>
+<span class="sd">        content (MAX_IC), whose LCS is GNROOT and is needed for the jiang and conraths measure. The total_freq is the</span>
+<span class="sd">        frequency of ROOT, so the sum of all Synset</span>
+<span class="sd">        frequencies of the GermaNet Graph. It is needed to compute the information content.</span>
+
+<span class="sd">        :type wordcategory: WordCategory</span>
+<span class="sd">        :type germanet: Germanet</span>
+<span class="sd">        :param germanet: The GermaNet Graph</span>
+<span class="sd">        :param wordcategory: The word category to compute the IC-based similarities for</span>
+<span class="sd">        :param path: The path to a frequency list containing words and their frequencies in a corpus</span>
+<span class="sd">        :param separator: The char that separates a word and its frequency in the given frequency list,</span>
+<span class="sd">        default is a tabulator</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_germanet</span> <span class="o">=</span> <span class="n">germanet</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_synset2simplefreq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_simple_freq_dic</span><span class="p">(</span><span class="n">wordcategory</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">create_simple_freq_dic</span><span class="p">(</span><span class="n">wordcategory</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">separator</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_synset2cumfreq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">synset2simple_freq</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compute_cum_freq_dic</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_root_freq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">synset2cumfreq</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">germanet</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">id</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_jcnmaxdist</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_freq</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_synset2ic</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_most_informative_synset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_ic_map</span><span class="p">()</span>
+        <span class="n">synset_pair</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">most_informative_synset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">germanet</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_normalization_dic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_min_max_normalization_values</span><span class="p">(</span><span class="n">synset_pair</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ICBasedSimilarity.create_simple_freq_dic"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.create_simple_freq_dic">[docs]</a>    <span class="k">def</span> <span class="nf">create_simple_freq_dic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word_category</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">separator</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reads in the frequency list files and stores the frequency information for each Synset in a dictionary. The keys</span>
+<span class="sd">        are the Synset IDs. This method also adds all available Synset frequencies for the given category.</span>
+
+<span class="sd">        :type word_category: WordCategory</span>
+<span class="sd">        :param word_category: The word category</span>
+<span class="sd">        :param path: The path to a frequency list containing words and their frequencies in a corpus</span>
+<span class="sd">        :param separator: The char that separates a word and its frequency in the given frequency list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
+                        <span class="c1"># frequency of word form</span>
+                        <span class="n">freq</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                        <span class="c1"># word form</span>
+                        <span class="n">word</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                        <span class="n">config</span> <span class="o">=</span> <span class="n">Filterconfig</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">ignore_case</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                        <span class="n">config</span><span class="o">.</span><span class="n">word_categories</span> <span class="o">=</span> <span class="p">[</span><span class="n">word_category</span><span class="p">]</span>
+                        <span class="n">synsets</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">filter_synsets</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">germanet</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">syn</span> <span class="ow">in</span> <span class="n">synsets</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">synset2simple_freq</span><span class="p">[</span><span class="n">syn</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">+=</span> <span class="n">freq</span>
+                    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Could not open/read file:&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+                    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;file </span><span class="si">%s</span><span class="s2"> does not exist&quot;</span> <span class="o">%</span> <span class="n">path</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_init_simple_freq_dic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word_category</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        creates a dictionary of synsets of a specific word category. each synset has a default frequency of 1 (as a</span>
+<span class="sd">        smoothing technique to avoid division by 0 when computing the information content). the root is added as a</span>
+<span class="sd">        Synset as well</span>
+
+<span class="sd">        :type word_category: WordCategory</span>
+<span class="sd">        :param word_category: the word category</span>
+<span class="sd">        :return: the initialized dictionary with a default frequency of 1</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">allsynsets_wordcat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">germanet</span><span class="o">.</span><span class="n">get_synsets_by_wordcategory</span><span class="p">(</span><span class="n">word_category</span><span class="p">)</span>
+        <span class="n">allsynsets_wordcat</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">synset</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">synset</span> <span class="ow">in</span> <span class="n">allsynsets_wordcat</span><span class="p">])</span>
+        <span class="n">allsynsets_wordcat</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">germanet</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">synset2cumfreq</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">allsynsets_wordcat</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">allsynsets_wordcat</span><span class="p">)</span> <span class="o">*</span> <span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="n">synset2cumfreq</span>
+
+    <span class="k">def</span> <span class="nf">_compute_cum_freq_dic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        For each Synset in the Graph of a certain word category, add its frequency to all of its hypernyms</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">synset_id</span><span class="p">,</span> <span class="n">simple_freq</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">synset2simple_freq</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cumulate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">germanet</span><span class="o">.</span><span class="n">get_synset_by_id</span><span class="p">(</span><span class="n">synset_id</span><span class="p">),</span> <span class="n">simple_freq</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_cumulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synset</span><span class="p">,</span> <span class="n">freq</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        recursive method to add a simple frequency to all hypernyms of a synset</span>
+
+<span class="sd">        :type freq: int</span>
+<span class="sd">        :type synset: Synset</span>
+<span class="sd">        :param synset: the synset to whose direct hypernyms the frequency will be added</span>
+<span class="sd">        :param freq: the frequency</span>
+<span class="sd">        :return: call the method until root is reached</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">hypernyms</span> <span class="o">=</span> <span class="n">synset</span><span class="o">.</span><span class="n">direct_hypernyms</span>
+        <span class="k">if</span> <span class="n">hypernyms</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">hypernym</span> <span class="ow">in</span> <span class="n">hypernyms</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">synset2cumfreq</span><span class="p">[</span><span class="n">hypernym</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">+=</span> <span class="n">freq</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_cumulate</span><span class="p">(</span><span class="n">hypernym</span><span class="p">,</span> <span class="n">freq</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span>
+
+<div class="viewcode-block" id="ICBasedSimilarity.init_min_max_normalization_values"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.init_min_max_normalization_values">[docs]</a>    <span class="k">def</span> <span class="nf">init_min_max_normalization_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synset_pair</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This methods computes the minimal values (two Synsets are equal) and the maximum values (two Synsets are</span>
+<span class="sd">        maximally apart in the graph) for normalization</span>
+
+<span class="sd">        :type synset_pair: tuple(Synset, Synset)</span>
+<span class="sd">        :param synset_pair: The Tuple of synsets that have the maximum distance in the graph</span>
+<span class="sd">        :return: a dictionary containing the (minimum value, maximum value) for each semantic similarity measure.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">min_res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resnik</span><span class="p">(</span><span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">synset_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">max_res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resnik</span><span class="p">(</span><span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">min_lin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lin</span><span class="p">(</span><span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">synset_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">max_lin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lin</span><span class="p">(</span><span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">max_jcn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">jiang_and_conrath</span><span class="p">(</span><span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">norm_values</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">SemRelMeasure</span><span class="o">.</span><span class="n">Resnik</span><span class="p">:</span> <span class="p">(</span><span class="n">min_res</span><span class="p">,</span> <span class="n">max_res</span><span class="p">),</span>
+            <span class="n">SemRelMeasure</span><span class="o">.</span><span class="n">Lin</span><span class="p">:</span> <span class="p">(</span><span class="n">min_lin</span><span class="p">,</span> <span class="n">max_lin</span><span class="p">),</span>
+            <span class="n">SemRelMeasure</span><span class="o">.</span><span class="n">JiangAndConrath</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">max_jcn</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">norm_values</span></div>
+
+<div class="viewcode-block" id="ICBasedSimilarity.init_ic_map"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.init_ic_map">[docs]</a>    <span class="k">def</span> <span class="nf">init_ic_map</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the information content for each synset in GermaNet (of a given word category).</span>
+
+<span class="sd">        :rtype: dict, Synset</span>
+<span class="sd">        :return: A dictionary with a Synset and the corresponding IC, a Synset with the highest IC</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">synset2ic</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">max_ic</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">most_informative_synset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">germanet</span><span class="o">.</span><span class="n">root</span>
+        <span class="k">for</span> <span class="n">synset_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">synset2cumfreq</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">synset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">germanet</span><span class="o">.</span><span class="n">get_synset_by_id</span><span class="p">(</span><span class="n">synset_id</span><span class="p">)</span>
+            <span class="n">ic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_information_content</span><span class="p">(</span><span class="n">synset</span><span class="p">)</span>
+            <span class="n">synset2ic</span><span class="p">[</span><span class="n">synset_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">ic</span>
+            <span class="k">if</span> <span class="n">ic</span> <span class="o">&gt;</span> <span class="n">max_ic</span><span class="p">:</span>
+                <span class="n">max_ic</span> <span class="o">=</span> <span class="n">ic</span>
+                <span class="n">most_informative_synset</span> <span class="o">=</span> <span class="n">synset</span>
+        <span class="k">return</span> <span class="n">synset2ic</span><span class="p">,</span> <span class="n">most_informative_synset</span></div>
+
+<div class="viewcode-block" id="ICBasedSimilarity.get_information_content"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.get_information_content">[docs]</a>    <span class="k">def</span> <span class="nf">get_information_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The information content graduates semantic concepts from general to specific. The more specific a concept, the</span>
+<span class="sd">        smaller the probability and thus the higher its informativeness. The information content of a semantic con-</span>
+<span class="sd">        cept is estimated by the relative frequency of the concept in a large corpus (cumulated synset frequency)</span>
+
+<span class="sd">        :type synset: Synset</span>
+<span class="sd">        :param synset: the information content should be computed for</span>
+<span class="sd">        :return: the information content for the given synset</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">synset</span><span class="o">.</span><span class="n">id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">synset2cumfreq</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="s2">&quot;no frequency information for this synset available&quot;</span>
+        <span class="n">synset_freq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">synset2cumfreq</span><span class="p">[</span><span class="n">synset</span><span class="o">.</span><span class="n">id</span><span class="p">]</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">synset_freq</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_freq</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ICBasedSimilarity.resnik"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.resnik">[docs]</a>    <span class="k">def</span> <span class="nf">resnik</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synset1</span><span class="p">,</span> <span class="n">synset2</span><span class="p">,</span> <span class="n">normalize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">normalized_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Two concepts are more related the more information they share. The shared information of two</span>
+<span class="sd">        concepts can be quantified by the information content of two concepts&#39; lowest common subsumer.</span>
+<span class="sd">        When several LCS are available the highest IC is returned.</span>
+
+<span class="sd">        :type synset2: Synset</span>
+<span class="sd">        :type synset1: Synset</span>
+<span class="sd">        :param synset1: The source synset</span>
+<span class="sd">        :param synset2: The target synset</span>
+<span class="sd">        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that measure and a given upper bound.</span>
+<span class="sd">        :param normalized_max: The upper bound of the range the measure is normalized to.</span>
+<span class="sd">        :return: The information content of the LCS of the two given synsets.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">synset1</span> <span class="o">==</span> <span class="n">synset2</span><span class="p">:</span>
+            <span class="c1"># if the two synsets are the same, resnik is the IC of the synset</span>
+            <span class="n">resnik</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_information_content</span><span class="p">(</span><span class="n">synset1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lcs_list</span> <span class="o">=</span> <span class="n">synset1</span><span class="o">.</span><span class="n">lowest_common_subsumer</span><span class="p">(</span><span class="n">synset2</span><span class="p">)</span>
+            <span class="n">resnik</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">lcs</span> <span class="ow">in</span> <span class="n">lcs_list</span><span class="p">:</span>
+                <span class="n">ic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_information_content</span><span class="p">(</span><span class="n">lcs</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">ic</span> <span class="o">&gt;</span> <span class="n">resnik</span><span class="p">:</span>
+                    <span class="n">resnik</span> <span class="o">=</span> <span class="n">ic</span>
+        <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+            <span class="n">resnik</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">raw_value</span><span class="o">=</span><span class="n">resnik</span><span class="p">,</span> <span class="n">normalized_max</span><span class="o">=</span><span class="n">normalized_max</span><span class="p">,</span>
+                                    <span class="n">semrel_measure</span><span class="o">=</span><span class="n">SemRelMeasure</span><span class="o">.</span><span class="n">Resnik</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">resnik</span></div>
+
+<div class="viewcode-block" id="ICBasedSimilarity.jiang_and_conrath"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.jiang_and_conrath">[docs]</a>    <span class="k">def</span> <span class="nf">jiang_and_conrath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synset1</span><span class="p">,</span> <span class="n">synset2</span><span class="p">,</span> <span class="n">normalize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">normalized_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The Jiang and Conraths measure includes knowledge about the individual information contents of each synset.</span>
+<span class="sd">        The smaller the difference of the information content of the two synsets, the more related they are.</span>
+
+<span class="sd">        :type synset1: Synset</span>
+<span class="sd">        :type synset2: Synset</span>
+<span class="sd">        :param synset1: The source synset</span>
+<span class="sd">        :param synset2: The target synset</span>
+<span class="sd">        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that measure and a given upper bound.</span>
+<span class="sd">        :param normalized_max: The upper bound of the range the measure is normalized to.</span>
+<span class="sd">        :return: The jiang and conrath relatedness measure</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_information_content</span><span class="p">(</span><span class="n">synset1</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_information_content</span><span class="p">(</span><span class="n">synset2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">resnik</span><span class="p">(</span>
+            <span class="n">synset1</span><span class="p">,</span> <span class="n">synset2</span><span class="p">)</span>
+        <span class="n">jcn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">jcnmaxdist</span> <span class="o">-</span> <span class="n">distance</span>
+        <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+            <span class="n">jcn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">raw_value</span><span class="o">=</span><span class="n">jcn</span><span class="p">,</span> <span class="n">normalized_max</span><span class="o">=</span><span class="n">normalized_max</span><span class="p">,</span>
+                                 <span class="n">semrel_measure</span><span class="o">=</span><span class="n">SemRelMeasure</span><span class="o">.</span><span class="n">JiangAndConrath</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">jcn</span></div>
+
+<div class="viewcode-block" id="ICBasedSimilarity.lin"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.lin">[docs]</a>    <span class="k">def</span> <span class="nf">lin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synset1</span><span class="p">,</span> <span class="n">synset2</span><span class="p">,</span> <span class="n">normalize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">normalized_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The lin measure takes the individual information contents of each synset and the information content of the</span>
+<span class="sd">        LCS into account. The LCS with the highest information content is used for the computation.</span>
+
+<span class="sd">        :type synset2: Synset</span>
+<span class="sd">        :type synset1: Synset</span>
+<span class="sd">        :param synset1: The source synset</span>
+<span class="sd">        :param synset2: The target synset</span>
+<span class="sd">        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that measure and a given upper bound.</span>
+<span class="sd">        :param normalized_max: The upper bound of the range the measure is normalized to.</span>
+<span class="sd">        :return: The Lin relatedness measure</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ic_lcs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resnik</span><span class="p">(</span><span class="n">synset1</span><span class="p">,</span> <span class="n">synset2</span><span class="p">)</span>
+        <span class="n">lin</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">ic_lcs</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_information_content</span><span class="p">(</span><span class="n">synset1</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_information_content</span><span class="p">(</span><span class="n">synset2</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+            <span class="n">lin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">raw_value</span><span class="o">=</span><span class="n">lin</span><span class="p">,</span> <span class="n">normalized_max</span><span class="o">=</span><span class="n">normalized_max</span><span class="p">,</span> <span class="n">semrel_measure</span><span class="o">=</span><span class="n">SemRelMeasure</span><span class="o">.</span><span class="n">Lin</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">lin</span></div>
+
+<div class="viewcode-block" id="ICBasedSimilarity.normalize"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.normalize">[docs]</a>    <span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">normalized_max</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">semrel_measure</span><span class="p">:</span> <span class="n">SemRelMeasure</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Normalizes a raw value of semantic relatedness to a value between a lower bound and the given upper bound.</span>
+
+<span class="sd">        :param raw_value: The raw value</span>
+<span class="sd">        :param normalized_max: The upper bound</span>
+<span class="sd">        :param semrel_measure: The semantic relatedness measure, the value corresponds to.</span>
+<span class="sd">        :return: The normalized semantic relatedness value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lower_bound</span><span class="p">,</span> <span class="n">upper_bound</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalization_dic</span><span class="p">[</span><span class="n">semrel_measure</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(((</span><span class="n">raw_value</span> <span class="o">-</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">upper_bound</span> <span class="o">-</span> <span class="n">lower_bound</span><span class="p">))</span> <span class="o">*</span> <span class="n">normalized_max</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">germanet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_germanet</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">root_freq</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_freq</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">synset2cumfreq</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synset2cumfreq</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">jcnmaxdist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_jcnmaxdist</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">normalization_dic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalization_dic</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">synset2ic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synset2ic</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">most_informative_synset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_most_informative_synset</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">synset2simple_freq</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synset2simplefreq</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">germanetpy</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../germanetpy.html">germanetpy package</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Neele Falk.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/Blubberli/germanetpy" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,16 @@
+germanetpy
+==========
+
+.. automodule:: germanetpy
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   

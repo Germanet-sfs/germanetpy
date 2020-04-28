@@ -142,6 +142,7 @@ def add_orth_forms(germanet, lexunit: Lexunit, child_value: str, tag: str):
     """
     Checks which orthform the tag contains, and adds it to the lexunit object. Adds the lexunit id to the
     corresponding dictionary.
+
     :type germanet: Germanet
     :param germanet: The germanet object containing the Orthform variant dictionaries.
     :param lexunit: the Lexunit object the Orthform variant needs to be added to

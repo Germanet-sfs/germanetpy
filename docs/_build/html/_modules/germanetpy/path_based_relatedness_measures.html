@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>germanetpy.path_based_relatedness_measures &#8212; germanetpy 0.2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for germanetpy.path_based_relatedness_measures</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">germanetpy</span> <span class="kn">import</span> <span class="n">longest_shortest_path</span>
+<span class="kn">from</span> <span class="nn">germanetpy.semrel_measures</span> <span class="kn">import</span> <span class="n">SemRelMeasure</span>
+
+
+<div class="viewcode-block" id="PathBasedRelatedness"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness">[docs]</a><span class="k">class</span> <span class="nc">PathBasedRelatedness</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    These measures use the GermaNet Graph to compute the shortest Paths between two concepts. These concepts have to</span>
+<span class="sd">    have the same word category. The path lengths are normalized in different ways (depending on the measure). The path</span>
+<span class="sd">    lengths are computed taking only the hypernymy / hyponymy relations into account</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">germanet</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">max_len</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">synset_pair</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This is the constructor of the PathBasedRelatedness class. The class needs the germanet Graph and a word</span>
+<span class="sd">        category specified. The parameter max_len, max_depth and synset_pair are optional. If not given they will be</span>
+<span class="sd">        computed online which can be time-consuming, especially for nouns.</span>
+
+<span class="sd">        :type synset_pair: tuple(Synset, Synset)</span>
+<span class="sd">        :type category: WordCategory</span>
+<span class="sd">        :type germanet: Germanet</span>
+<span class="sd">        :param germanet: The Germanet Graph</span>
+<span class="sd">        :param category: WordCategory</span>
+<span class="sd">        :param max_len: the longest shortest path distance between any of the corresponding synsets</span>
+<span class="sd">        :param max_depth the maximum depth of any corresponding synset</span>
+<span class="sd">        :param synset_pair a pair of synsets that has the longest shortest path distance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_germanet</span> <span class="o">=</span> <span class="n">germanet</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_category</span> <span class="o">=</span> <span class="n">category</span>
+        <span class="k">if</span> <span class="n">max_len</span> <span class="ow">and</span> <span class="n">max_depth</span> <span class="ow">and</span> <span class="n">synset_pair</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_max_len</span> <span class="o">=</span> <span class="n">max_len</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_max_depth</span> <span class="o">=</span> <span class="n">max_depth</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_max_len</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_depth</span><span class="p">,</span> <span class="n">synset_pair</span> <span class="o">=</span> <span class="n">longest_shortest_path</span><span class="o">.</span><span class="n">get_longest_possible_shortest_distance</span><span class="p">(</span>
+                <span class="n">germanet</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_normalization_dic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_min_max_normalization_values</span><span class="p">(</span><span class="n">synset_pair</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PathBasedRelatedness.simple_path"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.simple_path">[docs]</a>    <span class="k">def</span> <span class="nf">simple_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synset1</span><span class="p">,</span> <span class="n">synset2</span><span class="p">,</span> <span class="n">normalize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">normalized_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This measure computes the pathlength and normalizes it by the longest possible shortest path between any two</span>
+<span class="sd">        nodes of the corresponding word category.</span>
+
+<span class="sd">        :type synset2: Synset</span>
+<span class="sd">        :type synset1: Synset</span>
+<span class="sd">        :param synset1: The source synset</span>
+<span class="sd">        :param synset2: The target synset the source synset is compared to</span>
+<span class="sd">        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that measure and a given upper bound.</span>
+<span class="sd">        :param normalized_max: The upper bound of the range the measure is normalized to.</span>
+<span class="sd">        :return: : The normalized path length between two synsets</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">synset1</span><span class="o">.</span><span class="n">word_category</span> <span class="o">==</span> <span class="n">synset2</span><span class="o">.</span><span class="n">word_category</span><span class="p">,</span> <span class="s2">&quot;only synsets of the same Wordcategory can be &quot;</span> \
+                                                               <span class="s2">&quot;compared&quot;</span>
+        <span class="n">pathlen</span> <span class="o">=</span> <span class="n">synset1</span><span class="o">.</span><span class="n">shortest_path_distance</span><span class="p">(</span><span class="n">synset2</span><span class="p">)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_len</span> <span class="o">-</span> <span class="n">pathlen</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_len</span>
+        <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">raw_value</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">normalized_max</span><span class="o">=</span><span class="n">normalized_max</span><span class="p">,</span>
+                                  <span class="n">semrel_measure</span><span class="o">=</span><span class="n">SemRelMeasure</span><span class="o">.</span><span class="n">SimplePath</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PathBasedRelatedness.init_min_max_normalization_values"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.init_min_max_normalization_values">[docs]</a>    <span class="k">def</span> <span class="nf">init_min_max_normalization_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synset_pair</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This methods computes the minimal values (two synsets are equal) and the maximum values (two synsets are</span>
+<span class="sd">        maximally appart in the graph) for normalization</span>
+
+<span class="sd">        :param synset_pair: (Synset, Synset) The Tuple of synsets that have the maximum distance in the graph</span>
+<span class="sd">        :return: a dictionary [SemRelMeasure : (int, int)] containing the (minimum value, maximum value) for each semantic similarity measure.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">min_wup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wu_and_palmer</span><span class="p">(</span><span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">synset_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">max_wup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wu_and_palmer</span><span class="p">(</span><span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">min_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">simple_path</span><span class="p">(</span><span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">synset_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">max_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">simple_path</span><span class="p">(</span><span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">min_lch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">leacock_chodorow</span><span class="p">(</span><span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">synset_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">max_lch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">leacock_chodorow</span><span class="p">(</span><span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">synset_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">norm_values</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">SemRelMeasure</span><span class="o">.</span><span class="n">SimplePath</span><span class="p">:</span> <span class="p">(</span><span class="n">min_path</span><span class="p">,</span> <span class="n">max_path</span><span class="p">),</span>
+            <span class="n">SemRelMeasure</span><span class="o">.</span><span class="n">WuAndPalmer</span><span class="p">:</span> <span class="p">(</span><span class="n">min_wup</span><span class="p">,</span> <span class="n">max_wup</span><span class="p">),</span>
+            <span class="n">SemRelMeasure</span><span class="o">.</span><span class="n">LeacockAndChodorow</span><span class="p">:</span> <span class="p">(</span><span class="n">min_lch</span><span class="p">,</span> <span class="n">max_lch</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">norm_values</span></div>
+
+<div class="viewcode-block" id="PathBasedRelatedness.wu_and_palmer"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.wu_and_palmer">[docs]</a>    <span class="k">def</span> <span class="nf">wu_and_palmer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synset1</span><span class="p">,</span> <span class="n">synset2</span><span class="p">,</span> <span class="n">normalize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">normalized_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This methods computes the semantic relatedness by taking the path length into account, normalizing by taking</span>
+<span class="sd">        the depth of the LCS. If there are several possible LCS, the one with the largest depth is taken into account.</span>
+
+<span class="sd">        :type synset2: Synset</span>
+<span class="sd">        :type synset1: Synset</span>
+<span class="sd">        :param synset1: The source synset</span>
+<span class="sd">        :param synset2: The target synset the source synset is compared to</span>
+<span class="sd">        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that measure and a given upper bound.</span>
+<span class="sd">        :param normalized_max: The upper bound of the range the measure is normalized to.</span>
+<span class="sd">        :return: The wu and palmer relatedness measure</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">synset1</span><span class="o">.</span><span class="n">word_category</span> <span class="o">==</span> <span class="n">synset2</span><span class="o">.</span><span class="n">word_category</span><span class="p">,</span> <span class="s2">&quot;only synsets of the same Wordcategory can be &quot;</span> \
+                                                               <span class="s2">&quot;compared&quot;</span>
+        <span class="n">root_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">germanet</span><span class="o">.</span><span class="n">root</span>
+        <span class="n">lcs_nodes</span> <span class="o">=</span> <span class="n">synset1</span><span class="o">.</span><span class="n">lowest_common_subsumer</span><span class="p">(</span><span class="n">synset2</span><span class="p">)</span>
+        <span class="n">depth</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">lcs_nodes</span><span class="p">:</span>
+            <span class="n">current_depth</span> <span class="o">=</span> <span class="n">n</span><span class="o">.</span><span class="n">shortest_path_distance</span><span class="p">(</span><span class="n">root_node</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">current_depth</span> <span class="o">&gt;</span> <span class="n">depth</span><span class="p">:</span>
+                <span class="n">depth</span> <span class="o">=</span> <span class="n">current_depth</span>
+        <span class="n">pathlen</span> <span class="o">=</span> <span class="n">synset2</span><span class="o">.</span><span class="n">shortest_path_distance</span><span class="p">(</span><span class="n">synset1</span><span class="p">)</span>
+        <span class="n">wup</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">depth</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">pathlen</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">depth</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+            <span class="n">wup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">raw_value</span><span class="o">=</span><span class="n">wup</span><span class="p">,</span> <span class="n">normalized_max</span><span class="o">=</span><span class="n">normalized_max</span><span class="p">,</span> <span class="n">semrel_measure</span><span class="o">=</span><span class="n">SemRelMeasure</span><span class="o">.</span><span class="n">WuAndPalmer</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">wup</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PathBasedRelatedness.leacock_chodorow"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.leacock_chodorow">[docs]</a>    <span class="k">def</span> <span class="nf">leacock_chodorow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synset1</span><span class="p">,</span> <span class="n">synset2</span><span class="p">,</span> <span class="n">normalize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">normalized_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method implements the leackock and chodorow relatedness measure. For the path distance and depth,</span>
+<span class="sd">        node count is used.</span>
+
+<span class="sd">        :type synset2: Synset</span>
+<span class="sd">        :type synset1: Synset</span>
+<span class="sd">        :param synset1: The source synset</span>
+<span class="sd">        :param synset2: The target synset the source synset is compared to</span>
+<span class="sd">        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that measure and a given upper bound.</span>
+<span class="sd">        :param normalized_max: The upper bound of the range the measure is normalized to.</span>
+<span class="sd">        :return:: The leackock and chodorow relatedness measure</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">synset1</span><span class="o">.</span><span class="n">word_category</span> <span class="o">==</span> <span class="n">synset2</span><span class="o">.</span><span class="n">word_category</span><span class="p">,</span> <span class="s2">&quot;only synsets of the same Wordcategory can be &quot;</span> \
+                                                               <span class="s2">&quot;compared&quot;</span>
+        <span class="n">pathlen</span> <span class="o">=</span> <span class="n">synset1</span><span class="o">.</span><span class="n">shortest_path_distance</span><span class="p">(</span><span class="n">synset2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">lch_sim</span> <span class="o">=</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">pathlen</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+            <span class="n">lch_sim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">raw_value</span><span class="o">=</span><span class="n">lch_sim</span><span class="p">,</span> <span class="n">normalized_max</span><span class="o">=</span><span class="n">normalized_max</span><span class="p">,</span>
+                                     <span class="n">semrel_measure</span><span class="o">=</span><span class="n">SemRelMeasure</span><span class="o">.</span><span class="n">LeacockAndChodorow</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">lch_sim</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PathBasedRelatedness.normalize"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.normalize">[docs]</a>    <span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">normalized_max</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">semrel_measure</span><span class="p">:</span> <span class="n">SemRelMeasure</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Normalizes a raw value of semantic relatedness to a value between a lower bound and the given upper bound.</span>
+
+<span class="sd">        :param raw_value: The raw value</span>
+<span class="sd">        :param normalized_max: The upper bound</span>
+<span class="sd">        :param semrel_measure: The semantic relatedness measure, the value corresponds to.</span>
+<span class="sd">        :return: The normalized semantic relatedness value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lower_bound</span><span class="p">,</span> <span class="n">upper_bound</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalization_dic</span><span class="p">[</span><span class="n">semrel_measure</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(((</span><span class="n">raw_value</span> <span class="o">-</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">upper_bound</span> <span class="o">-</span> <span class="n">lower_bound</span><span class="p">))</span> <span class="o">*</span> <span class="n">normalized_max</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">germanet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_germanet</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">max_len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_len</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">max_depth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_depth</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">category</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_category</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">normalization_dic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalization_dic</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">germanetpy</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../germanetpy.html">germanetpy package</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Neele Falk.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/Blubberli/germanetpy" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

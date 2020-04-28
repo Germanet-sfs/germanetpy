@@ -16,6 +16,7 @@ class PathBasedRelatedness:
         This is the constructor of the PathBasedRelatedness class. The class needs the germanet Graph and a word
         category specified. The parameter max_len, max_depth and synset_pair are optional. If not given they will be
         computed online which can be time-consuming, especially for nouns.
+
         :type synset_pair: tuple(Synset, Synset)
         :type category: WordCategory
         :type germanet: Germanet
@@ -39,13 +40,12 @@ class PathBasedRelatedness:
         """
         This measure computes the pathlength and normalizes it by the longest possible shortest path between any two
         nodes of the corresponding word category.
+
         :type synset2: Synset
         :type synset1: Synset
         :param synset1: The source synset
         :param synset2: The target synset the source synset is compared to
-        :param normalize: The relatedness value can be normalized to a number between the possible minimum of 
-        that
-        measure and a given upper bound.
+        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that measure and a given upper bound.
         :param normalized_max: The upper bound of the range the measure is normalized to.
         :return: : The normalized path length between two synsets
         """
@@ -62,9 +62,9 @@ class PathBasedRelatedness:
         """
         This methods computes the minimal values (two synsets are equal) and the maximum values (two synsets are
         maximally appart in the graph) for normalization
+
         :param synset_pair: (Synset, Synset) The Tuple of synsets that have the maximum distance in the graph
-        :return: a dictionary [SemRelMeasure : (int, int)] containing the (minimum value, maximum value) for each
-        semantic similarity measure.
+        :return: a dictionary [SemRelMeasure : (int, int)] containing the (minimum value, maximum value) for each semantic similarity measure.
         """
         min_wup = self.wu_and_palmer(synset_pair[0], synset_pair[1])
         max_wup = self.wu_and_palmer(synset_pair[0], synset_pair[0])
@@ -83,14 +83,14 @@ class PathBasedRelatedness:
         """
         This methods computes the semantic relatedness by taking the path length into account, normalizing by taking
         the depth of the LCS. If there are several possible LCS, the one with the largest depth is taken into account.
+
         :type synset2: Synset
         :type synset1: Synset
         :param synset1: The source synset
         :param synset2: The target synset the source synset is compared to
-        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that
-        measure and a given upper bound.
+        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that measure and a given upper bound.
         :param normalized_max: The upper bound of the range the measure is normalized to.
-        :return: : The wu and palmer relatedness measure
+        :return: The wu and palmer relatedness measure
         """
         assert synset1.word_category == synset2.word_category, "only synsets of the same Wordcategory can be " \
                                                                "compared"
@@ -111,12 +111,12 @@ class PathBasedRelatedness:
         """
         This method implements the leackock and chodorow relatedness measure. For the path distance and depth,
         node count is used.
+
         :type synset2: Synset
         :type synset1: Synset
         :param synset1: The source synset
         :param synset2: The target synset the source synset is compared to
-        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that
-        measure and a given upper bound.
+        :param normalize: The relatedness value can be normalized to a number between the possible minimum of that measure and a given upper bound.
         :param normalized_max: The upper bound of the range the measure is normalized to.
         :return:: The leackock and chodorow relatedness measure
         """
@@ -132,6 +132,7 @@ class PathBasedRelatedness:
     def normalize(self, raw_value: float, normalized_max: float, semrel_measure: SemRelMeasure) -> float:
         """
         Normalizes a raw value of semantic relatedness to a value between a lower bound and the given upper bound.
+
         :param raw_value: The raw value
         :param normalized_max: The upper bound
         :param semrel_measure: The semantic relatedness measure, the value corresponds to.

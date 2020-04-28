@@ -40,6 +40,7 @@ class CompoundInfo:
         a noun,
         a verb or an adjective. Sometimes the modifier can be derived from different words, for example:
         Laufband - modifier: laufen or Lauf. This class stores both possibilities as modifier1 and modifier2.
+
         :type headproperty: String
         :type modifier2category: WordCategory
         :type modifier2property: String

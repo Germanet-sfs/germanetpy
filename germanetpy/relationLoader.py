@@ -12,11 +12,10 @@ CON_REL = 'con_rel'
 
 def get_relation_attributes(attributes) -> (str, str, str, str):
     """
+
     :type attributes: XML attribute
     :param attributes: The XML attributes the information can be extracted from
-    :return: The information as Strings or None if the information is not present. The name of the relation,
-    the id of the start node, the id of the end node, the type of direction and if
-    the relation is inverse
+    :return: The information as Strings or None if the information is not present. The name of the relation,the id of the start node, the id of the end node, the type of direction and if the relation is inverse
     """
     relation = attributes[NAME]
     from_node = attributes[FROM_NODE]
@@ -29,6 +28,7 @@ def get_relation_attributes(attributes) -> (str, str, str, str):
 def load_relations(germanet, tree):
     """
     Loads the information about the related synsets ans lexunits from the data and adds the edges between the objects.
+
     :type tree: Element Tree
     :type germanet: Germanet
     :param germanet: The Germanet object that is populated with Synsets and Lexunits
