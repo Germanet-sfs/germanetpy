@@ -15,6 +15,8 @@ Get the GermaNet data as XML files and put all files in a data directory. When y
 
 ## How to use
 
+You can read the documentation [here](https://germanetpy.readthedocs.io/en/latest/)
+
 The API provides functionality that can be used to load the data from GermaNet and query it. The data has to be retrieved
 via a license agreement from the University of Tübingen, Seminar für Sprachwissenschaften:
 
