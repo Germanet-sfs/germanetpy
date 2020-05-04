@@ -4,27 +4,27 @@ from tqdm import trange
 from germanetpy.utils import parse_xml
 from germanetpy.synsetLoader import load_lexunits
 from germanetpy.iliLoader import load_ili
-from germanetpy.wictionaryLoader import load_wiktionary
+from germanetpy.wiktionaryLoader import load_wiktionary
 from germanetpy.relationLoader import load_relations
 from germanetpy.frames import Frames
 
 
 class Germanet:
 
-    def __init__(self, datadir: str, add_ilirecords: bool = True, add_wictionary: bool = True):
+    def __init__(self, datadir: str, add_ilirecords: bool = True, add_wiktionary: bool = True):
         """
         The GermaNet object is initialized with the directory where the GermaNet data is stored. The data is loaded
         when GermaNet is initialized.
 
         :param datadir: The path to the directory where the GermaNet data is stored
-        :param addiliRecords: a boolean, denotes whether the iliRecords should also be loaded into the GermaNet
+        :param add_ilirecords: a boolean, denotes whether the iliRecords should also be loaded into the GermaNet
         object, default: True
-        :param addWictionary: a boolean, denotes whether the wictionary files should also be loaded into the GermaNet
+        :param add_wiktionary: a boolean, denotes whether the wiktionary files should also be loaded into the GermaNet
         object, default: True
         """
         self._datadir = datadir
         self._add_ilirecords = add_ilirecords
-        self._add_wictionary = add_wictionary
+        self._add_wictionary = add_wiktionary
 
         # Dictionary: lexunit id - lexunit object
         self._lexunits = {}

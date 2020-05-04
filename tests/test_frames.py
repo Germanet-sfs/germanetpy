@@ -22,7 +22,7 @@ except IOError:
 
 def test_accusative_complements():
     """Test whether "sehen" is in the list of verbs that can take accusative complements"""
-    acc_complements = germanet_data.frames.extract_accusative_complemtent()
+    acc_complements = germanet_data.frames.extract_accusative_complement()
     sehen = germanet_data.get_lexunit_by_id('l82290')
     np.testing.assert_equal(sehen in acc_complements, True)
 

@@ -1,4 +1,4 @@
-from germanetpy.wictionaryparaphrase import WiktionaryParaphrase
+from germanetpy.wiktionaryparaphrase import WiktionaryParaphrase
 from germanetpy.utils import convert_to_boolean
 
 LEXID = 'lexUnitId'

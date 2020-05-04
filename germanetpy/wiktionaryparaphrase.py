@@ -19,7 +19,7 @@ class WiktionaryParaphrase:
         self._edited = edited
 
     def __repr__(self):
-        return f'Wictionary(LexUnit ID={self.lexunit_id}, definition={self.wiktionary_sense})'
+        return f'Wiktionary(LexUnit ID={self.lexunit_id}, definition={self.wiktionary_sense})'
 
     @property
     def lexunit_id(self):

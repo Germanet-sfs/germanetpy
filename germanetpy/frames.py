@@ -36,7 +36,7 @@ class Frames:
         """
         return self.extract_specific_complements(self.EXPLETIVE)
 
-    def extract_accusative_complemtent(self) -> set:
+    def extract_accusative_complement(self) -> set:
         """
         This method returns all verbs that can take an accusative complement. Example: "Sie sieht [ihn]"
 
