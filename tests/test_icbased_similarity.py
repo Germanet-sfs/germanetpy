@@ -9,7 +9,7 @@ from germanetpy.icbased_similarity import ICBasedSimilarity
 from germanetpy.synset import WordCategory
 
 logger = logging.getLogger('logging_test_semrel')
-d = str(Path(__file__).parent.parent) + "/data"
+d = "/Users/bcmpbell/Documents/GN_V160_XML"
 frequency_list_nouns = str(Path(__file__).parent.parent) + "/data/noun_freqs_decow14_16.txt"
 frequency_list_verbs = str(Path(__file__).parent.parent) + "/data/verb_freqs_decow14_16.txt"
 frequency_list_adj = str(Path(__file__).parent.parent) + "/data/adj_freqs_decow14_16.txt"
