@@ -44,18 +44,18 @@ normalized_resnik_verbs = [
 
 raw_resnik_nouns = [
     ('s45380', 's45380', 5.182048317402752),
-    ('s46047', 's45380', 2.566160381806867),
-    ('s46650', 's46683', 2.566160381806867),
-    ('s46683', 's46650', 2.566160381806867),
+    ('s46047', 's45380', 2.563204597354734),
+    ('s46650', 's46683', 2.563204597354734),
+    ('s46683', 's46650', 2.563204597354734),
     ('s49774', 's83979', 0.0),
     ('s83979', 's83979', 6.364967952571943)
 ]
 
 normalized_resnik_nouns = [
-    ('s46047', 's45380', 10, 2.605),
+    ('s46047', 's45380', 10, 2.602),
     ('s46047', 's46047', 10, 5.512),
-    ('s46650', 's46683', 10, 2.605),
-    ('s46683', 's46650', 10, 2.605),
+    ('s46650', 's46683', 10, 2.602),
+    ('s46683', 's46650', 10, 2.602),
     ('s49774', 's49774', 10, 10.0),
     ('s49774', 's83979', 10, 0.0),
 
@@ -93,10 +93,10 @@ raw_lin_nouns = [
 ]
 
 normalized_lin_nouns = [
-    ('s46047', 's45380', 10, 4.834),
+    ('s46047', 's45380', 10, 4.831),
     ('s46047', 's46047', 10, 10.0),
-    ('s46650', 's46683', 10, 5.191),
-    ('s46683', 's46650', 10, 5.191),
+    ('s46650', 's46683', 10, 5.188),
+    ('s46683', 's46650', 10, 5.188),
     ('s49774', 's49774', 10, 10.0),
     ('s49774', 's83979', 10, 0.0),
 
@@ -116,7 +116,7 @@ normalized_lin_adj = [
 
 raw_jcn_verbs = [
     ('s58565', 's58578', 14.734),
-    ('s57835', 's57328', 15.434),
+    ('s57835', 's57328', 15.436),
     ('s57534', 's57534', 19.923)
 ]
 
@@ -126,19 +126,19 @@ normalized_jcn_verbs = [
 ]
 
 raw_jcn_nouns = [
-    ('s45380', 's45380', 19.706),
-    ('s46047', 's45380', 14.224),
-    ('s46650', 's46683', 14.954),
-    ('s46683', 's46650', 14.954),
+    ('s45380', 's45380', 19.703),
+    ('s46047', 's45380', 14.218),
+    ('s46650', 's46683', 14.948),
+    ('s46683', 's46650', 14.948),
     ('s49774', 's83979', 3.487),
-    ('s83979', 's83979', 19.706)
+    ('s83979', 's83979', 19.703)
 ]
 
 normalized_jcn_nouns = [
     ('s46047', 's45380', 10, 7.217),
     ('s46047', 's46047', 10, 10.0),
-    ('s46650', 's46683', 10, 7.589),
-    ('s46683', 's46650', 10, 7.589),
+    ('s46650', 's46683', 10, 7.587),
+    ('s46683', 's46650', 10, 7.587),
     ('s49774', 's49774', 10, 10.0),
     ('s49774', 's83979', 10, 1.77),
 
@@ -157,9 +157,9 @@ normalized_jcn_adj = [
 
 def test_cumfreq():
     """Test whether the total frequency of the Graph corresponds to the number of the current release"""
-    np.testing.assert_equal(relatedness_verbs.root_freq, 9158628383)
-    np.testing.assert_equal(relatedness_nouns.root_freq, 7126819575)
-    np.testing.assert_equal(relatedness_adj.root_freq, 2112101292)
+    np.testing.assert_equal(relatedness_verbs.root_freq, 9159685155)
+    np.testing.assert_equal(relatedness_nouns.root_freq, 7102095442)
+    np.testing.assert_equal(relatedness_adj.root_freq, 2112150587)
 
 
 # resnik measure #
@@ -170,7 +170,7 @@ def test_raw_resnik_verbs(id1, id2, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_verbs.resnik(synset1, synset2)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,max,similarity', normalized_resnik_verbs)
@@ -179,7 +179,7 @@ def test_normalized_resnik_verbs(id1, id2, max, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_verbs.resnik(synset1, synset2, normalized_max=max, normalize=True)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,similarity', raw_resnik_nouns)
@@ -188,7 +188,7 @@ def test_raw_resnik_nouns(id1, id2, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_nouns.resnik(synset1, synset2)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,max,similarity', normalized_resnik_nouns)
@@ -197,7 +197,7 @@ def test_normalized_resnik_nouns(id1, id2, max, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_nouns.resnik(synset1, synset2, normalized_max=max, normalize=True)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,similarity', raw_resnik_adj)
@@ -206,7 +206,7 @@ def test_raw_resnik_adj(id1, id2, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_adj.resnik(synset1, synset2)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,max,similarity', normalized_resnik_adj)
@@ -215,7 +215,7 @@ def test_normalized_resnik_adj(id1, id2, max, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_adj.resnik(synset1, synset2, normalized_max=max, normalize=True)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 # lin measure #
@@ -226,7 +226,7 @@ def test_raw_lin_verbs(id1, id2, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_verbs.lin(synset1, synset2)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,max,similarity', normalized_lin_verbs)
@@ -235,7 +235,7 @@ def test_normalized_lin_verbs(id1, id2, max, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_verbs.lin(synset1, synset2, normalized_max=max, normalize=True)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,similarity', raw_lin_nouns)
@@ -244,7 +244,7 @@ def test_raw_lin_nouns(id1, id2, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_nouns.lin(synset1, synset2)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,max,similarity', normalized_lin_nouns)
@@ -253,7 +253,7 @@ def test_normalized_lin_nouns(id1, id2, max, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_nouns.lin(synset1, synset2, normalized_max=max, normalize=True)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,similarity', raw_lin_adj)
@@ -262,7 +262,7 @@ def test_raw_lin_adj(id1, id2, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_adj.lin(synset1, synset2)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,max,similarity', normalized_lin_adj)
@@ -271,7 +271,7 @@ def test_normalized_lin_adj(id1, id2, max, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_adj.lin(synset1, synset2, normalized_max=max, normalize=True)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 # jiang and conrath measure #
@@ -282,7 +282,7 @@ def test_raw_jcn_verbs(id1, id2, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_verbs.jiang_and_conrath(synset1, synset2)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,max,similarity', normalized_jcn_verbs)
@@ -291,7 +291,7 @@ def test_normalized_jcn_verbs(id1, id2, max, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_verbs.jiang_and_conrath(synset1, synset2, normalized_max=max, normalize=True)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,similarity', raw_jcn_nouns)
@@ -300,7 +300,7 @@ def test_raw_jcn_nouns(id1, id2, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_nouns.jiang_and_conrath(synset1, synset2)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,max,similarity', normalized_jcn_nouns)
@@ -309,7 +309,7 @@ def test_normalized_jcn_nouns(id1, id2, max, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_nouns.jiang_and_conrath(synset1, synset2, normalized_max=max, normalize=True)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,similarity', raw_jcn_adj)
@@ -318,7 +318,7 @@ def test_raw_jcn_adj(id1, id2, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_adj.jiang_and_conrath(synset1, synset2)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,max,similarity', normalized_jcn_adj)
@@ -327,4 +327,4 @@ def test_normalized_jcn_adj(id1, id2, max, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_adj.jiang_and_conrath(synset1, synset2, normalized_max=max, normalize=True)
-    np.testing.assert_array_almost_equal(dist, similarity, decimal=3)
+    np.testing.assert_array_almost_equal(dist, similarity, decimal=2)

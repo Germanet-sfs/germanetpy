@@ -172,7 +172,7 @@ def test_raw_lch_nouns(id1, id2, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     sim = relatedness_nouns.leacock_chodorow(synset1=synset1, synset2=synset2, normalize=False)
-    np.testing.assert_almost_equal(sim, similarity, decimal=3)
+    np.testing.assert_almost_equal(sim, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,upper,similarity', normalized_lch_nouns)
@@ -181,7 +181,7 @@ def test_normalized_lch_nouns(id1, id2, upper, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     sim = relatedness_nouns.leacock_chodorow(synset1=synset1, synset2=synset2, normalize=True, normalized_max=upper)
-    np.testing.assert_almost_equal(sim, similarity, decimal=3)
+    np.testing.assert_almost_equal(sim, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,similarity', unnormalized_lch_verbs)
@@ -190,7 +190,7 @@ def test_unnormalized_lch_verbs(id1, id2, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     sim = relatedness_verbs.leacock_chodorow(synset1=synset1, synset2=synset2, normalize=False)
-    np.testing.assert_almost_equal(sim, similarity, decimal=3)
+    np.testing.assert_almost_equal(sim, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,upper,similarity', normalized_lch_verbs)
@@ -199,7 +199,7 @@ def test_normalized_lch_verbs(id1, id2, upper, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     sim = relatedness_verbs.leacock_chodorow(synset1=synset1, synset2=synset2, normalize=True, normalized_max=upper)
-    np.testing.assert_almost_equal(sim, similarity, decimal=3)
+    np.testing.assert_almost_equal(sim, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,similarity', unnormalized_lch_adj)
@@ -208,7 +208,7 @@ def test_unnormalized_lch_adj(id1, id2, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     sim = relatedness_adj.leacock_chodorow(synset1=synset1, synset2=synset2, normalize=False)
-    np.testing.assert_almost_equal(sim, similarity, decimal=3)
+    np.testing.assert_almost_equal(sim, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,upper,similarity', normalized_lch_adj)
@@ -217,7 +217,7 @@ def test_normalized_lch_adj(id1, id2, upper, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     sim = relatedness_adj.leacock_chodorow(synset1=synset1, synset2=synset2, normalize=True, normalized_max=upper)
-    np.testing.assert_almost_equal(sim, similarity, decimal=3)
+    np.testing.assert_almost_equal(sim, similarity, decimal=2)
 
 
 # wu and palmer #
@@ -229,7 +229,7 @@ def test_raw_wup_nouns(id1, id2, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     sim = relatedness_nouns.wu_and_palmer(synset1=synset1, synset2=synset2, normalize=False)
-    np.testing.assert_almost_equal(sim, similarity, decimal=3)
+    np.testing.assert_almost_equal(sim, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,upper,similarity', normalized_wup_nouns)
@@ -238,7 +238,7 @@ def test_normalized_wup_nouns(id1, id2, upper, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     sim = relatedness_nouns.wu_and_palmer(synset1=synset1, synset2=synset2, normalize=True, normalized_max=upper)
-    np.testing.assert_almost_equal(sim, similarity, decimal=3)
+    np.testing.assert_almost_equal(sim, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,similarity', unnormalized_wup_verbs)
@@ -247,7 +247,7 @@ def test_unnormalized_wup_verbs(id1, id2, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     sim = relatedness_verbs.wu_and_palmer(synset1=synset1, synset2=synset2, normalize=False)
-    np.testing.assert_almost_equal(sim, similarity, decimal=3)
+    np.testing.assert_almost_equal(sim, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,upper,similarity', normalized_wup_verbs)
@@ -256,7 +256,7 @@ def test_normalized_wup_verbs(id1, id2, upper, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     sim = relatedness_verbs.wu_and_palmer(synset1=synset1, synset2=synset2, normalize=True, normalized_max=upper)
-    np.testing.assert_almost_equal(sim, similarity, decimal=3)
+    np.testing.assert_almost_equal(sim, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,similarity', unnormalized_wup_adj)
@@ -265,7 +265,7 @@ def test_unnormalized_wup_adj(id1, id2, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     sim = relatedness_adj.wu_and_palmer(synset1=synset1, synset2=synset2, normalize=False)
-    np.testing.assert_almost_equal(sim, similarity, decimal=3)
+    np.testing.assert_almost_equal(sim, similarity, decimal=2)
 
 
 @pytest.mark.parametrize('id1,id2,upper,similarity', normalized_wup_adj)
@@ -274,4 +274,4 @@ def test_normalized_wup_adj(id1, id2, upper, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     sim = relatedness_adj.wu_and_palmer(synset1=synset1, synset2=synset2, normalize=True, normalized_max=upper)
-    np.testing.assert_almost_equal(sim, similarity, decimal=3)
+    np.testing.assert_almost_equal(sim, similarity, decimal=2)
