@@ -10,7 +10,7 @@ from germanetpy.lexunit import OrthFormVariant
 from germanetpy.synset import WordCategory, WordClass
 
 logger = logging.getLogger('logging_test_filter')
-d = "/Users/bcmpbell/Documents/GN_V160_XML"
+d = str(Path(__file__).parent.parent) + "/data"
 try:
     germanet_data = Germanet(d)
 except ET.ParseError:

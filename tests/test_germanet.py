@@ -6,7 +6,7 @@ import numpy as np
 from pathlib import Path
 
 logger = logging.getLogger('logging_test_germanet')
-d = "/Users/bcmpbell/Documents/GN_V160_XML"
+d = str(Path(__file__).parent.parent) + "/data"
 try:
     germanet_data = Germanet(d)
 except ET.ParseError:

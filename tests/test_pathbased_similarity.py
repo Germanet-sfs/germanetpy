@@ -9,7 +9,7 @@ from germanetpy.path_based_relatedness_measures import PathBasedRelatedness
 from germanetpy.synset import WordCategory
 
 logger = logging.getLogger('logging_test_semrel')
-d = "/Users/bcmpbell/Documents/GN_V160_XML"
+d = str(Path(__file__).parent.parent) + "/data"
 try:
     germanet_data = Germanet(d)
     johannis_wurm = germanet_data.get_synset_by_id("s49774")
