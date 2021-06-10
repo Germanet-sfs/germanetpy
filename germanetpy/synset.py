@@ -274,8 +274,8 @@ class Synset:
         length_array = []
         for path1 in self.hypernym_paths():
             length_array.append(len(path1))
-        shortestIndex = length_array.index(min(length_array))
-        return paths[shortestIndex]
+        shortest_index = length_array.index(min(length_array))
+        return paths[shortest_index]
 
     def common_hypernyms(self, other) -> set:
         """
