@@ -158,8 +158,8 @@ normalized_jcn_adj = [
 def test_cumfreq():
     """Test whether the total frequency of the Graph corresponds to the number of the current release"""
     np.testing.assert_equal(relatedness_verbs.root_freq, 9159685155)
-    np.testing.assert_equal(relatedness_nouns.root_freq, 7102095442)
-    np.testing.assert_equal(relatedness_adj.root_freq, 2112150587)
+    np.testing.assert_equal(relatedness_nouns.root_freq, 7106756386)
+    np.testing.assert_equal(relatedness_adj.root_freq, 2112153983)
 
 
 # resnik measure #
