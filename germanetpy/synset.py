@@ -270,8 +270,12 @@ class Synset:
         :return: [list(Synset)] shortest path to the root node.
         """
         paths = self.hypernym_paths()
-        shortest = paths.index(min([len(path) for path in paths]))
-        return paths[shortest]
+        print(paths)
+        length_array = []
+        for path1 in self.hypernym_paths():
+            length_array.append(len(path1))
+        shortest_index = length_array.index(min(length_array))
+        return paths[shortest_index]
 
     def common_hypernyms(self, other) -> set:
         """
