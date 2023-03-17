@@ -141,6 +141,23 @@ class Lexunit:
             return self.orthvar
         else:
             return self.orthform
+            
+    def get_synonyms(self):
+    	synonyms = []
+    	for relation, lexunits in self.relations.items():
+    		if (relation == LexRel.has_synonym):
+    			return lexunits
+    			
+    def get_related_lexunits(self, lexrel_type, direction='outgoing'):
+    	if (direction == 'outgoing'):
+    		for relation, lexunits in self.relations.items():
+    			if (relation == lexrel_type):
+    				return lexunits
+    	elif (direction == 'incoming'):
+    		for relation, lexunits in self.incoming_relations.items():
+    			if (relation == lexrel_type):
+    				return lexunits
+    	
 
     def __repr__(self):
         return f'Lexunit(id={self._id}, orthform={self._orthform}, synset_id={self._synset.id})'

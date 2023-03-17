@@ -200,6 +200,16 @@ class Synset:
         :return: The number of lexical units, contained in that synset
         """
         return len(self._lexunits)
+        
+    def get_related_synsets(self, conrel_type, direction='outgoing'):
+    	if (direction == 'outgoing'):
+    		for relation, synsets in self.relations.items():
+    			if (relation == conrel_type):
+    				return synsets
+    	elif (direction == 'incoming'):
+    		for relation, synsets in self.incoming_relations.items():
+    			if (relation == conrel_type):
+    				return synsets
 
     def hypernym_paths(self) -> list:
         """
