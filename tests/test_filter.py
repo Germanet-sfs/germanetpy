@@ -96,7 +96,7 @@ differentOrthCat_syn = [
 differentRegex_syn = [
     (".*en.*brot.*", True, ['s39184', 's39185', 's39189', 's39193', 's39196', 's39962', 's40274', 's40282', 's44982',
                             's71879', 's117435', 's118466', 's132900', 's146785', 's146808', 's146806', 's143623',
-                            's146861', 's150543', 's155998', 's159828', 's160534', 's164927'], [WordCategory.nomen], []),
+                            's146861', 's150543', 's155998', 's159828', 's160534', 's164927', 's168808'], [WordCategory.nomen], []),
     (".*en.*brot.*", True, ['s44982', 's71879'], [WordCategory.nomen], [WordClass.Pflanze]),
     ("Musik.*f{2,}.*", True, ['s7064', 's115983', 's126175', 's137462'], [WordCategory.nomen], []),
     ("Musi.*k{2,}.*n{2,}.*", True, ['s135050'], [WordCategory.nomen], []),
