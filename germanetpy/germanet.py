@@ -190,7 +190,7 @@ class Germanet:
         tree = parse_xml(self.datadir, "gn_relations.xml")
         load_relations(germanet=self, tree=tree)
         pbar.close()
-        pbar = trange(100, desc='Load Wictionary data...', leave=True)
+        pbar = trange(100, desc='Load Wiktionary data...', leave=True)
         if self.add_wictionary:
             for i in range(len(wikifiles)):
                 tree = parse_xml(self.datadir, wikifiles[i])

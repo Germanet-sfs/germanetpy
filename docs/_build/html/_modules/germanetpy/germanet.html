@@ -52,7 +52,7 @@
 <span class="sd">        :param datadir: The path to the directory where the GermaNet data is stored</span>
 <span class="sd">        :param addiliRecords: a boolean, denotes whether the iliRecords should also be loaded into the GermaNet</span>
 <span class="sd">        object, default: True</span>
-<span class="sd">        :param addWictionary: a boolean, denotes whether the wictionary files should also be loaded into the GermaNet</span>
+<span class="sd">        :param addWiktionary: a boolean, denotes whether the wictionary files should also be loaded into the GermaNet</span>
 <span class="sd">        object, default: True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_datadir</span> <span class="o">=</span> <span class="n">datadir</span>
@@ -223,7 +223,7 @@
         <span class="n">tree</span> <span class="o">=</span> <span class="n">parse_xml</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datadir</span><span class="p">,</span> <span class="s2">&quot;gn_relations.xml&quot;</span><span class="p">)</span>
         <span class="n">load_relations</span><span class="p">(</span><span class="n">germanet</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="o">=</span><span class="n">tree</span><span class="p">)</span>
         <span class="n">pbar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="n">pbar</span> <span class="o">=</span> <span class="n">trange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Load Wictionary data...&#39;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">pbar</span> <span class="o">=</span> <span class="n">trange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Load Wiktionary data...&#39;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_wictionary</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wikifiles</span><span class="p">)):</span>
                 <span class="n">tree</span> <span class="o">=</span> <span class="n">parse_xml</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datadir</span><span class="p">,</span> <span class="n">wikifiles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>

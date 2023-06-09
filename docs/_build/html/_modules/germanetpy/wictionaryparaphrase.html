@@ -36,7 +36,7 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lexunit_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">wiktionary_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">wiktionary_sense_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">wiktionary_sense</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
                  <span class="n">edited</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        This class holds the Wictionary paraphrase object. A wictionary paraphrase can be part of lexical units. The</span>
+<span class="sd">        This class holds the Wiktionary paraphrase object. A wictionary paraphrase can be part of lexical units. The</span>
 <span class="sd">        contain a definition of the lexical unit which helps to differentiate between different sense of a word.</span>
 
 <span class="sd">        :param lexunit_id: The lexical unit id, this wictionary entry belongs to</span>
@@ -52,7 +52,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_edited</span> <span class="o">=</span> <span class="n">edited</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Wictionary(LexUnit ID=</span><span class="si">{self.lexunit_id}</span><span class="s1">, definition=</span><span class="si">{self.wiktionary_sense}</span><span class="s1">)&#39;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Wiktionary(LexUnit ID=</span><span class="si">{self.lexunit_id}</span><span class="s1">, definition=</span><span class="si">{self.wiktionary_sense}</span><span class="s1">)&#39;</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">lexunit_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
