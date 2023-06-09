@@ -8,7 +8,7 @@ SENSE = 'wiktionarySense'
 EDITED = 'edited'
 
 
-def create_wictionary(attributes) -> WiktionaryParaphrase:
+def create_wiktionary(attributes) -> WiktionaryParaphrase:
     """
     Creates a wiktionary object given the XML attributes that contain the required information
 
@@ -38,7 +38,7 @@ def load_wiktionary(germanet, tree):
     root = tree.getroot()
     for child in root:
         attributes = child.attrib
-        wiktionary = create_wictionary(attributes)
+        wiktionary = create_wiktionary(attributes)
         lexunit = germanet.get_lexunit_by_id(wiktionary.lexunit_id)
         lexunit.wiktionary_paraphrases.append(wiktionary)
         germanet.wiktionary_entries.append(wiktionary)

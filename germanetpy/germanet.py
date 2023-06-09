@@ -24,7 +24,7 @@ class Germanet:
         """
         self._datadir = datadir
         self._add_ilirecords = add_ilirecords
-        self._add_wictionary = add_wiktionary
+        self._add_wiktionary = add_wiktionary
 
         # Dictionary: lexunit id - lexunit object
         self._lexunits = {}
@@ -53,7 +53,7 @@ class Germanet:
         # Dictionary: Frame - Lexunit objects
         self._frames2lexunits = defaultdict(set)
 
-        # List: wictionary entries
+        # List: wiktionary entries
         self._wiktionary_entries = []
 
         # List: ili Records
@@ -191,7 +191,7 @@ class Germanet:
         load_relations(germanet=self, tree=tree)
         pbar.close()
         pbar = trange(100, desc='Load Wiktionary data...', leave=True)
-        if self.add_wictionary:
+        if self.add_wiktionary:
             for i in range(len(wikifiles)):
                 tree = parse_xml(self.datadir, wikifiles[i])
                 load_wiktionary(germanet=self, tree=tree)
@@ -267,6 +267,6 @@ class Germanet:
         return self._add_ilirecords
 
     @property
-    def add_wictionary(self):
-        return self._add_wictionary
+    def add_wiktionary(self):
+        return self._add_wiktionary
 

@@ -1,7 +1,7 @@
-germanetpy.wictionaryLoader
+germanetpy.wiktionaryLoader
 ===========================
 
-.. automodule:: germanetpy.wictionaryLoader
+.. automodule:: germanetpy.wiktionaryLoader
 
    
    
@@ -9,7 +9,7 @@ germanetpy.wictionaryLoader
 
    .. autosummary::
    
-      create_wictionary
+      create_wiktionary
       load_wiktionary
    
    

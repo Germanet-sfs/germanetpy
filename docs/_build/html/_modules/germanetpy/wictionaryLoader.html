@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>germanetpy.wictionaryLoader &#8212; germanetpy 0.2.0 documentation</title>
+    <title>germanetpy.wiktionaryLoader &#8212; germanetpy 0.2.0 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -30,8 +30,8 @@
 
           <div class="body" role="main">
             
-  <h1>Source code for germanetpy.wictionaryLoader</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">germanetpy.wictionaryparaphrase</span> <span class="kn">import</span> <span class="n">WiktionaryParaphrase</span>
+  <h1>Source code for germanetpy.wiktionaryLoader</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">germanetpy.wiktionaryparaphrase</span> <span class="kn">import</span> <span class="n">WiktionaryParaphrase</span>
 <span class="kn">from</span> <span class="nn">germanetpy.utils</span> <span class="kn">import</span> <span class="n">convert_to_boolean</span>
 
 <span class="n">LEXID</span> <span class="o">=</span> <span class="s1">&#39;lexUnitId&#39;</span>
@@ -41,7 +41,7 @@
 <span class="n">EDITED</span> <span class="o">=</span> <span class="s1">&#39;edited&#39;</span>
 
 
-<div class="viewcode-block" id="create_wictionary"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.wictionaryLoader.create_wictionary">[docs]</a><span class="k">def</span> <span class="nf">create_wictionary</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">WiktionaryParaphrase</span><span class="p">:</span>
+<div class="viewcode-block" id="create_wiktionary"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.wiktionaryLoader.create_wiktionary">[docs]</a><span class="k">def</span> <span class="nf">create_wiktionary</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">WiktionaryParaphrase</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a wiktionary object given the XML attributes that contain the required information</span>
 
@@ -58,7 +58,7 @@
     <span class="k">return</span> <span class="n">wiki</span></div>
 
 
-<div class="viewcode-block" id="load_wiktionary"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.wictionaryLoader.load_wiktionary">[docs]</a><span class="k">def</span> <span class="nf">load_wiktionary</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
+<div class="viewcode-block" id="load_wiktionary"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.wiktionaryLoader.load_wiktionary">[docs]</a><span class="k">def</span> <span class="nf">load_wiktionary</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given a XML tree this method initialized the wiktionary objects and adds them to the germanet object and the</span>
 <span class="sd">    corresponding lexunits</span>
@@ -71,7 +71,7 @@
     <span class="n">root</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">root</span><span class="p">:</span>
         <span class="n">attributes</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">attrib</span>
-        <span class="n">wiktionary</span> <span class="o">=</span> <span class="n">create_wictionary</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
+        <span class="n">wiktionary</span> <span class="o">=</span> <span class="n">create_wiktionary</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
         <span class="n">lexunit</span> <span class="o">=</span> <span class="n">germanet</span><span class="o">.</span><span class="n">get_lexunit_by_id</span><span class="p">(</span><span class="n">wiktionary</span><span class="o">.</span><span class="n">lexunit_id</span><span class="p">)</span>
         <span class="n">lexunit</span><span class="o">.</span><span class="n">wiktionary_paraphrases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wiktionary</span><span class="p">)</span>
         <span class="n">germanet</span><span class="o">.</span><span class="n">wiktionary_entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wiktionary</span><span class="p">)</span></div>

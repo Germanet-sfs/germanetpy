@@ -56,8 +56,8 @@ compound_info = [
 
 ]
 
-# lexunit, wictionaryId, wictionarySenseId, wictionarySense, edited
-wictionary = [("l76274", "w74102", 0,
+# lexunit, wiktionaryId, wiktionarySenseId, wiktionarySense, edited
+wiktionary = [("l76274", "w74102", 0,
                "wird im Vergleich zu benutzen regional verschieden gewertet, von synonym bis in Nuancen entwertenden "
                "Touch: verwenden, aus etwas Nutzen ziehen, ausnutzen, zum Vorteil anwenden, brauchen, gebrauchen",
                False),
@@ -116,12 +116,12 @@ def test_iliRecords(id, relation, english_equivalent, pwn20Id, pwn30Id, pwn20syn
     np.testing.assert_equal(ilirecord.source, source)
 
 
-@pytest.mark.parametrize('id, wictionaryId, wictionarySenseId, wictionarySense, edited', wictionary)
-def test_wictionary(id, wictionaryId, wictionarySenseId, wictionarySense, edited):
-    """Test if a wictionary paraphrase is stored correctly."""
+@pytest.mark.parametrize('id, wiktionaryId, wiktionarySenseId, wiktionarySense, edited', wiktionary)
+def test_wiktionary(id, wiktionaryId, wiktionarySenseId, wiktionarySense, edited):
+    """Test if a wiktionary paraphrase is stored correctly."""
     lexunit = germanet_data.lexunits[id]
-    wictionary = lexunit.wiktionary_paraphrases[0]
-    np.testing.assert_equal(wictionary.wiktionary_id, wictionaryId)
-    np.testing.assert_equal(wictionary.wiktionary_sense_id, wictionarySenseId)
-    np.testing.assert_equal(wictionary.wiktionary_sense, wictionarySense)
-    np.testing.assert_equal(wictionary.edited, edited)
+    wiktionary = lexunit.wiktionary_paraphrases[0]
+    np.testing.assert_equal(wiktionary.wiktionary_id, wiktionaryId)
+    np.testing.assert_equal(wiktionary.wiktionary_sense_id, wiktionarySenseId)
+    np.testing.assert_equal(wiktionary.wiktionary_sense, wiktionarySense)
+    np.testing.assert_equal(wiktionary.edited, edited)

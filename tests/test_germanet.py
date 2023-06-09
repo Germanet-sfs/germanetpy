@@ -21,7 +21,7 @@ except IOError:
 
 
 def test_number_of_instances():
-    """Test whether the total numbers of synsets, lexunits, compounds, ili records, wictionary entries corresponds to
+    """Test whether the total numbers of synsets, lexunits, compounds, ili records, wiktionary entries corresponds to
     the numbers for the current release"""
     number_synsets = len(germanet_data.synsets)
     number_lexunits = len(germanet_data.lexunits)

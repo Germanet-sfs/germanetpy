@@ -124,18 +124,18 @@ germanetpy.utils module
    :undoc-members:
    :show-inheritance:
 
-germanetpy.wictionaryLoader module
+germanetpy.wiktionaryLoader module
 ----------------------------------
 
-.. automodule:: germanetpy.wictionaryLoader
+.. automodule:: germanetpy.wiktionaryLoader
    :members:
    :undoc-members:
    :show-inheritance:
 
-germanetpy.wictionaryparaphrase module
+germanetpy.wiktionaryparaphrase module
 --------------------------------------
 
-.. automodule:: germanetpy.wictionaryparaphrase
+.. automodule:: germanetpy.wiktionaryparaphrase
    :members:
    :undoc-members:
    :show-inheritance:
