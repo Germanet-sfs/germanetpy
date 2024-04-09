@@ -10,7 +10,7 @@ from germanetpy.lexunit import OrthFormVariant
 from germanetpy.synset import WordCategory, WordClass
 
 logger = logging.getLogger('logging_test_filter')
-d = str(Path(__file__).parent.parent) + "/data"
+d = "/Users/bcmpbell/Data/GermaNetForApiUnitTesting/R19/XML-Valid"
 try:
     germanet_data = Germanet(d)
 except ET.ParseError:
@@ -105,7 +105,7 @@ differentRegex_syn = [
     ("unver.*bar", True,
      ['s218', 's488', 's1004', 's1013', 's1226', 's3605', 's3721', 's3748', 's3752', 's4008', 's4798', 's94410',
       's128930'], [WordCategory.adj], []),
-    (".*un$", True, ['s57352', 's57394', 's151850'], [WordCategory.verben], [WordClass.Lokation])
+    (".*un$", True, ['s57352', 's57394', 's151850', 's177631'], [WordCategory.verben], [WordClass.Lokation])
 ]
 
 levenshtein_distance_syn = [
@@ -125,11 +125,11 @@ levenshtein_distance_syn = [
      [OrthFormVariant.orthForm, OrthFormVariant.oldOrthForm, OrthFormVariant.oldOrthVar, OrthFormVariant.orthVar], 4,
      ['s13943', 's13952', 's13953', 's13966', 's13969', 's14004', 's108169', 's122501']),
     ("Schloß", True, False, [OrthFormVariant.oldOrthForm], 2,
-     ['s28692', 's6011', 's42555', 's51189', 's80636', 's21276', 's21263', 's112175', 's17941']),
+     ['s28692', 's6011', 's42555', 's51189', 's80636', 's21276', 's21263', 's112175', 's17941', 's16118']),
     ("Schloß", False, False, [OrthFormVariant.oldOrthForm], 2,
-     ['s28692', 's6011', 's42555', 's51189', 's80636', 's21276', 's21263', 's112175', 's17941']),
+     ['s28692', 's6011', 's42555', 's51189', 's80636', 's21276', 's21263', 's112175', 's17941', 's16118']),
     ("schloß", True, False, [OrthFormVariant.oldOrthForm], 2,
-     ['s28692', 's6011', 's42555', 's51189', 's80636', 's21276', 's21263', 's112175', 's17941']),
+     ['s28692', 's6011', 's42555', 's51189', 's80636', 's21276', 's21263', 's112175', 's17941', 's16118']),
     ("schloß", False, False, [OrthFormVariant.oldOrthForm], 2, ['s28692', 's6011', 's42555', 's51189']),
 ]
 

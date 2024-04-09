@@ -8,7 +8,7 @@ from lxml import etree as ET
 from germanetpy.synset import ConRel
 
 logger = logging.getLogger('logging_test_synset')
-d = str(Path(__file__).parent.parent) + "/data"
+d = "/Users/bcmpbell/Data/GermaNetForApiUnitTesting/R19/XML-Valid"
 try:
     germanet_data = Germanet(d)
 except ET.ParseError:
@@ -46,14 +46,14 @@ all_hypernyms = [
 
 all_hyponyms = [
     ('s131', []),
-    ('s50944', ['s132135', 's132134', 's132133']),
+    ('s50944', ['s132135', 's132134', 's132133', 's181586']),
     ('s53071', ['s53072', 's53073']),
     ('s11302',
      ['s136666', 's11193', 's11194', 's134108', 's122100', 's129336', 's123104', 's122867', 's29492', 's163244',
       's82838','s147555', 's147995','s147814','s149441',
       's101538', 's10919', 's10937', 's104197', 's106059', 's110131', 's90623', 's10920', 's88973', 's68093', 's64311',
       's29494', 's100276', 's88563', 's88561', 's81894', 's71826', 's71198', 's11306', 's11305',
-      's11304', 's11303', 's107850', 's156080', 's169682'])
+      's11304', 's11303', 's107850', 's156080', 's169682', 's178778', 's179124', 's180527'])
 
 ]
 
@@ -152,6 +152,7 @@ def test_all_hyponyms(id, hyponym_ids):
     """This test checks whether for a given synset, all possible hyponyms are returned"""
     synset = germanet_data.get_synset_by_id(id)
     hyponyms = synset.all_hyponyms()
+    ids = sorted([synset.id for synset in hyponyms])
     np.testing.assert_equal(sorted([synset.id for synset in hyponyms]), sorted(hyponym_ids))
 
 

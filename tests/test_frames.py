@@ -6,7 +6,7 @@ import numpy as np
 from germanetpy.germanet import Germanet
 
 logger = logging.getLogger('logging_test_frames')
-d = str(Path(__file__).parent.parent) + "/data"
+d = "/Users/bcmpbell/Data/GermaNetForApiUnitTesting/R19/XML-Valid"
 try:
     germanet_data = Germanet(d)
 except ET.ParseError:

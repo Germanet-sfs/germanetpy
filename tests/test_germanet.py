@@ -6,7 +6,7 @@ import numpy as np
 from pathlib import Path
 
 logger = logging.getLogger('logging_test_germanet')
-d = str(Path(__file__).parent.parent) + "/data"
+d = "/Users/bcmpbell/Data/GermaNetForApiUnitTesting/R19/XML-Valid"
 try:
     germanet_data = Germanet(d)
 except ET.ParseError:
@@ -28,8 +28,8 @@ def test_number_of_instances():
     number_compounds = len(germanet_data.compounds)
     number_ili_records = len(germanet_data.ili_records)
     number_wiktionary = len(germanet_data.wiktionary_entries)
-    np.testing.assert_equal(number_synsets, 167163)
-    np.testing.assert_equal(number_lexunits, 215000)
-    np.testing.assert_equal(number_compounds, 124657)
-    np.testing.assert_equal(number_ili_records, 28563)
-    np.testing.assert_equal(number_wiktionary, 29546)
+    np.testing.assert_equal(number_synsets, 174579)
+    np.testing.assert_equal(number_lexunits, 225000)
+    np.testing.assert_equal(number_compounds, 129850)
+    np.testing.assert_equal(number_ili_records, 28562)
+    np.testing.assert_equal(number_wiktionary, 29544)

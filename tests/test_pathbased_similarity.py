@@ -9,7 +9,7 @@ from germanetpy.path_based_relatedness_measures import PathBasedRelatedness
 from germanetpy.synset import WordCategory
 
 logger = logging.getLogger('logging_test_semrel')
-d = str(Path(__file__).parent.parent) + "/data"
+d = "/Users/bcmpbell/Data/GermaNetForApiUnitTesting/R19/XML-Valid"
 try:
     germanet_data = Germanet(d)
     johannis_wurm = germanet_data.get_synset_by_id("s49774")
@@ -32,7 +32,6 @@ unnormalized_path_len_nouns = [
     ('s49774', 's83979', 35),
     ('s49774', 's20560', 35),
     ('s49774', 's20561', 35),
-    ('s49774', 's138670', 35),
     ('s9439', 's48837', 12),
     ('s39183', 's39496', 5)
 ]

@@ -9,10 +9,10 @@ from germanetpy.icbased_similarity import ICBasedSimilarity
 from germanetpy.synset import WordCategory
 
 logger = logging.getLogger('logging_test_semrel')
-d = str(Path(__file__).parent.parent) + "/data"
-frequency_list_nouns = str(Path(__file__).parent.parent) + "/data/noun_freqs_decow14_16.txt"
-frequency_list_verbs = str(Path(__file__).parent.parent) + "/data/verb_freqs_decow14_16.txt"
-frequency_list_adj = str(Path(__file__).parent.parent) + "/data/adj_freqs_decow14_16.txt"
+d = "/Users/bcmpbell/Data/GermaNetForApiUnitTesting/R19/XML-Valid"
+frequency_list_nouns = "/Users/bcmpbell/Data/GermaNetForApiUnitTesting/R19/GN_V190-FreqLists/noun_freqs_decow14_16.txt"
+frequency_list_verbs = "/Users/bcmpbell/Data/GermaNetForApiUnitTesting/R19/GN_V190-FreqLists/verb_freqs_decow14_16.txt"
+frequency_list_adj = "/Users/bcmpbell/Data/GermaNetForApiUnitTesting/R19/GN_V190-FreqLists/adj_freqs_decow14_16.txt"
 
 try:
     germanet_data = Germanet(d)
@@ -157,9 +157,9 @@ normalized_jcn_adj = [
 
 def test_cumfreq():
     """Test whether the total frequency of the Graph corresponds to the number of the current release"""
-    np.testing.assert_equal(relatedness_verbs.root_freq, 9161134210)
-    np.testing.assert_equal(relatedness_nouns.root_freq, 7110081048)
-    np.testing.assert_equal(relatedness_adj.root_freq, 2114490094)
+    np.testing.assert_equal(relatedness_verbs.root_freq, 9161993707)
+    np.testing.assert_equal(relatedness_nouns.root_freq, 7094035775)
+    np.testing.assert_equal(relatedness_adj.root_freq, 2116609580)
 
 
 # resnik measure #
