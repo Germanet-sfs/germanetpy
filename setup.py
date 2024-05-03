@@ -1,10 +1,16 @@
 import pathlib
 import setuptools
+import requests
+
+import requests
+
+session = requests.Session()
+session.verify = False
 
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
 requirements = ["numpy>=1.18.1", "lxml>=4.4.2", "pytest>=5.3.2", "fastenum>=0.0.1", "tqdm>=4.14",
-                "python-Levenshtein==0.12.2"]
+                "python-Levenshtein==0.25.1"]
 
 # The text of the README file
 long_description = (HERE / "README.md").read_text()
