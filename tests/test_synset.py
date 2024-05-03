@@ -8,7 +8,7 @@ from lxml import etree as ET
 from germanetpy.synset import ConRel
 
 logger = logging.getLogger('logging_test_synset')
-d = "/Users/bcmpbell/Data/GermaNetForApiUnitTesting/R19/XML-Valid"
+d = str(Path(__file__).parent.parent) + "/data"
 try:
     germanet_data = Germanet(d)
 except ET.ParseError:

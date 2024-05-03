@@ -9,7 +9,7 @@ from germanetpy.lexunit import LexRel
 from germanetpy.compoundInfo import CompoundProperty, CompoundCategory
 
 logger = logging.getLogger('logging_test_lexunit')
-d = "/Users/bcmpbell/Data/GermaNetForApiUnitTesting/R19/XML-Valid"
+d = str(Path(__file__).parent.parent) + "/data"
 try:
     germanet_data = Germanet(d)
 except ET.ParseError:
