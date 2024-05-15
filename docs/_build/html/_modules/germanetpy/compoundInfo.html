@@ -1,24 +1,23 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>germanetpy.compoundInfo &#8212; germanetpy 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=938c9ccc"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -35,8 +34,10 @@
 <span class="kn">import</span> <span class="nn">fastenum</span>
 
 
-<div class="viewcode-block" id="CompoundCategory"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.compoundInfo.CompoundCategory">[docs]</a><span class="k">class</span> <span class="nc">CompoundCategory</span><span class="p">(</span><span class="n">fastenum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This Enum represents the syntactic wordcategory a modifier of a compound can belong to.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="CompoundCategory">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.compoundInfo.CompoundCategory">[docs]</a>
+<span class="k">class</span> <span class="nc">CompoundCategory</span><span class="p">(</span><span class="n">fastenum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This Enum represents the syntactic wordcategory a modifier of a compound can belong to.&quot;&quot;&quot;</span>
     <span class="n">Adjektiv</span> <span class="o">=</span> <span class="s1">&#39;Adjektiv&#39;</span>
     <span class="n">Nomen</span> <span class="o">=</span> <span class="s1">&#39;Nomen&#39;</span>
     <span class="n">Verb</span> <span class="o">=</span> <span class="s1">&#39;Verb&#39;</span>
@@ -46,8 +47,11 @@
     <span class="n">Pronomen</span> <span class="o">=</span> <span class="s1">&#39;Pronomen&#39;</span></div>
 
 
-<div class="viewcode-block" id="CompoundProperty"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.compoundInfo.CompoundProperty">[docs]</a><span class="k">class</span> <span class="nc">CompoundProperty</span><span class="p">(</span><span class="n">fastenum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This Enum represents the properties a compound constituent can have.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CompoundProperty">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.compoundInfo.CompoundProperty">[docs]</a>
+<span class="k">class</span> <span class="nc">CompoundProperty</span><span class="p">(</span><span class="n">fastenum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This Enum represents the properties a compound constituent can have.&quot;&quot;&quot;</span>
     <span class="n">Abkürzung</span> <span class="o">=</span> <span class="s1">&#39;Abkürzung&#39;</span>
     <span class="n">Affixoid</span> <span class="o">=</span> <span class="s1">&#39;Affixoid&#39;</span>
     <span class="n">Fremdwort</span> <span class="o">=</span> <span class="s1">&#39;Fremdwort&#39;</span>
@@ -60,13 +64,16 @@
     <span class="n">freiesMorphem</span> <span class="o">=</span> <span class="s1">&#39;freiesMorphem&#39;</span></div>
 
 
-<div class="viewcode-block" id="CompoundInfo"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.compoundInfo.CompoundInfo">[docs]</a><span class="k">class</span> <span class="nc">CompoundInfo</span><span class="p">:</span>
+
+<div class="viewcode-block" id="CompoundInfo">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.compoundInfo.CompoundInfo">[docs]</a>
+<span class="k">class</span> <span class="nc">CompoundInfo</span><span class="p">:</span>
     <span class="n">PROPERTY</span> <span class="o">=</span> <span class="s1">&#39;property&#39;</span>
     <span class="n">CATEGORY</span> <span class="o">=</span> <span class="s1">&#39;category&#39;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modifier1</span><span class="p">,</span> <span class="n">head</span><span class="p">,</span> <span class="n">modifier1property</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">modifier1category</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">modifier2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">modifier2property</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">modifier2category</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headproperty</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This class stores information about a special linguistic entity in German - a compound. A compound</span>
 <span class="sd">        consists</span>
 <span class="sd">        of two constituents, a modifier and a head. The head will always be a noun, the modifier can stem from</span>
@@ -109,7 +116,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_head_property</span> <span class="o">=</span> <span class="n">headproperty</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;CompoundInfo( modifier = </span><span class="si">{self.modifier1}</span><span class="s1">, head = </span><span class="si">{self.head}</span><span class="s1">)&#39;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;CompoundInfo( modifier = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier1</span><span class="si">}</span><span class="s1">, head = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="si">}</span><span class="s1">)&#39;</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">modifier1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -142,6 +149,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">head_property</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head_property</span></div>
+
 </pre></div>
 
           </div>
@@ -172,32 +180,32 @@
 </ul>
 
 
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Neele Falk.
+      &#169;2020, Neele Falk.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
     </div>
 
     
     <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
     </a>
     
 

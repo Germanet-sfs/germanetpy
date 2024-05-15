@@ -1,24 +1,23 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>germanetpy.filterconfig &#8212; germanetpy 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=938c9ccc"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -38,15 +37,17 @@
 <span class="kn">from</span> <span class="nn">germanetpy.lexunit</span> <span class="kn">import</span> <span class="n">OrthFormVariant</span>
 
 
-<div class="viewcode-block" id="Filterconfig"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.filterconfig.Filterconfig">[docs]</a><span class="k">class</span> <span class="nc">Filterconfig</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Filterconfig">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.filterconfig.Filterconfig">[docs]</a>
+<span class="k">class</span> <span class="nc">Filterconfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class is a configuration object, that helps to filter GermaNets lexical units and Synsets to extract the</span>
 <span class="sd">    ones with certain interesting properties.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ignore_case</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">regex</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
                  <span class="n">levenshtein_distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The Filterconfiguration consists of a list of word categories (as a default all existing word categories are</span>
 <span class="sd">        selected),</span>
 <span class="sd">        a list of word classes (as a default all existing word classes are selected), a list of orthform variants (as</span>
@@ -67,8 +68,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_regex</span> <span class="o">=</span> <span class="n">regex</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_levenshtein_distance</span> <span class="o">=</span> <span class="n">levenshtein_distance</span>
 
-<div class="viewcode-block" id="Filterconfig.filter_lexunits"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.filterconfig.Filterconfig.filter_lexunits">[docs]</a>    <span class="k">def</span> <span class="nf">filter_lexunits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">germanet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Filterconfig.filter_lexunits">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.filterconfig.Filterconfig.filter_lexunits">[docs]</a>
+    <span class="k">def</span> <span class="nf">filter_lexunits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">germanet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Applys the filter to the GermaNet data</span>
 
 <span class="sd">        :type germanet: Germanet</span>
@@ -92,8 +95,9 @@
                 <span class="n">result</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">result</span></div>
 
+
     <span class="k">def</span> <span class="nf">_filter_lexunits_orthform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lexunits</span><span class="p">,</span> <span class="n">orthvariants</span><span class="p">,</span> <span class="n">searchstring</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ignore_case</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The method filters the retrieved lexical units to match the user-specified orth variants</span>
 
 <span class="sd">        :type orthvariants: list(OrthVariant)</span>
@@ -115,8 +119,10 @@
                         <span class="n">filtered_units</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">filtered_units</span>
 
-<div class="viewcode-block" id="Filterconfig.filter_synsets"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.filterconfig.Filterconfig.filter_synsets">[docs]</a>    <span class="k">def</span> <span class="nf">filter_synsets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">germanet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Filterconfig.filter_synsets">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.filterconfig.Filterconfig.filter_synsets">[docs]</a>
+    <span class="k">def</span> <span class="nf">filter_synsets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">germanet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Applys the filter to the GermaNet data</span>
 
 <span class="sd">        :type germanet: Germanet</span>
@@ -139,8 +145,9 @@
                 <span class="n">result</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">synset</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">result</span></div>
 
+
     <span class="k">def</span> <span class="nf">_get_lexunits_by_regex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">germanet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Filters lexical units with a regular expression. All lexical units that match the regular expression are</span>
 <span class="sd">        returned.</span>
 <span class="sd">        :type germanet: Germanet</span>
@@ -161,7 +168,7 @@
         <span class="k">return</span> <span class="n">result</span>
 
     <span class="k">def</span> <span class="nf">_filter_lexunits_levenshtein</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">germanet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Filters lexical units with levenshtein distance. All lexical units that have a maximum of the given</span>
 <span class="sd">        levenshtein distance or lower are returned.</span>
 <span class="sd">        :type germanet: Germanet</span>
@@ -223,6 +230,7 @@
     <span class="nd">@orth_variants</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">orth_variants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orth_variants</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_orth_variants</span> <span class="o">=</span> <span class="n">orth_variants</span></div>
+
 </pre></div>
 
           </div>
@@ -253,32 +261,32 @@
 </ul>
 
 
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Neele Falk.
+      &#169;2020, Neele Falk.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
     </div>
 
     
     <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
     </a>
     
 

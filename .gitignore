@@ -3,3 +3,15 @@
 !/.gitignore
 germanetpy.egg-info
 dist
+/Levenshtein-0.25.1-cp312-cp312-macosx_10_9_x86_64.whl
+/fastenum-1.1.1-py3-none-any.whl
+/germanetpy-0.2.3-py3-none-any.whl
+/iniconfig-2.0.0-py3-none-any.whl
+/lxml-5.2.1-cp312-cp312-macosx_10_9_x86_64.whl
+/numpy-1.26.4-cp312-cp312-macosx_10_9_x86_64.whl
+/packaging-24.0-py3-none-any.whl
+/pluggy-1.5.0-py3-none-any.whl
+/pytest-8.2.0-py3-none-any.whl
+/python_Levenshtein-0.25.1-py3-none-any.whl
+/rapidfuzz-3.9.0-cp312-cp312-macosx_10_9_x86_64.whl
+/tqdm-4.66.4-py3-none-any.whl

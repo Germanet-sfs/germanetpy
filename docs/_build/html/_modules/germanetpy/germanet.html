@@ -1,24 +1,23 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>germanetpy.germanet &#8212; germanetpy 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=938c9ccc"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -42,17 +41,19 @@
 <span class="kn">from</span> <span class="nn">germanetpy.frames</span> <span class="kn">import</span> <span class="n">Frames</span>
 
 
-<div class="viewcode-block" id="Germanet"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet">[docs]</a><span class="k">class</span> <span class="nc">Germanet</span><span class="p">:</span>
+<div class="viewcode-block" id="Germanet">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet">[docs]</a>
+<span class="k">class</span> <span class="nc">Germanet</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datadir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">add_ilirecords</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">add_wiktionary</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The GermaNet object is initialized with the directory where the GermaNet data is stored. The data is loaded</span>
 <span class="sd">        when GermaNet is initialized.</span>
 
 <span class="sd">        :param datadir: The path to the directory where the GermaNet data is stored</span>
-<span class="sd">        :param addiliRecords: a boolean, denotes whether the iliRecords should also be loaded into the GermaNet</span>
+<span class="sd">        :param add_ilirecords: a boolean, denotes whether the iliRecords should also be loaded into the GermaNet</span>
 <span class="sd">        object, default: True</span>
-<span class="sd">        :param addWiktionary: a boolean, denotes whether the wiktionary files should also be loaded into the GermaNet</span>
+<span class="sd">        :param add_wiktionary: a boolean, denotes whether the wiktionary files should also be loaded into the GermaNet</span>
 <span class="sd">        object, default: True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_datadir</span> <span class="o">=</span> <span class="n">datadir</span>
@@ -98,8 +99,10 @@
         <span class="c1"># load data when GermaNet is initialized</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_load_data</span><span class="p">()</span>
 
-<div class="viewcode-block" id="Germanet.get_synsets_by_orthform"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_synsets_by_orthform">[docs]</a>    <span class="k">def</span> <span class="nf">get_synsets_by_orthform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ignorecase</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Germanet.get_synsets_by_orthform">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_synsets_by_orthform">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_synsets_by_orthform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ignorecase</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method returns a list of synsets that match the given input search string</span>
 
 <span class="sd">        :param form: a word that can be looked up in the GermaNet</span>
@@ -113,8 +116,11 @@
             <span class="n">lexunit_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orthform2lexid</span><span class="p">[</span><span class="n">form</span><span class="p">]</span>
         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">synset</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">lexunit_ids</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Germanet.get_synsets_by_wordcategory"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_synsets_by_wordcategory">[docs]</a>    <span class="k">def</span> <span class="nf">get_synsets_by_wordcategory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Germanet.get_synsets_by_wordcategory">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_synsets_by_wordcategory">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_synsets_by_wordcategory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a list of synsets that belong to the specified word category</span>
 
 <span class="sd">        :type category: WordCategory</span>
@@ -124,8 +130,11 @@
         <span class="n">lexunit_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wordcat2lexid</span><span class="p">[</span><span class="n">category</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">synset</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">lexunit_ids</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Germanet.get_synsets_by_wordclass"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_synsets_by_wordclass">[docs]</a>    <span class="k">def</span> <span class="nf">get_synsets_by_wordclass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wordclass</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Germanet.get_synsets_by_wordclass">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_synsets_by_wordclass">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_synsets_by_wordclass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wordclass</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a list of synsets that belong to the specified word class</span>
 
 <span class="sd">        :type wordclass: WordClass</span>
@@ -135,8 +144,11 @@
         <span class="n">lexunit_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wordclass2lexid</span><span class="p">[</span><span class="n">wordclass</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">synset</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">lexunit_ids</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Germanet.get_synset_by_id"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_synset_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_synset_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Germanet.get_synset_by_id">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_synset_by_id">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_synset_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a Synset by a specified identifier (if that exists, otherwise raises an Error)</span>
 
 <span class="sd">        :rtype: Synset</span>
@@ -146,8 +158,11 @@
         <span class="k">assert</span> <span class="nb">id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">synsets</span><span class="p">,</span> <span class="s2">&quot;the given Synset id is not in GermaNet&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">synsets</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Germanet.get_lexunit_by_id"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_lexunit_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_lexunit_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Germanet.get_lexunit_by_id">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_lexunit_by_id">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lexunit_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a lexical unit by a specified identifier (if that exists, otherwise raises an Error)</span>
 
 <span class="sd">        :rtype: Lexunit</span>
@@ -157,8 +172,11 @@
         <span class="k">assert</span> <span class="nb">id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">,</span> <span class="s2">&quot;the given lexical unit id is not in GermaNet&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Germanet.get_lexunits_by_orthform"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_lexunits_by_orthform">[docs]</a>    <span class="k">def</span> <span class="nf">get_lexunits_by_orthform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ignorecase</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Germanet.get_lexunits_by_orthform">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_lexunits_by_orthform">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lexunits_by_orthform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ignorecase</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method returns a list of lexical units that match the given input search string</span>
 
 <span class="sd">        :param form: a word that can be looked up in the GermaNet</span>
@@ -172,8 +190,11 @@
         <span class="n">lexunit_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orthform2lexid</span><span class="p">[</span><span class="n">form</span><span class="p">]</span>
         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">lexunit_ids</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Germanet.get_lexunits_by_wordclass"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_lexunits_by_wordclass">[docs]</a>    <span class="k">def</span> <span class="nf">get_lexunits_by_wordclass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wordclass</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Germanet.get_lexunits_by_wordclass">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_lexunits_by_wordclass">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lexunits_by_wordclass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wordclass</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a list of lexical units that belong to the specified word class</span>
 
 <span class="sd">        :type wordclass: WordClass</span>
@@ -183,8 +204,11 @@
         <span class="n">lexunit_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wordclass2lexid</span><span class="p">[</span><span class="n">wordclass</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">lexunit_ids</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Germanet.get_lexunits_by_wordcategory"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_lexunits_by_wordcategory">[docs]</a>    <span class="k">def</span> <span class="nf">get_lexunits_by_wordcategory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Germanet.get_lexunits_by_wordcategory">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_lexunits_by_wordcategory">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lexunits_by_wordcategory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a list of lexical units that belong to the specified word category</span>
 
 <span class="sd">        :type category: WordCategory</span>
@@ -194,8 +218,11 @@
         <span class="n">lexunit_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wordcat2lexid</span><span class="p">[</span><span class="n">category</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lexunits</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">lexunit_ids</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Germanet.get_synsets_by_frame"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_synsets_by_frame">[docs]</a>    <span class="k">def</span> <span class="nf">get_synsets_by_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Germanet.get_synsets_by_frame">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.germanet.Germanet.get_synsets_by_frame">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_synsets_by_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a list of Synsets that match a specified frame</span>
 
 <span class="sd">        :param frame: a frame that describes the argument structure of a verb (e.g. &#39;NN.AN&#39; specifies that a verb can take a subject and accusative object as arguments.)</span>
@@ -205,8 +232,9 @@
         <span class="n">synset_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames2lexunits</span><span class="p">[</span><span class="n">frame</span><span class="p">]</span>
         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">synsets</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">synset_ids</span><span class="p">]</span></div>
 
+
     <span class="k">def</span> <span class="nf">_load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Protected method to load the GermaNet data. The Data has to be stored in self.datadir.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datadir</span><span class="p">)</span>
@@ -303,6 +331,7 @@
     <span class="k">def</span> <span class="nf">add_wiktionary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_wiktionary</span></div>
 
+
 </pre></div>
 
           </div>
@@ -333,32 +362,32 @@
 </ul>
 
 
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Neele Falk.
+      &#169;2020, Neele Falk.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
     </div>
 
     
     <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
     </a>
     
 

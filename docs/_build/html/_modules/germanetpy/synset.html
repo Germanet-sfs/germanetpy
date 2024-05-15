@@ -1,24 +1,23 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>germanetpy.synset &#8212; germanetpy 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=938c9ccc"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -36,8 +35,10 @@
 <span class="kn">import</span> <span class="nn">fastenum</span>
 
 
-<div class="viewcode-block" id="ConRel"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.ConRel">[docs]</a><span class="k">class</span> <span class="nc">ConRel</span><span class="p">(</span><span class="n">fastenum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ConRel">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.ConRel">[docs]</a>
+<span class="k">class</span> <span class="nc">ConRel</span><span class="p">(</span><span class="n">fastenum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This Enum class contains the conceptual relations (short: ConRel) that synsets can have to other synsets.</span>
 <span class="sd">    For a description of each relation look at</span>
 <span class="sd">    https://uni-tuebingen.de/en/142846</span>
@@ -57,9 +58,11 @@
     <span class="n">is_related_to</span> <span class="o">=</span> <span class="mi">13</span>
     <span class="n">causes</span> <span class="o">=</span> <span class="mi">14</span>
 
-<div class="viewcode-block" id="ConRel.transitive"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.ConRel.transitive">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ConRel.transitive">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.ConRel.transitive">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">transitive</span><span class="p">(</span><span class="n">conrel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns true if the conceptual relation is transitive, false otherwise</span>
 
 <span class="sd">        :type conrel: ConRel</span>
@@ -69,11 +72,15 @@
         <span class="n">transitive_rels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">conrel</span><span class="o">.</span><span class="n">value</span> <span class="ow">in</span> <span class="n">transitive_rels</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">return</span> <span class="kc">False</span></div></div>
+        <span class="k">return</span> <span class="kc">False</span></div>
+</div>
 
 
-<div class="viewcode-block" id="WordCategory"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.WordCategory">[docs]</a><span class="k">class</span> <span class="nc">WordCategory</span><span class="p">(</span><span class="n">fastenum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="WordCategory">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.WordCategory">[docs]</a>
+<span class="k">class</span> <span class="nc">WordCategory</span><span class="p">(</span><span class="n">fastenum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This Enum class contains the three part-of-speech tags (WortCategory), a Synset can have in GermaNet.</span>
 <span class="sd">    adj = adjective, nomen = noun, verben = verb</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -81,9 +88,11 @@
     <span class="n">nomen</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="n">verben</span> <span class="o">=</span> <span class="mi">3</span>
 
-<div class="viewcode-block" id="WordCategory.get_possible_word_classes"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.WordCategory.get_possible_word_classes">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="WordCategory.get_possible_word_classes">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.WordCategory.get_possible_word_classes">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">get_possible_word_classes</span><span class="p">(</span><span class="n">word_category</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Each wor category can only occur with a specific set of word classes.</span>
 
 <span class="sd">        :type word_category: WordCategory</span>
@@ -105,11 +114,15 @@
             <span class="k">return</span> <span class="p">{</span><span class="n">WordClass</span><span class="o">.</span><span class="n">Allgemein</span><span class="p">,</span> <span class="n">WordClass</span><span class="o">.</span><span class="n">Besitz</span><span class="p">,</span> <span class="n">WordClass</span><span class="o">.</span><span class="n">Gefuehl</span><span class="p">,</span> <span class="n">WordClass</span><span class="o">.</span><span class="n">Gesellschaft</span><span class="p">,</span>
                     <span class="n">WordClass</span><span class="o">.</span><span class="n">Koerperfunktion</span><span class="p">,</span> <span class="n">WordClass</span><span class="o">.</span><span class="n">Kognition</span><span class="p">,</span> <span class="n">WordClass</span><span class="o">.</span><span class="n">Kommunikation</span><span class="p">,</span> <span class="n">WordClass</span><span class="o">.</span><span class="n">Konkurrenz</span><span class="p">,</span>
                     <span class="n">WordClass</span><span class="o">.</span><span class="n">Kontakt</span><span class="p">,</span> <span class="n">WordClass</span><span class="o">.</span><span class="n">natPhaenomen</span><span class="p">,</span> <span class="n">WordClass</span><span class="o">.</span><span class="n">Lokation</span><span class="p">,</span> <span class="n">WordClass</span><span class="o">.</span><span class="n">Schoepfung</span><span class="p">,</span>
-                    <span class="n">WordClass</span><span class="o">.</span><span class="n">Veraenderung</span><span class="p">,</span> <span class="n">WordClass</span><span class="o">.</span><span class="n">Verbrauch</span><span class="p">,</span> <span class="n">WordClass</span><span class="o">.</span><span class="n">Perzeption</span><span class="p">}</span></div></div>
+                    <span class="n">WordClass</span><span class="o">.</span><span class="n">Veraenderung</span><span class="p">,</span> <span class="n">WordClass</span><span class="o">.</span><span class="n">Verbrauch</span><span class="p">,</span> <span class="n">WordClass</span><span class="o">.</span><span class="n">Perzeption</span><span class="p">}</span></div>
+</div>
 
 
-<div class="viewcode-block" id="WordClass"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.WordClass">[docs]</a><span class="k">class</span> <span class="nc">WordClass</span><span class="p">(</span><span class="n">fastenum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="WordClass">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.WordClass">[docs]</a>
+<span class="k">class</span> <span class="nc">WordClass</span><span class="p">(</span><span class="n">fastenum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This Enum class contains the semantic wordclasses / semantic fields  a Synset can have in GermaNet.</span>
 <span class="sd">    For a detailed description see:</span>
 <span class="sd">    http://www.sfs.uni-tuebingen.de/GermaNet/germanet_structure.shtml#Tops</span>
@@ -153,9 +166,11 @@
     <span class="n">Veraenderung</span> <span class="o">=</span> <span class="mi">37</span>
     <span class="n">Verbrauch</span> <span class="o">=</span> <span class="mi">38</span>
 
-<div class="viewcode-block" id="WordClass.get_possible_word_categories"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.WordClass.get_possible_word_categories">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="WordClass.get_possible_word_categories">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.WordClass.get_possible_word_categories">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">get_possible_word_categories</span><span class="p">(</span><span class="n">word_class</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Each word class can occur with one or several word categories.</span>
 
 <span class="sd">        :rtype: set(WordCategory)</span>
@@ -173,17 +188,21 @@
             <span class="n">categories</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">WordCategory</span><span class="o">.</span><span class="n">nomen</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">word_class</span><span class="o">.</span><span class="n">value</span> <span class="ow">in</span> <span class="n">adj_classes</span><span class="p">:</span>
             <span class="n">categories</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">WordCategory</span><span class="o">.</span><span class="n">adj</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">categories</span></div></div>
+        <span class="k">return</span> <span class="n">categories</span></div>
+</div>
 
 
-<div class="viewcode-block" id="Synset"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset">[docs]</a><span class="k">class</span> <span class="nc">Synset</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Synset">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset">[docs]</a>
+<span class="k">class</span> <span class="nc">Synset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class holds a Synset object. A synset in GermaNet contains several lexical units and holds specific relations</span>
 <span class="sd">    to other synsets, for example a synset can have hypernyms or hyponyms.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">word_category</span><span class="p">:</span> <span class="n">WordCategory</span><span class="p">,</span> <span class="n">word_class</span><span class="p">:</span> <span class="n">WordClass</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param id: Every synset has a unique identifier.</span>
 <span class="sd">        :param word_category: Every Synset has exactly one part-of-speech</span>
@@ -200,12 +219,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_direct_hyponyms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_relations</span><span class="p">[</span><span class="n">ConRel</span><span class="o">.</span><span class="n">has_hyponym</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">lexunit_list</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{unit.orthform}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">unit</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lexunits</span><span class="p">]</span>
+        <span class="n">lexunit_list</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">unit</span><span class="o">.</span><span class="n">orthform</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">unit</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lexunits</span><span class="p">]</span>
         <span class="n">lexunit_str</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lexunit_list</span><span class="p">)</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Synset(id=</span><span class="si">{self._id}</span><span class="s1">, lexunits=</span><span class="si">{lexunit_str}</span><span class="s1">)&#39;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Synset(id=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_id</span><span class="si">}</span><span class="s1">, lexunits=</span><span class="si">{</span><span class="n">lexunit_str</span><span class="si">}</span><span class="s1">)&#39;</span>
 
-<div class="viewcode-block" id="Synset.add_lexunit"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.add_lexunit">[docs]</a>    <span class="k">def</span> <span class="nf">add_lexunit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unit</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Synset.add_lexunit">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.add_lexunit">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_lexunit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unit</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adds a lexical unit that part of this synset to the list of lexical units</span>
 
 <span class="sd">        :type unit: Lexunit</span>
@@ -213,29 +234,54 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lexunits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Synset.is_root"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.is_root">[docs]</a>    <span class="k">def</span> <span class="nf">is_root</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Synset.is_root">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.is_root">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_root</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :return: True if this Synset is the root of the Graph (= has no hypernyms), otherwise false</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_direct_hypernyms</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Synset.is_leaf"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.is_leaf">[docs]</a>    <span class="k">def</span> <span class="nf">is_leaf</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Synset.is_leaf">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.is_leaf">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_leaf</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :return: True if this Synset is a leaf of the Graph (= has no hyponyms), otherwise false</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_direct_hyponyms</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Synset.num_lexunits"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.num_lexunits">[docs]</a>    <span class="k">def</span> <span class="nf">num_lexunits</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Synset.num_lexunits">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.num_lexunits">[docs]</a>
+    <span class="k">def</span> <span class="nf">num_lexunits</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :return: The number of lexical units, contained in that synset</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lexunits</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Synset.hypernym_paths"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.hypernym_paths">[docs]</a>    <span class="k">def</span> <span class="nf">hypernym_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+        
+<div class="viewcode-block" id="Synset.get_related_synsets">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.get_related_synsets">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_related_synsets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conrel_type</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;outgoing&#39;</span><span class="p">):</span>
+    	<span class="k">if</span> <span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;outgoing&#39;</span><span class="p">):</span>
+    		<span class="k">for</span> <span class="n">relation</span><span class="p">,</span> <span class="n">synsets</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">relations</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    			<span class="k">if</span> <span class="p">(</span><span class="n">relation</span> <span class="o">==</span> <span class="n">conrel_type</span><span class="p">):</span>
+    				<span class="k">return</span> <span class="n">synsets</span>
+    	<span class="k">elif</span> <span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;incoming&#39;</span><span class="p">):</span>
+    		<span class="k">for</span> <span class="n">relation</span><span class="p">,</span> <span class="n">synsets</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">incoming_relations</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    			<span class="k">if</span> <span class="p">(</span><span class="n">relation</span> <span class="o">==</span> <span class="n">conrel_type</span><span class="p">):</span>
+    				<span class="k">return</span> <span class="n">synsets</span></div>
+
+
+<div class="viewcode-block" id="Synset.hypernym_paths">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.hypernym_paths">[docs]</a>
+    <span class="k">def</span> <span class="nf">hypernym_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method iterates recursively through the hypernyms of this synset to get all paths that connect this synset</span>
 <span class="sd">        with the root node. a path is complete if it ends with the root node. all possible paths are returned. each</span>
 <span class="sd">        path is a list of nodes.</span>
@@ -252,8 +298,11 @@
                 <span class="n">paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ancestor_list</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">paths</span></div>
 
-<div class="viewcode-block" id="Synset.all_hypernyms"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.all_hypernyms">[docs]</a>    <span class="k">def</span> <span class="nf">all_hypernyms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Synset.all_hypernyms">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.all_hypernyms">[docs]</a>
+    <span class="k">def</span> <span class="nf">all_hypernyms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method extracts all hypernyms for this synset (the transitive closure for this synset)</span>
 
 <span class="sd">        :return: a set, containing all possible hypernym nodes. it is empty if the current synset is the root node</span>
@@ -265,8 +314,11 @@
                     <span class="n">hypernyms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">synset</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">hypernyms</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Synset.hyponym_paths"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.hyponym_paths">[docs]</a>    <span class="k">def</span> <span class="nf">hyponym_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Synset.hyponym_paths">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.hyponym_paths">[docs]</a>
+    <span class="k">def</span> <span class="nf">hyponym_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method iterates recursively through the hyponyms of this synset to get all paths that connect</span>
 <span class="sd">        this synset with a leaf node. A path is complete if it ends with a leaf node. All possible paths are</span>
 <span class="sd">        returned. Each path is a list of nodes.</span>
@@ -283,8 +335,11 @@
                 <span class="n">paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ancestor_list</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">paths</span></div>
 
-<div class="viewcode-block" id="Synset.all_hyponyms"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.all_hyponyms">[docs]</a>    <span class="k">def</span> <span class="nf">all_hyponyms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Synset.all_hyponyms">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.all_hyponyms">[docs]</a>
+    <span class="k">def</span> <span class="nf">all_hyponyms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method returns all possible hyponyms of this synset.</span>
 
 <span class="sd">        :return: [set(Synset)] A set of synset nodes, each constitutes a hyponym of the current synset.</span>
@@ -296,18 +351,28 @@
                     <span class="n">hyponyms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">synset</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">hyponyms</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Synset.shortest_path_to_root"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.shortest_path_to_root">[docs]</a>    <span class="k">def</span> <span class="nf">shortest_path_to_root</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Synset.shortest_path_to_root">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.shortest_path_to_root">[docs]</a>
+    <span class="k">def</span> <span class="nf">shortest_path_to_root</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method returns the shortest path to the root node.</span>
 
 <span class="sd">        :return: [list(Synset)] shortest path to the root node.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">paths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hypernym_paths</span><span class="p">()</span>
-        <span class="n">shortest</span> <span class="o">=</span> <span class="n">paths</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">min</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">]))</span>
-        <span class="k">return</span> <span class="n">paths</span><span class="p">[</span><span class="n">shortest</span><span class="p">]</span></div>
+        <span class="nb">print</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+        <span class="n">length_array</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">path1</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hypernym_paths</span><span class="p">():</span>
+            <span class="n">length_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">path1</span><span class="p">))</span>
+        <span class="n">shortest_index</span> <span class="o">=</span> <span class="n">length_array</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">length_array</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">paths</span><span class="p">[</span><span class="n">shortest_index</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Synset.common_hypernyms"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.common_hypernyms">[docs]</a>    <span class="k">def</span> <span class="nf">common_hypernyms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Synset.common_hypernyms">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.common_hypernyms">[docs]</a>
+    <span class="k">def</span> <span class="nf">common_hypernyms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Given another synset, this method computes shared hypernyms</span>
 
 <span class="sd">        :type other: Synset</span>
@@ -316,8 +381,11 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_hypernyms</span><span class="p">())</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">all_hypernyms</span><span class="p">()))</span></div>
 
-<div class="viewcode-block" id="Synset.min_depth"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.min_depth">[docs]</a>    <span class="k">def</span> <span class="nf">min_depth</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Synset.min_depth">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.min_depth">[docs]</a>
+    <span class="k">def</span> <span class="nf">min_depth</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :return: The length of the shortest hypernym path from this synset to the root.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -329,8 +397,11 @@
             <span class="n">min_depth</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">min</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">min_depth</span><span class="p">()</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hypernyms</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">min_depth</span></div>
 
-<div class="viewcode-block" id="Synset.shortest_path_distance"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.shortest_path_distance">[docs]</a>    <span class="k">def</span> <span class="nf">shortest_path_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Synset.shortest_path_distance">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.shortest_path_distance">[docs]</a>
+    <span class="k">def</span> <span class="nf">shortest_path_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the distance of the shortest path linking the two synsets (if</span>
 <span class="sd">        one exists). If a node is compared with itself 0 is returned. The distance is denoted by the number of edges</span>
 <span class="sd">        that exist in the shortest path.</span>
@@ -345,8 +416,11 @@
         <span class="n">paths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">paths</span> <span class="o">==</span> <span class="p">[]</span> <span class="k">else</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span></div>
 
-<div class="viewcode-block" id="Synset.shortest_path"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.shortest_path">[docs]</a>    <span class="k">def</span> <span class="nf">shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Synset.shortest_path">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.shortest_path">[docs]</a>
+    <span class="k">def</span> <span class="nf">shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the shortest possible sequence of synset nodes that are traversed from this synset to a given other</span>
 <span class="sd">        synset. If there are several shortest sequences, all of then are returned.</span>
 
@@ -369,8 +443,11 @@
                         <span class="n">shortest_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_path</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">shortest_paths</span></div>
 
-<div class="viewcode-block" id="Synset.shortest_path_to_hypernym"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.shortest_path_to_hypernym">[docs]</a>    <span class="k">def</span> <span class="nf">shortest_path_to_hypernym</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hypernym</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Synset.shortest_path_to_hypernym">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.shortest_path_to_hypernym">[docs]</a>
+    <span class="k">def</span> <span class="nf">shortest_path_to_hypernym</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hypernym</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The shortest path between this synset and the given hypernym. Asserts that the given other synset is a real</span>
 <span class="sd">        hypernym of the current synset.</span>
 
@@ -396,8 +473,11 @@
         <span class="n">shortest_path</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">shortest_path</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="n">shortest_dist</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">shortest_path</span></div>
 
-<div class="viewcode-block" id="Synset.lowest_common_subsumer"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.lowest_common_subsumer">[docs]</a>    <span class="k">def</span> <span class="nf">lowest_common_subsumer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Synset.lowest_common_subsumer">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.lowest_common_subsumer">[docs]</a>
+    <span class="k">def</span> <span class="nf">lowest_common_subsumer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Extract the lowes common subsumer(s) / lowest common ancestor(s) of the current synset and a given one.</span>
 
 <span class="sd">        :type other: Synset</span>
@@ -429,8 +509,11 @@
                 <span class="n">lcs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">hypernym</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">lcs</span></div>
 
-<div class="viewcode-block" id="Synset.get_distances_hypernym_dic"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.get_distances_hypernym_dic">[docs]</a>    <span class="k">def</span> <span class="nf">get_distances_hypernym_dic</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Synset.get_distances_hypernym_dic">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synset.Synset.get_distances_hypernym_dic">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_distances_hypernym_dic</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        For each hypernym, store the shortest distance between the current synset and its hypernym.</span>
 
 <span class="sd">        :return: A dictionary containing all hypernyms of this synset as keys and the corresponding distances as values.</span>
@@ -448,6 +531,7 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">distances_dic</span><span class="p">[</span><span class="n">hypernym</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span>
         <span class="k">return</span> <span class="n">distances_dic</span></div>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -484,6 +568,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">direct_hyponyms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_direct_hyponyms</span></div>
+
 </pre></div>
 
           </div>
@@ -514,32 +599,32 @@
 </ul>
 
 
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Neele Falk.
+      &#169;2020, Neele Falk.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
     </div>
 
     
     <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
     </a>
     
 

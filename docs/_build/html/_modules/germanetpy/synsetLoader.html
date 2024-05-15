@@ -1,24 +1,23 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>germanetpy.synsetLoader &#8212; germanetpy 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=938c9ccc"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -58,8 +57,10 @@
 <span class="n">WORDCATEGORY</span> <span class="o">=</span> <span class="s1">&#39;category&#39;</span>
 
 
-<div class="viewcode-block" id="get_attribute_element"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.get_attribute_element">[docs]</a><span class="k">def</span> <span class="nf">get_attribute_element</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="get_attribute_element">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.get_attribute_element">[docs]</a>
+<span class="k">def</span> <span class="nf">get_attribute_element</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Constructs an Emum object of a given attribute</span>
 <span class="sd">    :rtype: FastEnum</span>
 <span class="sd">    :type enum: FastEnum</span>
@@ -74,8 +75,11 @@
     <span class="k">return</span> <span class="kc">None</span></div>
 
 
-<div class="viewcode-block" id="create_compound_info"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.create_compound_info">[docs]</a><span class="k">def</span> <span class="nf">create_compound_info</span><span class="p">(</span><span class="n">child</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CompoundInfo</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="create_compound_info">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.create_compound_info">[docs]</a>
+<span class="k">def</span> <span class="nf">create_compound_info</span><span class="p">(</span><span class="n">child</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CompoundInfo</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a compound info object. This has a modifier (String) and a head (String). Each modifier and the head can</span>
 <span class="sd">    have a property (CompoundProperty) and a category (CompoundCategory).</span>
 <span class="sd">    :param child: the XML element</span>
@@ -100,8 +104,11 @@
     <span class="k">return</span> <span class="n">compound</span></div>
 
 
-<div class="viewcode-block" id="load_lexunits"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.load_lexunits">[docs]</a><span class="k">def</span> <span class="nf">load_lexunits</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="load_lexunits">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.load_lexunits">[docs]</a>
+<span class="k">def</span> <span class="nf">load_lexunits</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Takes the XML tree and walks trough it to create the Lexunit objects.</span>
 <span class="sd">    :type tree: Element Tree</span>
 <span class="sd">    :type germanet: Germanet</span>
@@ -130,8 +137,11 @@
                     <span class="n">unit</span><span class="o">.</span><span class="n">relations</span><span class="p">[</span><span class="n">LexRel</span><span class="o">.</span><span class="n">has_synonym</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lexunit</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="create_lexunit"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.create_lexunit">[docs]</a><span class="k">def</span> <span class="nf">create_lexunit</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">attributes</span><span class="p">,</span> <span class="n">lex_root</span><span class="p">,</span> <span class="n">synset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Lexunit</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="create_lexunit">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.create_lexunit">[docs]</a>
+<span class="k">def</span> <span class="nf">create_lexunit</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">attributes</span><span class="p">,</span> <span class="n">lex_root</span><span class="p">,</span> <span class="n">synset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Lexunit</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given the XML data, creates a Lexunit object.</span>
 <span class="sd">    :type attributes: XML attributes</span>
 <span class="sd">    :type germanet: Germanet</span>
@@ -171,8 +181,11 @@
     <span class="k">return</span> <span class="n">lexunit</span></div>
 
 
-<div class="viewcode-block" id="add_orth_forms"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.add_orth_forms">[docs]</a><span class="k">def</span> <span class="nf">add_orth_forms</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">lexunit</span><span class="p">:</span> <span class="n">Lexunit</span><span class="p">,</span> <span class="n">child_value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="add_orth_forms">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.add_orth_forms">[docs]</a>
+<span class="k">def</span> <span class="nf">add_orth_forms</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">lexunit</span><span class="p">:</span> <span class="n">Lexunit</span><span class="p">,</span> <span class="n">child_value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Checks which orthform the tag contains, and adds it to the lexunit object. Adds the lexunit id to the</span>
 <span class="sd">    corresponding dictionary.</span>
 
@@ -194,6 +207,7 @@
         <span class="n">lexunit</span><span class="o">.</span><span class="n">_old_orthform</span> <span class="o">=</span> <span class="n">child_value</span>
     <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">OLDORTHVAR</span><span class="p">:</span>
         <span class="n">lexunit</span><span class="o">.</span><span class="n">_old_orthvar</span> <span class="o">=</span> <span class="n">child_value</span></div>
+
 </pre></div>
 
           </div>
@@ -224,32 +238,32 @@
 </ul>
 
 
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Neele Falk.
+      &#169;2020, Neele Falk.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
     </div>
 
     
     <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
     </a>
     
 

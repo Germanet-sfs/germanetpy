@@ -1,24 +1,24 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>germanetpy &#8212; germanetpy 0.2.0 documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=938c9ccc"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -30,35 +30,438 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="germanetpy">
-<h1>germanetpy<a class="headerlink" href="#germanetpy" title="Permalink to this headline">¶</a></h1>
+  <section id="germanetpy">
+<h1>germanetpy<a class="headerlink" href="#germanetpy" title="Link to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="germanetpy.html">germanetpy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.compoundInfo">germanetpy.compoundInfo module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.filterconfig">germanetpy.filterconfig module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.frames">germanetpy.frames module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.germanet">germanetpy.germanet module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.icbased_similarity">germanetpy.icbased_similarity module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.iliLoader">germanetpy.iliLoader module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.iliRecord">germanetpy.iliRecord module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.lexunit">germanetpy.lexunit module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.longest_shortest_path">germanetpy.longest_shortest_path module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.path_based_relatedness_measures">germanetpy.path_based_relatedness_measures module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.relationLoader">germanetpy.relationLoader module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.semrel_measures">germanetpy.semrel_measures module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.synset">germanetpy.synset module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.synsetLoader">germanetpy.synsetLoader module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.utils">germanetpy.utils module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.wiktionaryLoader">germanetpy.wiktionaryLoader module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.wiktionaryparaphrase">germanetpy.wiktionaryparaphrase module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.compoundInfo">germanetpy.compoundInfo module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundCategory"><code class="docutils literal notranslate"><span class="pre">CompoundCategory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundCategory.Adjektiv"><code class="docutils literal notranslate"><span class="pre">CompoundCategory.Adjektiv</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundCategory.Nomen"><code class="docutils literal notranslate"><span class="pre">CompoundCategory.Nomen</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundCategory.Verb"><code class="docutils literal notranslate"><span class="pre">CompoundCategory.Verb</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundCategory.Adverb"><code class="docutils literal notranslate"><span class="pre">CompoundCategory.Adverb</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundCategory.Praposition"><code class="docutils literal notranslate"><span class="pre">CompoundCategory.Präposition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundCategory.Partikel"><code class="docutils literal notranslate"><span class="pre">CompoundCategory.Partikel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundCategory.Pronomen"><code class="docutils literal notranslate"><span class="pre">CompoundCategory.Pronomen</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundProperty"><code class="docutils literal notranslate"><span class="pre">CompoundProperty</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundProperty.Abkurzung"><code class="docutils literal notranslate"><span class="pre">CompoundProperty.Abkürzung</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundProperty.Affixoid"><code class="docutils literal notranslate"><span class="pre">CompoundProperty.Affixoid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundProperty.Fremdwort"><code class="docutils literal notranslate"><span class="pre">CompoundProperty.Fremdwort</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundProperty.Konfix"><code class="docutils literal notranslate"><span class="pre">CompoundProperty.Konfix</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundProperty.Wortgruppe"><code class="docutils literal notranslate"><span class="pre">CompoundProperty.Wortgruppe</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundProperty.Eigenname"><code class="docutils literal notranslate"><span class="pre">CompoundProperty.Eigenname</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundProperty.opaquesMorphem"><code class="docutils literal notranslate"><span class="pre">CompoundProperty.opaquesMorphem</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundProperty.virtuelleBildung"><code class="docutils literal notranslate"><span class="pre">CompoundProperty.virtuelleBildung</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundProperty.gebundenesMorphem"><code class="docutils literal notranslate"><span class="pre">CompoundProperty.gebundenesMorphem</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundProperty.freiesMorphem"><code class="docutils literal notranslate"><span class="pre">CompoundProperty.freiesMorphem</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundInfo"><code class="docutils literal notranslate"><span class="pre">CompoundInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundInfo.PROPERTY"><code class="docutils literal notranslate"><span class="pre">CompoundInfo.PROPERTY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundInfo.CATEGORY"><code class="docutils literal notranslate"><span class="pre">CompoundInfo.CATEGORY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundInfo.modifier1"><code class="docutils literal notranslate"><span class="pre">CompoundInfo.modifier1</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundInfo.modifier1_property"><code class="docutils literal notranslate"><span class="pre">CompoundInfo.modifier1_property</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundInfo.modifier1_category"><code class="docutils literal notranslate"><span class="pre">CompoundInfo.modifier1_category</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundInfo.modifier2"><code class="docutils literal notranslate"><span class="pre">CompoundInfo.modifier2</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundInfo.modifier2_property"><code class="docutils literal notranslate"><span class="pre">CompoundInfo.modifier2_property</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundInfo.modifier2_category"><code class="docutils literal notranslate"><span class="pre">CompoundInfo.modifier2_category</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundInfo.head"><code class="docutils literal notranslate"><span class="pre">CompoundInfo.head</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.compoundInfo.CompoundInfo.head_property"><code class="docutils literal notranslate"><span class="pre">CompoundInfo.head_property</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.filterconfig">germanetpy.filterconfig module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.filterconfig.Filterconfig"><code class="docutils literal notranslate"><span class="pre">Filterconfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.filterconfig.Filterconfig.filter_lexunits"><code class="docutils literal notranslate"><span class="pre">Filterconfig.filter_lexunits()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.filterconfig.Filterconfig.filter_synsets"><code class="docutils literal notranslate"><span class="pre">Filterconfig.filter_synsets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.filterconfig.Filterconfig.search_string"><code class="docutils literal notranslate"><span class="pre">Filterconfig.search_string</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.filterconfig.Filterconfig.ignore_case"><code class="docutils literal notranslate"><span class="pre">Filterconfig.ignore_case</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.filterconfig.Filterconfig.regex"><code class="docutils literal notranslate"><span class="pre">Filterconfig.regex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.filterconfig.Filterconfig.levenshtein_distance"><code class="docutils literal notranslate"><span class="pre">Filterconfig.levenshtein_distance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.filterconfig.Filterconfig.word_classes"><code class="docutils literal notranslate"><span class="pre">Filterconfig.word_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.filterconfig.Filterconfig.word_categories"><code class="docutils literal notranslate"><span class="pre">Filterconfig.word_categories</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.filterconfig.Filterconfig.orth_variants"><code class="docutils literal notranslate"><span class="pre">Filterconfig.orth_variants</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.frames">germanetpy.frames module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames"><code class="docutils literal notranslate"><span class="pre">Frames</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.EXPLETIVE"><code class="docutils literal notranslate"><span class="pre">Frames.EXPLETIVE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.SUBJECT"><code class="docutils literal notranslate"><span class="pre">Frames.SUBJECT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.ACCOBJ"><code class="docutils literal notranslate"><span class="pre">Frames.ACCOBJ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.DATOBJ"><code class="docutils literal notranslate"><span class="pre">Frames.DATOBJ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.GENOBJ"><code class="docutils literal notranslate"><span class="pre">Frames.GENOBJ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.PREPOBJ"><code class="docutils literal notranslate"><span class="pre">Frames.PREPOBJ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.LOC"><code class="docutils literal notranslate"><span class="pre">Frames.LOC</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.DIR"><code class="docutils literal notranslate"><span class="pre">Frames.DIR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.TEMP"><code class="docutils literal notranslate"><span class="pre">Frames.TEMP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.MAN"><code class="docutils literal notranslate"><span class="pre">Frames.MAN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.INST"><code class="docutils literal notranslate"><span class="pre">Frames.INST</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.CAUSE"><code class="docutils literal notranslate"><span class="pre">Frames.CAUSE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.ROLE"><code class="docutils literal notranslate"><span class="pre">Frames.ROLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.COM"><code class="docutils literal notranslate"><span class="pre">Frames.COM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.reflexives"><code class="docutils literal notranslate"><span class="pre">Frames.reflexives</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.extract_expletives"><code class="docutils literal notranslate"><span class="pre">Frames.extract_expletives()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.extract_accusative_complement"><code class="docutils literal notranslate"><span class="pre">Frames.extract_accusative_complement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.extract_dative_complement"><code class="docutils literal notranslate"><span class="pre">Frames.extract_dative_complement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.extract_gentive_complement"><code class="docutils literal notranslate"><span class="pre">Frames.extract_gentive_complement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.extract_prepositional_complement"><code class="docutils literal notranslate"><span class="pre">Frames.extract_prepositional_complement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.extract_reflexives"><code class="docutils literal notranslate"><span class="pre">Frames.extract_reflexives()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.extract_adverbials"><code class="docutils literal notranslate"><span class="pre">Frames.extract_adverbials()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.extract_transitives"><code class="docutils literal notranslate"><span class="pre">Frames.extract_transitives()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.extract_intransitives"><code class="docutils literal notranslate"><span class="pre">Frames.extract_intransitives()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.extract_specific_complements"><code class="docutils literal notranslate"><span class="pre">Frames.extract_specific_complements()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.frames.Frames.frames2verbs"><code class="docutils literal notranslate"><span class="pre">Frames.frames2verbs</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.germanet">germanetpy.germanet module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet"><code class="docutils literal notranslate"><span class="pre">Germanet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.get_synsets_by_orthform"><code class="docutils literal notranslate"><span class="pre">Germanet.get_synsets_by_orthform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.get_synsets_by_wordcategory"><code class="docutils literal notranslate"><span class="pre">Germanet.get_synsets_by_wordcategory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.get_synsets_by_wordclass"><code class="docutils literal notranslate"><span class="pre">Germanet.get_synsets_by_wordclass()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.get_synset_by_id"><code class="docutils literal notranslate"><span class="pre">Germanet.get_synset_by_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.get_lexunit_by_id"><code class="docutils literal notranslate"><span class="pre">Germanet.get_lexunit_by_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.get_lexunits_by_orthform"><code class="docutils literal notranslate"><span class="pre">Germanet.get_lexunits_by_orthform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.get_lexunits_by_wordclass"><code class="docutils literal notranslate"><span class="pre">Germanet.get_lexunits_by_wordclass()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.get_lexunits_by_wordcategory"><code class="docutils literal notranslate"><span class="pre">Germanet.get_lexunits_by_wordcategory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.get_synsets_by_frame"><code class="docutils literal notranslate"><span class="pre">Germanet.get_synsets_by_frame()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.lexunits"><code class="docutils literal notranslate"><span class="pre">Germanet.lexunits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.synsets"><code class="docutils literal notranslate"><span class="pre">Germanet.synsets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.orthform2lexid"><code class="docutils literal notranslate"><span class="pre">Germanet.orthform2lexid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.mainOrtform2lexid"><code class="docutils literal notranslate"><span class="pre">Germanet.mainOrtform2lexid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.lowercasedform2lexid"><code class="docutils literal notranslate"><span class="pre">Germanet.lowercasedform2lexid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.wordcat2lexid"><code class="docutils literal notranslate"><span class="pre">Germanet.wordcat2lexid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.wordclass2lexid"><code class="docutils literal notranslate"><span class="pre">Germanet.wordclass2lexid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.compounds"><code class="docutils literal notranslate"><span class="pre">Germanet.compounds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.frames2lexunits"><code class="docutils literal notranslate"><span class="pre">Germanet.frames2lexunits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.wiktionary_entries"><code class="docutils literal notranslate"><span class="pre">Germanet.wiktionary_entries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.ili_records"><code class="docutils literal notranslate"><span class="pre">Germanet.ili_records</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.frames"><code class="docutils literal notranslate"><span class="pre">Germanet.frames</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.root"><code class="docutils literal notranslate"><span class="pre">Germanet.root</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.datadir"><code class="docutils literal notranslate"><span class="pre">Germanet.datadir</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.add_ilirecords"><code class="docutils literal notranslate"><span class="pre">Germanet.add_ilirecords</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.germanet.Germanet.add_wiktionary"><code class="docutils literal notranslate"><span class="pre">Germanet.add_wiktionary</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.icbased_similarity">germanetpy.icbased_similarity module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.create_simple_freq_dic"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity.create_simple_freq_dic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.init_min_max_normalization_values"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity.init_min_max_normalization_values()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.init_ic_map"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity.init_ic_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.get_information_content"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity.get_information_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.resnik"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity.resnik()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.jiang_and_conrath"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity.jiang_and_conrath()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.lin"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity.lin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.normalize"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity.normalize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.germanet"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity.germanet</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.root_freq"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity.root_freq</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.synset2cumfreq"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity.synset2cumfreq</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.jcnmaxdist"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity.jcnmaxdist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.normalization_dic"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity.normalization_dic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.synset2ic"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity.synset2ic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.most_informative_synset"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity.most_informative_synset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.icbased_similarity.ICBasedSimilarity.synset2simple_freq"><code class="docutils literal notranslate"><span class="pre">ICBasedSimilarity.synset2simple_freq</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.iliLoader">germanetpy.iliLoader module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.iliLoader.create_ili_record"><code class="docutils literal notranslate"><span class="pre">create_ili_record()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.iliLoader.load_ili"><code class="docutils literal notranslate"><span class="pre">load_ili()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.iliRecord">germanetpy.iliRecord module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.iliRecord.IliRecord"><code class="docutils literal notranslate"><span class="pre">IliRecord</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.iliRecord.IliRecord.lexunit_id"><code class="docutils literal notranslate"><span class="pre">IliRecord.lexunit_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.iliRecord.IliRecord.relation"><code class="docutils literal notranslate"><span class="pre">IliRecord.relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.iliRecord.IliRecord.english_equivalent"><code class="docutils literal notranslate"><span class="pre">IliRecord.english_equivalent</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.iliRecord.IliRecord.pwn20id"><code class="docutils literal notranslate"><span class="pre">IliRecord.pwn20id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.iliRecord.IliRecord.pwn30id"><code class="docutils literal notranslate"><span class="pre">IliRecord.pwn30id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.iliRecord.IliRecord.pwn20synonyms"><code class="docutils literal notranslate"><span class="pre">IliRecord.pwn20synonyms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.iliRecord.IliRecord.pwn20paraphrase"><code class="docutils literal notranslate"><span class="pre">IliRecord.pwn20paraphrase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.iliRecord.IliRecord.source"><code class="docutils literal notranslate"><span class="pre">IliRecord.source</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.lexunit">germanetpy.lexunit module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel"><code class="docutils literal notranslate"><span class="pre">LexRel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_synonym"><code class="docutils literal notranslate"><span class="pre">LexRel.has_synonym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_antonym"><code class="docutils literal notranslate"><span class="pre">LexRel.has_antonym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_pertainym"><code class="docutils literal notranslate"><span class="pre">LexRel.has_pertainym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_participle"><code class="docutils literal notranslate"><span class="pre">LexRel.has_participle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_active_usage"><code class="docutils literal notranslate"><span class="pre">LexRel.has_active_usage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_occasion"><code class="docutils literal notranslate"><span class="pre">LexRel.has_occasion</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_attribute"><code class="docutils literal notranslate"><span class="pre">LexRel.has_attribute</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_appearance"><code class="docutils literal notranslate"><span class="pre">LexRel.has_appearance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_construction_method"><code class="docutils literal notranslate"><span class="pre">LexRel.has_construction_method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_container"><code class="docutils literal notranslate"><span class="pre">LexRel.has_container</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.is_container_for"><code class="docutils literal notranslate"><span class="pre">LexRel.is_container_for</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_consistency_of"><code class="docutils literal notranslate"><span class="pre">LexRel.has_consistency_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_component"><code class="docutils literal notranslate"><span class="pre">LexRel.has_component</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_owner"><code class="docutils literal notranslate"><span class="pre">LexRel.has_owner</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.is_owner_of"><code class="docutils literal notranslate"><span class="pre">LexRel.is_owner_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_function"><code class="docutils literal notranslate"><span class="pre">LexRel.has_function</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_manner_of_functioning"><code class="docutils literal notranslate"><span class="pre">LexRel.has_manner_of_functioning</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_origin"><code class="docutils literal notranslate"><span class="pre">LexRel.has_origin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_production_method"><code class="docutils literal notranslate"><span class="pre">LexRel.has_production_method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_content"><code class="docutils literal notranslate"><span class="pre">LexRel.has_content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_no_property"><code class="docutils literal notranslate"><span class="pre">LexRel.has_no_property</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_habitat"><code class="docutils literal notranslate"><span class="pre">LexRel.has_habitat</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_location"><code class="docutils literal notranslate"><span class="pre">LexRel.has_location</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.is_location_of"><code class="docutils literal notranslate"><span class="pre">LexRel.is_location_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_measure"><code class="docutils literal notranslate"><span class="pre">LexRel.has_measure</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.is_measure_of"><code class="docutils literal notranslate"><span class="pre">LexRel.is_measure_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_material"><code class="docutils literal notranslate"><span class="pre">LexRel.has_material</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_member"><code class="docutils literal notranslate"><span class="pre">LexRel.has_member</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.is_member_of"><code class="docutils literal notranslate"><span class="pre">LexRel.is_member_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_diet"><code class="docutils literal notranslate"><span class="pre">LexRel.has_diet</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.is_diet_of"><code class="docutils literal notranslate"><span class="pre">LexRel.is_diet_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_eponym"><code class="docutils literal notranslate"><span class="pre">LexRel.has_eponym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_user"><code class="docutils literal notranslate"><span class="pre">LexRel.has_user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_product"><code class="docutils literal notranslate"><span class="pre">LexRel.has_product</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.is_product_of"><code class="docutils literal notranslate"><span class="pre">LexRel.is_product_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_prototypical_holder"><code class="docutils literal notranslate"><span class="pre">LexRel.has_prototypical_holder</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.is_prototypical_holder_for"><code class="docutils literal notranslate"><span class="pre">LexRel.is_prototypical_holder_for</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_prototypical_place_of_usage"><code class="docutils literal notranslate"><span class="pre">LexRel.has_prototypical_place_of_usage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_relation"><code class="docutils literal notranslate"><span class="pre">LexRel.has_relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_raw_product"><code class="docutils literal notranslate"><span class="pre">LexRel.has_raw_product</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_other_property"><code class="docutils literal notranslate"><span class="pre">LexRel.has_other_property</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.is_storage_for"><code class="docutils literal notranslate"><span class="pre">LexRel.is_storage_for</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_specialization"><code class="docutils literal notranslate"><span class="pre">LexRel.has_specialization</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_part"><code class="docutils literal notranslate"><span class="pre">LexRel.has_part</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.is_part_of"><code class="docutils literal notranslate"><span class="pre">LexRel.is_part_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_topic"><code class="docutils literal notranslate"><span class="pre">LexRel.has_topic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.is_caused_by"><code class="docutils literal notranslate"><span class="pre">LexRel.is_caused_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.is_cause_for"><code class="docutils literal notranslate"><span class="pre">LexRel.is_cause_for</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.is_comparable_to"><code class="docutils literal notranslate"><span class="pre">LexRel.is_comparable_to</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_usage"><code class="docutils literal notranslate"><span class="pre">LexRel.has_usage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_result_of_usage"><code class="docutils literal notranslate"><span class="pre">LexRel.has_result_of_usage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_purpose_of_usage"><code class="docutils literal notranslate"><span class="pre">LexRel.has_purpose_of_usage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_goods"><code class="docutils literal notranslate"><span class="pre">LexRel.has_goods</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_time"><code class="docutils literal notranslate"><span class="pre">LexRel.has_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.is_access_to"><code class="docutils literal notranslate"><span class="pre">LexRel.is_access_to</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.has_ingredient"><code class="docutils literal notranslate"><span class="pre">LexRel.has_ingredient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.LexRel.is_ingredient_of"><code class="docutils literal notranslate"><span class="pre">LexRel.is_ingredient_of</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.OrthFormVariant"><code class="docutils literal notranslate"><span class="pre">OrthFormVariant</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.OrthFormVariant.orthForm"><code class="docutils literal notranslate"><span class="pre">OrthFormVariant.orthForm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.OrthFormVariant.orthVar"><code class="docutils literal notranslate"><span class="pre">OrthFormVariant.orthVar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.OrthFormVariant.oldOrthForm"><code class="docutils literal notranslate"><span class="pre">OrthFormVariant.oldOrthForm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.OrthFormVariant.oldOrthVar"><code class="docutils literal notranslate"><span class="pre">OrthFormVariant.oldOrthVar</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit"><code class="docutils literal notranslate"><span class="pre">Lexunit</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.get_orthform_variant"><code class="docutils literal notranslate"><span class="pre">Lexunit.get_orthform_variant()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.get_synonyms"><code class="docutils literal notranslate"><span class="pre">Lexunit.get_synonyms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.get_related_lexunits"><code class="docutils literal notranslate"><span class="pre">Lexunit.get_related_lexunits()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.get_all_orthforms"><code class="docutils literal notranslate"><span class="pre">Lexunit.get_all_orthforms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.id"><code class="docutils literal notranslate"><span class="pre">Lexunit.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.synset"><code class="docutils literal notranslate"><span class="pre">Lexunit.synset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.sense"><code class="docutils literal notranslate"><span class="pre">Lexunit.sense</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.orthform"><code class="docutils literal notranslate"><span class="pre">Lexunit.orthform</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.orthvar"><code class="docutils literal notranslate"><span class="pre">Lexunit.orthvar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.old_orthform"><code class="docutils literal notranslate"><span class="pre">Lexunit.old_orthform</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.old_orthvar"><code class="docutils literal notranslate"><span class="pre">Lexunit.old_orthvar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.frames"><code class="docutils literal notranslate"><span class="pre">Lexunit.frames</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.examples"><code class="docutils literal notranslate"><span class="pre">Lexunit.examples</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.ili_records"><code class="docutils literal notranslate"><span class="pre">Lexunit.ili_records</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.frames2examples"><code class="docutils literal notranslate"><span class="pre">Lexunit.frames2examples</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.wiktionary_paraphrases"><code class="docutils literal notranslate"><span class="pre">Lexunit.wiktionary_paraphrases</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.compound_info"><code class="docutils literal notranslate"><span class="pre">Lexunit.compound_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.relations"><code class="docutils literal notranslate"><span class="pre">Lexunit.relations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.incoming_relations"><code class="docutils literal notranslate"><span class="pre">Lexunit.incoming_relations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.lexunit.Lexunit.artificial"><code class="docutils literal notranslate"><span class="pre">Lexunit.artificial</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.longest_shortest_path">germanetpy.longest_shortest_path module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.longest_shortest_path.get_overall_longest_shortest_distance"><code class="docutils literal notranslate"><span class="pre">get_overall_longest_shortest_distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.longest_shortest_path.get_greatest_depth"><code class="docutils literal notranslate"><span class="pre">get_greatest_depth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.longest_shortest_path.get_longest_possible_shortest_distance"><code class="docutils literal notranslate"><span class="pre">get_longest_possible_shortest_distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.longest_shortest_path.print_longest_shortest_distances"><code class="docutils literal notranslate"><span class="pre">print_longest_shortest_distances()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.longest_shortest_path.print_maximum_depths"><code class="docutils literal notranslate"><span class="pre">print_maximum_depths()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.path_based_relatedness_measures">germanetpy.path_based_relatedness_measures module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.simple_path"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.simple_path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.init_min_max_normalization_values"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.init_min_max_normalization_values()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.wu_and_palmer"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.wu_and_palmer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.leacock_chodorow"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.leacock_chodorow()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.normalize"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.normalize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.germanet"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.germanet</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.max_len"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.max_len</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.max_depth"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.max_depth</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.category"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.category</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.normalization_dic"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.normalization_dic</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.relationLoader">germanetpy.relationLoader module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.relationLoader.get_relation_attributes"><code class="docutils literal notranslate"><span class="pre">get_relation_attributes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.relationLoader.load_relations"><code class="docutils literal notranslate"><span class="pre">load_relations()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.semrel_measures">germanetpy.semrel_measures module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.semrel_measures.SemRelMeasure"><code class="docutils literal notranslate"><span class="pre">SemRelMeasure</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.semrel_measures.SemRelMeasure.SimplePath"><code class="docutils literal notranslate"><span class="pre">SemRelMeasure.SimplePath</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.semrel_measures.SemRelMeasure.LeacockAndChodorow"><code class="docutils literal notranslate"><span class="pre">SemRelMeasure.LeacockAndChodorow</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.semrel_measures.SemRelMeasure.WuAndPalmer"><code class="docutils literal notranslate"><span class="pre">SemRelMeasure.WuAndPalmer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.semrel_measures.SemRelMeasure.Resnik"><code class="docutils literal notranslate"><span class="pre">SemRelMeasure.Resnik</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.semrel_measures.SemRelMeasure.Lin"><code class="docutils literal notranslate"><span class="pre">SemRelMeasure.Lin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.semrel_measures.SemRelMeasure.JiangAndConrath"><code class="docutils literal notranslate"><span class="pre">SemRelMeasure.JiangAndConrath</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.synset">germanetpy.synset module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.synset.ConRel"><code class="docutils literal notranslate"><span class="pre">ConRel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.ConRel.has_hypernym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_hypernym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.ConRel.has_hyponym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_hyponym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.ConRel.has_component_meronym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_component_meronym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.ConRel.has_component_holonym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_component_holonym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.ConRel.has_member_meronym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_member_meronym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.ConRel.has_member_holonym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_member_holonym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.ConRel.has_substance_meronym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_substance_meronym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.ConRel.has_substance_holonym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_substance_holonym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.ConRel.has_portion_meronym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_portion_meronym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.ConRel.has_portion_holonym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_portion_holonym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.ConRel.entails"><code class="docutils literal notranslate"><span class="pre">ConRel.entails</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.ConRel.is_entailed_by"><code class="docutils literal notranslate"><span class="pre">ConRel.is_entailed_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.ConRel.is_related_to"><code class="docutils literal notranslate"><span class="pre">ConRel.is_related_to</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.ConRel.causes"><code class="docutils literal notranslate"><span class="pre">ConRel.causes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.ConRel.transitive"><code class="docutils literal notranslate"><span class="pre">ConRel.transitive()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordCategory"><code class="docutils literal notranslate"><span class="pre">WordCategory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordCategory.adj"><code class="docutils literal notranslate"><span class="pre">WordCategory.adj</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordCategory.nomen"><code class="docutils literal notranslate"><span class="pre">WordCategory.nomen</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordCategory.verben"><code class="docutils literal notranslate"><span class="pre">WordCategory.verben</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordCategory.get_possible_word_classes"><code class="docutils literal notranslate"><span class="pre">WordCategory.get_possible_word_classes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass"><code class="docutils literal notranslate"><span class="pre">WordClass</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Allgemein"><code class="docutils literal notranslate"><span class="pre">WordClass.Allgemein</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Bewegung"><code class="docutils literal notranslate"><span class="pre">WordClass.Bewegung</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Gefuehl"><code class="docutils literal notranslate"><span class="pre">WordClass.Gefuehl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Geist"><code class="docutils literal notranslate"><span class="pre">WordClass.Geist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Gesellschaft"><code class="docutils literal notranslate"><span class="pre">WordClass.Gesellschaft</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Koerper"><code class="docutils literal notranslate"><span class="pre">WordClass.Koerper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Menge"><code class="docutils literal notranslate"><span class="pre">WordClass.Menge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.natPhaenomen"><code class="docutils literal notranslate"><span class="pre">WordClass.natPhaenomen</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Ort"><code class="docutils literal notranslate"><span class="pre">WordClass.Ort</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Pertonym"><code class="docutils literal notranslate"><span class="pre">WordClass.Pertonym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Perzeption"><code class="docutils literal notranslate"><span class="pre">WordClass.Perzeption</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.privativ"><code class="docutils literal notranslate"><span class="pre">WordClass.privativ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Relation"><code class="docutils literal notranslate"><span class="pre">WordClass.Relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Substanz"><code class="docutils literal notranslate"><span class="pre">WordClass.Substanz</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Verhalten"><code class="docutils literal notranslate"><span class="pre">WordClass.Verhalten</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Zeit"><code class="docutils literal notranslate"><span class="pre">WordClass.Zeit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Artefakt"><code class="docutils literal notranslate"><span class="pre">WordClass.Artefakt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Attribut"><code class="docutils literal notranslate"><span class="pre">WordClass.Attribut</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Besitz"><code class="docutils literal notranslate"><span class="pre">WordClass.Besitz</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Form"><code class="docutils literal notranslate"><span class="pre">WordClass.Form</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Geschehen"><code class="docutils literal notranslate"><span class="pre">WordClass.Geschehen</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Gruppe"><code class="docutils literal notranslate"><span class="pre">WordClass.Gruppe</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Kognition"><code class="docutils literal notranslate"><span class="pre">WordClass.Kognition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Kommunikation"><code class="docutils literal notranslate"><span class="pre">WordClass.Kommunikation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Mensch"><code class="docutils literal notranslate"><span class="pre">WordClass.Mensch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Motiv"><code class="docutils literal notranslate"><span class="pre">WordClass.Motiv</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Nahrung"><code class="docutils literal notranslate"><span class="pre">WordClass.Nahrung</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.natGegenstand"><code class="docutils literal notranslate"><span class="pre">WordClass.natGegenstand</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Pflanze"><code class="docutils literal notranslate"><span class="pre">WordClass.Pflanze</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Tier"><code class="docutils literal notranslate"><span class="pre">WordClass.Tier</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Tops"><code class="docutils literal notranslate"><span class="pre">WordClass.Tops</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Koerperfunktion"><code class="docutils literal notranslate"><span class="pre">WordClass.Koerperfunktion</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Konkurrenz"><code class="docutils literal notranslate"><span class="pre">WordClass.Konkurrenz</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Kontakt"><code class="docutils literal notranslate"><span class="pre">WordClass.Kontakt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Lokation"><code class="docutils literal notranslate"><span class="pre">WordClass.Lokation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Schoepfung"><code class="docutils literal notranslate"><span class="pre">WordClass.Schoepfung</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Veraenderung"><code class="docutils literal notranslate"><span class="pre">WordClass.Veraenderung</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.Verbrauch"><code class="docutils literal notranslate"><span class="pre">WordClass.Verbrauch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.WordClass.get_possible_word_categories"><code class="docutils literal notranslate"><span class="pre">WordClass.get_possible_word_categories()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset"><code class="docutils literal notranslate"><span class="pre">Synset</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.add_lexunit"><code class="docutils literal notranslate"><span class="pre">Synset.add_lexunit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.is_root"><code class="docutils literal notranslate"><span class="pre">Synset.is_root()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.is_leaf"><code class="docutils literal notranslate"><span class="pre">Synset.is_leaf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.num_lexunits"><code class="docutils literal notranslate"><span class="pre">Synset.num_lexunits()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.get_related_synsets"><code class="docutils literal notranslate"><span class="pre">Synset.get_related_synsets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.hypernym_paths"><code class="docutils literal notranslate"><span class="pre">Synset.hypernym_paths()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.all_hypernyms"><code class="docutils literal notranslate"><span class="pre">Synset.all_hypernyms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.hyponym_paths"><code class="docutils literal notranslate"><span class="pre">Synset.hyponym_paths()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.all_hyponyms"><code class="docutils literal notranslate"><span class="pre">Synset.all_hyponyms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.shortest_path_to_root"><code class="docutils literal notranslate"><span class="pre">Synset.shortest_path_to_root()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.common_hypernyms"><code class="docutils literal notranslate"><span class="pre">Synset.common_hypernyms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.min_depth"><code class="docutils literal notranslate"><span class="pre">Synset.min_depth()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.shortest_path_distance"><code class="docutils literal notranslate"><span class="pre">Synset.shortest_path_distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.shortest_path"><code class="docutils literal notranslate"><span class="pre">Synset.shortest_path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.shortest_path_to_hypernym"><code class="docutils literal notranslate"><span class="pre">Synset.shortest_path_to_hypernym()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.lowest_common_subsumer"><code class="docutils literal notranslate"><span class="pre">Synset.lowest_common_subsumer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.get_distances_hypernym_dic"><code class="docutils literal notranslate"><span class="pre">Synset.get_distances_hypernym_dic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.id"><code class="docutils literal notranslate"><span class="pre">Synset.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.word_category"><code class="docutils literal notranslate"><span class="pre">Synset.word_category</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.word_class"><code class="docutils literal notranslate"><span class="pre">Synset.word_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.paraphrase"><code class="docutils literal notranslate"><span class="pre">Synset.paraphrase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.lexunits"><code class="docutils literal notranslate"><span class="pre">Synset.lexunits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.relations"><code class="docutils literal notranslate"><span class="pre">Synset.relations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.incoming_relations"><code class="docutils literal notranslate"><span class="pre">Synset.incoming_relations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.direct_hypernyms"><code class="docutils literal notranslate"><span class="pre">Synset.direct_hypernyms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.synset.Synset.direct_hyponyms"><code class="docutils literal notranslate"><span class="pre">Synset.direct_hyponyms</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.synsetLoader">germanetpy.synsetLoader module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.synsetLoader.get_attribute_element"><code class="docutils literal notranslate"><span class="pre">get_attribute_element()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.synsetLoader.create_compound_info"><code class="docutils literal notranslate"><span class="pre">create_compound_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.synsetLoader.load_lexunits"><code class="docutils literal notranslate"><span class="pre">load_lexunits()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.synsetLoader.create_lexunit"><code class="docutils literal notranslate"><span class="pre">create_lexunit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.synsetLoader.add_orth_forms"><code class="docutils literal notranslate"><span class="pre">add_orth_forms()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.utils">germanetpy.utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.utils.convert_to_boolean"><code class="docutils literal notranslate"><span class="pre">convert_to_boolean()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.utils.parse_xml"><code class="docutils literal notranslate"><span class="pre">parse_xml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.wiktionaryLoader">germanetpy.wiktionaryLoader module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.wiktionaryLoader.create_wiktionary"><code class="docutils literal notranslate"><span class="pre">create_wiktionary()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.wiktionaryLoader.load_wiktionary"><code class="docutils literal notranslate"><span class="pre">load_wiktionary()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy.wiktionaryparaphrase">germanetpy.wiktionaryparaphrase module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="germanetpy.html#germanetpy.wiktionaryparaphrase.WiktionaryParaphrase"><code class="docutils literal notranslate"><span class="pre">WiktionaryParaphrase</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.wiktionaryparaphrase.WiktionaryParaphrase.lexunit_id"><code class="docutils literal notranslate"><span class="pre">WiktionaryParaphrase.lexunit_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.wiktionaryparaphrase.WiktionaryParaphrase.wiktionary_id"><code class="docutils literal notranslate"><span class="pre">WiktionaryParaphrase.wiktionary_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.wiktionaryparaphrase.WiktionaryParaphrase.wiktionary_sense_id"><code class="docutils literal notranslate"><span class="pre">WiktionaryParaphrase.wiktionary_sense_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.wiktionaryparaphrase.WiktionaryParaphrase.wiktionary_sense"><code class="docutils literal notranslate"><span class="pre">WiktionaryParaphrase.wiktionary_sense</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="germanetpy.html#germanetpy.wiktionaryparaphrase.WiktionaryParaphrase.edited"><code class="docutils literal notranslate"><span class="pre">WiktionaryParaphrase.edited</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.html#module-germanetpy">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </div>
-</div>
+</section>
 
 
           </div>
@@ -89,26 +492,26 @@
 </ul>
 
 
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Neele Falk.
+      &#169;2020, Neele Falk.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
       |
       <a href="_sources/modules.rst.txt"
@@ -117,7 +520,7 @@
 
     
     <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
     </a>
     
 

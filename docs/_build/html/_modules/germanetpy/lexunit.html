@@ -1,24 +1,23 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>germanetpy.lexunit &#8212; germanetpy 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=938c9ccc"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -35,8 +34,10 @@
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
 
-<div class="viewcode-block" id="LexRel"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.LexRel">[docs]</a><span class="k">class</span> <span class="nc">LexRel</span><span class="p">(</span><span class="n">fastenum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="LexRel">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.LexRel">[docs]</a>
+<span class="k">class</span> <span class="nc">LexRel</span><span class="p">(</span><span class="n">fastenum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This enum represents the lexical relation (short: LexRel) that a Lexunit can have in GermaNet.</span>
 <span class="sd">    You can find a description of each relation at:</span>
 <span class="sd">    https://uni-tuebingen.de/en/142846</span>
@@ -100,16 +101,22 @@
     <span class="n">is_ingredient_of</span> <span class="o">=</span> <span class="s1">&#39;is_ingredient_of&#39;</span></div>
 
 
-<div class="viewcode-block" id="OrthFormVariant"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.OrthFormVariant">[docs]</a><span class="k">class</span> <span class="nc">OrthFormVariant</span><span class="p">(</span><span class="n">fastenum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This enum represents the four possible orthographical variations&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="OrthFormVariant">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.OrthFormVariant">[docs]</a>
+<span class="k">class</span> <span class="nc">OrthFormVariant</span><span class="p">(</span><span class="n">fastenum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This enum represents the four possible orthographical variations&quot;&quot;&quot;</span>
     <span class="n">orthForm</span> <span class="o">=</span> <span class="s1">&#39;orthForm&#39;</span>
     <span class="n">orthVar</span> <span class="o">=</span> <span class="s1">&#39;orthVar&#39;</span>
     <span class="n">oldOrthForm</span> <span class="o">=</span> <span class="s1">&#39;oldOrthForm&#39;</span>
     <span class="n">oldOrthVar</span> <span class="o">=</span> <span class="s1">&#39;oldOrthVar&#39;</span></div>
 
 
-<div class="viewcode-block" id="Lexunit"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.Lexunit">[docs]</a><span class="k">class</span> <span class="nc">Lexunit</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Lexunit">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.Lexunit">[docs]</a>
+<span class="k">class</span> <span class="nc">Lexunit</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class holds the lexical unit object of GermaNet. A lexical unit is a concrete word that is part of a synset.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -117,7 +124,7 @@
                  <span class="n">artificial</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
                  <span class="n">compound_info</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">orthform</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">old_orthform</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">orthvar</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">old_orthvar</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :type synset: Synset</span>
 <span class="sd">        :type compound_info: CompoundInfo</span>
@@ -159,8 +166,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_relations</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_incoming_relations</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Lexunit.get_orthform_variant"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.Lexunit.get_orthform_variant">[docs]</a>    <span class="k">def</span> <span class="nf">get_orthform_variant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orthform_variant</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Lexunit.get_orthform_variant">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.Lexunit.get_orthform_variant">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_orthform_variant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orthform_variant</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :type orthform_variant: OrthFormVariant</span>
 <span class="sd">        :param orthform_variant: one of the four orthform_variants</span>
@@ -175,11 +184,37 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">orthform</span></div>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Lexunit(id=</span><span class="si">{self._id}</span><span class="s1">, orthform=</span><span class="si">{self._orthform}</span><span class="s1">, synset_id=</span><span class="si">{self._synset.id}</span><span class="s1">)&#39;</span>
+            
+<div class="viewcode-block" id="Lexunit.get_synonyms">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.Lexunit.get_synonyms">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_synonyms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    	<span class="n">synonyms</span> <span class="o">=</span> <span class="p">[]</span>
+    	<span class="k">for</span> <span class="n">relation</span><span class="p">,</span> <span class="n">lexunits</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">relations</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    		<span class="k">if</span> <span class="p">(</span><span class="n">relation</span> <span class="o">==</span> <span class="n">LexRel</span><span class="o">.</span><span class="n">has_synonym</span><span class="p">):</span>
+    			<span class="k">return</span> <span class="n">lexunits</span></div>
 
-<div class="viewcode-block" id="Lexunit.get_all_orthforms"><a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.Lexunit.get_all_orthforms">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_orthforms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+    			
+<div class="viewcode-block" id="Lexunit.get_related_lexunits">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.Lexunit.get_related_lexunits">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_related_lexunits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lexrel_type</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;outgoing&#39;</span><span class="p">):</span>
+    	<span class="k">if</span> <span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;outgoing&#39;</span><span class="p">):</span>
+    		<span class="k">for</span> <span class="n">relation</span><span class="p">,</span> <span class="n">lexunits</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">relations</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    			<span class="k">if</span> <span class="p">(</span><span class="n">relation</span> <span class="o">==</span> <span class="n">lexrel_type</span><span class="p">):</span>
+    				<span class="k">return</span> <span class="n">lexunits</span>
+    	<span class="k">elif</span> <span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;incoming&#39;</span><span class="p">):</span>
+    		<span class="k">for</span> <span class="n">relation</span><span class="p">,</span> <span class="n">lexunits</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">incoming_relations</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    			<span class="k">if</span> <span class="p">(</span><span class="n">relation</span> <span class="o">==</span> <span class="n">lexrel_type</span><span class="p">):</span>
+    				<span class="k">return</span> <span class="n">lexunits</span></div>
+
+    	
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Lexunit(id=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_id</span><span class="si">}</span><span class="s1">, orthform=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_orthform</span><span class="si">}</span><span class="s1">, synset_id=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_synset</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">)&#39;</span>
+
+<div class="viewcode-block" id="Lexunit.get_all_orthforms">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.lexunit.Lexunit.get_all_orthforms">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_all_orthforms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :return: A set of all existing orthform variants of the current lexunit.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -189,6 +224,7 @@
             <span class="k">if</span> <span class="n">form</span><span class="p">:</span>
                 <span class="n">forms</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">forms</span></div>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -253,6 +289,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">artificial</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_artificial</span></div>
+
 </pre></div>
 
           </div>
@@ -283,32 +320,32 @@
 </ul>
 
 
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Neele Falk.
+      &#169;2020, Neele Falk.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
     </div>
 
     
     <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
     </a>
     
 

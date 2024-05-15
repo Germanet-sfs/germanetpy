@@ -16,7 +16,7 @@ requirements = ["numpy>=1.18.1", "lxml>=4.4.2", "pytest>=5.3.2", "fastenum>=0.0.
 long_description = (HERE / "README.md").read_text()
 setuptools.setup(
     name="germanetpy",
-    version="0.2.2",
+    version="0.2.3",
     author="Neele Falk",
     author_email="neele.witte@uni-tuebingen.de",
     description="Python API for GermaNet",
@@ -27,7 +27,7 @@ setuptools.setup(
     packages=["germanetpy"],
     classifiers=[
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.12",
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ],
