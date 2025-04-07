@@ -39,6 +39,18 @@ def get_attribute_element(attributes, element: str, enum):
     if element in attributes:
         return enum[attributes[element]]
     return None
+    
+def get_attribute_element_without_enum(attributes, element: str):
+    """
+    Returns attribute value if attribute exists
+    :type attributes: XML attributes
+    :param attributes: XML attributes of a certain XML node
+    :param elment: A String
+    :return: The corresponding object or None
+    """
+    if element in attributes:
+        return [attributes[element]]
+    return None
 
 
 def create_compound_info(child) -> CompoundInfo:
@@ -52,18 +64,26 @@ def create_compound_info(child) -> CompoundInfo:
     modifier1 = child[0]
     modifier1prop = get_attribute_element(modifier1.attrib, CompoundInfo.PROPERTY, CompoundProperty)
     modifier1cat = get_attribute_element(modifier1.attrib, CompoundInfo.CATEGORY, CompoundCategory)
-    modifier2 = modifier2prop = modifier2cat = None
+    mod1lexUnitId1 = get_attribute_element_without_enum(modifier1.attrib, CompoundInfo.XML_LEX_UNIT_ID)
+    mod1lexUnitId2 = get_attribute_element_without_enum(modifier1.attrib, CompoundInfo.XML_LEX_UNIT_ID2)
+    mod1lexUnitId3 = get_attribute_element_without_enum(modifier1.attrib, CompoundInfo.XML_LEX_UNIT_ID3)
+    modifier2 = modifier2prop = modifier2cat = mod2lexUnitId1 = mod2lexUnitId2 = mod2lexUnitId3 = None
     if len(child) == 3:
         modifier2 = child[1]
         head = child[2]
 
         modifier2cat = get_attribute_element(modifier2.attrib, CompoundInfo.CATEGORY, CompoundCategory)
         modifier2prop = get_attribute_element(modifier2.attrib, CompoundInfo.PROPERTY, CompoundProperty)
+        mod2lexUnitId1 = get_attribute_element_without_enum(modifier1.attrib, CompoundInfo.XML_LEX_UNIT_ID)
+        mod2lexUnitId2 = get_attribute_element_without_enum(modifier1.attrib, CompoundInfo.XML_LEX_UNIT_ID2)
+        mod2lexUnitId3 = get_attribute_element_without_enum(modifier1.attrib, CompoundInfo.XML_LEX_UNIT_ID3)
     else:
         head = child[1]
     headprop = get_attribute_element(head.attrib, CompoundInfo.PROPERTY, CompoundProperty)
-    compound = CompoundInfo(modifier1.text, head.text, modifier1prop, modifier1cat, modifier2, modifier2prop,
-                            modifier2cat, headprop)
+    headLexUnitId = get_attribute_element_without_enum(head.attrib, CompoundInfo.XML_LEX_UNIT_ID)
+    compound = CompoundInfo(modifier1.text, head.text, modifier2, modifier1prop, modifier1cat, mod1lexUnitId1, 
+    mod1lexUnitId2, mod1lexUnitId3, modifier2prop, modifier2cat, mod2lexUnitId1, mod2lexUnitId2, 
+    mod2lexUnitId3, headprop, headLexUnitId)
     return compound
 
 

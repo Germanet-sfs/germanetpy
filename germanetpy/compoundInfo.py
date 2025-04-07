@@ -30,9 +30,14 @@ class CompoundProperty(fastenum.Enum):
 class CompoundInfo:
     PROPERTY = 'property'
     CATEGORY = 'category'
+    XML_LEX_UNIT_ID = 'lexUnitId'
+    XML_LEX_UNIT_ID2 = 'lexUnitId2'
+    XML_LEX_UNIT_ID3 = 'lexUnitId3'
 
-    def __init__(self, modifier1, head, modifier1property=None, modifier1category=None, modifier2=None,
-                 modifier2property=None, modifier2category=None, headproperty=None):
+    def __init__(self, modifier1, head, modifier2=None, modifier1property=None, modifier1category=None,
+                 mod1LexUnitId1=None, mod1LexUnitId2=None, mod1LexUnitId3=None, modifier2property=None, 
+                 modifier2category=None, mod2LexUnitId1=None, mod2LexUnitId2=None, mod2LexUnitId3=None, 
+                 headproperty=None, headLexUnitId=None):
         """
         This class stores information about a special linguistic entity in German - a compound. A compound
         consists
@@ -67,13 +72,27 @@ class CompoundInfo:
         self._modifier1 = modifier1
         self._modifier1_property = modifier1property
         self._modifier1_category = modifier1category
+        if mod1LexUnitId1 is not None:
+            self._mod1_LexUnitId1 = mod1LexUnitId1
+        if mod1LexUnitId1 is not None:
+            self._mod1_LexUnitId2 = mod1LexUnitId2
+        if mod1LexUnitId1 is not None:
+            self._mod1_LexUnitId3 = mod1LexUnitId3
         self._modifier2 = modifier2
         if modifier2 is not None:
             self._modifier2 = modifier2.text
         self._modifier2_property = modifier2property
         self._modifier2_category = modifier2category
+        if mod2LexUnitId1 is not None:
+            self._mod2_LexUnitId1 = mod2LexUnitId1
+        if mod2LexUnitId1 is not None:
+            self._mod2_LexUnitId2 = mod2LexUnitId2
+        if mod2LexUnitId1 is not None:
+            self._mod2_LexUnitId3 = mod2LexUnitId3
         self._head = head
         self._head_property = headproperty
+        if headLexUnitId is not None:
+            self._head_LexUnitId = headLexUnitId
 
     def __repr__(self):
         return f'CompoundInfo( modifier = {self.modifier1}, head = {self.head})'
@@ -89,6 +108,18 @@ class CompoundInfo:
     @property
     def modifier1_category(self):
         return self._modifier1_category
+        
+    @property
+    def mod1_LexUnitId1(self):
+        return self._mod1_LexUnitId1
+        
+    @property
+    def mod1_LexUnitId2(self):
+        return self._mod1_LexUnitId2
+        
+    @property
+    def mod1_LexUnitId3(self):
+        return self._mod1_LexUnitId3
 
     @property
     def modifier2(self):
@@ -101,6 +132,18 @@ class CompoundInfo:
     @property
     def modifier2_category(self):
         return self._modifier2_category
+        
+    @property
+    def mod2_LexUnitId1(self):
+        return self._mod2_LexUnitId1
+        
+    @property
+    def mod2_LexUnitId2(self):
+        return self._mod2_LexUnitId2
+        
+    @property
+    def mod2_LexUnitId3(self):
+        return self._mod2_LexUnitId3
 
     @property
     def head(self):
@@ -109,3 +152,7 @@ class CompoundInfo:
     @property
     def head_property(self):
         return self._head_property
+
+    @property
+    def head_LexUnitId(self):
+        return self._head_LexUnitId
