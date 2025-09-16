@@ -42,9 +42,21 @@ extensions = [
 ## Default: alphabetically ('alphabetical')
 autodoc_member_order = 'bysource'
 ## Default flags used by autodoc directives
-autodoc_default_options = ['members', 'show-inheritance']
+# Modern defaults (replaces deprecated autodoc_default_flags)
+autodoc_default_options = {
+    'members': True,
+    'undoc-members': True,      # optional
+    'show-inheritance': True,
+    'inherited-members': True,  # optional
+}
 ## Generate autodoc stubs with summaries from code
 autosummary_generate = True
+autosummary_imported_members = True
+
+# If imports fail (C wheels, optional deps, or import-time I/O), mock them:
+autodoc_mock_imports = [
+    'numpy', 'lxml', 'Levenshtein', 'tqdm', 'fastenum'
+]
 
 source_suffix = '.rst'
 # master_doc = 'index'
