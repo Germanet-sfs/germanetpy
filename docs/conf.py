@@ -91,4 +91,4 @@ html_sidebars = {
 
 html_show_sourcelink = True
 
-intersphinx_mapping = {'https://docs.python.org/3.12': None}
+intersphinx_mapping = {'https://docs.python.org/3': None}
