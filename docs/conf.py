@@ -75,7 +75,7 @@ pygments_style = 'sphinx'
 
 html_theme_options = {
     'github_button': True,  ## Use v2 button
-    'github_user': 'Blubberli',
+    'github_user': 'bencampbell30',
     'github_repo': 'germanetpy',
     'github_banner': True,
 }
