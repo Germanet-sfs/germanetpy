@@ -1,11 +1,14 @@
 Welcome to germanetpy's documentation!
 ======================================
 
-.. toctree::
-   :maxdepth: 2
+API reference
+=============
+
+.. autosummary::
+   :toctree: _autosummary
+   :recursive:
 
    germanetpy
-
 
 
 Indices and tables
