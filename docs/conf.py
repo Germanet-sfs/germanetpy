@@ -42,12 +42,13 @@ extensions = [
 ## Default: alphabetically ('alphabetical')
 autodoc_member_order = 'bysource'
 ## Default flags used by autodoc directives
-autodoc_default_flags = ['members', 'show-inheritance']
+autodoc_default_options = ['members', 'show-inheritance']
 ## Generate autodoc stubs with summaries from code
 autosummary_generate = True
 
 source_suffix = '.rst'
-master_doc = 'index'
+# master_doc = 'index'
+root_doc = 'index'   # keeps 'index' as the entry point; 'master_doc' is deprecated
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
@@ -90,4 +91,4 @@ html_sidebars = {
 
 html_show_sourcelink = True
 
-intersphinx_mapping = {'https://docs.python.org/3.5': None}
+intersphinx_mapping = {'https://docs.python.org/3.12': None}
