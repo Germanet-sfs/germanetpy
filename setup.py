@@ -17,8 +17,8 @@ long_description = (HERE / "README.md").read_text()
 setuptools.setup(
     name="germanetpy",
     version="0.2.3",
-    author="Neele Falk",
-    author_email="neele.witte@uni-tuebingen.de",
+    author="Ben Campbell",
+    author_email="ben.campbell@uni-tuebingen.de",
     description="Python API for GermaNet",
     long_description=long_description,
     long_description_content_type="text/markdown",
