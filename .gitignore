@@ -1,4 +1,3 @@
-.*
 *pyc
 !/.gitignore
 germanetpy.egg-info
@@ -15,3 +14,16 @@ dist
 /python_Levenshtein-0.25.1-py3-none-any.whl
 /rapidfuzz-3.9.0-cp312-cp312-macosx_10_9_x86_64.whl
 /tqdm-4.66.4-py3-none-any.whl
+.DS_Store
+.project
+.pydevproject
+.settings/
+build/
+docs/.DS_Store
+docs/_build/.DS_Store
+docs/_build/doctrees/.DS_Store
+docs/_build/html/.DS_Store
+docs/_build/html/.buildinfo
+docs/_build/html/_modules/.DS_Store
+docs/_build/html/_sources/.DS_Store
+docs/_build/man/
