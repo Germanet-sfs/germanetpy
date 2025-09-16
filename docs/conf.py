@@ -18,8 +18,8 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 
 project = 'germanetpy'
-copyright = '2020, Neele Falk'
-author = 'Neele Falk'
+copyright = '2025, Ben Campbell'
+author = 'Ben Campbell'
 
 # The full version, including alpha/beta/rc tags
 release = '0.2.0'
