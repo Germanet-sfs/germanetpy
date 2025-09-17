@@ -1,11 +1,5 @@
 import pathlib
 import setuptools
-import requests
-
-import requests
-
-session = requests.Session()
-session.verify = False
 
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
