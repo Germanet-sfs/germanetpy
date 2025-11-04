@@ -83,7 +83,7 @@ class Lexunit:
     def __init__(self, id: str, synset, sense: int, source: str, named_entity: bool, style_marking: bool,
                  artificial: bool,
                  compound_info=None, orthform: str = None, old_orthform: str = None, orthvar: str = None,
-                 old_orthvar: str = None):
+                 old_orthvar: str = None, comment: str = None):
         """
 
         :type synset: Synset
@@ -101,6 +101,7 @@ class Lexunit:
         :param old_orthform: The orthform that was used in written German in former times
         :param orthvar: The orth variant (e.g Delfin / Delphin are both legal orth variants)
         :param old_orthvar: The orth variant that was used in written German in former times
+        :param comment: Contains any additional info not covered by other categories
         """
         self._id = id
         self._synset = synset
@@ -115,6 +116,8 @@ class Lexunit:
         self._named_entity = named_entity
         self._styleMarking = style_marking
         self._artificial = artificial
+        
+        self._comment = comment
 
         self._frames = []
         self._frames2examples = defaultdict(set)
@@ -201,6 +204,10 @@ class Lexunit:
     @property
     def old_orthvar(self):
         return self._old_orthvar
+        
+    @property
+    def comment(self):
+        return self._comment
 
     @property
     def frames(self):

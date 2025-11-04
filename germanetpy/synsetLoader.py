@@ -14,6 +14,7 @@ ORTHFORM = 'orthForm'
 ORTHVAR = 'orthVar'
 OLDORTHFORM = 'oldOrthForm'
 OLDORTHVAR = 'oldOrthVar'
+COMMENT = 'comment'
 COMPOUND = 'compound'
 FRAME = 'frame'
 EXAMPLE = 'example'
@@ -145,6 +146,8 @@ def create_lexunit(germanet, attributes, lex_root, synset) -> Lexunit:
             germanet.compounds.add(lexunit)
         elif "rth" in tag:
             add_orth_forms(germanet, lexunit, child_value, tag)
+        elif tag == COMMENT:
+            lexunit._comment = child_value
         elif tag == FRAME:
             lexunit.frames.append(child_value)
             for f in lexunit.frames:

@@ -10,7 +10,7 @@ requirements = ["numpy>=1.18.1", "lxml>=4.4.2", "pytest>=5.3.2", "fastenum>=0.0.
 long_description = (HERE / "README.md").read_text()
 setuptools.setup(
     name="germanetpy",
-    version="0.2.4",
+    version="0.2.5",
     author="Ben Campbell",
     author_email="ben.campbell@uni-tuebingen.de",
     description="Python API for GermaNet",
