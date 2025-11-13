@@ -98,13 +98,13 @@ differentRegex_syn = [
                             's71879', 's117435', 's118466', 's132900', 's146785', 's146808', 's146806', 's143623',
                             's146861', 's150543', 's155998', 's159828', 's160534', 's164927', 's168808'], [WordCategory.nomen], []),
     (".*en.*brot.*", True, ['s44982', 's71879'], [WordCategory.nomen], [WordClass.Pflanze]),
-    ("Musik.*f{2,}.*", True, ['s7064', 's115983', 's126175', 's137462'], [WordCategory.nomen], []),
+    ("Musik.*f{2,}.*", True, ['s7064', 's115983', 's126175', 's137462', 's183331'], [WordCategory.nomen], []),
     ("Musi.*k{2,}.*n{2,}.*", True, ['s135050'], [WordCategory.nomen], []),
     ("musi.*k{2,}.*n{2,}.*", False, [], [WordCategory.nomen], []),
     ("Musik.*(rr|st).*", True, ['s29972', 's29990', 's30067'], [WordCategory.nomen], [WordClass.Kommunikation]),
     ("unver.*bar", True,
-     ['s218', 's488', 's1004', 's1013', 's1226', 's3605', 's3721', 's3748', 's3752', 's4008', 's4798', 's94410',
-      's128930'], [WordCategory.adj], []),
+     ['s1004', 's1013', 's1226', 's128930', 's181689', 's183290', 's183584', 's184099', 's2131', 's218', 's3605', 's3721', 
+     's3748', 's3752', 's4008', 's4798', 's488', 's94410'], [WordCategory.adj], []),
     (".*un$", True, ['s57352', 's57394', 's151850', 's177631'], [WordCategory.verben], [WordClass.Lokation])
 ]
 
@@ -206,7 +206,13 @@ def test_regex_synsets(regex, ignoreCase, expected_ids, word_categories, wordcla
     if wordclasses:
         config.word_classes = wordclasses
     result = config.filter_synsets(germanet_data)
-    np.testing.assert_equal(sorted([unit.id for unit in result]), sorted(expected_ids))
+    actual_ids = sorted([unit.id for unit in result])
+    expected = sorted(expected_ids)
+    assert actual_ids == expected, (
+    f"Regex synset mismatch.\n"
+    f"Expected: {expected}\n"
+    f"Actual:   {actual_ids}\n"
+)
 
 
 @pytest.mark.parametrize('query,ignoreCase,regex,orthvariants,distance,expected_ids', levenshtein_distance_syn)

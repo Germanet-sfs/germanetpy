@@ -44,18 +44,18 @@ normalized_resnik_verbs = [
 
 raw_resnik_nouns = [
     ('s45380', 's45380', 5.182048317402752),
-    ('s46047', 's45380', 2.563204597354734),
-    ('s46650', 's46683', 2.563204597354734),
-    ('s46683', 's46650', 2.563204597354734),
+    ('s46047', 's45380', 2.520861694675448),
+    ('s46650', 's46683', 2.520861694675448),
+    ('s46683', 's46650', 2.520861694675448),
     ('s49774', 's83979', 0.0),
     ('s83979', 's83979', 6.364967952571943)
 ]
 
 normalized_resnik_nouns = [
-    ('s46047', 's45380', 10, 2.602),
+    ('s46047', 's45380', 10, 2.559),
     ('s46047', 's46047', 10, 5.512),
-    ('s46650', 's46683', 10, 2.602),
-    ('s46683', 's46650', 10, 2.602),
+    ('s46650', 's46683', 10, 2.559),
+    ('s46683', 's46650', 10, 2.559),
     ('s49774', 's49774', 10, 10.0),
     ('s49774', 's83979', 10, 0.0),
 
@@ -93,10 +93,10 @@ raw_lin_nouns = [
 ]
 
 normalized_lin_nouns = [
-    ('s46047', 's45380', 10, 4.831),
+    ('s46047', 's45380', 10, 4.752),
     ('s46047', 's46047', 10, 10.0),
-    ('s46650', 's46683', 10, 5.188),
-    ('s46683', 's46650', 10, 5.188),
+    ('s46650', 's46683', 10, 5.103),
+    ('s46683', 's46650', 10, 5.103),
     ('s49774', 's49774', 10, 10.0),
     ('s49774', 's83979', 10, 0.0),
 
@@ -127,18 +127,18 @@ normalized_jcn_verbs = [
 
 raw_jcn_nouns = [
     ('s45380', 's45380', 19.703),
-    ('s46047', 's45380', 14.218),
-    ('s46650', 's46683', 14.948),
-    ('s46683', 's46650', 14.948),
+    ('s46047', 's45380', 14.133),
+    ('s46650', 's46683', 14.864),
+    ('s46683', 's46650', 14.864),
     ('s49774', 's83979', 3.487),
     ('s83979', 's83979', 19.703)
 ]
 
 normalized_jcn_nouns = [
-    ('s46047', 's45380', 10, 7.217),
+    ('s46047', 's45380', 10, 7.174),
     ('s46047', 's46047', 10, 10.0),
-    ('s46650', 's46683', 10, 7.587),
-    ('s46683', 's46650', 10, 7.587),
+    ('s46650', 's46683', 10, 7.545),
+    ('s46683', 's46650', 10, 7.545),
     ('s49774', 's49774', 10, 10.0),
     ('s49774', 's83979', 10, 1.77),
 
@@ -157,9 +157,9 @@ normalized_jcn_adj = [
 
 def test_cumfreq():
     """Test whether the total frequency of the Graph corresponds to the number of the current release"""
-    np.testing.assert_equal(relatedness_verbs.root_freq, 9161993707)
-    np.testing.assert_equal(relatedness_nouns.root_freq, 7094035775)
-    np.testing.assert_equal(relatedness_adj.root_freq, 2116609580)
+    np.testing.assert_equal(relatedness_verbs.root_freq, 9161995033)
+    np.testing.assert_equal(relatedness_nouns.root_freq, 7091118858)
+    np.testing.assert_equal(relatedness_adj.root_freq, 2119769305)
 
 
 # resnik measure #
@@ -253,6 +253,7 @@ def test_normalized_lin_nouns(id1, id2, max, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_nouns.lin(synset1, synset2, normalized_max=max, normalize=True)
+    print(dist)
     np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
@@ -300,6 +301,7 @@ def test_raw_jcn_nouns(id1, id2, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_nouns.jiang_and_conrath(synset1, synset2)
+    print(dist)
     np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 
@@ -309,6 +311,7 @@ def test_normalized_jcn_nouns(id1, id2, max, similarity):
     synset1 = germanet_data.get_synset_by_id(id1)
     synset2 = germanet_data.get_synset_by_id(id2)
     dist = relatedness_nouns.jiang_and_conrath(synset1, synset2, normalized_max=max, normalize=True)
+    print(dist)
     np.testing.assert_array_almost_equal(dist, similarity, decimal=2)
 
 

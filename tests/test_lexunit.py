@@ -25,7 +25,7 @@ except IOError:
 lexical_relations = [
     ('l66160', LexRel.has_part, ['l9112']),
     ('l81451', LexRel.has_synonym, ['l81448', 'l81449', 'l81450']),
-    ('l12419', LexRel.has_synonym, ['l97249', 'l12418', 'l12420', 'l12421', 'l12422', 'l12423', 'l122141']),
+    ('l12419', LexRel.has_synonym, ['l12418', 'l12424', 'l12426', 'l126607', 'l140807', ]),
     ('l2825', LexRel.has_antonym, ['l2847'])
 ]
 

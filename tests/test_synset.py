@@ -49,11 +49,10 @@ all_hyponyms = [
     ('s50944', ['s132135', 's132134', 's132133', 's181586']),
     ('s53071', ['s53072', 's53073']),
     ('s11302',
-     ['s136666', 's11193', 's11194', 's134108', 's122100', 's129336', 's123104', 's122867', 's29492', 's163244',
-      's82838','s147555', 's147995','s147814','s149441',
-      's101538', 's10919', 's10937', 's104197', 's106059', 's110131', 's90623', 's10920', 's88973', 's68093', 's64311',
-      's29494', 's100276', 's88563', 's88561', 's81894', 's71826', 's71198', 's11306', 's11305',
-      's11304', 's11303', 's107850', 's156080', 's169682', 's178778', 's179124', 's180527'])
+     ['s100276', 's101538', 's104197', 's106059', 's107850', 's10919', 's10920', 's10937', 's110131', 's11193', 's11194', 
+     's11303', 's11304', 's11305', 's11306', 's122100', 's122867', 's123104', 's129336', 's134108', 's136666', 's147555', 
+     's147814', 's147995', 's149441', 's156080', 's163244', 's169682', 's178778', 's179124', 's180527', 's183960', 's184908', 
+     's29492', 's29494', 's64311', 's68093', 's71198', 's71826', 's81894', 's82838', 's88561', 's88563', 's88973', 's90623'])
 
 ]
 
@@ -152,8 +151,13 @@ def test_all_hyponyms(id, hyponym_ids):
     """This test checks whether for a given synset, all possible hyponyms are returned"""
     synset = germanet_data.get_synset_by_id(id)
     hyponyms = synset.all_hyponyms()
-    ids = sorted([synset.id for synset in hyponyms])
-    np.testing.assert_equal(sorted([synset.id for synset in hyponyms]), sorted(hyponym_ids))
+    actual_ids = sorted([synset.id for synset in hyponyms])
+    expected = sorted(hyponym_ids)
+    assert actual_ids == expected, (
+    f"Regex synset mismatch.\n"
+    f"Expected: {expected}\n"
+    f"Actual:   {actual_ids}\n"
+)
 
 
 def test_root():
