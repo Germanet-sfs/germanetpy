@@ -2,6 +2,8 @@
 !/.gitignore
 germanetpy.egg-info
 dist
+myenv
+venv
 /Levenshtein-0.25.1-cp312-cp312-macosx_10_9_x86_64.whl
 /fastenum-1.1.1-py3-none-any.whl
 /germanetpy-0.2.3-py3-none-any.whl
@@ -27,3 +29,4 @@ docs/_build/html/.buildinfo
 docs/_build/html/_modules/.DS_Store
 docs/_build/html/_sources/.DS_Store
 docs/_build/man/
+/access_compounds.py
