@@ -82,6 +82,9 @@ def create_compound_info(child) -> CompoundInfo:
         head = child[1]
     headprop = get_attribute_element(head.attrib, CompoundInfo.PROPERTY, CompoundProperty)
     headLexUnitId = get_attribute_element_without_enum(head.attrib, CompoundInfo.XML_LEX_UNIT_ID)
+    headLexUnitIdArray = get_attribute_element_without_enum(head.attrib, CompoundInfo.XML_LEX_UNIT_ID)
+    if isinstance(headLexUnitId, list):
+        headLexUnitId = headLexUnitIdArray[0]
     compound = CompoundInfo(modifier1.text, head.text, modifier2, modifier1prop, modifier1cat, mod1lexUnitId1, 
     mod1lexUnitId2, mod1lexUnitId3, modifier2prop, modifier2cat, mod2lexUnitId1, mod2lexUnitId2, 
     mod2lexUnitId3, headprop, headLexUnitId)
