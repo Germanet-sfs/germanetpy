@@ -25,7 +25,7 @@ class CompoundProperty(fastenum.Enum):
     virtuelleBildung = 'virtuelleBildung'
     gebundenesMorphem = 'gebundenesMorphem'
     freiesMorphem = 'freiesMorphem'
-
+    nominalisiertesVerb = 'nominalisiertesVerb'
 
 class CompoundInfo:
     PROPERTY = 'property'
