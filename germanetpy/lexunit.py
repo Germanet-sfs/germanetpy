@@ -83,7 +83,7 @@ class Lexunit:
     def __init__(self, id: str, synset, sense: int, source: str, named_entity: bool, style_marking: bool,
                  artificial: bool,
                  compound_info=None, orthform: str = None, old_orthform: str = None, orthvar: str = None,
-                 old_orthvar: str = None, comment: str = None):
+                 old_orthvar: str = None, particle: str = None, base_verb: str = None, comment: str = None):
         """
 
         :type synset: Synset
@@ -101,6 +101,8 @@ class Lexunit:
         :param old_orthform: The orthform that was used in written German in former times
         :param orthvar: The orth variant (e.g Delfin / Delphin are both legal orth variants)
         :param old_orthvar: The orth variant that was used in written German in former times
+        :param particle: the particle if this lexical unit is a particle verb
+        :param base_verb: the base verb if this lexical unit is a particle verb
         :param comment: Contains any additional info not covered by other categories
         """
         self._id = id
@@ -116,6 +118,9 @@ class Lexunit:
         self._named_entity = named_entity
         self._styleMarking = style_marking
         self._artificial = artificial
+        
+        self._particle = particle
+        self._base_verb = base_verb
         
         self._comment = comment
 
@@ -204,6 +209,14 @@ class Lexunit:
     @property
     def old_orthvar(self):
         return self._old_orthvar
+        
+    @property
+    def particle(self):
+        return self._particle
+        
+    @property
+    def base_verb(self):
+        return self._base_verb
         
     @property
     def comment(self):
