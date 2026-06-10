@@ -228,6 +228,9 @@ class Lexunit:
 
     @property
     def examples(self):
+        """
+        :return: The Example objects that belong to this lexical unit.
+        """
         return self._examples
 
     @property
@@ -236,6 +239,9 @@ class Lexunit:
 
     @property
     def frames2examples(self):
+        """
+        :return: A mapping from example-frame strings to the Example objects that use them.
+        """
         return self._frames2examples
 
     @property
@@ -257,3 +263,5 @@ class Lexunit:
     @property
     def artificial(self):
         return self._artificial
+
+

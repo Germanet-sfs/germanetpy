@@ -1,5 +1,6 @@
 from germanetpy.compoundInfo import CompoundInfo, CompoundCategory, CompoundProperty
 from germanetpy.lexunit import Lexunit, LexRel
+from germanetpy.example import Example
 from germanetpy.synset import Synset, WordCategory, WordClass
 from germanetpy.utils import convert_to_boolean
 
@@ -20,6 +21,12 @@ COMMENT = 'comment'
 COMPOUND = 'compound'
 FRAME = 'frame'
 EXAMPLE = 'example'
+TEXT = 'text'
+EXFRAME = 'exframe'
+LLMMODEL = 'llmModel'
+LLMVERSION = 'llmVersion'
+DATECREATED = 'dateCreated'
+EDITED = 'edited'
 LEXUNIT = "lexUnit"
 
 # Synset xml attribute values
@@ -123,6 +130,61 @@ def load_lexunits(germanet, tree):
                     unit.relations[LexRel.has_synonym].add(lexunit)
 
 
+def convert_example_edited(value: str) -> bool:
+    """
+    Converts an example edited value to a boolean.
+
+    The example edited tag is element text in the XML data. The Java API uses
+    Boolean.parseBoolean, so true/false are supported here. yes/no and 1/0 are
+    accepted as well to be tolerant of existing GermaNet boolean conventions.
+    """
+    if value is None:
+        return False
+
+    normalized_value = value.strip().lower()
+    if normalized_value in {'true', 'yes', '1'}:
+        return True
+    if normalized_value in {'false', 'no', '0', ''}:
+        return False
+
+    raise ValueError(f"cannot convert example edited value to boolean: {value}")
+
+
+def create_example(example_root) -> Example:
+    """
+    Creates an Example object from an XML example element.
+
+    :param example_root: The XML example element.
+    :return: An Example object containing text, optional frame, and optional LLM metadata.
+    """
+    text = ""
+    frame = None
+    llm_model = None
+    llm_version = None
+    date_created = None
+    edited = False
+
+    for child in example_root:
+        tag = child.tag
+        child_value = child.text
+
+        if tag == TEXT:
+            text = child_value
+        elif tag == EXFRAME:
+            frame = child_value
+        elif tag == LLMMODEL:
+            llm_model = child_value
+        elif tag == LLMVERSION:
+            llm_version = child_value
+        elif tag == DATECREATED:
+            date_created = child_value
+        elif tag == EDITED:
+            edited = convert_example_edited(child_value)
+
+    return Example(text=text, frame=frame, llm_model=llm_model, llm_version=llm_version,
+                   date_created=date_created, edited=edited)
+
+
 def create_lexunit(germanet, attributes, lex_root, synset) -> Lexunit:
     """
     Given the XML data, creates a Lexunit object.
@@ -162,11 +224,10 @@ def create_lexunit(germanet, attributes, lex_root, synset) -> Lexunit:
             for f in lexunit.frames:
                 germanet.frames2lexunits[f].add(lexunit)
         elif tag == EXAMPLE:
-            example = child[0].text
+            example = create_example(child)
             lexunit.examples.append(example)
-            if len(child) == 2:
-                exframe = child[1].text
-                lexunit.frames2examples[exframe].add(example)
+            if example.frame is not None:
+                lexunit.frames2examples[example.frame].add(example)
     return lexunit
 
 
@@ -193,3 +254,5 @@ def add_orth_forms(germanet, lexunit: Lexunit, child_value: str, tag: str):
         lexunit._old_orthform = child_value
     elif tag == OLDORTHVAR:
         lexunit._old_orthvar = child_value
+
+
