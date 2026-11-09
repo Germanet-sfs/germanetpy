@@ -1,0 +1,14 @@
+germanetpy.compoundInfo
+=======================
+
+.. automodule:: germanetpy.compoundInfo
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      CompoundCategory
+      CompoundInfo
+      CompoundProperty
+   

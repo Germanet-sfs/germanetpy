@@ -1,0 +1,13 @@
+germanetpy.utils
+================
+
+.. automodule:: germanetpy.utils
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      convert_to_boolean
+      parse_xml
+   

@@ -1,26 +1,27 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <title>germanetpy.filterconfig &#8212; germanetpy 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>germanetpy.filterconfig &#8212; germanetpy 0.3.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=e259d695"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="germanetpy.frames" href="germanetpy.frames.html" />
-    <link rel="prev" title="germanetpy.compoundInfo" href="germanetpy.compoundInfo.html" />
+    <link rel="prev" title="germanetpy.example" href="germanetpy.example.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -32,28 +33,112 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="module-germanetpy.filterconfig">
-<span id="germanetpy-filterconfig"></span><h1>germanetpy.filterconfig<a class="headerlink" href="#module-germanetpy.filterconfig" title="Permalink to this headline">¶</a></h1>
-<p class="rubric">Classes</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+  <section id="module-germanetpy.filterconfig">
+<span id="germanetpy-filterconfig"></span><h1>germanetpy.filterconfig<a class="headerlink" href="#module-germanetpy.filterconfig" title="Link to this heading">¶</a></h1>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Filterconfig</span></code>(search_string[, ignore_case, …])</p></td>
-<td><p>This class is a configuration object, that helps to filter GermaNets lexical units and Synsets to extract the ones with certain interesting properties.</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">distance</span></code>(s1, s2, *[, weights, processor, ...])</p></td>
+<td><p>Calculates the minimum number of insertions, deletions, and substitutions required to change one sequence into the other according to Levenshtein with custom costs for insertion, deletion and substitution</p></td>
 </tr>
 </tbody>
 </table>
-</div>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.filterconfig.Filterconfig" title="germanetpy.filterconfig.Filterconfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Filterconfig</span></code></a>(search_string[, ignore_case, ...])</p></td>
+<td><p>This class is a configuration object, that helps to filter GermaNets lexical units and Synsets to extract the ones with certain interesting properties.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrthFormVariant</span></code>(*args, **kwargs)</p></td>
+<td><p>This enum represents the four possible orthographical variations</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">WordCategory</span></code>(*args, **kwargs)</p></td>
+<td><p>This Enum class contains the three part-of-speech tags (WortCategory), a Synset can have in GermaNet.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">WordClass</span></code>(*args, **kwargs)</p></td>
+<td><p>This Enum class contains the semantic wordclasses / semantic fields  a Synset can have in GermaNet.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="germanetpy.filterconfig.Filterconfig">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">germanetpy.filterconfig.</span></span><span class="sig-name descname"><span class="pre">Filterconfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_case</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levenshtein_distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/filterconfig.html#Filterconfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.filterconfig.Filterconfig" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>This class is a configuration object, that helps to filter GermaNets lexical units and Synsets to extract the
+ones with certain interesting properties.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.filterconfig.Filterconfig.filter_lexunits">
+<span class="sig-name descname"><span class="pre">filter_lexunits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">germanet</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/filterconfig.html#Filterconfig.filter_lexunits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.filterconfig.Filterconfig.filter_lexunits" title="Link to this definition">¶</a></dt>
+<dd><p>Applys the filter to the GermaNet data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>germanet</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.germanet.Germanet" title="germanetpy.germanet.Germanet"><em>Germanet</em></a>) – the GermaNet object, loaded from the data</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a set of lexical units that are left after retrieval is filtered with the given constraints</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.filterconfig.Filterconfig.filter_synsets">
+<span class="sig-name descname"><span class="pre">filter_synsets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">germanet</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/filterconfig.html#Filterconfig.filter_synsets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.filterconfig.Filterconfig.filter_synsets" title="Link to this definition">¶</a></dt>
+<dd><p>Applys the filter to the GermaNet data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>germanet</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.germanet.Germanet" title="germanetpy.germanet.Germanet"><em>Germanet</em></a>) – the GermaNet object, loaded from the data</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a set of synsets that are left after retrieval is filtered with the given constraints</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.filterconfig.Filterconfig.search_string">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">search_string</span></span><a class="headerlink" href="#germanetpy.filterconfig.Filterconfig.search_string" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.filterconfig.Filterconfig.ignore_case">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ignore_case</span></span><a class="headerlink" href="#germanetpy.filterconfig.Filterconfig.ignore_case" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.filterconfig.Filterconfig.regex">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">regex</span></span><a class="headerlink" href="#germanetpy.filterconfig.Filterconfig.regex" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.filterconfig.Filterconfig.levenshtein_distance">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">levenshtein_distance</span></span><a class="headerlink" href="#germanetpy.filterconfig.Filterconfig.levenshtein_distance" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.filterconfig.Filterconfig.word_classes">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">word_classes</span></span><a class="headerlink" href="#germanetpy.filterconfig.Filterconfig.word_classes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.filterconfig.Filterconfig.word_categories">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">word_categories</span></span><a class="headerlink" href="#germanetpy.filterconfig.Filterconfig.word_categories" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.filterconfig.Filterconfig.orth_variants">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">orth_variants</span></span><a class="headerlink" href="#germanetpy.filterconfig.Filterconfig.orth_variants" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 
 
           </div>
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">germanetpy</a></h1>
 
@@ -63,7 +148,7 @@
 
 
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=star&v=2&count=true&size=large&v=2"
+<iframe src="https://ghbtns.com/github-btn.html?user=bencampbell30&repo=germanetpy&type=watch&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
 
@@ -73,47 +158,64 @@
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Project Modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.germanet.html">germanetpy.germanet</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="germanetpy.html">germanetpy</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.compoundInfo.html">germanetpy.compoundInfo</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.filterconfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.example.html">germanetpy.example</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.filterconfig</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.filterconfig.Filterconfig"><code class="docutils literal notranslate"><span class="pre">Filterconfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.filterconfig.Filterconfig.filter_lexunits"><code class="docutils literal notranslate"><span class="pre">Filterconfig.filter_lexunits()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.filterconfig.Filterconfig.filter_synsets"><code class="docutils literal notranslate"><span class="pre">Filterconfig.filter_synsets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.filterconfig.Filterconfig.search_string"><code class="docutils literal notranslate"><span class="pre">Filterconfig.search_string</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.filterconfig.Filterconfig.ignore_case"><code class="docutils literal notranslate"><span class="pre">Filterconfig.ignore_case</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.filterconfig.Filterconfig.regex"><code class="docutils literal notranslate"><span class="pre">Filterconfig.regex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.filterconfig.Filterconfig.levenshtein_distance"><code class="docutils literal notranslate"><span class="pre">Filterconfig.levenshtein_distance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.filterconfig.Filterconfig.word_classes"><code class="docutils literal notranslate"><span class="pre">Filterconfig.word_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.filterconfig.Filterconfig.word_categories"><code class="docutils literal notranslate"><span class="pre">Filterconfig.word_categories</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.filterconfig.Filterconfig.orth_variants"><code class="docutils literal notranslate"><span class="pre">Filterconfig.orth_variants</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.frames.html">germanetpy.frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.germanet.html">germanetpy.germanet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.icbased_similarity.html">germanetpy.icbased_similarity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.iliLoader.html">germanetpy.iliLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.iliRecord.html">germanetpy.iliRecord</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.lexunit.html">germanetpy.lexunit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.longest_shortest_path.html">germanetpy.longest_shortest_path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.path_based_relatedness_measures.html">germanetpy.path_based_relatedness_measures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.relationLoader.html">germanetpy.relationLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.semrel_measures.html">germanetpy.semrel_measures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.synset.html">germanetpy.synset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.synsetLoader.html">germanetpy.synsetLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.utils.html">germanetpy.utils</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.wiktionaryLoader.html">germanetpy.wiktionaryLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.wiktionaryparaphrase.html">germanetpy.wiktionaryparaphrase</a></li>
 </ul>
 </li>
 </ul>
 
 
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Neele Falk.
+      &#169;2026, Ben Campbell.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.1</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
       <a href="../_sources/_autosummary/germanetpy.filterconfig.rst.txt"
@@ -121,8 +223,8 @@
     </div>
 
     
-    <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    <a href="https://github.com/bencampbell30/germanetpy" class="github">
+        <img src="../_static/github-banner.svg" alt="Fork me on GitHub" class="github"/>
     </a>
     
 

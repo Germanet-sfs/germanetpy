@@ -1,0 +1,12 @@
+germanetpy.semrel\_measures
+===========================
+
+.. automodule:: germanetpy.semrel_measures
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      SemRelMeasure
+   

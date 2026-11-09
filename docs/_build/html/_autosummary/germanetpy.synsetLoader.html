@@ -1,17 +1,17 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <title>germanetpy.synsetLoader &#8212; germanetpy 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>germanetpy.synsetLoader &#8212; germanetpy 0.3.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=e259d695"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="germanetpy.utils" href="germanetpy.utils.html" />
@@ -19,8 +19,9 @@
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -32,40 +33,175 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="module-germanetpy.synsetLoader">
-<span id="germanetpy-synsetloader"></span><h1>germanetpy.synsetLoader<a class="headerlink" href="#module-germanetpy.synsetLoader" title="Permalink to this headline">¶</a></h1>
+  <section id="module-germanetpy.synsetLoader">
+<span id="germanetpy-synsetloader"></span><h1>germanetpy.synsetLoader<a class="headerlink" href="#module-germanetpy.synsetLoader" title="Link to this heading">¶</a></h1>
 <p class="rubric">Functions</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_orth_forms</span></code>(germanet, lexunit, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.synsetLoader.add_orth_forms" title="germanetpy.synsetLoader.add_orth_forms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_orth_forms</span></code></a>(germanet, lexunit, ...)</p></td>
 <td><p>Checks which orthform the tag contains, and adds it to the lexunit object.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_compound_info</span></code>(child)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.synsetLoader.convert_example_edited" title="germanetpy.synsetLoader.convert_example_edited"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_example_edited</span></code></a>(value)</p></td>
+<td><p>Converts an example edited value to a boolean.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_to_boolean</span></code>(attribute)</p></td>
+<td><p>Converts the given String into a boolean.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.synsetLoader.create_compound_info" title="germanetpy.synsetLoader.create_compound_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_compound_info</span></code></a>(child)</p></td>
 <td><p>Creates a compound info object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_lexunit</span></code>(germanet, attributes, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.synsetLoader.create_example" title="germanetpy.synsetLoader.create_example"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_example</span></code></a>(example_root)</p></td>
+<td><p>Creates an Example object from an XML example element.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.synsetLoader.create_lexunit" title="germanetpy.synsetLoader.create_lexunit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_lexunit</span></code></a>(germanet, attributes, ...)</p></td>
 <td><p>Given the XML data, creates a Lexunit object.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_attribute_element</span></code>(attributes, element, enum)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.synsetLoader.get_attribute_element" title="germanetpy.synsetLoader.get_attribute_element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_attribute_element</span></code></a>(attributes, element, enum)</p></td>
 <td><p>Constructs an Emum object of a given attribute :rtype: FastEnum :type enum: FastEnum :type attributes: XML attributes :param attributes: XML attributes of a certain XML node :param elment: A String :param enum: The Enum object that should be initialized :return: The corresponding Enum object or None</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_lexunits</span></code>(germanet, tree)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.synsetLoader.get_attribute_element_without_enum" title="germanetpy.synsetLoader.get_attribute_element_without_enum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_attribute_element_without_enum</span></code></a>(...)</p></td>
+<td><p>Returns attribute value if attribute exists :type attributes: XML attributes :param attributes: XML attributes of a certain XML node :param elment: A String :return: The corresponding object or None</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.synsetLoader.load_lexunits" title="germanetpy.synsetLoader.load_lexunits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_lexunits</span></code></a>(germanet, tree)</p></td>
 <td><p>Takes the XML tree and walks trough it to create the Lexunit objects.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CompoundCategory</span></code>(*args, **kwargs)</p></td>
+<td><p>This Enum represents the syntactic wordcategory a modifier of a compound can belong to.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CompoundInfo</span></code>(modifier1, head[, modifier2, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CompoundProperty</span></code>(*args, **kwargs)</p></td>
+<td><p>This Enum represents the properties a compound constituent can have.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Example</span></code>([text, frame, llm_model, ...])</p></td>
+<td><p>Represents an example belonging to a lexical unit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">LexRel</span></code>(*args, **kwargs)</p></td>
+<td><p>This enum represents the lexical relation (short: LexRel) that a Lexunit can have in GermaNet.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Lexunit</span></code>(id, synset, sense, source, ...[, ...])</p></td>
+<td><p>This class holds the lexical unit object of GermaNet.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Synset</span></code>(id, word_category, word_class)</p></td>
+<td><p>This class holds a Synset object.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">WordCategory</span></code>(*args, **kwargs)</p></td>
+<td><p>This Enum class contains the three part-of-speech tags (WortCategory), a Synset can have in GermaNet.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">WordClass</span></code>(*args, **kwargs)</p></td>
+<td><p>This Enum class contains the semantic wordclasses / semantic fields  a Synset can have in GermaNet.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="germanetpy.synsetLoader.get_attribute_element">
+<span class="sig-prename descclassname"><span class="pre">germanetpy.synsetLoader.</span></span><span class="sig-name descname"><span class="pre">get_attribute_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">enum</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/synsetLoader.html#get_attribute_element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synsetLoader.get_attribute_element" title="Link to this definition">¶</a></dt>
+<dd><p>Constructs an Emum object of a given attribute
+:rtype: FastEnum
+:type enum: FastEnum
+:type attributes: XML attributes
+:param attributes: XML attributes of a certain XML node
+:param elment: A String
+:param enum: The Enum object that should be initialized
+:return: The corresponding Enum object or None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="germanetpy.synsetLoader.get_attribute_element_without_enum">
+<span class="sig-prename descclassname"><span class="pre">germanetpy.synsetLoader.</span></span><span class="sig-name descname"><span class="pre">get_attribute_element_without_enum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/synsetLoader.html#get_attribute_element_without_enum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synsetLoader.get_attribute_element_without_enum" title="Link to this definition">¶</a></dt>
+<dd><p>Returns attribute value if attribute exists
+:type attributes: XML attributes
+:param attributes: XML attributes of a certain XML node
+:param elment: A String
+:return: The corresponding object or None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="germanetpy.synsetLoader.create_compound_info">
+<span class="sig-prename descclassname"><span class="pre">germanetpy.synsetLoader.</span></span><span class="sig-name descname"><span class="pre">create_compound_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../germanetpy.html#germanetpy.compoundInfo.CompoundInfo" title="germanetpy.compoundInfo.CompoundInfo"><span class="pre">CompoundInfo</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synsetLoader.html#create_compound_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synsetLoader.create_compound_info" title="Link to this definition">¶</a></dt>
+<dd><p>Creates a compound info object. This has a modifier (String) and a head (String). Each modifier and the head can
+have a property (CompoundProperty) and a category (CompoundCategory).
+:param child: the XML element
+:return: A CompoundInfo object</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="germanetpy.synsetLoader.load_lexunits">
+<span class="sig-prename descclassname"><span class="pre">germanetpy.synsetLoader.</span></span><span class="sig-name descname"><span class="pre">load_lexunits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">germanet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/synsetLoader.html#load_lexunits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synsetLoader.load_lexunits" title="Link to this definition">¶</a></dt>
+<dd><p>Takes the XML tree and walks trough it to create the Lexunit objects.
+:type tree: Element Tree
+:type germanet: Germanet
+:param germanet: the germanet object
+:param tree: XML tree</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="germanetpy.synsetLoader.convert_example_edited">
+<span class="sig-prename descclassname"><span class="pre">germanetpy.synsetLoader.</span></span><span class="sig-name descname"><span class="pre">convert_example_edited</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synsetLoader.html#convert_example_edited"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synsetLoader.convert_example_edited" title="Link to this definition">¶</a></dt>
+<dd><p>Converts an example edited value to a boolean.</p>
+<p>The example edited tag is element text in the XML data. The Java API uses
+Boolean.parseBoolean, so true/false are supported here. yes/no and 1/0 are
+accepted as well to be tolerant of existing GermaNet boolean conventions.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="germanetpy.synsetLoader.create_example">
+<span class="sig-prename descclassname"><span class="pre">germanetpy.synsetLoader.</span></span><span class="sig-name descname"><span class="pre">create_example</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">example_root</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="germanetpy.example.html#germanetpy.example.Example" title="germanetpy.example.Example"><span class="pre">Example</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synsetLoader.html#create_example"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synsetLoader.create_example" title="Link to this definition">¶</a></dt>
+<dd><p>Creates an Example object from an XML example element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>example_root</strong> – The XML example element.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An Example object containing text, optional frame, and optional LLM metadata.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="germanetpy.synsetLoader.create_lexunit">
+<span class="sig-prename descclassname"><span class="pre">germanetpy.synsetLoader.</span></span><span class="sig-name descname"><span class="pre">create_lexunit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">germanet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lex_root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">synset</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../germanetpy.html#germanetpy.lexunit.Lexunit" title="germanetpy.lexunit.Lexunit"><span class="pre">Lexunit</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synsetLoader.html#create_lexunit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synsetLoader.create_lexunit" title="Link to this definition">¶</a></dt>
+<dd><p>Given the XML data, creates a Lexunit object.
+:type attributes: XML attributes
+:type germanet: Germanet
+:param germanet: The germanet object.
+:param attributes: The XML attributes.
+:param lex_root: The XML root
+:param synset: the corresponding synset object
+:return: a lexical unit object</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="germanetpy.synsetLoader.add_orth_forms">
+<span class="sig-prename descclassname"><span class="pre">germanetpy.synsetLoader.</span></span><span class="sig-name descname"><span class="pre">add_orth_forms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">germanet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lexunit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../germanetpy.html#germanetpy.lexunit.Lexunit" title="germanetpy.lexunit.Lexunit"><span class="pre">Lexunit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">child_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/synsetLoader.html#add_orth_forms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synsetLoader.add_orth_forms" title="Link to this definition">¶</a></dt>
+<dd><p>Checks which orthform the tag contains, and adds it to the lexunit object. Adds the lexunit id to the
+corresponding dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>germanet</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.germanet.Germanet" title="germanetpy.germanet.Germanet"><em>Germanet</em></a>) – The germanet object containing the Orthform variant dictionaries.</p></li>
+<li><p><strong>lexunit</strong> – the Lexunit object the Orthform variant needs to be added to</p></li>
+<li><p><strong>child_value</strong> – the value of the XML element that contains this Orthform variant</p></li>
+<li><p><strong>tag</strong> – the value of the XML tag specifying the type of Orthform variant</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 
 
           </div>
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">germanetpy</a></h1>
 
@@ -75,7 +211,7 @@
 
 
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=star&v=2&count=true&size=large&v=2"
+<iframe src="https://ghbtns.com/github-btn.html?user=bencampbell30&repo=germanetpy&type=watch&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
 
@@ -85,47 +221,60 @@
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Project Modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.germanet.html">germanetpy.germanet</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="germanetpy.html">germanetpy</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.compoundInfo.html">germanetpy.compoundInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.example.html">germanetpy.example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.filterconfig.html">germanetpy.filterconfig</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.frames.html">germanetpy.frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.germanet.html">germanetpy.germanet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.icbased_similarity.html">germanetpy.icbased_similarity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.iliLoader.html">germanetpy.iliLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.iliRecord.html">germanetpy.iliRecord</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.lexunit.html">germanetpy.lexunit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.longest_shortest_path.html">germanetpy.longest_shortest_path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.path_based_relatedness_measures.html">germanetpy.path_based_relatedness_measures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.relationLoader.html">germanetpy.relationLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.semrel_measures.html">germanetpy.semrel_measures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.synset.html">germanetpy.synset</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.synsetLoader</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.synsetLoader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.synsetLoader.get_attribute_element"><code class="docutils literal notranslate"><span class="pre">get_attribute_element()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.synsetLoader.get_attribute_element_without_enum"><code class="docutils literal notranslate"><span class="pre">get_attribute_element_without_enum()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.synsetLoader.create_compound_info"><code class="docutils literal notranslate"><span class="pre">create_compound_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.synsetLoader.load_lexunits"><code class="docutils literal notranslate"><span class="pre">load_lexunits()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.synsetLoader.convert_example_edited"><code class="docutils literal notranslate"><span class="pre">convert_example_edited()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.synsetLoader.create_example"><code class="docutils literal notranslate"><span class="pre">create_example()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.synsetLoader.create_lexunit"><code class="docutils literal notranslate"><span class="pre">create_lexunit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.synsetLoader.add_orth_forms"><code class="docutils literal notranslate"><span class="pre">add_orth_forms()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.utils.html">germanetpy.utils</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.wiktionaryLoader.html">germanetpy.wiktionaryLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.wiktionaryparaphrase.html">germanetpy.wiktionaryparaphrase</a></li>
 </ul>
 </li>
 </ul>
 
 
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Neele Falk.
+      &#169;2026, Ben Campbell.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.1</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
       <a href="../_sources/_autosummary/germanetpy.synsetLoader.rst.txt"
@@ -133,8 +282,8 @@
     </div>
 
     
-    <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    <a href="https://github.com/bencampbell30/germanetpy" class="github">
+        <img src="../_static/github-banner.svg" alt="Fork me on GitHub" class="github"/>
     </a>
     
 

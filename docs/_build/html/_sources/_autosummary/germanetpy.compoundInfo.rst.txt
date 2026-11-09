@@ -4,11 +4,6 @@ germanetpy.compoundInfo
 .. automodule:: germanetpy.compoundInfo
 
    
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
@@ -16,9 +11,4 @@ germanetpy.compoundInfo
       CompoundCategory
       CompoundInfo
       CompoundProperty
-   
-   
-
-   
-   
    

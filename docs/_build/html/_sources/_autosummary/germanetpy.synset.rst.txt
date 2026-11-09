@@ -4,11 +4,6 @@ germanetpy.synset
 .. automodule:: germanetpy.synset
 
    
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
@@ -17,9 +12,5 @@ germanetpy.synset
       Synset
       WordCategory
       WordClass
-   
-   
-
-   
-   
+      defaultdict
    

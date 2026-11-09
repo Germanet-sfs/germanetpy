@@ -1,26 +1,27 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <title>germanetpy.longest_shortest_path &#8212; germanetpy 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>germanetpy.longest_shortest_path &#8212; germanetpy 0.3.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=e259d695"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="germanetpy.relationLoader" href="germanetpy.relationLoader.html" />
+    <link rel="next" title="germanetpy.path_based_relatedness_measures" href="germanetpy.path_based_relatedness_measures.html" />
     <link rel="prev" title="germanetpy.lexunit" href="germanetpy.lexunit.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -32,40 +33,128 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="module-germanetpy.longest_shortest_path">
-<span id="germanetpy-longest-shortest-path"></span><h1>germanetpy.longest_shortest_path<a class="headerlink" href="#module-germanetpy.longest_shortest_path" title="Permalink to this headline">¶</a></h1>
+  <section id="module-germanetpy.longest_shortest_path">
+<span id="germanetpy-longest-shortest-path"></span><h1>germanetpy.longest_shortest_path<a class="headerlink" href="#module-germanetpy.longest_shortest_path" title="Link to this heading">¶</a></h1>
 <p class="rubric">Functions</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_greatest_depth</span></code>(germanet, category)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.longest_shortest_path.get_greatest_depth" title="germanetpy.longest_shortest_path.get_greatest_depth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_greatest_depth</span></code></a>(germanet, category)</p></td>
 <td><p>Iterate trough the synsets of a given word category.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_longest_possible_shortest_distance</span></code>(…)</p></td>
-<td><p>set a maxdistcounter = 0 for each synset: get the corresponding longest shortest distance.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.longest_shortest_path.get_longest_possible_shortest_distance" title="germanetpy.longest_shortest_path.get_longest_possible_shortest_distance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_longest_possible_shortest_distance</span></code></a>(...)</p></td>
+<td><p>set a maxdistcounter = 0 for each synset: get the corresponding longest shortest distance. if this plus the overall longest shortest distance is smaller than maxdistance:     continue with the next synset if it is larger:     go trough each synset and get the corresponding longest shortest distance. if this plus the longest shortest distance of the synset of interest is smaller than maxdistance:         continue     else:         compute the actual path distance and update the maxdistance if it is larger.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_overall_longest_shortest_distance</span></code>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.longest_shortest_path.get_overall_longest_shortest_distance" title="germanetpy.longest_shortest_path.get_overall_longest_shortest_distance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_overall_longest_shortest_distance</span></code></a>(...)</p></td>
 <td><p>Iterate trough the synsets of a given wordcategory.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_longest_shortest_distances</span></code>(germanet, …)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.longest_shortest_path.print_longest_shortest_distances" title="germanetpy.longest_shortest_path.print_longest_shortest_distances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_longest_shortest_distances</span></code></a>(germanet, ...)</p></td>
 <td><p>Computes and prints the longest shortest distances for the given word category.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_maximum_depths</span></code>(germanet, word_category)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.longest_shortest_path.print_maximum_depths" title="germanetpy.longest_shortest_path.print_maximum_depths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_maximum_depths</span></code></a>(germanet, word_category)</p></td>
 <td><p>Computes and prints the maximum depth for the given word_category.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="germanetpy.longest_shortest_path.get_overall_longest_shortest_distance">
+<span class="sig-prename descclassname"><span class="pre">germanetpy.longest_shortest_path.</span></span><span class="sig-name descname"><span class="pre">get_overall_longest_shortest_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">germanet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category)</span> <span class="pre">-&gt;</span> <span class="pre">(&lt;class</span> <span class="pre">'dict'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">&lt;class</span> <span class="pre">'int'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/longest_shortest_path.html#get_overall_longest_shortest_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.longest_shortest_path.get_overall_longest_shortest_distance" title="Link to this definition">¶</a></dt>
+<dd><p>Iterate trough the synsets of a given wordcategory. For each synset, extract all possible hypernyms and compute the
+shortest possible distance to each hypernym. From these distances, also store the longest possible shortest
+distance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>germanet</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.germanet.Germanet" title="germanetpy.germanet.Germanet"><em>Germanet</em></a>) – the germanet graph</p></li>
+<li><p><strong>category</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.WordCategory" title="germanetpy.synset.WordCategory"><em>WordCategory</em></a>) – the wordcategory</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a dictionary with each synset and its longest shortest distance, the overall longest shortest distance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="germanetpy.longest_shortest_path.get_greatest_depth">
+<span class="sig-prename descclassname"><span class="pre">germanetpy.longest_shortest_path.</span></span><span class="sig-name descname"><span class="pre">get_greatest_depth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">germanet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/longest_shortest_path.html#get_greatest_depth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.longest_shortest_path.get_greatest_depth" title="Link to this definition">¶</a></dt>
+<dd><p>Iterate trough the synsets of a given word category. For each synset check the depth and return the greatest depth
+that has been seen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>germanet</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.germanet.Germanet" title="germanetpy.germanet.Germanet"><em>Germanet</em></a>) – the germanet graph</p></li>
+<li><p><strong>category</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.WordCategory" title="germanetpy.synset.WordCategory"><em>WordCategory</em></a>) – the wordcategory</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the greatest depth for a given word category. The depth of a synset is defined by the shortest path length between the synset and the root node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="germanetpy.longest_shortest_path.get_longest_possible_shortest_distance">
+<span class="sig-prename descclassname"><span class="pre">germanetpy.longest_shortest_path.</span></span><span class="sig-name descname"><span class="pre">get_longest_possible_shortest_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">germanet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wordcategory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/longest_shortest_path.html#get_longest_possible_shortest_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.longest_shortest_path.get_longest_possible_shortest_distance" title="Link to this definition">¶</a></dt>
+<dd><p>set a maxdistcounter = 0
+for each synset:
+get the corresponding longest shortest distance.
+if this plus the overall longest shortest distance is smaller than maxdistance:</p>
+<blockquote>
+<div><p>continue with the next synset</p>
+</div></blockquote>
+<dl>
+<dt>if it is larger:</dt><dd><p>go trough each synset and get the corresponding longest shortest distance.
+if this plus the longest shortest distance of the synset of interest is smaller than maxdistance:</p>
+<blockquote>
+<div><p>continue</p>
+</div></blockquote>
+<dl class="simple">
+<dt>else:</dt><dd><p>compute the actual path distance and update the maxdistance if it is larger</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a>(<a class="reference internal" href="../germanetpy.html#germanetpy.synset.Synset" title="germanetpy.synset.Synset">Synset</a>, <a class="reference internal" href="../germanetpy.html#germanetpy.synset.Synset" title="germanetpy.synset.Synset">Synset</a>)</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>wordcategory</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.WordCategory" title="germanetpy.synset.WordCategory"><em>WordCategory</em></a>) – the wordcategory for which this maxlen should be computed</p></li>
+<li><p><strong>germanet</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.germanet.Germanet" title="germanetpy.germanet.Germanet"><em>Germanet</em></a>) – the germanet graph</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the longest possible shortest distance between two synsets of a specified wordcategory, the maximum depth</p>
+</dd>
+</dl>
+<p>of any synset (lenght to the root) and a Tuple with two synsets that have the longest shortest distance</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="germanetpy.longest_shortest_path.print_longest_shortest_distances">
+<span class="sig-prename descclassname"><span class="pre">germanetpy.longest_shortest_path.</span></span><span class="sig-name descname"><span class="pre">print_longest_shortest_distances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">germanet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_category</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/longest_shortest_path.html#print_longest_shortest_distances"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.longest_shortest_path.print_longest_shortest_distances" title="Link to this definition">¶</a></dt>
+<dd><p>Computes and prints the longest shortest distances for the given word category.</p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="germanetpy.longest_shortest_path.print_maximum_depths">
+<span class="sig-prename descclassname"><span class="pre">germanetpy.longest_shortest_path.</span></span><span class="sig-name descname"><span class="pre">print_maximum_depths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">germanet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_category</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/longest_shortest_path.html#print_maximum_depths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.longest_shortest_path.print_maximum_depths" title="Link to this definition">¶</a></dt>
+<dd><p>Computes and prints the maximum depth for the given word_category.</p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</section>
 
 
           </div>
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">germanetpy</a></h1>
 
@@ -75,7 +164,7 @@
 
 
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=star&v=2&count=true&size=large&v=2"
+<iframe src="https://ghbtns.com/github-btn.html?user=bencampbell30&repo=germanetpy&type=watch&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
 
@@ -85,47 +174,57 @@
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Project Modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.germanet.html">germanetpy.germanet</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="germanetpy.html">germanetpy</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.compoundInfo.html">germanetpy.compoundInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.example.html">germanetpy.example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.filterconfig.html">germanetpy.filterconfig</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.frames.html">germanetpy.frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.germanet.html">germanetpy.germanet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.icbased_similarity.html">germanetpy.icbased_similarity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.iliLoader.html">germanetpy.iliLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.iliRecord.html">germanetpy.iliRecord</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.lexunit.html">germanetpy.lexunit</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.longest_shortest_path</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.longest_shortest_path</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.longest_shortest_path.get_overall_longest_shortest_distance"><code class="docutils literal notranslate"><span class="pre">get_overall_longest_shortest_distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.longest_shortest_path.get_greatest_depth"><code class="docutils literal notranslate"><span class="pre">get_greatest_depth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.longest_shortest_path.get_longest_possible_shortest_distance"><code class="docutils literal notranslate"><span class="pre">get_longest_possible_shortest_distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.longest_shortest_path.print_longest_shortest_distances"><code class="docutils literal notranslate"><span class="pre">print_longest_shortest_distances()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.longest_shortest_path.print_maximum_depths"><code class="docutils literal notranslate"><span class="pre">print_maximum_depths()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.path_based_relatedness_measures.html">germanetpy.path_based_relatedness_measures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.relationLoader.html">germanetpy.relationLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.semrel_measures.html">germanetpy.semrel_measures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.synset.html">germanetpy.synset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.synsetLoader.html">germanetpy.synsetLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.utils.html">germanetpy.utils</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.wiktionaryLoader.html">germanetpy.wiktionaryLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.wiktionaryparaphrase.html">germanetpy.wiktionaryparaphrase</a></li>
 </ul>
 </li>
 </ul>
 
 
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Neele Falk.
+      &#169;2026, Ben Campbell.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.1</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
       <a href="../_sources/_autosummary/germanetpy.longest_shortest_path.rst.txt"
@@ -133,8 +232,8 @@
     </div>
 
     
-    <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    <a href="https://github.com/bencampbell30/germanetpy" class="github">
+        <img src="../_static/github-banner.svg" alt="Fork me on GitHub" class="github"/>
     </a>
     
 

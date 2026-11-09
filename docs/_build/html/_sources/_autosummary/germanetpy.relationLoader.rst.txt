@@ -4,7 +4,6 @@ germanetpy.relationLoader
 .. automodule:: germanetpy.relationLoader
 
    
-   
    .. rubric:: Functions
 
    .. autosummary::
@@ -12,12 +11,10 @@ germanetpy.relationLoader
       get_relation_attributes
       load_relations
    
-   
+   .. rubric:: Classes
 
+   .. autosummary::
    
-   
-   
-
-   
-   
+      ConRel
+      LexRel
    

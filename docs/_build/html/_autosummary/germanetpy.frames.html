@@ -1,26 +1,27 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <title>germanetpy.frames &#8212; germanetpy 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>germanetpy.frames &#8212; germanetpy 0.3.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=e259d695"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="germanetpy.icbased_similarity" href="germanetpy.icbased_similarity.html" />
+    <link rel="next" title="germanetpy.germanet" href="germanetpy.germanet.html" />
     <link rel="prev" title="germanetpy.filterconfig" href="germanetpy.filterconfig.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -32,28 +33,233 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="module-germanetpy.frames">
-<span id="germanetpy-frames"></span><h1>germanetpy.frames<a class="headerlink" href="#module-germanetpy.frames" title="Permalink to this headline">¶</a></h1>
-<p class="rubric">Classes</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+  <section id="module-germanetpy.frames">
+<span id="germanetpy-frames"></span><h1>germanetpy.frames<a class="headerlink" href="#module-germanetpy.frames" title="Link to this heading">¶</a></h1>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Frames</span></code>(frames2lexunits)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reduce</span></code>(function, iterable[, initial])</p></td>
+<td><p>Apply a function of two arguments cumulatively to the items of a sequence or iterable, from left to right, so as to reduce the iterable to a single value.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.frames.Frames" title="germanetpy.frames.Frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Frames</span></code></a>(frames2lexunits)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">germanetpy.frames.</span></span><span class="sig-name descname"><span class="pre">Frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames2lexunits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/frames.html#Frames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.frames.Frames" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.EXPLETIVE">
+<span class="sig-name descname"><span class="pre">EXPLETIVE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'NE'</span></span><a class="headerlink" href="#germanetpy.frames.Frames.EXPLETIVE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.SUBJECT">
+<span class="sig-name descname"><span class="pre">SUBJECT</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'NN'</span></span><a class="headerlink" href="#germanetpy.frames.Frames.SUBJECT" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.ACCOBJ">
+<span class="sig-name descname"><span class="pre">ACCOBJ</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AN'</span></span><a class="headerlink" href="#germanetpy.frames.Frames.ACCOBJ" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.DATOBJ">
+<span class="sig-name descname"><span class="pre">DATOBJ</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DN'</span></span><a class="headerlink" href="#germanetpy.frames.Frames.DATOBJ" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.GENOBJ">
+<span class="sig-name descname"><span class="pre">GENOBJ</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'GN'</span></span><a class="headerlink" href="#germanetpy.frames.Frames.GENOBJ" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.PREPOBJ">
+<span class="sig-name descname"><span class="pre">PREPOBJ</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'PP'</span></span><a class="headerlink" href="#germanetpy.frames.Frames.PREPOBJ" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.LOC">
+<span class="sig-name descname"><span class="pre">LOC</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BL'</span></span><a class="headerlink" href="#germanetpy.frames.Frames.LOC" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.DIR">
+<span class="sig-name descname"><span class="pre">DIR</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BD'</span></span><a class="headerlink" href="#germanetpy.frames.Frames.DIR" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.TEMP">
+<span class="sig-name descname"><span class="pre">TEMP</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BT'</span></span><a class="headerlink" href="#germanetpy.frames.Frames.TEMP" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.MAN">
+<span class="sig-name descname"><span class="pre">MAN</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BM'</span></span><a class="headerlink" href="#germanetpy.frames.Frames.MAN" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.INST">
+<span class="sig-name descname"><span class="pre">INST</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BS'</span></span><a class="headerlink" href="#germanetpy.frames.Frames.INST" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.CAUSE">
+<span class="sig-name descname"><span class="pre">CAUSE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BC'</span></span><a class="headerlink" href="#germanetpy.frames.Frames.CAUSE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.ROLE">
+<span class="sig-name descname"><span class="pre">ROLE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BR'</span></span><a class="headerlink" href="#germanetpy.frames.Frames.ROLE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.COM">
+<span class="sig-name descname"><span class="pre">COM</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BO'</span></span><a class="headerlink" href="#germanetpy.frames.Frames.COM" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.reflexives">
+<span class="sig-name descname"><span class="pre">reflexives</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['DR',</span> <span class="pre">'AR']</span></span><a class="headerlink" href="#germanetpy.frames.Frames.reflexives" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.extract_expletives">
+<span class="sig-name descname"><span class="pre">extract_expletives</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/frames.html#Frames.extract_expletives"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.frames.Frames.extract_expletives" title="Link to this definition">¶</a></dt>
+<dd><p>This method extracts all verbs that can take expletives as an argument. Example: “[Es] regnet.”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A set of lexical units that stores all verbs as Lexunits that have the specified frame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.extract_accusative_complement">
+<span class="sig-name descname"><span class="pre">extract_accusative_complement</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/frames.html#Frames.extract_accusative_complement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.frames.Frames.extract_accusative_complement" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns all verbs that can take an accusative complement. Example: “Sie sieht [ihn]”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A set of lexical units that stores all verbs as Lexunits that have the specified frame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.extract_dative_complement">
+<span class="sig-name descname"><span class="pre">extract_dative_complement</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/frames.html#Frames.extract_dative_complement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.frames.Frames.extract_dative_complement" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns all verbs that can take an dative complement. Example: “Sie schenkt [ihm] einen Hund.”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A set of lexical units that stores all verbs as Lexunits that have the specified frame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.extract_gentive_complement">
+<span class="sig-name descname"><span class="pre">extract_gentive_complement</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/frames.html#Frames.extract_gentive_complement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.frames.Frames.extract_gentive_complement" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns all verbs that can take an genetive complement. Example: “Ihre Eltern berauben sie [ihrer
+Freiheit].”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A set of lexical units that stores all verbs as Lexunits that have the specified frame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.extract_prepositional_complement">
+<span class="sig-name descname"><span class="pre">extract_prepositional_complement</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/frames.html#Frames.extract_prepositional_complement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.frames.Frames.extract_prepositional_complement" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns all verbs that can take an prepositional complement. Example: “Die Kugel klackte [an die
+Fensterscheibe].”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A set of lexical units that stores all verbs as Lexunits that have the specified frame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.extract_reflexives">
+<span class="sig-name descname"><span class="pre">extract_reflexives</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/frames.html#Frames.extract_reflexives"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.frames.Frames.extract_reflexives" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns all verbs that can take an reflexive complement. Example: “Sie wird [sich] rächen.”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A set of lexical units that stores all verbs as Lexunits that have the specified frame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.extract_adverbials">
+<span class="sig-name descname"><span class="pre">extract_adverbials</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/frames.html#Frames.extract_adverbials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.frames.Frames.extract_adverbials" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns all verbs that can take an adverbial complement. Example: “Sie wohnt [in einem Haus].”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A set of lexical units that stores all verbs as Lexunits that have the specified frame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.extract_transitives">
+<span class="sig-name descname"><span class="pre">extract_transitives</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/frames.html#Frames.extract_transitives"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.frames.Frames.extract_transitives" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns all transitive verbs. A transitive verb is any verb that can have objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A set of lexical units that stores all transitive verbs as Lexunits.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.extract_intransitives">
+<span class="sig-name descname"><span class="pre">extract_intransitives</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/frames.html#Frames.extract_intransitives"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.frames.Frames.extract_intransitives" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns all intransitive verbs. An intransitive verb is any verb that does not have objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A set of lexical units that stores all intransitive verbs as Lexunits.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.extract_specific_complements">
+<span class="sig-name descname"><span class="pre">extract_specific_complements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">complement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/frames.html#Frames.extract_specific_complements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.frames.Frames.extract_specific_complements" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns all verbs that can take a given complement. This is specified in the frames of a verb.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param<span class="colon">:</span></dt>
+<dd class="field-odd"><p>complement : a syntactic complement (e.g NN for subject), the complements are specified as class variables of this class</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A set of lexical units that stores all verbs as Lexunits that can take the specified complement.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.frames.Frames.frames2verbs">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">frames2verbs</span></span><a class="headerlink" href="#germanetpy.frames.Frames.frames2verbs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 
 
           </div>
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">germanetpy</a></h1>
 
@@ -63,7 +269,7 @@
 
 
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=star&v=2&count=true&size=large&v=2"
+<iframe src="https://ghbtns.com/github-btn.html?user=bencampbell30&repo=germanetpy&type=watch&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
 
@@ -73,47 +279,81 @@
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Project Modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.germanet.html">germanetpy.germanet</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="germanetpy.html">germanetpy</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.compoundInfo.html">germanetpy.compoundInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.example.html">germanetpy.example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.filterconfig.html">germanetpy.filterconfig</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.frames</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.frames</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.frames.Frames"><code class="docutils literal notranslate"><span class="pre">Frames</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.EXPLETIVE"><code class="docutils literal notranslate"><span class="pre">Frames.EXPLETIVE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.SUBJECT"><code class="docutils literal notranslate"><span class="pre">Frames.SUBJECT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.ACCOBJ"><code class="docutils literal notranslate"><span class="pre">Frames.ACCOBJ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.DATOBJ"><code class="docutils literal notranslate"><span class="pre">Frames.DATOBJ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.GENOBJ"><code class="docutils literal notranslate"><span class="pre">Frames.GENOBJ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.PREPOBJ"><code class="docutils literal notranslate"><span class="pre">Frames.PREPOBJ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.LOC"><code class="docutils literal notranslate"><span class="pre">Frames.LOC</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.DIR"><code class="docutils literal notranslate"><span class="pre">Frames.DIR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.TEMP"><code class="docutils literal notranslate"><span class="pre">Frames.TEMP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.MAN"><code class="docutils literal notranslate"><span class="pre">Frames.MAN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.INST"><code class="docutils literal notranslate"><span class="pre">Frames.INST</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.CAUSE"><code class="docutils literal notranslate"><span class="pre">Frames.CAUSE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.ROLE"><code class="docutils literal notranslate"><span class="pre">Frames.ROLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.COM"><code class="docutils literal notranslate"><span class="pre">Frames.COM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.reflexives"><code class="docutils literal notranslate"><span class="pre">Frames.reflexives</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.extract_expletives"><code class="docutils literal notranslate"><span class="pre">Frames.extract_expletives()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.extract_accusative_complement"><code class="docutils literal notranslate"><span class="pre">Frames.extract_accusative_complement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.extract_dative_complement"><code class="docutils literal notranslate"><span class="pre">Frames.extract_dative_complement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.extract_gentive_complement"><code class="docutils literal notranslate"><span class="pre">Frames.extract_gentive_complement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.extract_prepositional_complement"><code class="docutils literal notranslate"><span class="pre">Frames.extract_prepositional_complement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.extract_reflexives"><code class="docutils literal notranslate"><span class="pre">Frames.extract_reflexives()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.extract_adverbials"><code class="docutils literal notranslate"><span class="pre">Frames.extract_adverbials()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.extract_transitives"><code class="docutils literal notranslate"><span class="pre">Frames.extract_transitives()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.extract_intransitives"><code class="docutils literal notranslate"><span class="pre">Frames.extract_intransitives()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.extract_specific_complements"><code class="docutils literal notranslate"><span class="pre">Frames.extract_specific_complements()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.frames.Frames.frames2verbs"><code class="docutils literal notranslate"><span class="pre">Frames.frames2verbs</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.germanet.html">germanetpy.germanet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.icbased_similarity.html">germanetpy.icbased_similarity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.iliLoader.html">germanetpy.iliLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.iliRecord.html">germanetpy.iliRecord</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.lexunit.html">germanetpy.lexunit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.longest_shortest_path.html">germanetpy.longest_shortest_path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.path_based_relatedness_measures.html">germanetpy.path_based_relatedness_measures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.relationLoader.html">germanetpy.relationLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.semrel_measures.html">germanetpy.semrel_measures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.synset.html">germanetpy.synset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.synsetLoader.html">germanetpy.synsetLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.utils.html">germanetpy.utils</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.wiktionaryLoader.html">germanetpy.wiktionaryLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.wiktionaryparaphrase.html">germanetpy.wiktionaryparaphrase</a></li>
 </ul>
 </li>
 </ul>
 
 
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Neele Falk.
+      &#169;2026, Ben Campbell.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.1</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
       <a href="../_sources/_autosummary/germanetpy.frames.rst.txt"
@@ -121,8 +361,8 @@
     </div>
 
     
-    <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    <a href="https://github.com/bencampbell30/germanetpy" class="github">
+        <img src="../_static/github-banner.svg" alt="Fork me on GitHub" class="github"/>
     </a>
     
 

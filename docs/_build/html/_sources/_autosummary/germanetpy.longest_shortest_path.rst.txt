@@ -4,7 +4,6 @@ germanetpy.longest\_shortest\_path
 .. automodule:: germanetpy.longest_shortest_path
 
    
-   
    .. rubric:: Functions
 
    .. autosummary::
@@ -14,13 +13,4 @@ germanetpy.longest\_shortest\_path
       get_overall_longest_shortest_distance
       print_longest_shortest_distances
       print_maximum_depths
-   
-   
-
-   
-   
-   
-
-   
-   
    

@@ -4,7 +4,6 @@ germanetpy.iliLoader
 .. automodule:: germanetpy.iliLoader
 
    
-   
    .. rubric:: Functions
 
    .. autosummary::
@@ -12,12 +11,9 @@ germanetpy.iliLoader
       create_ili_record
       load_ili
    
-   
+   .. rubric:: Classes
 
+   .. autosummary::
    
-   
-   
-
-   
-   
+      IliRecord
    

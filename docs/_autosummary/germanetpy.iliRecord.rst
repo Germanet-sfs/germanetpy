@@ -1,0 +1,12 @@
+germanetpy.iliRecord
+====================
+
+.. automodule:: germanetpy.iliRecord
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      IliRecord
+   

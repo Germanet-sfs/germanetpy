@@ -1,26 +1,27 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <title>germanetpy.germanet &#8212; germanetpy 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>germanetpy.germanet &#8212; germanetpy 0.3.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=e259d695"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="germanetpy.compoundInfo" href="germanetpy.compoundInfo.html" />
-    <link rel="prev" title="germanetpy" href="germanetpy.html" />
+    <link rel="next" title="germanetpy.icbased_similarity" href="germanetpy.icbased_similarity.html" />
+    <link rel="prev" title="germanetpy.frames" href="germanetpy.frames.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -32,28 +33,274 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="module-germanetpy.germanet">
-<span id="germanetpy-germanet"></span><h1>germanetpy.germanet<a class="headerlink" href="#module-germanetpy.germanet" title="Permalink to this headline">¶</a></h1>
-<p class="rubric">Classes</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+  <section id="module-germanetpy.germanet">
+<span id="germanetpy-germanet"></span><h1>germanetpy.germanet<a class="headerlink" href="#module-germanetpy.germanet" title="Link to this heading">¶</a></h1>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Germanet</span></code>(datadir[, add_ilirecords, …])</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_ili</span></code>(germanet, tree)</p></td>
+<td><p>This method creates the ili record objects given a datafile and adds them to the GermaNet object and the corresponding lexical unit.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_lexunits</span></code>(germanet, tree)</p></td>
+<td><p>Takes the XML tree and walks trough it to create the Lexunit objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_relations</span></code>(germanet, tree)</p></td>
+<td><p>Loads the information about the related synsets ans lexunits from the data and adds the edges between the objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_wiktionary</span></code>(germanet, tree)</p></td>
+<td><p>Given a XML tree this method initialized the wiktionary objects and adds them to the germanet object and the corresponding lexunits</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_xml</span></code>(datadir, f)</p></td>
+<td><p>Parses an XML file and returns the XML tree</p></td>
 </tr>
 </tbody>
 </table>
-</div>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Frames</span></code>(frames2lexunits)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.germanet.Germanet" title="germanetpy.germanet.Germanet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Germanet</span></code></a>(datadir[, add_ilirecords, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">defaultdict</span></code></p></td>
+<td><p>defaultdict(default_factory=None, /, [...]) --&gt; dict with default factory</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">germanetpy.germanet.</span></span><span class="sig-name descname"><span class="pre">Germanet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datadir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_ilirecords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_wiktionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/germanet.html#Germanet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.germanet.Germanet" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.get_synsets_by_orthform">
+<span class="sig-name descname"><span class="pre">get_synsets_by_orthform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignorecase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/germanet.html#Germanet.get_synsets_by_orthform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.germanet.Germanet.get_synsets_by_orthform" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns a list of synsets that match the given input search string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>form</strong> – a word that can be looked up in the GermaNet</p></li>
+<li><p><strong>ignorecase</strong> – whether the case of the word should be ignored (default = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of synsets</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.get_synsets_by_wordcategory">
+<span class="sig-name descname"><span class="pre">get_synsets_by_wordcategory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">category</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/germanet.html#Germanet.get_synsets_by_wordcategory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.germanet.Germanet.get_synsets_by_wordcategory" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a list of synsets that belong to the specified word category</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>category</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.WordCategory" title="germanetpy.synset.WordCategory"><em>WordCategory</em></a>) – The word category of interest</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of Synsets that belong to the specified word category</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.get_synsets_by_wordclass">
+<span class="sig-name descname"><span class="pre">get_synsets_by_wordclass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wordclass</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/germanet.html#Germanet.get_synsets_by_wordclass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.germanet.Germanet.get_synsets_by_wordclass" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a list of synsets that belong to the specified word class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wordclass</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.WordClass" title="germanetpy.synset.WordClass"><em>WordClass</em></a>) – The word category of interest</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of Synsets that belong to the specified word class</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.get_synset_by_id">
+<span class="sig-name descname"><span class="pre">get_synset_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/germanet.html#Germanet.get_synset_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.germanet.Germanet.get_synset_by_id" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a Synset by a specified identifier (if that exists, otherwise raises an Error)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../germanetpy.html#germanetpy.synset.Synset" title="germanetpy.synset.Synset">Synset</a></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>id</strong> – a Synset identifier</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The matching Synset object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.get_lexunit_by_id">
+<span class="sig-name descname"><span class="pre">get_lexunit_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/germanet.html#Germanet.get_lexunit_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.germanet.Germanet.get_lexunit_by_id" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a lexical unit by a specified identifier (if that exists, otherwise raises an Error)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../germanetpy.html#germanetpy.lexunit.Lexunit" title="germanetpy.lexunit.Lexunit">Lexunit</a></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>id</strong> – a Lexunit identifier</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The matching Lexunit object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.get_lexunits_by_orthform">
+<span class="sig-name descname"><span class="pre">get_lexunits_by_orthform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignorecase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/germanet.html#Germanet.get_lexunits_by_orthform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.germanet.Germanet.get_lexunits_by_orthform" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns a list of lexical units that match the given input search string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>form</strong> – a word that can be looked up in the GermaNet</p></li>
+<li><p><strong>ignorecase</strong> – whether the case of the word should be ignored (default = False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of lexical units that match the given input query</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.get_lexunits_by_wordclass">
+<span class="sig-name descname"><span class="pre">get_lexunits_by_wordclass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wordclass</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/germanet.html#Germanet.get_lexunits_by_wordclass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.germanet.Germanet.get_lexunits_by_wordclass" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a list of lexical units that belong to the specified word class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wordclass</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.WordClass" title="germanetpy.synset.WordClass"><em>WordClass</em></a>) – The word category of interest</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of lexical units that belong to the specified word class</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.get_lexunits_by_wordcategory">
+<span class="sig-name descname"><span class="pre">get_lexunits_by_wordcategory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">category</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/germanet.html#Germanet.get_lexunits_by_wordcategory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.germanet.Germanet.get_lexunits_by_wordcategory" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a list of lexical units that belong to the specified word category</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>category</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.WordCategory" title="germanetpy.synset.WordCategory"><em>WordCategory</em></a>) – The word category of interest</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of lexical units that belong to the specified word category</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.get_synsets_by_frame">
+<span class="sig-name descname"><span class="pre">get_synsets_by_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/germanet.html#Germanet.get_synsets_by_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.germanet.Germanet.get_synsets_by_frame" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a list of Synsets that match a specified frame</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frame</strong> – a frame that describes the argument structure of a verb (e.g. ‘NN.AN’ specifies that a verb can take a subject and accusative object as arguments.)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of Synsets that match the given frame. If the frame is not valid an Assertion Error will be raised</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.lexunits">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">lexunits</span></span><a class="headerlink" href="#germanetpy.germanet.Germanet.lexunits" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.synsets">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">synsets</span></span><a class="headerlink" href="#germanetpy.germanet.Germanet.synsets" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.orthform2lexid">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">orthform2lexid</span></span><a class="headerlink" href="#germanetpy.germanet.Germanet.orthform2lexid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.mainOrtform2lexid">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">mainOrtform2lexid</span></span><a class="headerlink" href="#germanetpy.germanet.Germanet.mainOrtform2lexid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.lowercasedform2lexid">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">lowercasedform2lexid</span></span><a class="headerlink" href="#germanetpy.germanet.Germanet.lowercasedform2lexid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.wordcat2lexid">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">wordcat2lexid</span></span><a class="headerlink" href="#germanetpy.germanet.Germanet.wordcat2lexid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.wordclass2lexid">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">wordclass2lexid</span></span><a class="headerlink" href="#germanetpy.germanet.Germanet.wordclass2lexid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.compounds">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">compounds</span></span><a class="headerlink" href="#germanetpy.germanet.Germanet.compounds" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.frames2lexunits">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">frames2lexunits</span></span><a class="headerlink" href="#germanetpy.germanet.Germanet.frames2lexunits" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.wiktionary_entries">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">wiktionary_entries</span></span><a class="headerlink" href="#germanetpy.germanet.Germanet.wiktionary_entries" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.ili_records">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ili_records</span></span><a class="headerlink" href="#germanetpy.germanet.Germanet.ili_records" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.frames">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">frames</span></span><a class="headerlink" href="#germanetpy.germanet.Germanet.frames" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.root">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">root</span></span><a class="headerlink" href="#germanetpy.germanet.Germanet.root" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.datadir">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">datadir</span></span><a class="headerlink" href="#germanetpy.germanet.Germanet.datadir" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.add_ilirecords">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">add_ilirecords</span></span><a class="headerlink" href="#germanetpy.germanet.Germanet.add_ilirecords" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.germanet.Germanet.add_wiktionary">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">add_wiktionary</span></span><a class="headerlink" href="#germanetpy.germanet.Germanet.add_wiktionary" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 
 
           </div>
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">germanetpy</a></h1>
 
@@ -63,7 +310,7 @@
 
 
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=star&v=2&count=true&size=large&v=2"
+<iframe src="https://ghbtns.com/github-btn.html?user=bencampbell30&repo=germanetpy&type=watch&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
 
@@ -73,12 +320,42 @@
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Project Modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html">germanetpy</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.germanet</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="germanetpy.html">germanetpy</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.compoundInfo.html">germanetpy.compoundInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.example.html">germanetpy.example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.filterconfig.html">germanetpy.filterconfig</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.frames.html">germanetpy.frames</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.germanet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.germanet.Germanet"><code class="docutils literal notranslate"><span class="pre">Germanet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.get_synsets_by_orthform"><code class="docutils literal notranslate"><span class="pre">Germanet.get_synsets_by_orthform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.get_synsets_by_wordcategory"><code class="docutils literal notranslate"><span class="pre">Germanet.get_synsets_by_wordcategory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.get_synsets_by_wordclass"><code class="docutils literal notranslate"><span class="pre">Germanet.get_synsets_by_wordclass()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.get_synset_by_id"><code class="docutils literal notranslate"><span class="pre">Germanet.get_synset_by_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.get_lexunit_by_id"><code class="docutils literal notranslate"><span class="pre">Germanet.get_lexunit_by_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.get_lexunits_by_orthform"><code class="docutils literal notranslate"><span class="pre">Germanet.get_lexunits_by_orthform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.get_lexunits_by_wordclass"><code class="docutils literal notranslate"><span class="pre">Germanet.get_lexunits_by_wordclass()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.get_lexunits_by_wordcategory"><code class="docutils literal notranslate"><span class="pre">Germanet.get_lexunits_by_wordcategory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.get_synsets_by_frame"><code class="docutils literal notranslate"><span class="pre">Germanet.get_synsets_by_frame()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.lexunits"><code class="docutils literal notranslate"><span class="pre">Germanet.lexunits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.synsets"><code class="docutils literal notranslate"><span class="pre">Germanet.synsets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.orthform2lexid"><code class="docutils literal notranslate"><span class="pre">Germanet.orthform2lexid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.mainOrtform2lexid"><code class="docutils literal notranslate"><span class="pre">Germanet.mainOrtform2lexid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.lowercasedform2lexid"><code class="docutils literal notranslate"><span class="pre">Germanet.lowercasedform2lexid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.wordcat2lexid"><code class="docutils literal notranslate"><span class="pre">Germanet.wordcat2lexid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.wordclass2lexid"><code class="docutils literal notranslate"><span class="pre">Germanet.wordclass2lexid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.compounds"><code class="docutils literal notranslate"><span class="pre">Germanet.compounds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.frames2lexunits"><code class="docutils literal notranslate"><span class="pre">Germanet.frames2lexunits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.wiktionary_entries"><code class="docutils literal notranslate"><span class="pre">Germanet.wiktionary_entries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.ili_records"><code class="docutils literal notranslate"><span class="pre">Germanet.ili_records</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.frames"><code class="docutils literal notranslate"><span class="pre">Germanet.frames</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.root"><code class="docutils literal notranslate"><span class="pre">Germanet.root</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.datadir"><code class="docutils literal notranslate"><span class="pre">Germanet.datadir</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.add_ilirecords"><code class="docutils literal notranslate"><span class="pre">Germanet.add_ilirecords</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.germanet.Germanet.add_wiktionary"><code class="docutils literal notranslate"><span class="pre">Germanet.add_wiktionary</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.icbased_similarity.html">germanetpy.icbased_similarity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.iliLoader.html">germanetpy.iliLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.iliRecord.html">germanetpy.iliRecord</a></li>
@@ -97,26 +374,26 @@
 </ul>
 
 
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Neele Falk.
+      &#169;2026, Ben Campbell.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.1</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
       <a href="../_sources/_autosummary/germanetpy.germanet.rst.txt"
@@ -124,8 +401,8 @@
     </div>
 
     
-    <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    <a href="https://github.com/bencampbell30/germanetpy" class="github">
+        <img src="../_static/github-banner.svg" alt="Fork me on GitHub" class="github"/>
     </a>
     
 

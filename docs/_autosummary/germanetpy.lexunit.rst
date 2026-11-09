@@ -1,0 +1,15 @@
+germanetpy.lexunit
+==================
+
+.. automodule:: germanetpy.lexunit
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      LexRel
+      Lexunit
+      OrthFormVariant
+      defaultdict
+   

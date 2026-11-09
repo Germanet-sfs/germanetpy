@@ -1,0 +1,13 @@
+germanetpy.path\_based\_relatedness\_measures
+=============================================
+
+.. automodule:: germanetpy.path_based_relatedness_measures
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      PathBasedRelatedness
+      SemRelMeasure
+   

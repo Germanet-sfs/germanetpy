@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>germanetpy.wiktionaryLoader &#8212; germanetpy 0.3.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=e259d695"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="germanetpy.wiktionaryparaphrase" href="germanetpy.wiktionaryparaphrase.html" />
+    <link rel="prev" title="germanetpy.utils" href="germanetpy.utils.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-germanetpy.wiktionaryLoader">
+<span id="germanetpy-wiktionaryloader"></span><h1>germanetpy.wiktionaryLoader<a class="headerlink" href="#module-germanetpy.wiktionaryLoader" title="Link to this heading">¶</a></h1>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_to_boolean</span></code>(attribute)</p></td>
+<td><p>Converts the given String into a boolean.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.wiktionaryLoader.create_wiktionary" title="germanetpy.wiktionaryLoader.create_wiktionary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_wiktionary</span></code></a>(attributes)</p></td>
+<td><p>Creates a wiktionary object given the XML attributes that contain the required information</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.wiktionaryLoader.load_wiktionary" title="germanetpy.wiktionaryLoader.load_wiktionary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_wiktionary</span></code></a>(germanet, tree)</p></td>
+<td><p>Given a XML tree this method initialized the wiktionary objects and adds them to the germanet object and the corresponding lexunits</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">WiktionaryParaphrase</span></code>(lexunit_id, ...)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="germanetpy.wiktionaryLoader.create_wiktionary">
+<span class="sig-prename descclassname"><span class="pre">germanetpy.wiktionaryLoader.</span></span><span class="sig-name descname"><span class="pre">create_wiktionary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../germanetpy.html#germanetpy.wiktionaryparaphrase.WiktionaryParaphrase" title="germanetpy.wiktionaryparaphrase.WiktionaryParaphrase"><span class="pre">WiktionaryParaphrase</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/wiktionaryLoader.html#create_wiktionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.wiktionaryLoader.create_wiktionary" title="Link to this definition">¶</a></dt>
+<dd><p>Creates a wiktionary object given the XML attributes that contain the required information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>attributes</strong> – XML attributes that contain information about the wiktionary paraphrase</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a wiktionary object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="germanetpy.wiktionaryLoader.load_wiktionary">
+<span class="sig-prename descclassname"><span class="pre">germanetpy.wiktionaryLoader.</span></span><span class="sig-name descname"><span class="pre">load_wiktionary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">germanet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/wiktionaryLoader.html#load_wiktionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.wiktionaryLoader.load_wiktionary" title="Link to this definition">¶</a></dt>
+<dd><p>Given a XML tree this method initialized the wiktionary objects and adds them to the germanet object and the
+corresponding lexunits</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>germanet</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.germanet.Germanet" title="germanetpy.germanet.Germanet"><em>Germanet</em></a>) – The germane object</p></li>
+<li><p><strong>tree</strong> (<em>etree</em>) – The XML tree of the wiktionary file</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">germanetpy</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=bencampbell30&repo=germanetpy&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="germanetpy.html">germanetpy</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.compoundInfo.html">germanetpy.compoundInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.example.html">germanetpy.example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.filterconfig.html">germanetpy.filterconfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.frames.html">germanetpy.frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.germanet.html">germanetpy.germanet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.icbased_similarity.html">germanetpy.icbased_similarity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.iliLoader.html">germanetpy.iliLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.iliRecord.html">germanetpy.iliRecord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.lexunit.html">germanetpy.lexunit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.longest_shortest_path.html">germanetpy.longest_shortest_path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.path_based_relatedness_measures.html">germanetpy.path_based_relatedness_measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.relationLoader.html">germanetpy.relationLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.semrel_measures.html">germanetpy.semrel_measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.synset.html">germanetpy.synset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.synsetLoader.html">germanetpy.synsetLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.utils.html">germanetpy.utils</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.wiktionaryLoader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.wiktionaryLoader.create_wiktionary"><code class="docutils literal notranslate"><span class="pre">create_wiktionary()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.wiktionaryLoader.load_wiktionary"><code class="docutils literal notranslate"><span class="pre">load_wiktionary()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.wiktionaryparaphrase.html">germanetpy.wiktionaryparaphrase</a></li>
+</ul>
+</li>
+</ul>
+
+
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Ben Campbell.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.1</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/_autosummary/germanetpy.wiktionaryLoader.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/bencampbell30/germanetpy" class="github">
+        <img src="../_static/github-banner.svg" alt="Fork me on GitHub" class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

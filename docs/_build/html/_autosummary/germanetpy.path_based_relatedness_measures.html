@@ -1,17 +1,17 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <title>germanetpy.path_based_relatedness_measures &#8212; germanetpy 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>germanetpy.path_based_relatedness_measures &#8212; germanetpy 0.3.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=e259d695"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="germanetpy.relationLoader" href="germanetpy.relationLoader.html" />
@@ -19,8 +19,9 @@
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -32,28 +33,154 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="module-germanetpy.path_based_relatedness_measures">
-<span id="germanetpy-path-based-relatedness-measures"></span><h1>germanetpy.path_based_relatedness_measures<a class="headerlink" href="#module-germanetpy.path_based_relatedness_measures" title="Permalink to this headline">¶</a></h1>
+  <section id="module-germanetpy.path_based_relatedness_measures">
+<span id="germanetpy-path-based-relatedness-measures"></span><h1>germanetpy.path_based_relatedness_measures<a class="headerlink" href="#module-germanetpy.path_based_relatedness_measures" title="Link to this heading">¶</a></h1>
 <p class="rubric">Classes</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PathBasedRelatedness</span></code>(germanet, category[, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.path_based_relatedness_measures.PathBasedRelatedness" title="germanetpy.path_based_relatedness_measures.PathBasedRelatedness"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PathBasedRelatedness</span></code></a>(germanet, category[, ...])</p></td>
 <td><p>These measures use the GermaNet Graph to compute the shortest Paths between two concepts.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SemRelMeasure</span></code>(*args, **kwargs)</p></td>
+<td><p>This Enum represents the semantic relatedness measures</p></td>
 </tr>
 </tbody>
 </table>
-</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="germanetpy.path_based_relatedness_measures.PathBasedRelatedness">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">germanetpy.path_based_relatedness_measures.</span></span><span class="sig-name descname"><span class="pre">PathBasedRelatedness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">germanet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">synset_pair</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/path_based_relatedness_measures.html#PathBasedRelatedness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>These measures use the GermaNet Graph to compute the shortest Paths between two concepts. These concepts have to
+have the same word category. The path lengths are normalized in different ways (depending on the measure). The path
+lengths are computed taking only the hypernymy / hyponymy relations into account</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.path_based_relatedness_measures.PathBasedRelatedness.simple_path">
+<span class="sig-name descname"><span class="pre">simple_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">synset1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">synset2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/path_based_relatedness_measures.html#PathBasedRelatedness.simple_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.simple_path" title="Link to this definition">¶</a></dt>
+<dd><p>This measure computes the pathlength and normalizes it by the longest possible shortest path between any two
+nodes of the corresponding word category.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>synset1</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.Synset" title="germanetpy.synset.Synset"><em>Synset</em></a>) – The source synset</p></li>
+<li><p><strong>synset2</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.Synset" title="germanetpy.synset.Synset"><em>Synset</em></a>) – The target synset the source synset is compared to</p></li>
+<li><p><strong>normalize</strong> – The relatedness value can be normalized to a number between the possible minimum of that measure and a given upper bound.</p></li>
+<li><p><strong>normalized_max</strong> – The upper bound of the range the measure is normalized to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>: The normalized path length between two synsets</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.path_based_relatedness_measures.PathBasedRelatedness.init_min_max_normalization_values">
+<span class="sig-name descname"><span class="pre">init_min_max_normalization_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">synset_pair</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/path_based_relatedness_measures.html#PathBasedRelatedness.init_min_max_normalization_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.init_min_max_normalization_values" title="Link to this definition">¶</a></dt>
+<dd><p>This methods computes the minimal values (two synsets are equal) and the maximum values (two synsets are
+maximally appart in the graph) for normalization</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>synset_pair</strong> – (Synset, Synset) The Tuple of synsets that have the maximum distance in the graph</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a dictionary [SemRelMeasure : (int, int)] containing the (minimum value, maximum value) for each semantic similarity measure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.path_based_relatedness_measures.PathBasedRelatedness.wu_and_palmer">
+<span class="sig-name descname"><span class="pre">wu_and_palmer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">synset1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">synset2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/path_based_relatedness_measures.html#PathBasedRelatedness.wu_and_palmer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.wu_and_palmer" title="Link to this definition">¶</a></dt>
+<dd><p>This methods computes the semantic relatedness by taking the path length into account, normalizing by taking
+the depth of the LCS. If there are several possible LCS, the one with the largest depth is taken into account.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>synset1</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.Synset" title="germanetpy.synset.Synset"><em>Synset</em></a>) – The source synset</p></li>
+<li><p><strong>synset2</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.Synset" title="germanetpy.synset.Synset"><em>Synset</em></a>) – The target synset the source synset is compared to</p></li>
+<li><p><strong>normalize</strong> – The relatedness value can be normalized to a number between the possible minimum of that measure and a given upper bound.</p></li>
+<li><p><strong>normalized_max</strong> – The upper bound of the range the measure is normalized to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The wu and palmer relatedness measure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.path_based_relatedness_measures.PathBasedRelatedness.leacock_chodorow">
+<span class="sig-name descname"><span class="pre">leacock_chodorow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">synset1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">synset2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/path_based_relatedness_measures.html#PathBasedRelatedness.leacock_chodorow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.leacock_chodorow" title="Link to this definition">¶</a></dt>
+<dd><p>This method implements the leackock and chodorow relatedness measure. For the path distance and depth,
+node count is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>synset1</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.Synset" title="germanetpy.synset.Synset"><em>Synset</em></a>) – The source synset</p></li>
+<li><p><strong>synset2</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.Synset" title="germanetpy.synset.Synset"><em>Synset</em></a>) – The target synset the source synset is compared to</p></li>
+<li><p><strong>normalize</strong> – The relatedness value can be normalized to a number between the possible minimum of that measure and a given upper bound.</p></li>
+<li><p><strong>normalized_max</strong> – The upper bound of the range the measure is normalized to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return:<span class="colon">:</span></dt>
+<dd class="field-even"><p>The leackock and chodorow relatedness measure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.path_based_relatedness_measures.PathBasedRelatedness.normalize">
+<span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">semrel_measure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../germanetpy.html#germanetpy.semrel_measures.SemRelMeasure" title="germanetpy.semrel_measures.SemRelMeasure"><span class="pre">SemRelMeasure</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/path_based_relatedness_measures.html#PathBasedRelatedness.normalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.normalize" title="Link to this definition">¶</a></dt>
+<dd><p>Normalizes a raw value of semantic relatedness to a value between a lower bound and the given upper bound.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>raw_value</strong> – The raw value</p></li>
+<li><p><strong>normalized_max</strong> – The upper bound</p></li>
+<li><p><strong>semrel_measure</strong> – The semantic relatedness measure, the value corresponds to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The normalized semantic relatedness value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.path_based_relatedness_measures.PathBasedRelatedness.germanet">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">germanet</span></span><a class="headerlink" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.germanet" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.path_based_relatedness_measures.PathBasedRelatedness.max_len">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">max_len</span></span><a class="headerlink" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.max_len" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.path_based_relatedness_measures.PathBasedRelatedness.max_depth">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">max_depth</span></span><a class="headerlink" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.max_depth" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.path_based_relatedness_measures.PathBasedRelatedness.category">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">category</span></span><a class="headerlink" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.category" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.path_based_relatedness_measures.PathBasedRelatedness.normalization_dic">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">normalization_dic</span></span><a class="headerlink" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.normalization_dic" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 
 
           </div>
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">germanetpy</a></h1>
 
@@ -63,7 +190,7 @@
 
 
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=star&v=2&count=true&size=large&v=2"
+<iframe src="https://ghbtns.com/github-btn.html?user=bencampbell30&repo=germanetpy&type=watch&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
 
@@ -73,18 +200,33 @@
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Project Modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.html">germanetpy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.germanet.html">germanetpy.germanet</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="germanetpy.html">germanetpy</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.compoundInfo.html">germanetpy.compoundInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.example.html">germanetpy.example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.filterconfig.html">germanetpy.filterconfig</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.frames.html">germanetpy.frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.germanet.html">germanetpy.germanet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.icbased_similarity.html">germanetpy.icbased_similarity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.iliLoader.html">germanetpy.iliLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.iliRecord.html">germanetpy.iliRecord</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.lexunit.html">germanetpy.lexunit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.longest_shortest_path.html">germanetpy.longest_shortest_path</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.path_based_relatedness_measures</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.path_based_relatedness_measures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.simple_path"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.simple_path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.init_min_max_normalization_values"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.init_min_max_normalization_values()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.wu_and_palmer"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.wu_and_palmer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.leacock_chodorow"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.leacock_chodorow()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.normalize"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.normalize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.germanet"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.germanet</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.max_len"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.max_len</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.max_depth"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.max_depth</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.category"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.category</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.path_based_relatedness_measures.PathBasedRelatedness.normalization_dic"><code class="docutils literal notranslate"><span class="pre">PathBasedRelatedness.normalization_dic</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.relationLoader.html">germanetpy.relationLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.semrel_measures.html">germanetpy.semrel_measures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.synset.html">germanetpy.synset</a></li>
@@ -97,26 +239,26 @@
 </ul>
 
 
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Neele Falk.
+      &#169;2026, Ben Campbell.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.1</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
       <a href="../_sources/_autosummary/germanetpy.path_based_relatedness_measures.rst.txt"
@@ -124,8 +266,8 @@
     </div>
 
     
-    <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    <a href="https://github.com/bencampbell30/germanetpy" class="github">
+        <img src="../_static/github-banner.svg" alt="Fork me on GitHub" class="github"/>
     </a>
     
 

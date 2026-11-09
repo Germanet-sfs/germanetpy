@@ -1,0 +1,12 @@
+germanetpy.wiktionaryparaphrase
+===============================
+
+.. automodule:: germanetpy.wiktionaryparaphrase
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      WiktionaryParaphrase
+   

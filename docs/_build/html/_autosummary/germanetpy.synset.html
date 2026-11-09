@@ -1,17 +1,17 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <title>germanetpy.synset &#8212; germanetpy 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>germanetpy.synset &#8212; germanetpy 0.3.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=e259d695"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="germanetpy.synsetLoader" href="germanetpy.synsetLoader.html" />
@@ -19,8 +19,9 @@
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -32,37 +33,635 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="module-germanetpy.synset">
-<span id="germanetpy-synset"></span><h1>germanetpy.synset<a class="headerlink" href="#module-germanetpy.synset" title="Permalink to this headline">¶</a></h1>
+  <section id="module-germanetpy.synset">
+<span id="germanetpy-synset"></span><h1>germanetpy.synset<a class="headerlink" href="#module-germanetpy.synset" title="Link to this heading">¶</a></h1>
 <p class="rubric">Classes</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConRel</span></code></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.synset.ConRel" title="germanetpy.synset.ConRel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConRel</span></code></a>(*args, **kwargs)</p></td>
 <td><p>This Enum class contains the conceptual relations (short: ConRel) that synsets can have to other synsets.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Synset</span></code>(id, word_category, word_class)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.synset.Synset" title="germanetpy.synset.Synset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Synset</span></code></a>(id, word_category, word_class)</p></td>
 <td><p>This class holds a Synset object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">WordCategory</span></code></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.synset.WordCategory" title="germanetpy.synset.WordCategory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WordCategory</span></code></a>(*args, **kwargs)</p></td>
 <td><p>This Enum class contains the three part-of-speech tags (WortCategory), a Synset can have in GermaNet.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">WordClass</span></code></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.synset.WordClass" title="germanetpy.synset.WordClass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WordClass</span></code></a>(*args, **kwargs)</p></td>
 <td><p>This Enum class contains the semantic wordclasses / semantic fields  a Synset can have in GermaNet.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">defaultdict</span></code></p></td>
+<td><p>defaultdict(default_factory=None, /, [...]) --&gt; dict with default factory</p></td>
 </tr>
 </tbody>
 </table>
-</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="germanetpy.synset.ConRel">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">germanetpy.synset.</span></span><span class="sig-name descname"><span class="pre">ConRel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/synset.html#ConRel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.ConRel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>This Enum class contains the conceptual relations (short: ConRel) that synsets can have to other synsets.
+For a description of each relation look at
+<a class="reference external" href="https://uni-tuebingen.de/en/142846">https://uni-tuebingen.de/en/142846</a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.ConRel.has_hypernym">
+<span class="sig-name descname"><span class="pre">has_hypernym</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></span><a class="headerlink" href="#germanetpy.synset.ConRel.has_hypernym" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.ConRel.has_hyponym">
+<span class="sig-name descname"><span class="pre">has_hyponym</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></span><a class="headerlink" href="#germanetpy.synset.ConRel.has_hyponym" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.ConRel.has_component_meronym">
+<span class="sig-name descname"><span class="pre">has_component_meronym</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></span><a class="headerlink" href="#germanetpy.synset.ConRel.has_component_meronym" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.ConRel.has_component_holonym">
+<span class="sig-name descname"><span class="pre">has_component_holonym</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></span><a class="headerlink" href="#germanetpy.synset.ConRel.has_component_holonym" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.ConRel.has_member_meronym">
+<span class="sig-name descname"><span class="pre">has_member_meronym</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></span><a class="headerlink" href="#germanetpy.synset.ConRel.has_member_meronym" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.ConRel.has_member_holonym">
+<span class="sig-name descname"><span class="pre">has_member_holonym</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></span><a class="headerlink" href="#germanetpy.synset.ConRel.has_member_holonym" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.ConRel.has_substance_meronym">
+<span class="sig-name descname"><span class="pre">has_substance_meronym</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></span><a class="headerlink" href="#germanetpy.synset.ConRel.has_substance_meronym" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.ConRel.has_substance_holonym">
+<span class="sig-name descname"><span class="pre">has_substance_holonym</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></span><a class="headerlink" href="#germanetpy.synset.ConRel.has_substance_holonym" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.ConRel.has_portion_meronym">
+<span class="sig-name descname"><span class="pre">has_portion_meronym</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9</span></span><a class="headerlink" href="#germanetpy.synset.ConRel.has_portion_meronym" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.ConRel.has_portion_holonym">
+<span class="sig-name descname"><span class="pre">has_portion_holonym</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></span><a class="headerlink" href="#germanetpy.synset.ConRel.has_portion_holonym" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.ConRel.entails">
+<span class="sig-name descname"><span class="pre">entails</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">11</span></span><a class="headerlink" href="#germanetpy.synset.ConRel.entails" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.ConRel.is_entailed_by">
+<span class="sig-name descname"><span class="pre">is_entailed_by</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12</span></span><a class="headerlink" href="#germanetpy.synset.ConRel.is_entailed_by" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.ConRel.is_related_to">
+<span class="sig-name descname"><span class="pre">is_related_to</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">13</span></span><a class="headerlink" href="#germanetpy.synset.ConRel.is_related_to" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.ConRel.causes">
+<span class="sig-name descname"><span class="pre">causes</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">14</span></span><a class="headerlink" href="#germanetpy.synset.ConRel.causes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.ConRel.transitive">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">transitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conrel</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#ConRel.transitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.ConRel.transitive" title="Link to this definition">¶</a></dt>
+<dd><p>Returns true if the conceptual relation is transitive, false otherwise</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>conrel</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.ConRel" title="germanetpy.synset.ConRel"><em>ConRel</em></a>) – a conceptual relation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>true if the conceptual relation is transitive, false otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="germanetpy.synset.WordCategory">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">germanetpy.synset.</span></span><span class="sig-name descname"><span class="pre">WordCategory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/synset.html#WordCategory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.WordCategory" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>This Enum class contains the three part-of-speech tags (WortCategory), a Synset can have in GermaNet.
+adj = adjective, nomen = noun, verben = verb</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordCategory.adj">
+<span class="sig-name descname"><span class="pre">adj</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></span><a class="headerlink" href="#germanetpy.synset.WordCategory.adj" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordCategory.nomen">
+<span class="sig-name descname"><span class="pre">nomen</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></span><a class="headerlink" href="#germanetpy.synset.WordCategory.nomen" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordCategory.verben">
+<span class="sig-name descname"><span class="pre">verben</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></span><a class="headerlink" href="#germanetpy.synset.WordCategory.verben" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.WordCategory.get_possible_word_classes">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_possible_word_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word_category</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#WordCategory.get_possible_word_classes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.WordCategory.get_possible_word_classes" title="Link to this definition">¶</a></dt>
+<dd><p>Each wor category can only occur with a specific set of word classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>word_category</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.WordCategory" title="germanetpy.synset.WordCategory"><em>WordCategory</em></a>) – The word category</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The set of word classes that occur with the given word category</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">germanetpy.synset.</span></span><span class="sig-name descname"><span class="pre">WordClass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/synset.html#WordClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.WordClass" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>This Enum class contains the semantic wordclasses / semantic fields  a Synset can have in GermaNet.
+For a detailed description see:
+<a class="reference external" href="http://www.sfs.uni-tuebingen.de/GermaNet/germanet_structure.shtml#Tops">http://www.sfs.uni-tuebingen.de/GermaNet/germanet_structure.shtml#Tops</a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Allgemein">
+<span class="sig-name descname"><span class="pre">Allgemein</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Allgemein" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Bewegung">
+<span class="sig-name descname"><span class="pre">Bewegung</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Bewegung" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Gefuehl">
+<span class="sig-name descname"><span class="pre">Gefuehl</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Gefuehl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Geist">
+<span class="sig-name descname"><span class="pre">Geist</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Geist" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Gesellschaft">
+<span class="sig-name descname"><span class="pre">Gesellschaft</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Gesellschaft" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Koerper">
+<span class="sig-name descname"><span class="pre">Koerper</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Koerper" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Menge">
+<span class="sig-name descname"><span class="pre">Menge</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Menge" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.natPhaenomen">
+<span class="sig-name descname"><span class="pre">natPhaenomen</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.natPhaenomen" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Ort">
+<span class="sig-name descname"><span class="pre">Ort</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Ort" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Pertonym">
+<span class="sig-name descname"><span class="pre">Pertonym</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Pertonym" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Perzeption">
+<span class="sig-name descname"><span class="pre">Perzeption</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">11</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Perzeption" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.privativ">
+<span class="sig-name descname"><span class="pre">privativ</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.privativ" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Relation">
+<span class="sig-name descname"><span class="pre">Relation</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">13</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Relation" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Substanz">
+<span class="sig-name descname"><span class="pre">Substanz</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">14</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Substanz" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Verhalten">
+<span class="sig-name descname"><span class="pre">Verhalten</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">15</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Verhalten" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Zeit">
+<span class="sig-name descname"><span class="pre">Zeit</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Zeit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Artefakt">
+<span class="sig-name descname"><span class="pre">Artefakt</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">17</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Artefakt" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Attribut">
+<span class="sig-name descname"><span class="pre">Attribut</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">18</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Attribut" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Besitz">
+<span class="sig-name descname"><span class="pre">Besitz</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">19</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Besitz" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Form">
+<span class="sig-name descname"><span class="pre">Form</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Form" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Geschehen">
+<span class="sig-name descname"><span class="pre">Geschehen</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">21</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Geschehen" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Gruppe">
+<span class="sig-name descname"><span class="pre">Gruppe</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">22</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Gruppe" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Kognition">
+<span class="sig-name descname"><span class="pre">Kognition</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">23</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Kognition" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Kommunikation">
+<span class="sig-name descname"><span class="pre">Kommunikation</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">24</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Kommunikation" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Mensch">
+<span class="sig-name descname"><span class="pre">Mensch</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">25</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Mensch" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Motiv">
+<span class="sig-name descname"><span class="pre">Motiv</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">26</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Motiv" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Nahrung">
+<span class="sig-name descname"><span class="pre">Nahrung</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">27</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Nahrung" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.natGegenstand">
+<span class="sig-name descname"><span class="pre">natGegenstand</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">28</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.natGegenstand" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Pflanze">
+<span class="sig-name descname"><span class="pre">Pflanze</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">29</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Pflanze" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Tier">
+<span class="sig-name descname"><span class="pre">Tier</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">30</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Tier" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Tops">
+<span class="sig-name descname"><span class="pre">Tops</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">31</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Tops" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Koerperfunktion">
+<span class="sig-name descname"><span class="pre">Koerperfunktion</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Koerperfunktion" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Konkurrenz">
+<span class="sig-name descname"><span class="pre">Konkurrenz</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">33</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Konkurrenz" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Kontakt">
+<span class="sig-name descname"><span class="pre">Kontakt</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">34</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Kontakt" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Lokation">
+<span class="sig-name descname"><span class="pre">Lokation</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">35</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Lokation" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Schoepfung">
+<span class="sig-name descname"><span class="pre">Schoepfung</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">36</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Schoepfung" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Veraenderung">
+<span class="sig-name descname"><span class="pre">Veraenderung</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">37</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Veraenderung" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.Verbrauch">
+<span class="sig-name descname"><span class="pre">Verbrauch</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">38</span></span><a class="headerlink" href="#germanetpy.synset.WordClass.Verbrauch" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.WordClass.get_possible_word_categories">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_possible_word_categories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">word_class</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/synset.html#WordClass.get_possible_word_categories"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.WordClass.get_possible_word_categories" title="Link to this definition">¶</a></dt>
+<dd><p>Each word class can occur with one or several word categories.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)">set</a>(<a class="reference internal" href="../germanetpy.html#germanetpy.synset.WordCategory" title="germanetpy.synset.WordCategory">WordCategory</a>)</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>word_class</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.WordClass" title="germanetpy.synset.WordClass"><em>WordClass</em></a>) – the word class to get the possible word categories for</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the set of word categories the given word class can occur with</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">germanetpy.synset.</span></span><span class="sig-name descname"><span class="pre">Synset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_category</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../germanetpy.html#germanetpy.synset.WordCategory" title="germanetpy.synset.WordCategory"><span class="pre">WordCategory</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_class</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../germanetpy.html#germanetpy.synset.WordClass" title="germanetpy.synset.WordClass"><span class="pre">WordClass</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>This class holds a Synset object. A synset in GermaNet contains several lexical units and holds specific relations
+to other synsets, for example a synset can have hypernyms or hyponyms.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.add_lexunit">
+<span class="sig-name descname"><span class="pre">add_lexunit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unit</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.add_lexunit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.add_lexunit" title="Link to this definition">¶</a></dt>
+<dd><p>Adds a lexical unit that part of this synset to the list of lexical units</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>unit</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.lexunit.Lexunit" title="germanetpy.lexunit.Lexunit"><em>Lexunit</em></a>) – The lexUnit object to be added</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.is_root">
+<span class="sig-name descname"><span class="pre">is_root</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.is_root"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.is_root" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if this Synset is the root of the Graph (= has no hypernyms), otherwise false</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.is_leaf">
+<span class="sig-name descname"><span class="pre">is_leaf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.is_leaf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.is_leaf" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if this Synset is a leaf of the Graph (= has no hyponyms), otherwise false</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.num_lexunits">
+<span class="sig-name descname"><span class="pre">num_lexunits</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.num_lexunits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.num_lexunits" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of lexical units, contained in that synset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.get_related_synsets">
+<span class="sig-name descname"><span class="pre">get_related_synsets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conrel_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'outgoing'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.get_related_synsets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.get_related_synsets" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.hypernym_paths">
+<span class="sig-name descname"><span class="pre">hypernym_paths</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.hypernym_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.hypernym_paths" title="Link to this definition">¶</a></dt>
+<dd><p>This method iterates recursively through the hypernyms of this synset to get all paths that connect this synset
+with the root node. a path is complete if it ends with the root node. all possible paths are returned. each
+path is a list of nodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of lists, each lists contains a node sequence connecting this synset with the root node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.all_hypernyms">
+<span class="sig-name descname"><span class="pre">all_hypernyms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.all_hypernyms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.all_hypernyms" title="Link to this definition">¶</a></dt>
+<dd><p>This method extracts all hypernyms for this synset (the transitive closure for this synset)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a set, containing all possible hypernym nodes. it is empty if the current synset is the root node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.hyponym_paths">
+<span class="sig-name descname"><span class="pre">hyponym_paths</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.hyponym_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.hyponym_paths" title="Link to this definition">¶</a></dt>
+<dd><p>This method iterates recursively through the hyponyms of this synset to get all paths that connect
+this synset with a leaf node. A path is complete if it ends with a leaf node. All possible paths are
+returned. Each path is a list of nodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of lists, each lists contains a node sequence connecting this synset with a leaf node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.all_hyponyms">
+<span class="sig-name descname"><span class="pre">all_hyponyms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.all_hyponyms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.all_hyponyms" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns all possible hyponyms of this synset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[set(Synset)] A set of synset nodes, each constitutes a hyponym of the current synset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.shortest_path_to_root">
+<span class="sig-name descname"><span class="pre">shortest_path_to_root</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.shortest_path_to_root"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.shortest_path_to_root" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns the shortest path to the root node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[list(Synset)] shortest path to the root node.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.common_hypernyms">
+<span class="sig-name descname"><span class="pre">common_hypernyms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.common_hypernyms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.common_hypernyms" title="Link to this definition">¶</a></dt>
+<dd><p>Given another synset, this method computes shared hypernyms</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.Synset" title="germanetpy.synset.Synset"><em>Synset</em></a>) – another synset object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a set of synset nodes, that denotes the shared hypernyms between this synset and the given one.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.min_depth">
+<span class="sig-name descname"><span class="pre">min_depth</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.min_depth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.min_depth" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The length of the shortest hypernym path from this synset to the root.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.shortest_path_distance">
+<span class="sig-name descname"><span class="pre">shortest_path_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.shortest_path_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.shortest_path_distance" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the distance of the shortest path linking the two synsets (if
+one exists). If a node is compared with itself 0 is returned. The distance is denoted by the number of edges
+that exist in the shortest path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.Synset" title="germanetpy.synset.Synset"><em>Synset</em></a>) – The Synset to which the shortest path will be found.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The number of edges in the shortest path connecting the two nodes, or None if no path exists.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.shortest_path">
+<span class="sig-name descname"><span class="pre">shortest_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.shortest_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.shortest_path" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the shortest possible sequence of synset nodes that are traversed from this synset to a given other
+synset. If there are several shortest sequences, all of then are returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.Synset" title="germanetpy.synset.Synset"><em>Synset</em></a>) – A synset the path should be computed to</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of lists, each list containing the sequence of nodes traversed from this synset to the given other synset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.shortest_path_to_hypernym">
+<span class="sig-name descname"><span class="pre">shortest_path_to_hypernym</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hypernym</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.shortest_path_to_hypernym"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.shortest_path_to_hypernym" title="Link to this definition">¶</a></dt>
+<dd><p>The shortest path between this synset and the given hypernym. Asserts that the given other synset is a real
+hypernym of the current synset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>hypernym</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.Synset" title="germanetpy.synset.Synset"><em>Synset</em></a>) – a synset, denoting the hypernym the shortest path should be computed to</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of lists, each list storing the shortest sequence of synset nodes traversed from self to the given hypernym</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.lowest_common_subsumer">
+<span class="sig-name descname"><span class="pre">lowest_common_subsumer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.lowest_common_subsumer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.lowest_common_subsumer" title="Link to this definition">¶</a></dt>
+<dd><p>Extract the lowes common subsumer(s) / lowest common ancestor(s) of the current synset and a given one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.synset.Synset" title="germanetpy.synset.Synset"><em>Synset</em></a>) – Another synset object the LCS should be computed to.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a set, containing one or several synset objects, being the LCS between the current synset and the given one.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.get_distances_hypernym_dic">
+<span class="sig-name descname"><span class="pre">get_distances_hypernym_dic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/synset.html#Synset.get_distances_hypernym_dic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.synset.Synset.get_distances_hypernym_dic" title="Link to this definition">¶</a></dt>
+<dd><p>For each hypernym, store the shortest distance between the current synset and its hypernym.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dictionary containing all hypernyms of this synset as keys and the corresponding distances as values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.id">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#germanetpy.synset.Synset.id" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.word_category">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">word_category</span></span><a class="headerlink" href="#germanetpy.synset.Synset.word_category" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.word_class">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">word_class</span></span><a class="headerlink" href="#germanetpy.synset.Synset.word_class" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.paraphrase">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">paraphrase</span></span><a class="headerlink" href="#germanetpy.synset.Synset.paraphrase" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.lexunits">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">lexunits</span></span><a class="headerlink" href="#germanetpy.synset.Synset.lexunits" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.relations">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">relations</span></span><a class="headerlink" href="#germanetpy.synset.Synset.relations" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.incoming_relations">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">incoming_relations</span></span><a class="headerlink" href="#germanetpy.synset.Synset.incoming_relations" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.direct_hypernyms">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">direct_hypernyms</span></span><a class="headerlink" href="#germanetpy.synset.Synset.direct_hypernyms" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.synset.Synset.direct_hyponyms">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">direct_hyponyms</span></span><a class="headerlink" href="#germanetpy.synset.Synset.direct_hyponyms" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 
 
           </div>
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">germanetpy</a></h1>
 
@@ -72,7 +671,7 @@
 
 
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=star&v=2&count=true&size=large&v=2"
+<iframe src="https://ghbtns.com/github-btn.html?user=bencampbell30&repo=germanetpy&type=watch&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
 
@@ -82,47 +681,148 @@
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Project Modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.germanet.html">germanetpy.germanet</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="germanetpy.html">germanetpy</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.compoundInfo.html">germanetpy.compoundInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.example.html">germanetpy.example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.filterconfig.html">germanetpy.filterconfig</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.frames.html">germanetpy.frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.germanet.html">germanetpy.germanet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.icbased_similarity.html">germanetpy.icbased_similarity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.iliLoader.html">germanetpy.iliLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.iliRecord.html">germanetpy.iliRecord</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.lexunit.html">germanetpy.lexunit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.longest_shortest_path.html">germanetpy.longest_shortest_path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.path_based_relatedness_measures.html">germanetpy.path_based_relatedness_measures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.relationLoader.html">germanetpy.relationLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.semrel_measures.html">germanetpy.semrel_measures</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.synset</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.synset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.synset.ConRel"><code class="docutils literal notranslate"><span class="pre">ConRel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.ConRel.has_hypernym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_hypernym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.ConRel.has_hyponym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_hyponym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.ConRel.has_component_meronym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_component_meronym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.ConRel.has_component_holonym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_component_holonym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.ConRel.has_member_meronym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_member_meronym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.ConRel.has_member_holonym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_member_holonym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.ConRel.has_substance_meronym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_substance_meronym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.ConRel.has_substance_holonym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_substance_holonym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.ConRel.has_portion_meronym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_portion_meronym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.ConRel.has_portion_holonym"><code class="docutils literal notranslate"><span class="pre">ConRel.has_portion_holonym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.ConRel.entails"><code class="docutils literal notranslate"><span class="pre">ConRel.entails</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.ConRel.is_entailed_by"><code class="docutils literal notranslate"><span class="pre">ConRel.is_entailed_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.ConRel.is_related_to"><code class="docutils literal notranslate"><span class="pre">ConRel.is_related_to</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.ConRel.causes"><code class="docutils literal notranslate"><span class="pre">ConRel.causes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.ConRel.transitive"><code class="docutils literal notranslate"><span class="pre">ConRel.transitive()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.synset.WordCategory"><code class="docutils literal notranslate"><span class="pre">WordCategory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordCategory.adj"><code class="docutils literal notranslate"><span class="pre">WordCategory.adj</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordCategory.nomen"><code class="docutils literal notranslate"><span class="pre">WordCategory.nomen</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordCategory.verben"><code class="docutils literal notranslate"><span class="pre">WordCategory.verben</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordCategory.get_possible_word_classes"><code class="docutils literal notranslate"><span class="pre">WordCategory.get_possible_word_classes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.synset.WordClass"><code class="docutils literal notranslate"><span class="pre">WordClass</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Allgemein"><code class="docutils literal notranslate"><span class="pre">WordClass.Allgemein</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Bewegung"><code class="docutils literal notranslate"><span class="pre">WordClass.Bewegung</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Gefuehl"><code class="docutils literal notranslate"><span class="pre">WordClass.Gefuehl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Geist"><code class="docutils literal notranslate"><span class="pre">WordClass.Geist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Gesellschaft"><code class="docutils literal notranslate"><span class="pre">WordClass.Gesellschaft</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Koerper"><code class="docutils literal notranslate"><span class="pre">WordClass.Koerper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Menge"><code class="docutils literal notranslate"><span class="pre">WordClass.Menge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.natPhaenomen"><code class="docutils literal notranslate"><span class="pre">WordClass.natPhaenomen</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Ort"><code class="docutils literal notranslate"><span class="pre">WordClass.Ort</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Pertonym"><code class="docutils literal notranslate"><span class="pre">WordClass.Pertonym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Perzeption"><code class="docutils literal notranslate"><span class="pre">WordClass.Perzeption</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.privativ"><code class="docutils literal notranslate"><span class="pre">WordClass.privativ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Relation"><code class="docutils literal notranslate"><span class="pre">WordClass.Relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Substanz"><code class="docutils literal notranslate"><span class="pre">WordClass.Substanz</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Verhalten"><code class="docutils literal notranslate"><span class="pre">WordClass.Verhalten</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Zeit"><code class="docutils literal notranslate"><span class="pre">WordClass.Zeit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Artefakt"><code class="docutils literal notranslate"><span class="pre">WordClass.Artefakt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Attribut"><code class="docutils literal notranslate"><span class="pre">WordClass.Attribut</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Besitz"><code class="docutils literal notranslate"><span class="pre">WordClass.Besitz</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Form"><code class="docutils literal notranslate"><span class="pre">WordClass.Form</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Geschehen"><code class="docutils literal notranslate"><span class="pre">WordClass.Geschehen</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Gruppe"><code class="docutils literal notranslate"><span class="pre">WordClass.Gruppe</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Kognition"><code class="docutils literal notranslate"><span class="pre">WordClass.Kognition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Kommunikation"><code class="docutils literal notranslate"><span class="pre">WordClass.Kommunikation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Mensch"><code class="docutils literal notranslate"><span class="pre">WordClass.Mensch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Motiv"><code class="docutils literal notranslate"><span class="pre">WordClass.Motiv</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Nahrung"><code class="docutils literal notranslate"><span class="pre">WordClass.Nahrung</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.natGegenstand"><code class="docutils literal notranslate"><span class="pre">WordClass.natGegenstand</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Pflanze"><code class="docutils literal notranslate"><span class="pre">WordClass.Pflanze</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Tier"><code class="docutils literal notranslate"><span class="pre">WordClass.Tier</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Tops"><code class="docutils literal notranslate"><span class="pre">WordClass.Tops</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Koerperfunktion"><code class="docutils literal notranslate"><span class="pre">WordClass.Koerperfunktion</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Konkurrenz"><code class="docutils literal notranslate"><span class="pre">WordClass.Konkurrenz</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Kontakt"><code class="docutils literal notranslate"><span class="pre">WordClass.Kontakt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Lokation"><code class="docutils literal notranslate"><span class="pre">WordClass.Lokation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Schoepfung"><code class="docutils literal notranslate"><span class="pre">WordClass.Schoepfung</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Veraenderung"><code class="docutils literal notranslate"><span class="pre">WordClass.Veraenderung</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.Verbrauch"><code class="docutils literal notranslate"><span class="pre">WordClass.Verbrauch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.WordClass.get_possible_word_categories"><code class="docutils literal notranslate"><span class="pre">WordClass.get_possible_word_categories()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.synset.Synset"><code class="docutils literal notranslate"><span class="pre">Synset</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.add_lexunit"><code class="docutils literal notranslate"><span class="pre">Synset.add_lexunit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.is_root"><code class="docutils literal notranslate"><span class="pre">Synset.is_root()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.is_leaf"><code class="docutils literal notranslate"><span class="pre">Synset.is_leaf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.num_lexunits"><code class="docutils literal notranslate"><span class="pre">Synset.num_lexunits()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.get_related_synsets"><code class="docutils literal notranslate"><span class="pre">Synset.get_related_synsets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.hypernym_paths"><code class="docutils literal notranslate"><span class="pre">Synset.hypernym_paths()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.all_hypernyms"><code class="docutils literal notranslate"><span class="pre">Synset.all_hypernyms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.hyponym_paths"><code class="docutils literal notranslate"><span class="pre">Synset.hyponym_paths()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.all_hyponyms"><code class="docutils literal notranslate"><span class="pre">Synset.all_hyponyms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.shortest_path_to_root"><code class="docutils literal notranslate"><span class="pre">Synset.shortest_path_to_root()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.common_hypernyms"><code class="docutils literal notranslate"><span class="pre">Synset.common_hypernyms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.min_depth"><code class="docutils literal notranslate"><span class="pre">Synset.min_depth()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.shortest_path_distance"><code class="docutils literal notranslate"><span class="pre">Synset.shortest_path_distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.shortest_path"><code class="docutils literal notranslate"><span class="pre">Synset.shortest_path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.shortest_path_to_hypernym"><code class="docutils literal notranslate"><span class="pre">Synset.shortest_path_to_hypernym()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.lowest_common_subsumer"><code class="docutils literal notranslate"><span class="pre">Synset.lowest_common_subsumer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.get_distances_hypernym_dic"><code class="docutils literal notranslate"><span class="pre">Synset.get_distances_hypernym_dic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.id"><code class="docutils literal notranslate"><span class="pre">Synset.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.word_category"><code class="docutils literal notranslate"><span class="pre">Synset.word_category</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.word_class"><code class="docutils literal notranslate"><span class="pre">Synset.word_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.paraphrase"><code class="docutils literal notranslate"><span class="pre">Synset.paraphrase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.lexunits"><code class="docutils literal notranslate"><span class="pre">Synset.lexunits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.relations"><code class="docutils literal notranslate"><span class="pre">Synset.relations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.incoming_relations"><code class="docutils literal notranslate"><span class="pre">Synset.incoming_relations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.direct_hypernyms"><code class="docutils literal notranslate"><span class="pre">Synset.direct_hypernyms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.synset.Synset.direct_hyponyms"><code class="docutils literal notranslate"><span class="pre">Synset.direct_hyponyms</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.synsetLoader.html">germanetpy.synsetLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.utils.html">germanetpy.utils</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.wiktionaryLoader.html">germanetpy.wiktionaryLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.wiktionaryparaphrase.html">germanetpy.wiktionaryparaphrase</a></li>
 </ul>
 </li>
 </ul>
 
 
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Neele Falk.
+      &#169;2026, Ben Campbell.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.1</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
       <a href="../_sources/_autosummary/germanetpy.synset.rst.txt"
@@ -130,8 +830,8 @@
     </div>
 
     
-    <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    <a href="https://github.com/bencampbell30/germanetpy" class="github">
+        <img src="../_static/github-banner.svg" alt="Fork me on GitHub" class="github"/>
     </a>
     
 

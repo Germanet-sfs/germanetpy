@@ -1,0 +1,16 @@
+germanetpy.synset
+=================
+
+.. automodule:: germanetpy.synset
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ConRel
+      Synset
+      WordCategory
+      WordClass
+      defaultdict
+   

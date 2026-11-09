@@ -1,17 +1,17 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <title>germanetpy.lexunit &#8212; germanetpy 0.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>germanetpy.lexunit &#8212; germanetpy 0.3.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=e259d695"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="germanetpy.longest_shortest_path" href="germanetpy.longest_shortest_path.html" />
@@ -19,8 +19,9 @@
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -32,34 +33,499 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="module-germanetpy.lexunit">
-<span id="germanetpy-lexunit"></span><h1>germanetpy.lexunit<a class="headerlink" href="#module-germanetpy.lexunit" title="Permalink to this headline">¶</a></h1>
+  <section id="module-germanetpy.lexunit">
+<span id="germanetpy-lexunit"></span><h1>germanetpy.lexunit<a class="headerlink" href="#module-germanetpy.lexunit" title="Link to this heading">¶</a></h1>
 <p class="rubric">Classes</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">LexRel</span></code></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.lexunit.LexRel" title="germanetpy.lexunit.LexRel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LexRel</span></code></a>(*args, **kwargs)</p></td>
 <td><p>This enum represents the lexical relation (short: LexRel) that a Lexunit can have in GermaNet.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Lexunit</span></code>(id, synset, sense, source, …[, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.lexunit.Lexunit" title="germanetpy.lexunit.Lexunit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Lexunit</span></code></a>(id, synset, sense, source, ...[, ...])</p></td>
 <td><p>This class holds the lexical unit object of GermaNet.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrthFormVariant</span></code></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../germanetpy.html#germanetpy.lexunit.OrthFormVariant" title="germanetpy.lexunit.OrthFormVariant"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrthFormVariant</span></code></a>(*args, **kwargs)</p></td>
 <td><p>This enum represents the four possible orthographical variations</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">defaultdict</span></code></p></td>
+<td><p>defaultdict(default_factory=None, /, [...]) --&gt; dict with default factory</p></td>
 </tr>
 </tbody>
 </table>
-</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">germanetpy.lexunit.</span></span><span class="sig-name descname"><span class="pre">LexRel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/lexunit.html#LexRel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.lexunit.LexRel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>This enum represents the lexical relation (short: LexRel) that a Lexunit can have in GermaNet.
+You can find a description of each relation at:
+<a class="reference external" href="https://uni-tuebingen.de/en/142846">https://uni-tuebingen.de/en/142846</a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_synonym">
+<span class="sig-name descname"><span class="pre">has_synonym</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_synonym'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_synonym" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_antonym">
+<span class="sig-name descname"><span class="pre">has_antonym</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_antonym'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_antonym" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_pertainym">
+<span class="sig-name descname"><span class="pre">has_pertainym</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_pertainym'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_pertainym" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_participle">
+<span class="sig-name descname"><span class="pre">has_participle</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_participle'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_participle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_active_usage">
+<span class="sig-name descname"><span class="pre">has_active_usage</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_active_usage'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_active_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_occasion">
+<span class="sig-name descname"><span class="pre">has_occasion</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_occasion'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_occasion" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_attribute">
+<span class="sig-name descname"><span class="pre">has_attribute</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_attribute'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_attribute" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_appearance">
+<span class="sig-name descname"><span class="pre">has_appearance</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_appearance'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_appearance" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_construction_method">
+<span class="sig-name descname"><span class="pre">has_construction_method</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_construction_method'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_construction_method" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_container">
+<span class="sig-name descname"><span class="pre">has_container</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_container'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_container" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.is_container_for">
+<span class="sig-name descname"><span class="pre">is_container_for</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'is_container_for'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.is_container_for" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_consistency_of">
+<span class="sig-name descname"><span class="pre">has_consistency_of</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_consistency_of'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_consistency_of" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_component">
+<span class="sig-name descname"><span class="pre">has_component</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_component'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_component" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_owner">
+<span class="sig-name descname"><span class="pre">has_owner</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_owner'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_owner" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.is_owner_of">
+<span class="sig-name descname"><span class="pre">is_owner_of</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'is_owner_of'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.is_owner_of" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_function">
+<span class="sig-name descname"><span class="pre">has_function</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_function'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_function" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_manner_of_functioning">
+<span class="sig-name descname"><span class="pre">has_manner_of_functioning</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_manner_of_functioning'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_manner_of_functioning" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_origin">
+<span class="sig-name descname"><span class="pre">has_origin</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_origin'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_origin" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_production_method">
+<span class="sig-name descname"><span class="pre">has_production_method</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_production_method'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_production_method" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_content">
+<span class="sig-name descname"><span class="pre">has_content</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_content'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_content" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_no_property">
+<span class="sig-name descname"><span class="pre">has_no_property</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_no_property'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_no_property" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_habitat">
+<span class="sig-name descname"><span class="pre">has_habitat</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_habitat'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_habitat" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_location">
+<span class="sig-name descname"><span class="pre">has_location</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_location'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_location" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.is_location_of">
+<span class="sig-name descname"><span class="pre">is_location_of</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'is_location_of'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.is_location_of" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_measure">
+<span class="sig-name descname"><span class="pre">has_measure</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_measure'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_measure" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.is_measure_of">
+<span class="sig-name descname"><span class="pre">is_measure_of</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'is_measure_of'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.is_measure_of" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_material">
+<span class="sig-name descname"><span class="pre">has_material</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_material'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_material" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_member">
+<span class="sig-name descname"><span class="pre">has_member</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_member'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_member" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.is_member_of">
+<span class="sig-name descname"><span class="pre">is_member_of</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'is_member_of'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.is_member_of" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_diet">
+<span class="sig-name descname"><span class="pre">has_diet</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_diet'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_diet" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.is_diet_of">
+<span class="sig-name descname"><span class="pre">is_diet_of</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'is_diet_of'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.is_diet_of" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_eponym">
+<span class="sig-name descname"><span class="pre">has_eponym</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_eponym'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_eponym" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_user">
+<span class="sig-name descname"><span class="pre">has_user</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_user'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_user" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_product">
+<span class="sig-name descname"><span class="pre">has_product</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_product'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_product" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.is_product_of">
+<span class="sig-name descname"><span class="pre">is_product_of</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'is_product_of'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.is_product_of" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_prototypical_holder">
+<span class="sig-name descname"><span class="pre">has_prototypical_holder</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_prototypical_holder'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_prototypical_holder" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.is_prototypical_holder_for">
+<span class="sig-name descname"><span class="pre">is_prototypical_holder_for</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'is_prototypical_holder_for'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.is_prototypical_holder_for" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_prototypical_place_of_usage">
+<span class="sig-name descname"><span class="pre">has_prototypical_place_of_usage</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_prototypical_place_of_usage'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_prototypical_place_of_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_relation">
+<span class="sig-name descname"><span class="pre">has_relation</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_relation'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_relation" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_raw_product">
+<span class="sig-name descname"><span class="pre">has_raw_product</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_raw_product'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_raw_product" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_other_property">
+<span class="sig-name descname"><span class="pre">has_other_property</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_other_property'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_other_property" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.is_storage_for">
+<span class="sig-name descname"><span class="pre">is_storage_for</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'is_storage_for'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.is_storage_for" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_specialization">
+<span class="sig-name descname"><span class="pre">has_specialization</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_specialization'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_specialization" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_part">
+<span class="sig-name descname"><span class="pre">has_part</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_part'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_part" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.is_part_of">
+<span class="sig-name descname"><span class="pre">is_part_of</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'is_part_of'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.is_part_of" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_topic">
+<span class="sig-name descname"><span class="pre">has_topic</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_topic'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_topic" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.is_caused_by">
+<span class="sig-name descname"><span class="pre">is_caused_by</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'is_caused_by'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.is_caused_by" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.is_cause_for">
+<span class="sig-name descname"><span class="pre">is_cause_for</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'is_cause_for'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.is_cause_for" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.is_comparable_to">
+<span class="sig-name descname"><span class="pre">is_comparable_to</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'is_comparable_to'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.is_comparable_to" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_usage">
+<span class="sig-name descname"><span class="pre">has_usage</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_usage'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_result_of_usage">
+<span class="sig-name descname"><span class="pre">has_result_of_usage</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_result_of_usage'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_result_of_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_purpose_of_usage">
+<span class="sig-name descname"><span class="pre">has_purpose_of_usage</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_purpose_of_usage'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_purpose_of_usage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_goods">
+<span class="sig-name descname"><span class="pre">has_goods</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_goods'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_goods" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_time">
+<span class="sig-name descname"><span class="pre">has_time</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_time'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_time" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.is_access_to">
+<span class="sig-name descname"><span class="pre">is_access_to</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'is_access_to'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.is_access_to" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.has_ingredient">
+<span class="sig-name descname"><span class="pre">has_ingredient</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'has_ingredient'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.has_ingredient" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.LexRel.is_ingredient_of">
+<span class="sig-name descname"><span class="pre">is_ingredient_of</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'is_ingredient_of'</span></span><a class="headerlink" href="#germanetpy.lexunit.LexRel.is_ingredient_of" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="germanetpy.lexunit.OrthFormVariant">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">germanetpy.lexunit.</span></span><span class="sig-name descname"><span class="pre">OrthFormVariant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/lexunit.html#OrthFormVariant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.lexunit.OrthFormVariant" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>This enum represents the four possible orthographical variations</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.OrthFormVariant.orthForm">
+<span class="sig-name descname"><span class="pre">orthForm</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'orthForm'</span></span><a class="headerlink" href="#germanetpy.lexunit.OrthFormVariant.orthForm" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.OrthFormVariant.orthVar">
+<span class="sig-name descname"><span class="pre">orthVar</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'orthVar'</span></span><a class="headerlink" href="#germanetpy.lexunit.OrthFormVariant.orthVar" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.OrthFormVariant.oldOrthForm">
+<span class="sig-name descname"><span class="pre">oldOrthForm</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'oldOrthForm'</span></span><a class="headerlink" href="#germanetpy.lexunit.OrthFormVariant.oldOrthForm" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="germanetpy.lexunit.OrthFormVariant.oldOrthVar">
+<span class="sig-name descname"><span class="pre">oldOrthVar</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'oldOrthVar'</span></span><a class="headerlink" href="#germanetpy.lexunit.OrthFormVariant.oldOrthVar" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">germanetpy.lexunit.</span></span><span class="sig-name descname"><span class="pre">Lexunit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">synset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sense</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">named_entity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">style_marking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">artificial</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">compound_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orthform</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_orthform</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orthvar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_orthvar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">particle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_verb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/lexunit.html#Lexunit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.lexunit.Lexunit" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>This class holds the lexical unit object of GermaNet. A lexical unit is a concrete word that is part of a synset.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.get_orthform_variant">
+<span class="sig-name descname"><span class="pre">get_orthform_variant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orthform_variant</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/lexunit.html#Lexunit.get_orthform_variant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.lexunit.Lexunit.get_orthform_variant" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>orthform_variant</strong> (<a class="reference internal" href="../germanetpy.html#germanetpy.lexunit.OrthFormVariant" title="germanetpy.lexunit.OrthFormVariant"><em>OrthFormVariant</em></a>) – one of the four orthform_variants</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the string of the requested orthform variant or the main orthform, if the requested orthform doesn’t exist.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.get_synonyms">
+<span class="sig-name descname"><span class="pre">get_synonyms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/lexunit.html#Lexunit.get_synonyms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.lexunit.Lexunit.get_synonyms" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.get_related_lexunits">
+<span class="sig-name descname"><span class="pre">get_related_lexunits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lexrel_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'outgoing'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/germanetpy/lexunit.html#Lexunit.get_related_lexunits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.lexunit.Lexunit.get_related_lexunits" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.get_all_orthforms">
+<span class="sig-name descname"><span class="pre">get_all_orthforms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><span class="pre">set</span></a></span></span><a class="reference internal" href="../_modules/germanetpy/lexunit.html#Lexunit.get_all_orthforms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#germanetpy.lexunit.Lexunit.get_all_orthforms" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A set of all existing orthform variants of the current lexunit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.id">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.id" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.synset">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">synset</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.synset" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.sense">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">sense</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.sense" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.orthform">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">orthform</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.orthform" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.orthvar">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">orthvar</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.orthvar" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.old_orthform">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">old_orthform</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.old_orthform" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.old_orthvar">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">old_orthvar</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.old_orthvar" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.particle">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">particle</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.particle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.base_verb">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">base_verb</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.base_verb" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.comment">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">comment</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.comment" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.frames">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">frames</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.frames" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.examples">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">examples</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.examples" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The Example objects that belong to this lexical unit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.ili_records">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ili_records</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.ili_records" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.frames2examples">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">frames2examples</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.frames2examples" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A mapping from example-frame strings to the Example objects that use them.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.wiktionary_paraphrases">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">wiktionary_paraphrases</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.wiktionary_paraphrases" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.compound_info">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">compound_info</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.compound_info" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.relations">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">relations</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.relations" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.incoming_relations">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">incoming_relations</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.incoming_relations" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="germanetpy.lexunit.Lexunit.artificial">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">artificial</span></span><a class="headerlink" href="#germanetpy.lexunit.Lexunit.artificial" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 
 
           </div>
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">germanetpy</a></h1>
 
@@ -69,7 +535,7 @@
 
 
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=star&v=2&count=true&size=large&v=2"
+<iframe src="https://ghbtns.com/github-btn.html?user=bencampbell30&repo=germanetpy&type=watch&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
 
@@ -79,47 +545,145 @@
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Project Modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="germanetpy.germanet.html">germanetpy.germanet</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="germanetpy.html">germanetpy</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.compoundInfo.html">germanetpy.compoundInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.example.html">germanetpy.example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.filterconfig.html">germanetpy.filterconfig</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.frames.html">germanetpy.frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.germanet.html">germanetpy.germanet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.icbased_similarity.html">germanetpy.icbased_similarity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.iliLoader.html">germanetpy.iliLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.iliRecord.html">germanetpy.iliRecord</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.lexunit</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">germanetpy.lexunit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.lexunit.LexRel"><code class="docutils literal notranslate"><span class="pre">LexRel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_synonym"><code class="docutils literal notranslate"><span class="pre">LexRel.has_synonym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_antonym"><code class="docutils literal notranslate"><span class="pre">LexRel.has_antonym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_pertainym"><code class="docutils literal notranslate"><span class="pre">LexRel.has_pertainym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_participle"><code class="docutils literal notranslate"><span class="pre">LexRel.has_participle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_active_usage"><code class="docutils literal notranslate"><span class="pre">LexRel.has_active_usage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_occasion"><code class="docutils literal notranslate"><span class="pre">LexRel.has_occasion</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_attribute"><code class="docutils literal notranslate"><span class="pre">LexRel.has_attribute</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_appearance"><code class="docutils literal notranslate"><span class="pre">LexRel.has_appearance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_construction_method"><code class="docutils literal notranslate"><span class="pre">LexRel.has_construction_method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_container"><code class="docutils literal notranslate"><span class="pre">LexRel.has_container</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.is_container_for"><code class="docutils literal notranslate"><span class="pre">LexRel.is_container_for</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_consistency_of"><code class="docutils literal notranslate"><span class="pre">LexRel.has_consistency_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_component"><code class="docutils literal notranslate"><span class="pre">LexRel.has_component</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_owner"><code class="docutils literal notranslate"><span class="pre">LexRel.has_owner</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.is_owner_of"><code class="docutils literal notranslate"><span class="pre">LexRel.is_owner_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_function"><code class="docutils literal notranslate"><span class="pre">LexRel.has_function</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_manner_of_functioning"><code class="docutils literal notranslate"><span class="pre">LexRel.has_manner_of_functioning</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_origin"><code class="docutils literal notranslate"><span class="pre">LexRel.has_origin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_production_method"><code class="docutils literal notranslate"><span class="pre">LexRel.has_production_method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_content"><code class="docutils literal notranslate"><span class="pre">LexRel.has_content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_no_property"><code class="docutils literal notranslate"><span class="pre">LexRel.has_no_property</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_habitat"><code class="docutils literal notranslate"><span class="pre">LexRel.has_habitat</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_location"><code class="docutils literal notranslate"><span class="pre">LexRel.has_location</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.is_location_of"><code class="docutils literal notranslate"><span class="pre">LexRel.is_location_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_measure"><code class="docutils literal notranslate"><span class="pre">LexRel.has_measure</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.is_measure_of"><code class="docutils literal notranslate"><span class="pre">LexRel.is_measure_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_material"><code class="docutils literal notranslate"><span class="pre">LexRel.has_material</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_member"><code class="docutils literal notranslate"><span class="pre">LexRel.has_member</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.is_member_of"><code class="docutils literal notranslate"><span class="pre">LexRel.is_member_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_diet"><code class="docutils literal notranslate"><span class="pre">LexRel.has_diet</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.is_diet_of"><code class="docutils literal notranslate"><span class="pre">LexRel.is_diet_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_eponym"><code class="docutils literal notranslate"><span class="pre">LexRel.has_eponym</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_user"><code class="docutils literal notranslate"><span class="pre">LexRel.has_user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_product"><code class="docutils literal notranslate"><span class="pre">LexRel.has_product</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.is_product_of"><code class="docutils literal notranslate"><span class="pre">LexRel.is_product_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_prototypical_holder"><code class="docutils literal notranslate"><span class="pre">LexRel.has_prototypical_holder</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.is_prototypical_holder_for"><code class="docutils literal notranslate"><span class="pre">LexRel.is_prototypical_holder_for</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_prototypical_place_of_usage"><code class="docutils literal notranslate"><span class="pre">LexRel.has_prototypical_place_of_usage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_relation"><code class="docutils literal notranslate"><span class="pre">LexRel.has_relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_raw_product"><code class="docutils literal notranslate"><span class="pre">LexRel.has_raw_product</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_other_property"><code class="docutils literal notranslate"><span class="pre">LexRel.has_other_property</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.is_storage_for"><code class="docutils literal notranslate"><span class="pre">LexRel.is_storage_for</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_specialization"><code class="docutils literal notranslate"><span class="pre">LexRel.has_specialization</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_part"><code class="docutils literal notranslate"><span class="pre">LexRel.has_part</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.is_part_of"><code class="docutils literal notranslate"><span class="pre">LexRel.is_part_of</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_topic"><code class="docutils literal notranslate"><span class="pre">LexRel.has_topic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.is_caused_by"><code class="docutils literal notranslate"><span class="pre">LexRel.is_caused_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.is_cause_for"><code class="docutils literal notranslate"><span class="pre">LexRel.is_cause_for</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.is_comparable_to"><code class="docutils literal notranslate"><span class="pre">LexRel.is_comparable_to</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_usage"><code class="docutils literal notranslate"><span class="pre">LexRel.has_usage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_result_of_usage"><code class="docutils literal notranslate"><span class="pre">LexRel.has_result_of_usage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_purpose_of_usage"><code class="docutils literal notranslate"><span class="pre">LexRel.has_purpose_of_usage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_goods"><code class="docutils literal notranslate"><span class="pre">LexRel.has_goods</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_time"><code class="docutils literal notranslate"><span class="pre">LexRel.has_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.is_access_to"><code class="docutils literal notranslate"><span class="pre">LexRel.is_access_to</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.has_ingredient"><code class="docutils literal notranslate"><span class="pre">LexRel.has_ingredient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.LexRel.is_ingredient_of"><code class="docutils literal notranslate"><span class="pre">LexRel.is_ingredient_of</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.lexunit.OrthFormVariant"><code class="docutils literal notranslate"><span class="pre">OrthFormVariant</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.OrthFormVariant.orthForm"><code class="docutils literal notranslate"><span class="pre">OrthFormVariant.orthForm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.OrthFormVariant.orthVar"><code class="docutils literal notranslate"><span class="pre">OrthFormVariant.orthVar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.OrthFormVariant.oldOrthForm"><code class="docutils literal notranslate"><span class="pre">OrthFormVariant.oldOrthForm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.OrthFormVariant.oldOrthVar"><code class="docutils literal notranslate"><span class="pre">OrthFormVariant.oldOrthVar</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#germanetpy.lexunit.Lexunit"><code class="docutils literal notranslate"><span class="pre">Lexunit</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.get_orthform_variant"><code class="docutils literal notranslate"><span class="pre">Lexunit.get_orthform_variant()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.get_synonyms"><code class="docutils literal notranslate"><span class="pre">Lexunit.get_synonyms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.get_related_lexunits"><code class="docutils literal notranslate"><span class="pre">Lexunit.get_related_lexunits()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.get_all_orthforms"><code class="docutils literal notranslate"><span class="pre">Lexunit.get_all_orthforms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.id"><code class="docutils literal notranslate"><span class="pre">Lexunit.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.synset"><code class="docutils literal notranslate"><span class="pre">Lexunit.synset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.sense"><code class="docutils literal notranslate"><span class="pre">Lexunit.sense</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.orthform"><code class="docutils literal notranslate"><span class="pre">Lexunit.orthform</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.orthvar"><code class="docutils literal notranslate"><span class="pre">Lexunit.orthvar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.old_orthform"><code class="docutils literal notranslate"><span class="pre">Lexunit.old_orthform</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.old_orthvar"><code class="docutils literal notranslate"><span class="pre">Lexunit.old_orthvar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.particle"><code class="docutils literal notranslate"><span class="pre">Lexunit.particle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.base_verb"><code class="docutils literal notranslate"><span class="pre">Lexunit.base_verb</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.comment"><code class="docutils literal notranslate"><span class="pre">Lexunit.comment</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.frames"><code class="docutils literal notranslate"><span class="pre">Lexunit.frames</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.examples"><code class="docutils literal notranslate"><span class="pre">Lexunit.examples</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.ili_records"><code class="docutils literal notranslate"><span class="pre">Lexunit.ili_records</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.frames2examples"><code class="docutils literal notranslate"><span class="pre">Lexunit.frames2examples</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.wiktionary_paraphrases"><code class="docutils literal notranslate"><span class="pre">Lexunit.wiktionary_paraphrases</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.compound_info"><code class="docutils literal notranslate"><span class="pre">Lexunit.compound_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.relations"><code class="docutils literal notranslate"><span class="pre">Lexunit.relations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.incoming_relations"><code class="docutils literal notranslate"><span class="pre">Lexunit.incoming_relations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#germanetpy.lexunit.Lexunit.artificial"><code class="docutils literal notranslate"><span class="pre">Lexunit.artificial</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.longest_shortest_path.html">germanetpy.longest_shortest_path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.path_based_relatedness_measures.html">germanetpy.path_based_relatedness_measures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.relationLoader.html">germanetpy.relationLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.semrel_measures.html">germanetpy.semrel_measures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.synset.html">germanetpy.synset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.synsetLoader.html">germanetpy.synsetLoader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.utils.html">germanetpy.utils</a></li>
 <li class="toctree-l2"><a class="reference internal" href="germanetpy.wiktionaryLoader.html">germanetpy.wiktionaryLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="germanetpy.wiktionaryparaphrase.html">germanetpy.wiktionaryparaphrase</a></li>
 </ul>
 </li>
 </ul>
 
 
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Neele Falk.
+      &#169;2026, Ben Campbell.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.1</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
       <a href="../_sources/_autosummary/germanetpy.lexunit.rst.txt"
@@ -127,8 +691,8 @@
     </div>
 
     
-    <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    <a href="https://github.com/bencampbell30/germanetpy" class="github">
+        <img src="../_static/github-banner.svg" alt="Fork me on GitHub" class="github"/>
     </a>
     
 
