@@ -4,12 +4,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>germanetpy.compoundInfo &#8212; germanetpy 0.2.0 documentation</title>
+    <title>germanetpy.compoundInfo &#8212; germanetpy 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
-    <script src="../../_static/documentation_options.js?v=938c9ccc"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=e259d695"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -61,8 +62,8 @@
     <span class="n">opaquesMorphem</span> <span class="o">=</span> <span class="s1">&#39;opaquesMorphem&#39;</span>
     <span class="n">virtuelleBildung</span> <span class="o">=</span> <span class="s1">&#39;virtuelleBildung&#39;</span>
     <span class="n">gebundenesMorphem</span> <span class="o">=</span> <span class="s1">&#39;gebundenesMorphem&#39;</span>
-    <span class="n">freiesMorphem</span> <span class="o">=</span> <span class="s1">&#39;freiesMorphem&#39;</span></div>
-
+    <span class="n">freiesMorphem</span> <span class="o">=</span> <span class="s1">&#39;freiesMorphem&#39;</span>
+    <span class="n">nominalisiertesVerb</span> <span class="o">=</span> <span class="s1">&#39;nominalisiertesVerb&#39;</span></div>
 
 
 <div class="viewcode-block" id="CompoundInfo">
@@ -70,9 +71,14 @@
 <span class="k">class</span> <span class="nc">CompoundInfo</span><span class="p">:</span>
     <span class="n">PROPERTY</span> <span class="o">=</span> <span class="s1">&#39;property&#39;</span>
     <span class="n">CATEGORY</span> <span class="o">=</span> <span class="s1">&#39;category&#39;</span>
+    <span class="n">XML_LEX_UNIT_ID</span> <span class="o">=</span> <span class="s1">&#39;lexUnitId&#39;</span>
+    <span class="n">XML_LEX_UNIT_ID2</span> <span class="o">=</span> <span class="s1">&#39;lexUnitId2&#39;</span>
+    <span class="n">XML_LEX_UNIT_ID3</span> <span class="o">=</span> <span class="s1">&#39;lexUnitId3&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modifier1</span><span class="p">,</span> <span class="n">head</span><span class="p">,</span> <span class="n">modifier1property</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">modifier1category</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">modifier2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">modifier2property</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">modifier2category</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headproperty</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modifier1</span><span class="p">,</span> <span class="n">head</span><span class="p">,</span> <span class="n">modifier2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">modifier1property</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">modifier1category</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">mod1LexUnitId1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mod1LexUnitId2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mod1LexUnitId3</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">modifier2property</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                 <span class="n">modifier2category</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mod2LexUnitId1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mod2LexUnitId2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mod2LexUnitId3</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                 <span class="n">headproperty</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headLexUnitId</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This class stores information about a special linguistic entity in German - a compound. A compound</span>
 <span class="sd">        consists</span>
@@ -107,13 +113,27 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_modifier1</span> <span class="o">=</span> <span class="n">modifier1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_modifier1_property</span> <span class="o">=</span> <span class="n">modifier1property</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_modifier1_category</span> <span class="o">=</span> <span class="n">modifier1category</span>
+        <span class="k">if</span> <span class="n">mod1LexUnitId1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mod1_LexUnitId1</span> <span class="o">=</span> <span class="n">mod1LexUnitId1</span>
+        <span class="k">if</span> <span class="n">mod1LexUnitId1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mod1_LexUnitId2</span> <span class="o">=</span> <span class="n">mod1LexUnitId2</span>
+        <span class="k">if</span> <span class="n">mod1LexUnitId1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mod1_LexUnitId3</span> <span class="o">=</span> <span class="n">mod1LexUnitId3</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_modifier2</span> <span class="o">=</span> <span class="n">modifier2</span>
         <span class="k">if</span> <span class="n">modifier2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_modifier2</span> <span class="o">=</span> <span class="n">modifier2</span><span class="o">.</span><span class="n">text</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_modifier2_property</span> <span class="o">=</span> <span class="n">modifier2property</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_modifier2_category</span> <span class="o">=</span> <span class="n">modifier2category</span>
+        <span class="k">if</span> <span class="n">mod2LexUnitId1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mod2_LexUnitId1</span> <span class="o">=</span> <span class="n">mod2LexUnitId1</span>
+        <span class="k">if</span> <span class="n">mod2LexUnitId1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mod2_LexUnitId2</span> <span class="o">=</span> <span class="n">mod2LexUnitId2</span>
+        <span class="k">if</span> <span class="n">mod2LexUnitId1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mod2_LexUnitId3</span> <span class="o">=</span> <span class="n">mod2LexUnitId3</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="n">head</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_head_property</span> <span class="o">=</span> <span class="n">headproperty</span>
+        <span class="k">if</span> <span class="n">headLexUnitId</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_head_LexUnitId</span> <span class="o">=</span> <span class="n">headLexUnitId</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;CompoundInfo( modifier = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier1</span><span class="si">}</span><span class="s1">, head = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="si">}</span><span class="s1">)&#39;</span>
@@ -129,6 +149,18 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">modifier1_category</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_modifier1_category</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mod1_LexUnitId1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mod1_LexUnitId1</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mod1_LexUnitId2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mod1_LexUnitId2</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mod1_LexUnitId3</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mod1_LexUnitId3</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">modifier2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -141,6 +173,18 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">modifier2_category</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_modifier2_category</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mod2_LexUnitId1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mod2_LexUnitId1</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mod2_LexUnitId2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mod2_LexUnitId2</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mod2_LexUnitId3</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mod2_LexUnitId3</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">head</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -148,7 +192,11 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">head_property</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head_property</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head_property</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">head_LexUnitId</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head_LexUnitId</span></div>
 
 </pre></div>
 
@@ -156,7 +204,7 @@
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../../index.html">germanetpy</a></h1>
 
@@ -166,7 +214,7 @@
 
 
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=watch&count=true&size=large&v=2"
+<iframe src="https://ghbtns.com/github-btn.html?user=bencampbell30&repo=germanetpy&type=watch&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
 
@@ -176,7 +224,7 @@
 
 <h3>Navigation</h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../germanetpy.html">germanetpy package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/germanetpy.html">germanetpy</a></li>
 </ul>
 
 
@@ -195,17 +243,17 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &#169;2020, Neele Falk.
+      &#169;2026, Ben Campbell.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.1</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
     </div>
 
     
-    <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    <a href="https://github.com/bencampbell30/germanetpy" class="github">
+        <img src="../../_static/github-banner.svg" alt="Fork me on GitHub" class="github"/>
     </a>
     
 

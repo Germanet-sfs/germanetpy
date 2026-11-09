@@ -4,12 +4,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>germanetpy.synsetLoader &#8212; germanetpy 0.2.0 documentation</title>
+    <title>germanetpy.synsetLoader &#8212; germanetpy 0.3.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
-    <script src="../../_static/documentation_options.js?v=938c9ccc"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../_static/documentation_options.js?v=e259d695"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -32,6 +33,7 @@
   <h1>Source code for germanetpy.synsetLoader</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">germanetpy.compoundInfo</span> <span class="kn">import</span> <span class="n">CompoundInfo</span><span class="p">,</span> <span class="n">CompoundCategory</span><span class="p">,</span> <span class="n">CompoundProperty</span>
 <span class="kn">from</span> <span class="nn">germanetpy.lexunit</span> <span class="kn">import</span> <span class="n">Lexunit</span><span class="p">,</span> <span class="n">LexRel</span>
+<span class="kn">from</span> <span class="nn">germanetpy.example</span> <span class="kn">import</span> <span class="n">Example</span>
 <span class="kn">from</span> <span class="nn">germanetpy.synset</span> <span class="kn">import</span> <span class="n">Synset</span><span class="p">,</span> <span class="n">WordCategory</span><span class="p">,</span> <span class="n">WordClass</span>
 <span class="kn">from</span> <span class="nn">germanetpy.utils</span> <span class="kn">import</span> <span class="n">convert_to_boolean</span>
 
@@ -46,9 +48,18 @@
 <span class="n">ORTHVAR</span> <span class="o">=</span> <span class="s1">&#39;orthVar&#39;</span>
 <span class="n">OLDORTHFORM</span> <span class="o">=</span> <span class="s1">&#39;oldOrthForm&#39;</span>
 <span class="n">OLDORTHVAR</span> <span class="o">=</span> <span class="s1">&#39;oldOrthVar&#39;</span>
+<span class="n">PARTICLE</span> <span class="o">=</span> <span class="s1">&#39;particle&#39;</span>
+<span class="n">BASEVERB</span> <span class="o">=</span> <span class="s1">&#39;baseVerb&#39;</span>
+<span class="n">COMMENT</span> <span class="o">=</span> <span class="s1">&#39;comment&#39;</span>
 <span class="n">COMPOUND</span> <span class="o">=</span> <span class="s1">&#39;compound&#39;</span>
 <span class="n">FRAME</span> <span class="o">=</span> <span class="s1">&#39;frame&#39;</span>
 <span class="n">EXAMPLE</span> <span class="o">=</span> <span class="s1">&#39;example&#39;</span>
+<span class="n">TEXT</span> <span class="o">=</span> <span class="s1">&#39;text&#39;</span>
+<span class="n">EXFRAME</span> <span class="o">=</span> <span class="s1">&#39;exframe&#39;</span>
+<span class="n">LLMMODEL</span> <span class="o">=</span> <span class="s1">&#39;llmModel&#39;</span>
+<span class="n">LLMVERSION</span> <span class="o">=</span> <span class="s1">&#39;llmVersion&#39;</span>
+<span class="n">DATECREATED</span> <span class="o">=</span> <span class="s1">&#39;dateCreated&#39;</span>
+<span class="n">EDITED</span> <span class="o">=</span> <span class="s1">&#39;edited&#39;</span>
 <span class="n">LEXUNIT</span> <span class="o">=</span> <span class="s2">&quot;lexUnit&quot;</span>
 
 <span class="c1"># Synset xml attribute values</span>
@@ -74,6 +85,21 @@
         <span class="k">return</span> <span class="n">enum</span><span class="p">[</span><span class="n">attributes</span><span class="p">[</span><span class="n">element</span><span class="p">]]</span>
     <span class="k">return</span> <span class="kc">None</span></div>
 
+    
+<div class="viewcode-block" id="get_attribute_element_without_enum">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.get_attribute_element_without_enum">[docs]</a>
+<span class="k">def</span> <span class="nf">get_attribute_element_without_enum</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns attribute value if attribute exists</span>
+<span class="sd">    :type attributes: XML attributes</span>
+<span class="sd">    :param attributes: XML attributes of a certain XML node</span>
+<span class="sd">    :param elment: A String</span>
+<span class="sd">    :return: The corresponding object or None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">attributes</span><span class="p">[</span><span class="n">element</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
 
 
 <div class="viewcode-block" id="create_compound_info">
@@ -89,18 +115,29 @@
     <span class="n">modifier1</span> <span class="o">=</span> <span class="n">child</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">modifier1prop</span> <span class="o">=</span> <span class="n">get_attribute_element</span><span class="p">(</span><span class="n">modifier1</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">PROPERTY</span><span class="p">,</span> <span class="n">CompoundProperty</span><span class="p">)</span>
     <span class="n">modifier1cat</span> <span class="o">=</span> <span class="n">get_attribute_element</span><span class="p">(</span><span class="n">modifier1</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">CATEGORY</span><span class="p">,</span> <span class="n">CompoundCategory</span><span class="p">)</span>
-    <span class="n">modifier2</span> <span class="o">=</span> <span class="n">modifier2prop</span> <span class="o">=</span> <span class="n">modifier2cat</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">mod1lexUnitId1</span> <span class="o">=</span> <span class="n">get_attribute_element_without_enum</span><span class="p">(</span><span class="n">modifier1</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">XML_LEX_UNIT_ID</span><span class="p">)</span>
+    <span class="n">mod1lexUnitId2</span> <span class="o">=</span> <span class="n">get_attribute_element_without_enum</span><span class="p">(</span><span class="n">modifier1</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">XML_LEX_UNIT_ID2</span><span class="p">)</span>
+    <span class="n">mod1lexUnitId3</span> <span class="o">=</span> <span class="n">get_attribute_element_without_enum</span><span class="p">(</span><span class="n">modifier1</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">XML_LEX_UNIT_ID3</span><span class="p">)</span>
+    <span class="n">modifier2</span> <span class="o">=</span> <span class="n">modifier2prop</span> <span class="o">=</span> <span class="n">modifier2cat</span> <span class="o">=</span> <span class="n">mod2lexUnitId1</span> <span class="o">=</span> <span class="n">mod2lexUnitId2</span> <span class="o">=</span> <span class="n">mod2lexUnitId3</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">child</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
         <span class="n">modifier2</span> <span class="o">=</span> <span class="n">child</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">head</span> <span class="o">=</span> <span class="n">child</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 
         <span class="n">modifier2cat</span> <span class="o">=</span> <span class="n">get_attribute_element</span><span class="p">(</span><span class="n">modifier2</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">CATEGORY</span><span class="p">,</span> <span class="n">CompoundCategory</span><span class="p">)</span>
         <span class="n">modifier2prop</span> <span class="o">=</span> <span class="n">get_attribute_element</span><span class="p">(</span><span class="n">modifier2</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">PROPERTY</span><span class="p">,</span> <span class="n">CompoundProperty</span><span class="p">)</span>
+        <span class="n">mod2lexUnitId1</span> <span class="o">=</span> <span class="n">get_attribute_element_without_enum</span><span class="p">(</span><span class="n">modifier1</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">XML_LEX_UNIT_ID</span><span class="p">)</span>
+        <span class="n">mod2lexUnitId2</span> <span class="o">=</span> <span class="n">get_attribute_element_without_enum</span><span class="p">(</span><span class="n">modifier1</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">XML_LEX_UNIT_ID2</span><span class="p">)</span>
+        <span class="n">mod2lexUnitId3</span> <span class="o">=</span> <span class="n">get_attribute_element_without_enum</span><span class="p">(</span><span class="n">modifier1</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">XML_LEX_UNIT_ID3</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">head</span> <span class="o">=</span> <span class="n">child</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">headprop</span> <span class="o">=</span> <span class="n">get_attribute_element</span><span class="p">(</span><span class="n">head</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">PROPERTY</span><span class="p">,</span> <span class="n">CompoundProperty</span><span class="p">)</span>
-    <span class="n">compound</span> <span class="o">=</span> <span class="n">CompoundInfo</span><span class="p">(</span><span class="n">modifier1</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">head</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">modifier1prop</span><span class="p">,</span> <span class="n">modifier1cat</span><span class="p">,</span> <span class="n">modifier2</span><span class="p">,</span> <span class="n">modifier2prop</span><span class="p">,</span>
-                            <span class="n">modifier2cat</span><span class="p">,</span> <span class="n">headprop</span><span class="p">)</span>
+    <span class="n">headLexUnitId</span> <span class="o">=</span> <span class="n">get_attribute_element_without_enum</span><span class="p">(</span><span class="n">head</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">XML_LEX_UNIT_ID</span><span class="p">)</span>
+    <span class="n">headLexUnitIdArray</span> <span class="o">=</span> <span class="n">get_attribute_element_without_enum</span><span class="p">(</span><span class="n">head</span><span class="o">.</span><span class="n">attrib</span><span class="p">,</span> <span class="n">CompoundInfo</span><span class="o">.</span><span class="n">XML_LEX_UNIT_ID</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">headLexUnitId</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">headLexUnitId</span> <span class="o">=</span> <span class="n">headLexUnitIdArray</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">compound</span> <span class="o">=</span> <span class="n">CompoundInfo</span><span class="p">(</span><span class="n">modifier1</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">head</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">modifier2</span><span class="p">,</span> <span class="n">modifier1prop</span><span class="p">,</span> <span class="n">modifier1cat</span><span class="p">,</span> <span class="n">mod1lexUnitId1</span><span class="p">,</span> 
+    <span class="n">mod1lexUnitId2</span><span class="p">,</span> <span class="n">mod1lexUnitId3</span><span class="p">,</span> <span class="n">modifier2prop</span><span class="p">,</span> <span class="n">modifier2cat</span><span class="p">,</span> <span class="n">mod2lexUnitId1</span><span class="p">,</span> <span class="n">mod2lexUnitId2</span><span class="p">,</span> 
+    <span class="n">mod2lexUnitId3</span><span class="p">,</span> <span class="n">headprop</span><span class="p">,</span> <span class="n">headLexUnitId</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">compound</span></div>
 
 
@@ -138,6 +175,67 @@
 
 
 
+<div class="viewcode-block" id="convert_example_edited">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.convert_example_edited">[docs]</a>
+<span class="k">def</span> <span class="nf">convert_example_edited</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts an example edited value to a boolean.</span>
+
+<span class="sd">    The example edited tag is element text in the XML data. The Java API uses</span>
+<span class="sd">    Boolean.parseBoolean, so true/false are supported here. yes/no and 1/0 are</span>
+<span class="sd">    accepted as well to be tolerant of existing GermaNet boolean conventions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="n">normalized_value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">normalized_value</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">}:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">normalized_value</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;false&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">}:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cannot convert example edited value to boolean: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="create_example">
+<a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.create_example">[docs]</a>
+<span class="k">def</span> <span class="nf">create_example</span><span class="p">(</span><span class="n">example_root</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Example</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates an Example object from an XML example element.</span>
+
+<span class="sd">    :param example_root: The XML example element.</span>
+<span class="sd">    :return: An Example object containing text, optional frame, and optional LLM metadata.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">frame</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">llm_model</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">llm_version</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">date_created</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">edited</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">example_root</span><span class="p">:</span>
+        <span class="n">tag</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">tag</span>
+        <span class="n">child_value</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">text</span>
+
+        <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">TEXT</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">child_value</span>
+        <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">EXFRAME</span><span class="p">:</span>
+            <span class="n">frame</span> <span class="o">=</span> <span class="n">child_value</span>
+        <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">LLMMODEL</span><span class="p">:</span>
+            <span class="n">llm_model</span> <span class="o">=</span> <span class="n">child_value</span>
+        <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">LLMVERSION</span><span class="p">:</span>
+            <span class="n">llm_version</span> <span class="o">=</span> <span class="n">child_value</span>
+        <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">DATECREATED</span><span class="p">:</span>
+            <span class="n">date_created</span> <span class="o">=</span> <span class="n">child_value</span>
+        <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">EDITED</span><span class="p">:</span>
+            <span class="n">edited</span> <span class="o">=</span> <span class="n">convert_example_edited</span><span class="p">(</span><span class="n">child_value</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Example</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span> <span class="n">llm_model</span><span class="o">=</span><span class="n">llm_model</span><span class="p">,</span> <span class="n">llm_version</span><span class="o">=</span><span class="n">llm_version</span><span class="p">,</span>
+                   <span class="n">date_created</span><span class="o">=</span><span class="n">date_created</span><span class="p">,</span> <span class="n">edited</span><span class="o">=</span><span class="n">edited</span><span class="p">)</span></div>
+
+
+
 <div class="viewcode-block" id="create_lexunit">
 <a class="viewcode-back" href="../../germanetpy.html#germanetpy.synsetLoader.create_lexunit">[docs]</a>
 <span class="k">def</span> <span class="nf">create_lexunit</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">attributes</span><span class="p">,</span> <span class="n">lex_root</span><span class="p">,</span> <span class="n">synset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Lexunit</span><span class="p">:</span>
@@ -168,16 +266,21 @@
             <span class="n">germanet</span><span class="o">.</span><span class="n">compounds</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lexunit</span><span class="p">)</span>
         <span class="k">elif</span> <span class="s2">&quot;rth&quot;</span> <span class="ow">in</span> <span class="n">tag</span><span class="p">:</span>
             <span class="n">add_orth_forms</span><span class="p">(</span><span class="n">germanet</span><span class="p">,</span> <span class="n">lexunit</span><span class="p">,</span> <span class="n">child_value</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">PARTICLE</span><span class="p">:</span>
+            <span class="n">lexunit</span><span class="o">.</span><span class="n">_particle</span> <span class="o">=</span> <span class="n">child_value</span>
+        <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">BASEVERB</span><span class="p">:</span>
+            <span class="n">lexunit</span><span class="o">.</span><span class="n">_base_verb</span> <span class="o">=</span> <span class="n">child_value</span>
+        <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">COMMENT</span><span class="p">:</span>
+            <span class="n">lexunit</span><span class="o">.</span><span class="n">_comment</span> <span class="o">=</span> <span class="n">child_value</span>
         <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">FRAME</span><span class="p">:</span>
             <span class="n">lexunit</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child_value</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">lexunit</span><span class="o">.</span><span class="n">frames</span><span class="p">:</span>
                 <span class="n">germanet</span><span class="o">.</span><span class="n">frames2lexunits</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lexunit</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">EXAMPLE</span><span class="p">:</span>
-            <span class="n">example</span> <span class="o">=</span> <span class="n">child</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">example</span> <span class="o">=</span> <span class="n">create_example</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
             <span class="n">lexunit</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">child</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-                <span class="n">exframe</span> <span class="o">=</span> <span class="n">child</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
-                <span class="n">lexunit</span><span class="o">.</span><span class="n">frames2examples</span><span class="p">[</span><span class="n">exframe</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">example</span><span class="o">.</span><span class="n">frame</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">lexunit</span><span class="o">.</span><span class="n">frames2examples</span><span class="p">[</span><span class="n">example</span><span class="o">.</span><span class="n">frame</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">lexunit</span></div>
 
 
@@ -208,13 +311,15 @@
     <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="n">OLDORTHVAR</span><span class="p">:</span>
         <span class="n">lexunit</span><span class="o">.</span><span class="n">_old_orthvar</span> <span class="o">=</span> <span class="n">child_value</span></div>
 
+
+
 </pre></div>
 
           </div>
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../../index.html">germanetpy</a></h1>
 
@@ -224,7 +329,7 @@
 
 
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=Blubberli&repo=germanetpy&type=watch&count=true&size=large&v=2"
+<iframe src="https://ghbtns.com/github-btn.html?user=bencampbell30&repo=germanetpy&type=watch&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
 
@@ -234,7 +339,7 @@
 
 <h3>Navigation</h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../germanetpy.html">germanetpy package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/germanetpy.html">germanetpy</a></li>
 </ul>
 
 
@@ -253,17 +358,17 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &#169;2020, Neele Falk.
+      &#169;2026, Ben Campbell.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.1</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
     </div>
 
     
-    <a href="https://github.com/Blubberli/germanetpy" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    <a href="https://github.com/bencampbell30/germanetpy" class="github">
+        <img src="../../_static/github-banner.svg" alt="Fork me on GitHub" class="github"/>
     </a>
     
 
