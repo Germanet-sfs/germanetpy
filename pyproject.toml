@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "germanetpy"
-version = "0.3.0"
+version = "0.3.1"
 description = "Python API for GermaNet"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -17,9 +17,10 @@ authors = [
 dependencies = [
     "numpy>=1.18.1",
     "lxml>=4.4.2",
+    "pytest>=5.3.2",
     "fastenum>=0.0.1",
     "tqdm>=4.14",
-    "python-Levenshtein==0.25.1",
+    "python-Levenshtein>=0.27.3",
 ]
 
 classifiers = [
